@@ -17,11 +17,18 @@ public class PlayerController : MonoBehaviourPun
     {
         _photonVoiceView = GetComponent<PhotonVoiceView>();
         _photonVoiceView.UsePrimaryRecorder = true;
+        StartCoroutine(SetUpRecorder());
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        
+    }
+
+    private IEnumerator SetUpRecorder()
+    {
+        yield return null;
         _recorder = _photonVoiceView.RecorderInUse;
     }
 
@@ -61,4 +68,5 @@ public class PlayerController : MonoBehaviourPun
 
         transform.position = new Vector3(newX, newY, transform.position.z);
     }
+    
 }

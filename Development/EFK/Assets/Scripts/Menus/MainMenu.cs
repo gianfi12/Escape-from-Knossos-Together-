@@ -79,7 +79,6 @@ public class MainMenu : MonoBehaviourPunCallbacks
         {
             _waitingStatusText.text = "Opponent found";
             Debug.Log("Match is ready to begin");
-            
         }
     }
 
