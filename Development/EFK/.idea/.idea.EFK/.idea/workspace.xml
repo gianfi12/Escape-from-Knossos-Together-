@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b349950e-4fca-4e77-a924-d912cc7c25e4" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Tile.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/RoomCollection.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/E93AB2F8-5FF8-4881-B6AB-5BA98D373CFC/25/11425b54/NativeInputSystem.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/CameraController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Room.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/Assets/Scripts/IntVector2.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/MazeCellSacript.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/MazeCellScript.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/MazePassage.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/MazeRoomSettings.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/MazeCell.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/MazeWall.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/MazeDirections.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/MazeCellEdge.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/MazeRoom.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Maze.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/MazeDoor.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/MazeScripts/MazeDirections.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerScripts/PlayerInput.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/MazeScripts/DoorScript.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Interface/LevelBuilder.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Abstraction/LevelBuilder.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Abstraction/LevelBuilderAbstract.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Abstraction/CellEdgeAbstract.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/MazeScripts/MazeCell.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/LevelBuilderV2/Cell.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/MazeScripts/MazeWall.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/MazeScripts/MazeDoor.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Abstraction/RoomSettingsAbstract.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/MazeScripts/MazeRoomSettings.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/LevelBuilderV2/Room.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Abstraction/RoomAbstract.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/MazeScripts/MazeRoom.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/MazeScripts/Maze.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/LevelBuilderV2/RoomConstructed.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/MazeScripts/MazeCellEdge.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/LevelBuilderV2/RoomList.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Abstraction/CellAbstract.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/LevelBuilderV2/LevelBuilder.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/RoomCollection.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerScripts/PlayerController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Tile.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/CameraController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/EnumDirection.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Direction.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Room.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/LevelMap.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/VectorAssetType.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Asset.cs" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1j0nJjB3pUmx7Cvsh5iQHVs681V" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.34994584" />
+    <property name="DebuggerViewTab_PTCS_LastProportionKey" value="0.30010834" />
+    <property name="Discover.Launch.Via.Unity" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <option name="selectedOptions">
+        <set />
+      </option>
+      <method v="2" />
+    </configuration>
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <option name="selectedOptions">
+        <set />
+      </option>
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b349950e-4fca-4e77-a924-d912cc7c25e4" name="Default Changelist" comment="" />
+      <created>1602949810451</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1602949810451</updated>
+      <workItem from="1602949816690" duration="604000" />
+      <workItem from="1603012308349" duration="15083000" />
+      <workItem from="1603185455375" duration="4931000" />
+      <workItem from="1603204310281" duration="117000" />
+      <workItem from="1603263477350" duration="16200000" />
+      <workItem from="1603374849656" duration="7368000" />
+      <workItem from="1603447589692" duration="5355000" />
+      <workItem from="1603545749218" duration="9971000" />
+      <workItem from="1603613535089" duration="19240000" />
+      <workItem from="1603652541314" duration="959000" />
+      <workItem from="1603657908674" duration="2054000" />
+      <workItem from="1603697633923" duration="3476000" />
+      <workItem from="1603701724085" duration="220000" />
+      <workItem from="1603719352924" duration="2366000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1877" height="390" key="GridCell.Tab.0.bottom" timestamp="1603659979067">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="390" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1603659979067" />
+    <state width="1877" height="390" key="GridCell.Tab.0.center" timestamp="1603659979067">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="390" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1603659979067" />
+    <state width="1877" height="390" key="GridCell.Tab.0.left" timestamp="1603659979067">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="390" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1603659979067" />
+    <state width="1877" height="390" key="GridCell.Tab.0.right" timestamp="1603659979067">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="390" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1603659979067" />
+    <state width="1877" height="390" key="GridCell.Tab.1.bottom" timestamp="1603659979068">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="390" key="GridCell.Tab.1.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1603659979068" />
+    <state width="1877" height="390" key="GridCell.Tab.1.center" timestamp="1603659979067">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="390" key="GridCell.Tab.1.center/0.0.1920.1080@0.0.1920.1080" timestamp="1603659979067" />
+    <state width="1877" height="390" key="GridCell.Tab.1.left" timestamp="1603659979067">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="390" key="GridCell.Tab.1.left/0.0.1920.1080@0.0.1920.1080" timestamp="1603659979067" />
+    <state width="1877" height="390" key="GridCell.Tab.1.right" timestamp="1603659979068">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="390" key="GridCell.Tab.1.right/0.0.1920.1080@0.0.1920.1080" timestamp="1603659979068" />
+    <state width="1877" height="390" key="GridCell.Tab.2.bottom" timestamp="1603659979068">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="390" key="GridCell.Tab.2.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1603659979068" />
+    <state width="1877" height="390" key="GridCell.Tab.2.center" timestamp="1603659979068">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="390" key="GridCell.Tab.2.center/0.0.1920.1080@0.0.1920.1080" timestamp="1603659979068" />
+    <state width="1877" height="390" key="GridCell.Tab.2.left" timestamp="1603659979068">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="390" key="GridCell.Tab.2.left/0.0.1920.1080@0.0.1920.1080" timestamp="1603659979068" />
+    <state width="1877" height="390" key="GridCell.Tab.2.right" timestamp="1603659979068">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="390" key="GridCell.Tab.2.right/0.0.1920.1080@0.0.1920.1080" timestamp="1603659979068" />
+    <state width="1877" height="390" key="GridCell.Tab.3.bottom" timestamp="1603659979068">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="390" key="GridCell.Tab.3.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1603659979068" />
+    <state width="1877" height="390" key="GridCell.Tab.3.center" timestamp="1603659979068">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="390" key="GridCell.Tab.3.center/0.0.1920.1080@0.0.1920.1080" timestamp="1603659979068" />
+    <state width="1877" height="390" key="GridCell.Tab.3.left" timestamp="1603659979068">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="390" key="GridCell.Tab.3.left/0.0.1920.1080@0.0.1920.1080" timestamp="1603659979068" />
+    <state width="1877" height="390" key="GridCell.Tab.3.right" timestamp="1603659979068">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="390" key="GridCell.Tab.3.right/0.0.1920.1080@0.0.1920.1080" timestamp="1603659979068" />
+    <state x="764" y="214" key="RiderGenerateDialog" timestamp="1603700401535">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="764" y="214" key="RiderGenerateDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1603700401535" />
+    <state width="498" height="446" key="SwitcherDM" timestamp="1603454821740">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="498" height="446" key="SwitcherDM/0.0.1920.1080@0.0.1920.1080" timestamp="1603454821740" />
+    <state x="565" y="151" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1603275974291">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="565" y="151" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1920.1080@0.0.1920.1080" timestamp="1603275974291" />
+    <state x="514" y="277" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1603283003005">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="514" y="277" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1920.1080@0.0.1920.1080" timestamp="1603283003005" />
+    <state x="638" y="139" width="644" height="801" key="find.popup" timestamp="1603643978176">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="638" y="139" width="644" height="801" key="find.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1603643978176" />
+    <state x="616" y="250" key="run.anything.popup" timestamp="1603375214638">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="616" y="250" key="run.anything.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1603375214638" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/MazeScripts/DoorScript.cs</url>
+          <line>13</line>
+          <properties documentPath="C:\Users\Gianf\Documents\VDP\EFK\Escape-from-Knossos-Togheter-\Development\EFK\Assets\Scripts\MazeScripts\DoorScript.cs" initialLine="10" />
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/LevelBuilderV2/LevelBuilder.cs</url>
+          <line>45</line>
+          <properties documentPath="C:\Users\Gianf\Documents\VDP\EFK\Escape-from-Knossos-Togheter-\Development\EFK\Assets\Scripts\LevelBuilderV2\LevelBuilder.cs" initialLine="43" />
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="Frame#LevelMap.RoomPlacement" memberName="this" />
+        <PinnedItemInfo parentTag="Type#LevelMap" memberName="_selectedRooms" />
+      </pinned-members>
+    </pin-to-top-manager>
+  </component>
+</project>

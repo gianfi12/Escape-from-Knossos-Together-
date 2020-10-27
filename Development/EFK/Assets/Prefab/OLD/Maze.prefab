@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &362826119668141137
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 838568653374956107}
+  - component: {fileID: 2150035988337856184}
+  m_Layer: 0
+  m_Name: Maze
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &838568653374956107
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 362826119668141137}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2150035988337856184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 362826119668141137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55e9870aa3f99ef48ba31442b292ce79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _size:
+    x: 30
+    y: 30
+  cellAbstractPrefab: {fileID: -3811833223093038040, guid: ea7a67f891e5544489802a876c3fba76,
+    type: 3}
+  _passagePrefab: {fileID: -5358180548687538289, guid: 6fc945e398aca5843a0ea1e0d3ed4df5,
+    type: 3}
+  _wallPrefab: {fileID: 1478917471051764488, guid: a20024d16fff4b1408ae9e2cc38dc191,
+    type: 3}
+  _doorPrefab: {fileID: -8603207925601161348, guid: c2c39f8292af0454595384c758851975,
+    type: 3}
+  _doorProbability: 0.1
+  mazeRoomSettings:
+  - floorMaterial: {fileID: 2100000, guid: 870dda8cce277914e9584db55c325d74, type: 2}
+    wallMaterial: {fileID: 2100000, guid: 28acb804ddd90214386a94c492b3d631, type: 2}
+  - floorMaterial: {fileID: 2100000, guid: d5ce805d949e27745bd3813cd34fadf3, type: 2}
+    wallMaterial: {fileID: 2100000, guid: 3851d10015f90c142aedf5fe2ec6da75, type: 2}
+  - floorMaterial: {fileID: 2100000, guid: dee58e5357ae91f46926bef816063288, type: 2}
+    wallMaterial: {fileID: 2100000, guid: 5537f9769c1dfc1468c53a3be2eb8b51, type: 2}
+  - floorMaterial: {fileID: 2100000, guid: bead0ec816499f243aa697f672016db3, type: 2}
+    wallMaterial: {fileID: 2100000, guid: f09701b8198e45943a651a156c797e08, type: 2}

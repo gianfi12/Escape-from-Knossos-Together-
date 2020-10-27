@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\Gianf\AppData\Local\JetBrains\Rider2020.2\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Gianf\AppData\Local\JetBrains\Rider2020.2\resharper-host\Local\Transient\Rider\v202\SolutionCaches\_EFK.-1945000440.00" t="ExcludeRecursive" />
+    <e p="C:\Users\Gianf\Documents\VDP\EFK\Escape-from-Knossos-Togheter-\Development\EFK" t="IncludeRecursive">
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="Scripts" t="Include">
+          <e p="Asset.cs" t="Include" />
+          <e p="CameraController.cs" t="Include" />
+          <e p="Direction.cs" t="Include" />
+          <e p="GameManager.cs" t="Include" />
+          <e p="LevelMap.cs" t="Include" />
+          <e p="LEVELSV1" t="Include">
+            <e p="Abstraction" t="Include">
+              <e p="CellAbstract.cs" t="Include" />
+              <e p="CellEdgeAbstract.cs" t="Include" />
+              <e p="LevelBuilderAbstract.cs" t="Include" />
+              <e p="RoomAbstract.cs" t="Include" />
+              <e p="RoomSettingsAbstract.cs" t="Include" />
+            </e>
+            <e p="IntVector2.cs" t="Include" />
+            <e p="LevelBuilderV2" t="Include">
+              <e p="Cell.cs" t="Include" />
+              <e p="LevelBuilder.cs" t="Include" />
+              <e p="RoomConstructed.cs" t="Include" />
+              <e p="RoomList.cs" t="Include" />
+            </e>
+            <e p="MazeScripts" t="Include">
+              <e p="DoorScript.cs" t="Include" />
+              <e p="Maze.cs" t="Include" />
+              <e p="MazeCell.cs" t="Include" />
+              <e p="MazeCellEdge.cs" t="Include" />
+              <e p="MazeDirections.cs" t="Include" />
+              <e p="MazeDoor.cs" t="Include" />
+              <e p="MazePassage.cs" t="Include" />
+              <e p="MazeRoom.cs" t="Include" />
+              <e p="MazeRoomSettings.cs" t="Include" />
+              <e p="MazeWall.cs" t="Include" />
+            </e>
+          </e>
+          <e p="PlayerScripts" t="Include">
+            <e p="PlayerController.cs" t="Include" />
+            <e p="PlayerInput.cs" t="Include" />
+          </e>
+          <e p="Room.cs" t="Include" />
+          <e p="RoomCollection.cs" t="Include" />
+          <e p="Tile.cs" t="Include" />
+          <e p="VectorAssetType.cs" t="Include" />
+        </e>
+      </e>
+      <e p="EFK.sln" t="IncludeFlat" />
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="Packages" t="ExcludeRecursive" />
+      <e p="Temp\bin" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>
