@@ -13,6 +13,7 @@ public class Room : MonoBehaviour
     [SerializeField] private Tilemap tilemapWall;
     [SerializeField] private Tilemap tilemapSpawn;
     [SerializeField] private Asset asset;
+    [SerializeField] private TileBase _base;
     
     public readonly List<Tile> Entrance = new List<Tile>();
     public readonly List<Tile> Exit = new List<Tile>();
