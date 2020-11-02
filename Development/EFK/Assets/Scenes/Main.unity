@@ -208,14 +208,14 @@ MonoBehaviour:
   reliableMode: 0
   encrypt: 0
   transmitEnabled: 0
-  samplingRate: 24000
+  samplingRate: 48000
   frameDuration: 20000
   bitrate: 30000
   sourceType: 0
   microphoneType: 0
   audioClip: {fileID: 0}
   loopAudioClip: 1
-  reactOnSystemChanges: 0
+  reactOnSystemChanges: 1
   autoStart: 1
   audioSessionParameters:
     Category: 4
@@ -509,7 +509,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 19.407806, y: -7.7173767}
+  m_AnchoredPosition: {x: 0, y: 86}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1979802500
@@ -538,13 +538,13 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: CHE BEL GIOCO
+  m_Text: PRESS v TO TALK
 --- !u!222 &1979802501
 CanvasRenderer:
   m_ObjectHideFlags: 0

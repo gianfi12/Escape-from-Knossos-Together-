@@ -4,9 +4,13 @@ using Photon.Pun;
 using Photon.Voice.PUN;
 using Photon.Voice.Unity;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviourPun
 {
+    [SerializeField] private Image _pushToTalk;
+    [SerializeField] private GameObject _playerUI;
+    
     private float _speed = 5.0f;
     private float _horizontalMovement;
     private float _verticalMovement;
@@ -15,6 +19,7 @@ public class PlayerController : MonoBehaviourPun
     
     private void Awake()
     {
+        //Set the recorder
         _photonVoiceView = GetComponent<PhotonVoiceView>();
         _photonVoiceView.UsePrimaryRecorder = true;
         StartCoroutine(SetUpRecorder());
@@ -23,7 +28,8 @@ public class PlayerController : MonoBehaviourPun
     // Start is called before the first frame update
     void Start()
     {
-        
+        //Set active the UI for each player
+        if (photonView.IsMine) _playerUI.SetActive(true);
     }
 
     private IEnumerator SetUpRecorder()
@@ -43,10 +49,12 @@ public class PlayerController : MonoBehaviourPun
         if (Input.GetButtonDown("Voice"))
         {
             _recorder.TransmitEnabled = true;
+            _pushToTalk.color = Color.white;
         }
         else if (Input.GetButtonUp("Voice"))
         {
             _recorder.TransmitEnabled = false;
+            _pushToTalk.color = Color.black;
         }
         
         _horizontalMovement = Input.GetAxisRaw("Horizontal");
