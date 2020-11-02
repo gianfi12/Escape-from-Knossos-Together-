@@ -13,6 +13,13 @@ public enum Direction
 
 public static class DirectionExtensions
 {
+    private static Vector3Int[] _direction =
+    {
+        new Vector3Int(0, 1, 0),
+        new Vector3Int(0, -1, 0),
+        new Vector3Int(-1, 0, 0),
+        new Vector3Int(1,0,0)
+    };
     private static Direction[] _opposite =
     {
         Direction.South,
@@ -21,6 +28,11 @@ public static class DirectionExtensions
         Direction.East
     };
 
+    public static Vector3Int GetDirection(this Direction direction)
+    {
+        return _direction[(int) direction];
+
+    }
     public static Direction GetOpposite(this Direction direction)
     {
         return _opposite[(int) direction];

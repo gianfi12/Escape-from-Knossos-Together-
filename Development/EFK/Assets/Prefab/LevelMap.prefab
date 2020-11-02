@@ -44,4 +44,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomCollection: {fileID: 11400000, guid: a3676319eac9ecd47a7e3b9aecff0289, type: 2}
-  numberOfRoom: 1
+  numberOfRoom: 2
