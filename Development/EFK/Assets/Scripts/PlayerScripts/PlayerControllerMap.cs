@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerControllerMap : MonoBehaviour
 {
-    private float _speed = 2f;
+    private float _speed = 3f;
     private Vector3 _movement;
     
     public void SetLocation(Vector3 position)

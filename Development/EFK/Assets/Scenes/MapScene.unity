@@ -153,7 +153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelPrefab: {fileID: 7012549889207664989, guid: a5ca277e4f2b30849a5abf126c02cc6f,
     type: 3}
-  playerPrefab: {fileID: 1797160303316015908, guid: 6bc31996454ca424a9cb82853722c363,
+  playerPrefab: {fileID: 2883389795501063691, guid: 6bc31996454ca424a9cb82853722c363,
     type: 3}
   mainCamera: {fileID: 6250305113863554164, guid: a5a681f67dd600b4e9c39ff8637c9cd0,
     type: 3}
