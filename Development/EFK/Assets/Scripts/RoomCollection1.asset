@@ -15,8 +15,11 @@ MonoBehaviour:
   rooms:
   - {fileID: 8344181547837052234, guid: 8b0d4a79c19918d4c88b7301f5a36a45, type: 3}
   - {fileID: 4519189466870621014, guid: 1e3da9374f7390c45a59b47ea8861d78, type: 3}
-  - {fileID: 4519189466870621014, guid: 1e3da9374f7390c45a59b47ea8861d78, type: 3}
-  startingRoom: {fileID: 3134405057706924811, guid: d1f382e6fcda230449058478cd59c831,
+  - {fileID: 1675743655423080906, guid: 9a05ec23f3b19d94e9c09ddfb01adc10, type: 3}
+  - {fileID: 8451841091672580851, guid: cd4717af7915d47469fb14b0b3278688, type: 3}
+  startingRoomPlayer1: {fileID: 3134405057706924811, guid: d1f382e6fcda230449058478cd59c831,
     type: 3}
-  endingRoom: {fileID: 8233123866904865194, guid: 7d43cac3f6798be4eaca08a7aad80dc3,
+  startingRoomPlayer2: {fileID: 8726461452183606742, guid: e238ca12fade05f408998b87892b059d,
+    type: 3}
+  finalRoom: {fileID: 8233123866904865194, guid: 7d43cac3f6798be4eaca08a7aad80dc3,
     type: 3}

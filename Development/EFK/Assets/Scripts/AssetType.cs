@@ -1,8 +1,6 @@
 ﻿public enum AssetType
 {
-    WallsInternal,
-    WallExternal,
-    WallLeft,
-    WallRight,
+    WallTop,
+    WallBottom,
     Floors
 }
