@@ -20,7 +20,7 @@ public class PlayerControllerMap : MonoBehaviour
 
     private void FixedUpdate()
     {
-        transform.position += _movement * Time.fixedDeltaTime * _speed;
+        transform.position += _movement.normalized * Time.fixedDeltaTime * _speed;
         _movement=Vector3.zero;
     }
 }
