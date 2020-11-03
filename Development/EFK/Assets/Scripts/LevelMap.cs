@@ -366,7 +366,8 @@ public class LevelMap : MonoBehaviour
         return roomCollection.Rooms[index];
     }
 
-    public void PlacePlayer(PlayerControllerMap player)
+    //TODO use ID of player to select spawn 1 or 2
+    public void PlacePlayer(PlayerControllerMap player, int playerID)
     {
         player.SetLocation(_tilemapFloor.layoutGrid.CellToWorld(_selectedRooms[0].Spawn[0].Coordinates)+new Vector3Int(1,1,0));
         //player.SetLocation(_tilemapFloor.layoutGrid.CellToWorld(_selectedRooms[_selectedRooms.Count-1].Spawn[0].Coordinates)+new Vector3Int(1,1,0));
