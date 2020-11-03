@@ -13,18 +13,19 @@ public class Room : MonoBehaviour
     [SerializeField] private Tilemap tilemapWall;
     [SerializeField] private Tilemap tilemapSpawn;
     [SerializeField] private AssetsCollection assetsCollection;
-    [SerializeField] private int requiredWidthSpace;
     
-        public readonly List<Tile> Entrance = new List<Tile>();
-        public readonly List<Tile> Exit = new List<Tile>();
-        public readonly List<Tile> Wall = new List<Tile>();
-        public readonly List<Tile> Floor = new List<Tile>();
-        public readonly List<Tile> Object = new List<Tile>();
-        public readonly List<Tile> Spawn = new List<Tile>();
-        public readonly List<Tile> TileList = new List<Tile>();
+    public readonly List<Tile> Entrance = new List<Tile>();
+    public readonly List<Tile> Exit = new List<Tile>();
+    public readonly List<Tile> Wall = new List<Tile>();
+    public readonly List<Tile> Floor = new List<Tile>();
+    public readonly List<Tile> Object = new List<Tile>();
+    public readonly List<Tile> Spawn = new List<Tile>();
+    public readonly List<Tile> TileList = new List<Tile>();
 
+    private int _requiredWidthSpace;
     private int _displacementX, _displacementY;
     private int _lowestX;
+    private int _higherX;
     private int _lowestY;
     private bool _firstTile = true;
 
@@ -36,7 +37,7 @@ public class Room : MonoBehaviour
         IterateTilemap(tilemapExit,Exit);
         IterateTilemap(tilemapEntrance,Entrance);
         IterateTilemap(tilemapSpawn,Spawn);
-        
+        _requiredWidthSpace = _higherX - _lowestX;
     }
 
     private void IterateTilemap(Tilemap tilemap, List<Tile> list)
@@ -54,6 +55,7 @@ public class Room : MonoBehaviour
                         _firstTile = false;
                         _lowestX = tile.Coordinates.x;
                         _lowestY = tile.Coordinates.y;
+                        _higherX = tile.Coordinates.x;
                     }
                     else if (_lowestX > tile.Coordinates.x)
                     {
@@ -63,6 +65,9 @@ public class Room : MonoBehaviour
                     {
                         _lowestY = tile.Coordinates.y;
                     }
+
+                    if (_higherX < tile.Coordinates.x) _higherX = tile.Coordinates.x;
+                    
                     list.Add(tile);
                     TileList.Add(tile);
                 }
@@ -88,7 +93,7 @@ public class Room : MonoBehaviour
 
     public AssetsCollection AssetsCollection => assetsCollection;
 
-    public int RequiredWidthSpace => requiredWidthSpace;
+    public int RequiredWidthSpace => _requiredWidthSpace;
 
     public int DisplacementX => _displacementX;
 
