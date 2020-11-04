@@ -44,11 +44,14 @@ public class LevelMap : MonoBehaviour
         goWall.AddComponent<TilemapCollider2D>();
         Rigidbody2D rigidbody2DWall = goWall.AddComponent<Rigidbody2D>();
         rigidbody2DWall.bodyType = RigidbodyType2D.Kinematic;  
+        goWall.AddComponent<CompositeCollider2D>();
+        goWall.GetComponent<TilemapCollider2D>().usedByComposite = true;
     
         var goObject = new GameObject("TilemapObject");
         goObject.transform.SetParent(_grid.gameObject.transform);
         _tilemapObject = goObject.AddComponent<Tilemap>();
-        goObject.AddComponent<TilemapRenderer>();
+        TilemapRenderer renderer =  goObject.AddComponent<TilemapRenderer>();
+        renderer.sortingLayerName = "Object";
     }
 
     private void RoomConnect()
@@ -261,14 +264,24 @@ public class LevelMap : MonoBehaviour
             }
         }
         //Put the tile of the wall also on the corner
-        if(startingDirection==Direction.South) _tilemapWall.SetTile(
+        if(startingDirection==Direction.South) {
+            if(nextDirection==Direction.West) _tilemapWall.SetTile(
             new Vector3Int(moovingCoordinates.Min(x => x.x)-1, moovingCoordinates[0].y, 0)+startingDirection.GetDirection(),
             asset.GetTileFromType(AssetType.WallBottom)[0]);
-        else _tilemapWall.SetTile(
+            else _tilemapWall.SetTile(
+                new Vector3Int(moovingCoordinates.Max(x => x.x)+1, moovingCoordinates[0].y, 0)+startingDirection.GetDirection(),
+                asset.GetTileFromType(AssetType.WallBottom)[0]);
+        }
+        else {
+            if(nextDirection==Direction.East) _tilemapWall.SetTile(
             new Vector3Int(moovingCoordinates.Max(x => x.x)+1, moovingCoordinates[0].y, 0)+startingDirection.GetDirection(),
             asset.GetTileFromType(AssetType.WallTop)[0]);
+            else _tilemapWall.SetTile(
+                new Vector3Int(moovingCoordinates.Min(x => x.x)-1, moovingCoordinates[0].y, 0)+startingDirection.GetDirection(),
+                asset.GetTileFromType(AssetType.WallTop)[0]);
+        }
 
-            //Put the tile of the wall also on the other part of the cornet before changing and rotating the moving direction in the West direction
+        //Put the tile of the wall also on the other part of the cornet before changing and rotating the moving direction in the West direction
         foreach (Vector3Int pos in moovingCoordinates)
         {
             _tilemapWall.SetTile(
@@ -278,11 +291,20 @@ public class LevelMap : MonoBehaviour
         //Rotate the moving directions in order to continue and go to West in the next function
         for (int i = 0; i < moovingCoordinates.Count; i++)
         {
-            if (startingDirection == Direction.North)
-                moovingCoordinates[i] = new Vector3Int(moovingCoordinates.Max(x=>x.x), moovingCoordinates[i].y - i, 0);
-            else 
-                moovingCoordinates[i] = new Vector3Int(moovingCoordinates.Max(x=>x.x), moovingCoordinates[i].y + i, 0);
-            if(startingDirection==Direction.North) moovingCoordinates[i] += new Vector3Int(-1,0,0);
+            if (nextDirection == Direction.West)
+            {            
+                if (startingDirection == Direction.South)
+                    moovingCoordinates[i] = new Vector3Int(moovingCoordinates.Max(x=>x.x), moovingCoordinates[i].y + i, 0);
+                else 
+                    moovingCoordinates[i] = new Vector3Int(moovingCoordinates.Max(x=>x.x), moovingCoordinates[i].y - i, 0);
+            }
+            else
+            {
+                if (startingDirection == Direction.North)
+                    moovingCoordinates[i] = new Vector3Int(moovingCoordinates.Min(x=>x.x), moovingCoordinates[i].y - i, 0);
+                else moovingCoordinates[i] = new Vector3Int(moovingCoordinates.Min(x=>x.x), moovingCoordinates[i].y + i, 0);
+            }
+            //if(startingDirection==Direction.North) moovingCoordinates[i] += new Vector3Int(-1,0,0);
         }
         //return the updated coordinates
         return moovingCoordinates;
@@ -366,10 +388,15 @@ public class LevelMap : MonoBehaviour
         return roomCollection.Rooms[index];
     }
 
-    //TODO use ID of player to select spawn 1 or 2
     public void PlacePlayer(PlayerControllerMap player, int playerID)
     {
-        player.SetLocation(_tilemapFloor.layoutGrid.CellToWorld(_selectedRooms[0].Spawn[0].Coordinates)+new Vector3Int(1,1,0));
-        //player.SetLocation(_tilemapFloor.layoutGrid.CellToWorld(_selectedRooms[_selectedRooms.Count-1].Spawn[0].Coordinates)+new Vector3Int(1,1,0));
+        if (playerID == 1)
+            player.SetLocation(_tilemapFloor.layoutGrid.CellToWorld(_selectedRooms[0].Spawn[0].Coordinates) +
+                               new Vector3Int(1, 1, 0));
+        else
+            player.SetLocation(
+                _tilemapFloor.layoutGrid.CellToWorld(_selectedRooms[_selectedRooms.Count - 1].Spawn[0].Coordinates) +
+                new Vector3Int(1, 1, 0));
+
     }
 }

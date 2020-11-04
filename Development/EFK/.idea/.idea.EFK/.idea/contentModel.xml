@@ -7,6 +7,11 @@
       <e p="Assembly-CSharp-Editor-firstpass.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
+        <e p="BayatGames" t="Include">
+          <e p="Free Platform Game Assets" t="Include">
+            <e p="readme.txt" t="Include" />
+          </e>
+        </e>
         <e p="Photon" t="Include">
           <e p="PhotonChat" t="Include">
             <e p="Code" t="Include">
@@ -333,6 +338,10 @@
           <e p="Menus" t="Include">
             <e p="MainMenu.cs" t="Include" />
             <e p="PlayerNameInput.cs" t="Include" />
+          </e>
+          <e p="ObjectScript" t="Include">
+            <e p="ChestScript.cs" t="Include" />
+            <e p="PlayerOutline.cs" t="Include" />
           </e>
           <e p="PlayerScripts" t="Include">
             <e p="PlayerControllerMap.cs" t="Include" />
