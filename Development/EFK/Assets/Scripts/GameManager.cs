@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     private PlayerControllerMap _playerInstance;
     [SerializeField] private CinemachineVirtualCamera mainCamera;
     private CinemachineVirtualCamera _cameraInstance;
-
+    
     void Start()
     {
         BeginGame();

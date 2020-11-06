@@ -351,6 +351,7 @@
           <e p="PlayerScripts" t="Include">
             <e p="PlayerControllerMap.cs" t="Include" />
             <e p="PlayerInput.cs" t="Include" />
+            <e p="PlayerInteraction.cs" t="Include" />
             <e p="VoiceController.cs" t="Include" />
           </e>
           <e p="PlayerSpawner.cs" t="Include" />
