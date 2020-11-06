@@ -24,14 +24,10 @@ public class LevelMap : MonoBehaviour
         get => _seed;
         set => _seed = value;
     }
-
-    private void Awake()
-    {
-        Random.InitState(_seed);
-    }
-
+    
 
     public void CreateMap(){
+        Random.InitState(_seed);
         InstantiateMapElements();
         
         RoomGeneration();
