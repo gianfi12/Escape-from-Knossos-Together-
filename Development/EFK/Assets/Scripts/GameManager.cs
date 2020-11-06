@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
 using Photon.Pun;
 using Cinemachine;
-using System;
+using System.Collections;
 using Random = System.Random;
+using System.Linq;
+using System.Collections.Generic;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,29 +18,33 @@ public class GameManager : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera mainCamera;
     private CinemachineVirtualCamera _cameraInstance;
     
+    private int mapSeed; 
+
     void Start()
     {
         BeginGame();
     }
 
+
+    [PunRPC]
+    private void GenerateSeed() {
+        mapSeed = UnityEngine.Random.Range(0, 10000);
+    }
+
     private void BeginGame()
     {
         _levelMap = Instantiate(levelPrefab);
-        if (PhotonNetwork.IsMasterClient)
-        {
-            commonInfo = PhotonNetwork.Instantiate(commonInfoPrefab.name, Vector3.zero, Quaternion.identity);
-            commonInfo.GetComponent<MapSeedInfo>().GenerateMapSeed();
-        }
-        else
-        {
-            do
-            {
-                commonInfo = GameObject.Find("CommonInfo");
-            } while (commonInfo == null);
 
+        if (PhotonNetwork.IsConnected) {
+            if (PhotonNetwork.IsMasterClient) {
+                PhotonView photonView = PhotonView.Get(this);
+                photonView.RPC("GenerateSeed", RpcTarget.All);
+            }
         }
-
-        _levelMap.Seed = commonInfo.GetComponent<MapSeedInfo>().GetSeed();
+        else {
+            _levelMap.Seed = UnityEngine.Random.Range(0, 10000);
+        }
+        
         _levelMap.CreateMap();
         
         if (PhotonNetwork.IsConnected) {

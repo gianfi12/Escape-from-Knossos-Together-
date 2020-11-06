@@ -35,6 +35,7 @@ MonoBehaviour:
   RpcList:
   - ClickRpc
   - DestroyRpc
+  - GenerateSeed
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0
