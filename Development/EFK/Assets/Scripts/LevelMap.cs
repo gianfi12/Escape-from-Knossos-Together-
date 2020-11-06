@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Photon.Realtime;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
 
-public class LevelMap : MonoBehaviour
+public class LevelMap : MonoBehaviourPun
 {
     private Tilemap _tilemapFloor;
     private Tilemap _tilemapWall;
@@ -25,7 +25,11 @@ public class LevelMap : MonoBehaviour
         set => _seed = value;
     }
     
+    public void CreateMapOverNetwork() {
+        this.photonView.RPC("CreateMap", RpcTarget.All);
+    }
 
+    [PunRPC]
     public void CreateMap(){
         Random.InitState(_seed);
         InstantiateMapElements();

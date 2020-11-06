@@ -37,6 +37,7 @@ MonoBehaviour:
   - DestroyRpc
   - GenerateSeed
   - SetLevelMap
+  - CreateMap
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
