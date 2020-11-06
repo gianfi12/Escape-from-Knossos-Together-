@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviourPun
             if (PhotonNetwork.IsMasterClient) {
                 _levelMap =  PhotonNetwork.Instantiate(levelPrefab.name, Vector3.zero, Quaternion.identity).GetComponent<LevelMap>();
                 _levelMap.CreateMapOverNetwork();
-                _levelMap.InstantiatePlayersOverNetwork(playerPrefab);
+                _levelMap.InstantiatePlayersOverNetwork();
             }
         }
         else {
@@ -41,12 +41,11 @@ public class GameManager : MonoBehaviourPun
             _playerInstance = Instantiate(playerPrefab).GetComponent<PlayerControllerMap>();
             _levelMap.PlacePlayer(_playerInstance, 1);
         }
-
-        _cameraInstance = Instantiate(mainCamera);
-        _cameraInstance.m_Follow = _playerInstance.transform;
     }
 
     public void SetPlayerInstance(PlayerControllerMap playerInstance) {
         _playerInstance = playerInstance;
+        _cameraInstance = Instantiate(mainCamera);
+        _cameraInstance.m_Follow = _playerInstance.transform;
     }
 }
