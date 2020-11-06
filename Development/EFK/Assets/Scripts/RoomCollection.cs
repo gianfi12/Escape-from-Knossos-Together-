@@ -6,16 +6,19 @@ using UnityEngine;
 public class RoomCollection : ScriptableObject
 {
     
-    [SerializeField] private List<Room> rooms = new List<Room>();
-    [SerializeField] private Room startingRoom;
-    [SerializeField] private Room endingRoom;
+    [SerializeField] private List<RoomAbstract> rooms = new List<RoomAbstract>();
+    [SerializeField] private RoomAbstract startingRoomPlayer1;
+    [SerializeField] private RoomAbstract startingRoomPlayer2;
+    [SerializeField] private RoomAbstract finalRoom;
 
-    public List<Room> Rooms
+    public List<RoomAbstract> Rooms
     {
         get => rooms;
     }
 
-    public Room StartingRoom => startingRoom;
+    public RoomAbstract StartingRoomPlayer1 => startingRoomPlayer1;
 
-    public Room EndingRoom => endingRoom;
+    public RoomAbstract FinalRoom => finalRoom;
+
+    public RoomAbstract StartingRoomPlayer2 => startingRoomPlayer2;
 }

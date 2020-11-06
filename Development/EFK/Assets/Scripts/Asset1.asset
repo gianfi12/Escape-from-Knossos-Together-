@@ -13,18 +13,12 @@ MonoBehaviour:
   m_Name: Asset1
   m_EditorClassIdentifier: 
   Assets:
-  - AssetType: 4
-    tileBases:
-    - {fileID: 11400000, guid: 8fb0401d5f3ee624d87b18a792433c9c, type: 2}
-  - AssetType: 1
-    tileBases:
-    - {fileID: 11400000, guid: 554f3b0674d470b4499fd0e95ecdc6d5, type: 2}
   - AssetType: 0
     tileBases:
-    - {fileID: 11400000, guid: 0954a78c99f96f74bab786dcba9a7715, type: 2}
+    - {fileID: 11400000, guid: 6f147c893e185824c81596b4e8d72f98, type: 2}
+  - AssetType: 1
+    tileBases:
+    - {fileID: 11400000, guid: 187fe61f5078f8e48a35aca4854b1552, type: 2}
   - AssetType: 2
     tileBases:
-    - {fileID: 11400000, guid: 985b28762e120a945bc6f0beb49632d0, type: 2}
-  - AssetType: 3
-    tileBases:
-    - {fileID: 11400000, guid: 985b28762e120a945bc6f0beb49632d0, type: 2}
+    - {fileID: 11400000, guid: 8fb0401d5f3ee624d87b18a792433c9c, type: 2}
