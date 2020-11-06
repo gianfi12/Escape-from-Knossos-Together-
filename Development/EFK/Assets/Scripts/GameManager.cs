@@ -7,45 +7,37 @@ using System.Linq;
 using System.Collections.Generic;
 using System;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviourPun
 {
     [SerializeField] private LevelMap levelPrefab;
     private LevelMap _levelMap;
     [SerializeField] private GameObject playerPrefab;
-    [SerializeField] private GameObject commonInfoPrefab;
-    private GameObject commonInfo;
     private PlayerControllerMap _playerInstance;
     [SerializeField] private CinemachineVirtualCamera mainCamera;
     private CinemachineVirtualCamera _cameraInstance;
-    
-    private int mapSeed; 
+
 
     void Start()
     {
         BeginGame();
     }
 
-
-    [PunRPC]
-    private void GenerateSeed() {
-        mapSeed = UnityEngine.Random.Range(0, 10000);
-    }
-
     private void BeginGame()
     {
-        _levelMap = Instantiate(levelPrefab);
-
         if (PhotonNetwork.IsConnected) {
             if (PhotonNetwork.IsMasterClient) {
-                PhotonView photonView = PhotonView.Get(this);
-                photonView.RPC("GenerateSeed", RpcTarget.All);
+                _levelMap =  PhotonNetwork.Instantiate(levelPrefab.name, Vector3.zero, Quaternion.identity).GetComponent<LevelMap>();
+                _levelMap.Seed = UnityEngine.Random.Range(0, 10000);
+                _levelMap.CreateMap();
+                this.photonView.RPC("SetLevelMap", RpcTarget.Others, _levelMap);
             }
         }
         else {
+            _levelMap = Instantiate(levelPrefab);
             _levelMap.Seed = UnityEngine.Random.Range(0, 10000);
+            _levelMap.CreateMap();
         }
-        
-        _levelMap.CreateMap();
+   
         
         if (PhotonNetwork.IsConnected) {
             _playerInstance = PhotonNetwork.Instantiate(playerPrefab.name, Vector3.zero, Quaternion.identity).GetComponent<PlayerControllerMap>();
@@ -57,5 +49,10 @@ public class GameManager : MonoBehaviour
         }
         _cameraInstance = Instantiate(mainCamera);
         _cameraInstance.m_Follow = _playerInstance.transform;
+    }
+
+    [PunRPC]
+    public void SetLevelMap(LevelMap levelMap) {
+        this._levelMap = levelMap;
     }
 }
