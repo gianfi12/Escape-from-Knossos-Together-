@@ -26,7 +26,12 @@ public class LevelMap : MonoBehaviourPun
     }
     
     public void CreateMapOverNetwork() {
+        this.photonView.RPC("SetSeed", RpcTarget.All, Random.Range(0, 10000));
         this.photonView.RPC("CreateMap", RpcTarget.All);
+    }
+
+    public void InstantiatePlayersOverNetwork(GameObject playerPrefab) {
+        this.photonView.RPC("InstantiatePlayers", RpcTarget.All, playerPrefab);
     }
 
     [PunRPC]
@@ -37,6 +42,19 @@ public class LevelMap : MonoBehaviourPun
         RoomGeneration();
         RoomPlacement();
         RoomConnect();
+    }
+
+    [PunRPC]
+    public void InstantiatePlayers(GameObject playerPrefab) {
+        PlayerControllerMap _playerInstance = PhotonNetwork.Instantiate(playerPrefab.name, Vector3.zero, Quaternion.identity).GetComponent<PlayerControllerMap>();
+        int viewID = _playerInstance.GetComponent<PhotonView>().ViewID;
+        PlacePlayer(_playerInstance, viewID/1000);
+        GameObject.Find("GameManager").GetComponent<GameManager>().SetPlayerInstance(_playerInstance);
+    }
+
+    [PunRPC]
+    public void SetSeed(int seed) {
+        _seed = seed;
     }
 
     private void InstantiateMapElements()

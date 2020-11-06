@@ -27,8 +27,8 @@ public class GameManager : MonoBehaviourPun
         if (PhotonNetwork.IsConnected) {
             if (PhotonNetwork.IsMasterClient) {
                 _levelMap =  PhotonNetwork.Instantiate(levelPrefab.name, Vector3.zero, Quaternion.identity).GetComponent<LevelMap>();
-                _levelMap.Seed = UnityEngine.Random.Range(0, 10000);
                 _levelMap.CreateMapOverNetwork();
+                _levelMap.InstantiatePlayersOverNetwork(playerPrefab);
             }
         }
         else {
@@ -37,16 +37,16 @@ public class GameManager : MonoBehaviourPun
             _levelMap.CreateMap();
         }
    
-        
-        if (PhotonNetwork.IsConnected) {
-            _playerInstance = PhotonNetwork.Instantiate(playerPrefab.name, Vector3.zero, Quaternion.identity).GetComponent<PlayerControllerMap>();
-            int viewID = _playerInstance.GetComponent<PhotonView>().ViewID;
-            //_levelMap.PlacePlayer(_playerInstance, viewID/1000);
-        }else {
+        if (!PhotonNetwork.IsConnected) {
             _playerInstance = Instantiate(playerPrefab).GetComponent<PlayerControllerMap>();
             _levelMap.PlacePlayer(_playerInstance, 1);
         }
+
         _cameraInstance = Instantiate(mainCamera);
         _cameraInstance.m_Follow = _playerInstance.transform;
+    }
+
+    public void SetPlayerInstance(PlayerControllerMap playerInstance) {
+        _playerInstance = playerInstance;
     }
 }
