@@ -17,8 +17,20 @@ public class LevelMap : MonoBehaviour
     [SerializeField] private int numberOfRoom;
     private List<RoomAbstract> _selectedRooms = new List<RoomAbstract>();
     public const int PaddingRoom = 3;
-    
-    
+    private int _seed;
+
+    public int Seed
+    {
+        get => _seed;
+        set => _seed = value;
+    }
+
+    private void Awake()
+    {
+        Random.InitState(_seed);
+    }
+
+
     public void CreateMap(){
         InstantiateMapElements();
         

@@ -10,7 +10,7 @@
             "typeInfo": {
                 "fullName": "UnityEditor.ShaderGraph.Internal.Vector1ShaderProperty"
             },
-            "JSONnodeData": "{\n    \"m_Guid\": {\n        \"m_GuidSerialized\": \"5992fe06-e3ed-4b22-b725-9743c42ce931\"\n    },\n    \"m_Name\": \"Thickness\",\n    \"m_DefaultReferenceName\": \"Vector1_819CFEA3\",\n    \"m_OverrideReferenceName\": \"_Thickness\",\n    \"m_GeneratePropertyBlock\": true,\n    \"m_Precision\": 0,\n    \"m_GPUInstanced\": false,\n    \"m_Hidden\": false,\n    \"m_Value\": 0.009999999776482582,\n    \"m_FloatType\": 0,\n    \"m_RangeValues\": {\n        \"x\": 0.0,\n        \"y\": 0.05000000074505806\n    }\n}"
+            "JSONnodeData": "{\n    \"m_Guid\": {\n        \"m_GuidSerialized\": \"5992fe06-e3ed-4b22-b725-9743c42ce931\"\n    },\n    \"m_Name\": \"Thickness\",\n    \"m_DefaultReferenceName\": \"Vector1_819CFEA3\",\n    \"m_OverrideReferenceName\": \"_Thickness\",\n    \"m_GeneratePropertyBlock\": true,\n    \"m_Precision\": 0,\n    \"m_GPUInstanced\": false,\n    \"m_Hidden\": false,\n    \"m_Value\": 0.009999999776482582,\n    \"m_FloatType\": 1,\n    \"m_RangeValues\": {\n        \"x\": 0.0,\n        \"y\": 1.0\n    }\n}"
         }
     ],
     "m_SerializedKeywords": [],

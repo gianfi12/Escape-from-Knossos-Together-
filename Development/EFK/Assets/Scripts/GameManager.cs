@@ -2,6 +2,7 @@
 using Photon.Pun;
 using Cinemachine;
 using System;
+using Random = System.Random;
 
 public class GameManager : MonoBehaviour
 {
