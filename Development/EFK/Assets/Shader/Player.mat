@@ -26,5 +26,5 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - Vector1_819CFEA3: 0
-    - _Thickness: 0
+    - _Thickness: 0.0153
     m_Colors: []
