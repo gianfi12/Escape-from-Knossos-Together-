@@ -39,6 +39,8 @@ public class GameManager : MonoBehaviourPun
    
         if (!PhotonNetwork.IsConnected) {
             _playerInstance = Instantiate(playerPrefab).GetComponent<PlayerControllerMap>();
+            _cameraInstance = Instantiate(mainCamera);
+            _cameraInstance.m_Follow = _playerInstance.transform;
             _levelMap.PlacePlayer(_playerInstance, 1);
         }
     }
