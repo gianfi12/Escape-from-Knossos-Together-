@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Photon.Realtime;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
 
-public class LevelMap : MonoBehaviour
+public class LevelMap : MonoBehaviourPun
 {
     private Tilemap _tilemapFloor;
     private Tilemap _tilemapWall;
@@ -25,18 +25,38 @@ public class LevelMap : MonoBehaviour
         set => _seed = value;
     }
 
-    private void Awake()
-    {
-        Random.InitState(_seed);
+    [SerializeField] private GameObject playerPrefab;
+
+    public void CreateMapOverNetwork() {
+        this.photonView.RPC("SetSeed", RpcTarget.All, Random.Range(0, 10000));
+        this.photonView.RPC("CreateMap", RpcTarget.All);
     }
 
+    public void InstantiatePlayersOverNetwork() {
+        this.photonView.RPC("InstantiatePlayers", RpcTarget.All);
+    }
 
+    [PunRPC]
     public void CreateMap(){
+        Random.InitState(_seed);
         InstantiateMapElements();
         
         RoomGeneration();
         RoomPlacement();
         RoomConnect();
+    }
+
+    [PunRPC]
+    public void InstantiatePlayers() {
+        PlayerControllerMap _playerInstance = PhotonNetwork.Instantiate(playerPrefab.name, Vector3.zero, Quaternion.identity).GetComponent<PlayerControllerMap>();
+        int viewID = _playerInstance.GetComponent<PhotonView>().ViewID;
+        PlacePlayer(_playerInstance, viewID/1000);
+        GameObject.Find("GameManager").GetComponent<GameManager>().SetPlayerInstance(_playerInstance);
+    }
+
+    [PunRPC]
+    public void SetSeed(int seed) {
+        _seed = seed;
     }
 
     private void InstantiateMapElements()
