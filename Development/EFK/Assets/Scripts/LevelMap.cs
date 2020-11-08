@@ -154,7 +154,7 @@ public class LevelMap : MonoBehaviourPun
             {
                 for (int j = 0; j < moovingCoordinatesFromLeft.Count; j++)
                 {
-                    _tilemapFloor.SetTile(moovingCoordinatesFromLeft[j]+Direction.South.GetDirection(),asset.GetTileFromType(AssetType.Floors)[0]);
+                    _tilemapFloor.SetTile(moovingCoordinatesFromLeft[j]+Direction.South.GetDirection(),asset.GetTileFromType(AssetType.Floor)[0]);
                     moovingCoordinatesFromLeft[j] += Direction.South.GetDirection();
                 }     
                 if(i>moovingCoordinatesFromRight.Min(pos=>pos.y)+moovingCoordinatesFromRight.Count) _tilemapWall.SetTile(new Vector3Int(moovingCoordinatesFromLeft.Max(pos=>pos.x)+1,moovingCoordinatesFromLeft[0].y,0), asset.GetTileFromType(AssetType.WallTop)[0]);
@@ -189,7 +189,7 @@ public class LevelMap : MonoBehaviourPun
             {
                 for (int j = 0; j < moovingCoordinatesFromLeft.Count; j++)
                 {
-                    _tilemapFloor.SetTile(moovingCoordinatesFromLeft[j]+Direction.North.GetDirection(),asset.GetTileFromType(AssetType.Floors)[0]);
+                    _tilemapFloor.SetTile(moovingCoordinatesFromLeft[j]+Direction.North.GetDirection(),asset.GetTileFromType(AssetType.Floor)[0]);
                     moovingCoordinatesFromLeft[j] += Direction.North.GetDirection();
                 }        
                 if(i<moovingCoordinatesFromRight.Max(pos=>pos.y)-moovingCoordinatesFromRight.Count) _tilemapWall.SetTile(new Vector3Int(moovingCoordinatesFromLeft.Max(pos=>pos.x)+1,moovingCoordinatesFromLeft[0].y,0), asset.GetTileFromType(AssetType.WallBottom)[0]);
@@ -223,7 +223,7 @@ public class LevelMap : MonoBehaviourPun
         {
             for (int j = 0; j < moovingCoordinates.Count; j++)
             {
-                _tilemapFloor.SetTile(moovingCoordinates[j]+direction.GetDirection(),asset.GetTileFromType(AssetType.Floors)[0]);
+                _tilemapFloor.SetTile(moovingCoordinates[j]+direction.GetDirection(),asset.GetTileFromType(AssetType.Floor)[0]);
                 moovingCoordinates[j] += direction.GetDirection();
             }
             //here we place the wall only before the ending of the padding zone, the wall for the corner has to be decided when we know if we will go up or down
@@ -245,7 +245,7 @@ public class LevelMap : MonoBehaviourPun
             //Put the floor as long as your are moving up or down    
             for (int j = 0; j < moovingCoordinates.Count; j++)
             {
-                _tilemapFloor.SetTile(moovingCoordinates[j]+startingDirection.GetDirection(),asset.GetTileFromType(AssetType.Floors)[0]);
+                _tilemapFloor.SetTile(moovingCoordinates[j]+startingDirection.GetDirection(),asset.GetTileFromType(AssetType.Floor)[0]);
                 moovingCoordinates[j] += startingDirection.GetDirection();
             }
             //Add also the wall, but if you are going:

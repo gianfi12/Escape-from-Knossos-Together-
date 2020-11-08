@@ -2,5 +2,5 @@
 {
     WallTop,
     WallBottom,
-    Floors
+    Floor
 }
