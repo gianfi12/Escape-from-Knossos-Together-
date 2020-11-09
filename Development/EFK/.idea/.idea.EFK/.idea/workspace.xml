@@ -20,17 +20,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42b741fa-8516-4a76-ad90-f64f2f44ef01" name="Default Changelist" comment="Fixed bug">
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/RoomMaze.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.EFK/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.EFK/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.EFK/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.EFK/.idea/indexLayout.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.EFK/.idea/shelf/Uncommitted_changes_before_Update_at_03_11_2020_19_16__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.EFK/.idea/shelf/Uncommitted_changes_before_Update_at_03_11_2020_19_16__Default_Changelist_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.EFK/.idea/shelf/Uncommitted_changes_before_Update_at_03_11_2020_19_16__Default_Changelist_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.EFK/.idea/shelf/Uncommitted_changes_before_Update_at_03_11_2020_19_16__Default_Changelist_1.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.EFK/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.EFK/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AssetType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AssetType.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/LevelMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/LevelMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/QualitySettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/QualitySettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/Assembly-CSharp.csprojAssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/Assembly-CSharp.csprojAssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/PhotonUnityNetworking.Editor.csprojAssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/PhotonUnityNetworking.Editor.csprojAssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/PhotonWebSocket.csprojAssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/PhotonWebSocket.csprojAssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/RoomAbstract.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RoomAbstract.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,8 +39,16 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.cinemachine@2.3.4/Runtime/Core/CinemachineVirtualCameraBase.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/RoomMaze.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Menus/PlayerNameInput.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/8691AD70-05ED-4755-A182-8378FF0B52B1/1f/4a3135d9/SetupCoroutine.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/RoomAbstract.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.cinemachine@2.3.4/Runtime/Core/CinemachineVirtualCameraBase.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../../../../../Program Files/Unity/Hub/Editor/2019.4.11f1/Editor/Data/Resources/PackageManager/BuiltInPackages/com.unity.ugui/Runtime/UI/Core/VertexModifiers/Outline.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/8691AD70-05ED-4755-A182-8378FF0B52B1/22/7d62e036/Component.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ObjectScript/SingleDoor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ObjectScript/ChestScript.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ObjectScript/Door2Script.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -58,11 +61,9 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Menus/MainMenu.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Room.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/AssetType.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/RoomCollection.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ObjectScript/InteractiveMessageScript.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ObjectScript/PlayerOutline.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/RoomAbstract.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ObjectScript/ChestScript.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PlayerScripts/PlayerControllerMap.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/RoomPrefab.cs" />
@@ -72,6 +73,9 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/MapSeedScript.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/LevelMap.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/AssetType.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/RoomAbstract.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/RoomMaze.cs" />
       </list>
     </option>
   </component>
@@ -308,19 +312,19 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="598" y="301" key="MultipleFileMergeDialog/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1604427418639" />
-    <state x="764" y="214" key="RiderGenerateDialog" timestamp="1604589668947">
+    <state x="764" y="214" key="RiderGenerateDialog" timestamp="1604870120005">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="764" y="214" key="RiderGenerateDialog/0.0.1920.1080/1920.0.1366.768@0.0.1920.1080" timestamp="1604396123109" />
-    <state x="764" y="214" key="RiderGenerateDialog/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1604589668947" />
+    <state x="764" y="214" key="RiderGenerateDialog/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1604870120005" />
     <state x="461" y="185" key="SettingsEditor" timestamp="1604651894941">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="461" y="185" key="SettingsEditor/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1604651894941" />
-    <state x="552" y="273" key="Vcs.Push.Dialog.v2" timestamp="1604673333111">
+    <state x="552" y="273" key="Vcs.Push.Dialog.v2" timestamp="1604859979090">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="552" y="273" key="Vcs.Push.Dialog.v2/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1604673333111" />
+    <state x="552" y="273" key="Vcs.Push.Dialog.v2/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1604859979090" />
     <state x="92" y="92" width="1736" height="896" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1604427789449">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -357,12 +361,6 @@
           <line>41</line>
           <properties documentPath="C:\Users\Gianf\Documents\VDP\EFK\Escape-from-Knossos-Together-\Development\EFK\Assets\Scripts\PlayerScripts\PlayerInteraction.cs" initialLine="30" />
           <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/PlayerScripts/PlayerInteraction.cs</url>
-          <line>26</line>
-          <properties documentPath="C:\Users\Gianf\Documents\VDP\EFK\Escape-from-Knossos-Together-\Development\EFK\Assets\Scripts\PlayerScripts\PlayerInteraction.cs" initialLine="26" />
-          <option name="timeStamp" value="11" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

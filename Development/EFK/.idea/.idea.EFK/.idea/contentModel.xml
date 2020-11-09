@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\andre\AppData\Local\JetBrains\Rider2020.2\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\andre\AppData\Local\JetBrains\Rider2020.2\resharper-host\Local\Transient\Rider\v202\SolutionCaches\_EFK.1648442839.00" t="ExcludeRecursive" />
-    <e p="C:\Users\andre\OneDrive\Desktop\UNI\Escape-from-Knossos-Togheter-\Development\EFK" t="IncludeRecursive">
+    <e p="C:\Users\Gianf\AppData\Local\JetBrains\Rider2020.2\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Gianf\AppData\Local\JetBrains\Rider2020.2\resharper-host\Local\Transient\Rider\v202\SolutionCaches\_EFK.-1410486714.00" t="ExcludeRecursive" />
+    <e p="C:\Users\Gianf\Documents\VDP\EFK\Escape-from-Knossos-Together-\Development\EFK" t="IncludeRecursive">
       <e p="Assembly-CSharp-Editor-firstpass.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
@@ -337,17 +337,19 @@
           <e p="AssetType.cs" t="Include" />
           <e p="CameraController.cs" t="Include" />
           <e p="Direction.cs" t="Include" />
+          <e p="Door.cs" t="Include" />
           <e p="GameManager.cs" t="Include" />
           <e p="LevelMap.cs" t="Include" />
           <e p="LineOfSight.cs" t="Include" />
-          <e p="MapSeedInfo.cs" t="Include" />
           <e p="Menus" t="Include">
             <e p="MainMenu.cs" t="Include" />
             <e p="PlayerNameInput.cs" t="Include" />
           </e>
           <e p="ObjectScript" t="Include">
             <e p="ChestScript.cs" t="Include" />
+            <e p="Door2Script.cs" t="Include" />
             <e p="PlayerOutline.cs" t="Include" />
+            <e p="SingleDoor.cs" t="Include" />
           </e>
           <e p="PlayerScripts" t="Include">
             <e p="PlayerControllerMap.cs" t="Include" />
@@ -358,11 +360,13 @@
           <e p="PlayerSpawner.cs" t="Include" />
           <e p="RoomAbstract.cs" t="Include" />
           <e p="RoomCollection.cs" t="Include" />
+          <e p="RoomMaze.cs" t="Include" />
           <e p="RoomPrefab.cs" t="Include" />
           <e p="Tile.cs" t="Include" />
         </e>
         <e p="Shaders" t="Include">
           <e p="ObscurityShader.shader" t="Include" />
+          <e p="SpriteOutline.shader" t="Include" />
           <e p="VisibilityShader.shader" t="Include" />
         </e>
         <e p="TextMesh Pro" t="Include">

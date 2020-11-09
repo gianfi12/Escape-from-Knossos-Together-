@@ -10,13 +10,21 @@ public class PlayerInteraction : MonoBehaviour
     private Transform _previousInteraction;
     private bool _hasPreviousValue = false;
     private GameObject _instatiatedText;
+    private Collider2D _playerCollider;
+
+    private void Awake()
+    {
+        _playerCollider = transform.GetComponent<Collider2D>();
+    }
 
     private void Update()
     {
         Vector2 origin = new Vector2(transform.position.x, transform.position.y);
         Vector3 direction3D = GetComponent<PlayerControllerMap>().Movement;
         Vector2 direction = new Vector2(direction3D.x, direction3D.y);
-        RaycastHit2D hit = Physics2D.Raycast(origin, direction, interactionDistance, interactionLayer);
+        //RaycastHit2D hit = Physics2D.Raycast(origin, direction, interactionDistance, interactionLayer);
+        Bounds bounds = transform.GetComponent<Collider2D>().bounds;
+        RaycastHit2D hit = Physics2D.CircleCast(origin, bounds.extents.y/2, direction, interactionDistance, interactionLayer);
         if (hit)
         {
             Transform trans = hit.transform;
@@ -25,7 +33,7 @@ public class PlayerInteraction : MonoBehaviour
                 if (!_hasPreviousValue || trans.GetInstanceID() != _previousInteraction.transform.GetInstanceID())
                 {
                     Material shader = hit.transform.GetComponent<SpriteRenderer>().material;
-                    shader.SetFloat("_Thickness",0.02f);
+                    shader.SetFloat("_Thickness",5f);
                     
                     Destroy(_instatiatedText);
                     _instatiatedText = Instantiate(interactiveText);
