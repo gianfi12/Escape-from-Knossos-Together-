@@ -13,11 +13,14 @@ public abstract class RoomAbstract : MonoBehaviour
     public readonly List<Tile> Floor = new List<Tile>();
     public readonly List<Transform> Object = new List<Transform>();
     public readonly List<Tile> Spawn = new List<Tile>();
+    
     public readonly List<Tile> TileList = new List<Tile>();
     
     protected int _requiredWidthSpace;
     protected int _displacementX, _displacementY;
-
+    protected int _lowestX;
+    protected int _lowestY;
+    
     public int RequiredWidthSpace => _requiredWidthSpace;
 
     public int DisplacementX => _displacementX;
@@ -28,6 +31,5 @@ public abstract class RoomAbstract : MonoBehaviour
 
     public abstract void Generate();
 
-    public abstract void PlaceRoom(Tilemap tilemapFloor, Tilemap tilemapWall, Tilemap tilemapObject,
-        Vector3Int coordinates);
+    public abstract void PlaceRoom(Tilemap tilemapFloor, Tilemap tilemapWall, Tilemap tilemapObject, Vector3Int coordinates);
 }

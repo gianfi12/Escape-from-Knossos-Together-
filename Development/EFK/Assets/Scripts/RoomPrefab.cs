@@ -14,9 +14,7 @@ public class RoomPrefab : RoomAbstract
     [SerializeField] private Tilemap tilemapWall;
     [SerializeField] private Tilemap tilemapSpawn;
 
-    private int _lowestX;
     private int _higherX;
-    private int _lowestY;
     private bool _firstTile = true;
     
     public override void Generate()
@@ -72,8 +70,8 @@ public class RoomPrefab : RoomAbstract
             }
         }
     }
-
-    public override void PlaceRoom(Tilemap tilemapFloor, Tilemap tilemapWall, Tilemap tilemapObject, Vector3Int coordinates)
+    
+    public override void PlaceRoom(Tilemap tilemapFloor, Tilemap tilemapWall, Tilemap tilemapObject, Vector3Int coordinates) 
     {
         _displacementX = coordinates.x;
         _displacementY = coordinates.y;
@@ -82,8 +80,6 @@ public class RoomPrefab : RoomAbstract
             tile.Coordinates = tile.Coordinates - new Vector3Int(_lowestX,_lowestY,0) + coordinates; 
             if (Wall.Contains(tile)) 
                 tilemapWall.SetTile(tile.Coordinates,tile.TileBase);
-            // else if (Object.Contains(tile))
-            //     tilemapObject.SetTile(tile.Coordinates,tile.TileBase);
             else
                 tilemapFloor.SetTile(tile.Coordinates,tile.TileBase);
         }
@@ -93,9 +89,8 @@ public class RoomPrefab : RoomAbstract
             GameObject gameObject = Instantiate(transform1.gameObject);
             gameObject.name = transform1.gameObject.name;
             transform1.position = transform1.position - new Vector3Int(_lowestX, _lowestY, 0) + coordinates;
-            //gameObject.transform.parent = tilemapObject.transform;
-            //PrefabBrush prefabBrush = ScriptableObject.CreateInstance<PrefabBrush>();
-            //prefabBrush.Paint(tilemapObject,transform1.gameObject, new Vector3Int((int)transform1.position.x,(int)transform1.position.y,(int)transform1.position.z));
+
         }
     }
+    
 }

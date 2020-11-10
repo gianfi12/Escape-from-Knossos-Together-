@@ -5,6 +5,9 @@ TextureImporter:
   - first:
       213: -6834524911116659543
     second: chest_0
+  - first:
+      213: -3736696228594050809
+    second: chest_0
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -43,9 +46,9 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 3
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 256
@@ -104,8 +107,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9a45550edc3e621a0800000000000000
-      internalID: -6834524911116659543
+      spriteID: 7091c15f396942cc0800000000000000
+      internalID: -3736696228594050809
       vertices: []
       indices: 
       edges: []
