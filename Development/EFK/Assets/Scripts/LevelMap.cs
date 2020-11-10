@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using Photon.Pun;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
 
@@ -44,6 +45,8 @@ public class LevelMap : MonoBehaviourPun
         RoomGeneration();
         RoomPlacement();
         RoomConnect();
+        
+        
     }
 
     [PunRPC]
@@ -69,6 +72,10 @@ public class LevelMap : MonoBehaviourPun
         _tilemapFloor = goFloor.AddComponent<Tilemap>();
         goFloor.AddComponent<TilemapRenderer>();
         
+        NavMeshModifier navMeshModifierFloor = goFloor.AddComponent<NavMeshModifier>();
+        navMeshModifierFloor.overrideArea = true;
+        navMeshModifierFloor.area = 0; //0 means walkable
+        
         var goWall = new GameObject("TilemapWall");
         goWall.transform.SetParent(_grid.gameObject.transform);
         _tilemapWall = goWall.AddComponent<Tilemap>();
@@ -78,12 +85,20 @@ public class LevelMap : MonoBehaviourPun
         rigidbody2DWall.bodyType = RigidbodyType2D.Kinematic;  
         goWall.AddComponent<CompositeCollider2D>();
         goWall.GetComponent<TilemapCollider2D>().usedByComposite = true;
+
+        NavMeshModifier navMeshModifierWall = goWall.AddComponent<NavMeshModifier>();
+        navMeshModifierWall.overrideArea = true;
+        navMeshModifierWall.area = 1; //1 means not walkable
     
         var goObject = new GameObject("TilemapObject");
         goObject.transform.SetParent(_grid.gameObject.transform);
         _tilemapObject = goObject.AddComponent<Tilemap>();
         TilemapRenderer renderer =  goObject.AddComponent<TilemapRenderer>();
         renderer.sortingLayerName = "Object";
+        
+        NavMeshModifier navMeshModifierObject = goWall.AddComponent<NavMeshModifier>();
+        navMeshModifierObject.overrideArea = true;
+        navMeshModifierObject.area = 1; //1 means not walkable
     }
 
     private void RoomConnect()
