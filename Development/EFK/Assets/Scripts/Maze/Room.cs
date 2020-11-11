@@ -28,4 +28,14 @@ public class Room
     {
         if(!_neighborRoomList.Contains(room)) _neighborRoomList.Add(room);
     }
+
+    public List<Room> GetNeighbor()
+    {
+        return _neighborRoomList;
+    }
+
+    public void RemoveNeighbor( Room room)
+    {
+        if (_neighborRoomList.Contains(room)) _neighborRoomList.Remove(room);
+    }
 }

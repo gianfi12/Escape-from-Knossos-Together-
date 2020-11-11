@@ -30,7 +30,7 @@ public class RoomMaze : RoomAbstract
         
         GenerateWall();
         GenerateInternal();
-        ReshapeRooms();
+        //ReshapeRooms();
         GenerateTile();
         _lowestX = -1;//these are due to the presence of the wall
         _lowestY = -1;
@@ -40,7 +40,19 @@ public class RoomMaze : RoomAbstract
     {
         for (int i = 0; i < _roomList.Count; i++)
         {
-            if(_roomList[i].GetCellsList().Count<minRoomSize){}
+            if (_roomList[i].GetCellsList().Count < minRoomSize)
+            {
+                Room removedRoom = _roomList[i];
+                _roomList.RemoveAt(i);
+                int index = Random.Range(0, removedRoom.GetNeighbor().Count);
+                Room mergedRoom = removedRoom.GetNeighbor()[i];
+                mergedRoom.RemoveNeighbor(removedRoom);
+                foreach (Cell cell in removedRoom.GetCellsList())
+                {
+                    cell.Room = mergedRoom;
+                    mergedRoom.AddCell(cell);
+                }
+            }
         }
     }
 
