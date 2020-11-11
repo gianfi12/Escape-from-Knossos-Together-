@@ -193,7 +193,7 @@ GameObject:
   - component: {fileID: -1716568761402658737}
   - component: {fileID: -2120274815647389100}
   - component: {fileID: -4891384171262013872}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -399,11 +399,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30512f5c0d2b47e4b4172ab37f372b06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionDistance: 0
+  interactionDistance: 1
   interactionLayer:
     serializedVersion: 2
-    m_Bits: 0
-  interactiveText: {fileID: 0}
+    m_Bits: 256
+  interactiveText: {fileID: 5968220957823141551, guid: 484af2d07da5c4f4ba4392fe8395f035,
+    type: 3}
 --- !u!70 &-2120274815647389100
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

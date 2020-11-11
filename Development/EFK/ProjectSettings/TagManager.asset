@@ -13,9 +13,9 @@ TagManager:
   - UI
   - 
   - 
-  - TargetTest
-  - WallsTest
-  - 
+  - Interactable
+  - Walls
+  - Player Character
   - 
   - 
   - 

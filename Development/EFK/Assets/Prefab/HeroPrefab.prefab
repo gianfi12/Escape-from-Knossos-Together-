@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1797160303316015908}
   - component: {fileID: -8251240041641613418}
   - component: {fileID: 2436382060527944989}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: HeroPrefab
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 593233873
-  m_SortingLayer: 1
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 0f39a9205e4394ee1b6ba8269428d176, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
