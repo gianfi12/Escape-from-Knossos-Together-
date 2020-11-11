@@ -20,15 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42b741fa-8516-4a76-ad90-f64f2f44ef01" name="Default Changelist" comment="First version of maze room, and now the floor of the corrider is positioned on a different tilemap">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.EFK/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.EFK/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/RoomMaze1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/RoomMaze1.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/LevelMap.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/LevelMap.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Player.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Main.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Main.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerScripts/PlayerInput.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerScripts/PlayerInput.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/SpriteOutline/Shaders.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/NavMeshAreas.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/NavMeshAreas.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/QualitySettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/QualitySettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +64,6 @@
         <option value="$PROJECT_DIR$/Assets/Shader/Outline.shader" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PlayerScripts/PlayerInteraction.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/MapSeedScript.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/AssetType.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/RoomMaze.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Maze/Edge.cs" />
@@ -84,6 +75,7 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Maze/RoomMaze.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/LevelMap.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PlayerScripts/PlayerInput.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
       </list>
     </option>
   </component>
