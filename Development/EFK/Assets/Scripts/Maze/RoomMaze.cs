@@ -7,10 +7,11 @@ using Random = UnityEngine.Random;
 
 public class RoomMaze : RoomAbstract
 {
-    private const int _minSetSpace=100;
-    private const int _maxSetSpace=300;
+    private const int _minSetSpace=20;
+    private const int _maxSetSpace=100;
 
     [SerializeField][Range(_minSetSpace,_maxSetSpace)] private int maxSpace;
+    [SerializeField] private int minRoomSize;
     
     private int _sizeX, _sizeY;
 
@@ -18,8 +19,9 @@ public class RoomMaze : RoomAbstract
     private Stack<Cell> _actualRoomCellsStack = new Stack<Cell>();
     private List<Room> _roomList = new List<Room>();
     private Dictionary<int,Cell> _cellMap = new Dictionary<int, Cell>();
-    public override void Generate()
+    public override void Generate(int seed)
     {
+        Random.InitState(seed);
         while ((_sizeX = Random.Range(_minSetSpace, maxSpace)) % 2 != 0);
         while ((_sizeY = Random.Range(_minSetSpace, maxSpace)) % 2 != 0);
         // _sizeX = 6;
@@ -28,9 +30,18 @@ public class RoomMaze : RoomAbstract
         
         GenerateWall();
         GenerateInternal();
+        ReshapeRooms();
         GenerateTile();
         _lowestX = -1;//these are due to the presence of the wall
         _lowestY = -1;
+    }
+
+    private void ReshapeRooms()
+    {
+        for (int i = 0; i < _roomList.Count; i++)
+        {
+            if(_roomList[i].GetCellsList().Count<minRoomSize){}
+        }
     }
 
     private void GenerateTile()
@@ -112,7 +123,9 @@ public class RoomMaze : RoomAbstract
                         otherCell = AddCell(null, neighborPosition);
                         _otherRoomCellsStack.Push(otherCell);
                     }
-
+                    
+                    if(!(otherCell.Room is null))cell.Room.AddNeighbor(otherCell.Room);
+                    
                     SetConnection(direction, cell, otherCell);
                     if (otherCell.Room is null && Random.Range(1, 100) > 60)
                     {

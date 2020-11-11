@@ -8,7 +8,7 @@ public class Door2Script : MonoBehaviour
 {
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+            if (other.CompareTag("Player"))
         {
             for (int i = 0; i < transform.childCount; i++)
             {

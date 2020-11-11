@@ -17,7 +17,7 @@ public class RoomPrefab : RoomAbstract
     private int _higherX;
     private bool _firstTile = true;
     
-    public override void Generate()
+    public override void Generate(int seed)
     {
         IterateTilemap(tilemapFloor,Floor);
         IterateTilemap(tilemapWall,Wall);

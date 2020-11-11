@@ -29,7 +29,7 @@ public abstract class RoomAbstract : MonoBehaviour
 
     public AssetsCollection AssetsCollection => assetsCollection;
 
-    public abstract void Generate();
+    public abstract void Generate(int seed);
 
     public abstract void PlaceRoom(Tilemap tilemapFloor, Tilemap tilemapWall, Tilemap tilemapObject, Vector3Int coordinates);
 }
