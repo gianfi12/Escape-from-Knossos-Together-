@@ -24,13 +24,11 @@ public class RoomMaze : RoomAbstract
         Random.InitState(seed);
         while ((_sizeX = Random.Range(_minSetSpace, maxSpace)) % 2 != 0);
         while ((_sizeY = Random.Range(_minSetSpace, maxSpace)) % 2 != 0);
-        // _sizeX = 6;
-        // _sizeY = 6;
         _requiredWidthSpace = _sizeX+2;//due to the walls
         
         GenerateWall();
         GenerateInternal();
-        //ReshapeRooms();
+        ReshapeRooms();
         GenerateTile();
         _lowestX = -1;//these are due to the presence of the wall
         _lowestY = -1;
