@@ -9,10 +9,9 @@ public class AgentController : MonoBehaviour
     private NavMeshAgent agent;
 
     [SerializeField] private float wanderRadius = 5;
-
-    private bool isWandering = false;
+    [SerializeField] private Transform[] checkpoints;
+    private int currentCheckpoint = 0;
     
-
     // Start is called before the first frame update
     void Start()
     {
@@ -28,22 +27,23 @@ public class AgentController : MonoBehaviour
 
     private void Wander()
     {
-        if (!isWandering)
+        if (!agent.pathPending && agent.remainingDistance < 0.5f)
         {
-            isWandering = true;
             Seek(RandomNavMeshLocation());
-
-            StartCoroutine(SetWandering(1.5f));
         }
     }
 
-    IEnumerator SetWandering(float time)
+    private void Patrol()
     {
-        yield return new WaitForSeconds(time);
-        isWandering = false;
-        yield return null;
+        if (!agent.pathPending && agent.remainingDistance < 0.5f)
+        {
+            if (checkpoints.Length == 0) return;
+        
+            Seek(checkpoints[currentCheckpoint].position);
+            currentCheckpoint = (currentCheckpoint + 1) % checkpoints.Length;
+        }
     }
-
+    
     private Vector3 RandomNavMeshLocation()
     {
         Vector3 randomDirection = Random.insideUnitSphere * wanderRadius;
@@ -61,6 +61,6 @@ public class AgentController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Wander();
+        Patrol();
     }
 }
