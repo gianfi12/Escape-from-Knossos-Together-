@@ -37,7 +37,17 @@ public class PlayerInput : MonoBehaviourPun
     {
         _horizontal = Input.GetAxisRaw("Horizontal");
         _vertical = Input.GetAxisRaw("Vertical");
-        if(Math.Abs(_horizontal)>Double.Epsilon || Math.Abs(_vertical)>Double.Epsilon) _playerController.Move(new Vector3(_horizontal,_vertical,0f));
+        if (PhotonNetwork.IsConnected)
+        {
+            if (photonView.IsMine)
+            {
+                if(Math.Abs(_horizontal)>Double.Epsilon || Math.Abs(_vertical)>Double.Epsilon) _playerController.Move(new Vector3(_horizontal,_vertical,0f));
+            }
+        }
+        else
+        {
+            if(Math.Abs(_horizontal)>Double.Epsilon || Math.Abs(_vertical)>Double.Epsilon) _playerController.Move(new Vector3(_horizontal,_vertical,0f));
+        }
     }
 
     private void Update() {

@@ -38,9 +38,7 @@ public class GameManager : MonoBehaviourPun
             _levelMap.Seed = UnityEngine.Random.Range(0, 10000);
             _levelMap.CreateMap();
             navMesh.GetComponent<NavMeshSurface2d>().BuildNavMesh();
-        }
-   
-        if (!PhotonNetwork.IsConnected) {
+        
             _playerInstance = Instantiate(playerPrefab).GetComponent<PlayerControllerMap>();
             _cameraInstance = Instantiate(mainCamera);
             _cameraInstance.m_Follow = _playerInstance.transform;
@@ -52,5 +50,7 @@ public class GameManager : MonoBehaviourPun
         _playerInstance = playerInstance;
         _cameraInstance = Instantiate(mainCamera);
         _cameraInstance.m_Follow = _playerInstance.transform;
+        
+        navMesh.GetComponent<NavMeshSurface2d>().BuildNavMesh();
     }
 }
