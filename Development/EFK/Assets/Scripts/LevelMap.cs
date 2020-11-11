@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using Photon.Pun;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
 
@@ -41,10 +42,12 @@ public class LevelMap : MonoBehaviourPun
     public void CreateMap(){
         Random.InitState(_seed);
         InstantiateMapElements();
-        
+
         RoomGeneration();
         RoomPlacement();
         RoomConnect();
+
+
     }
 
     [PunRPC]
@@ -64,27 +67,39 @@ public class LevelMap : MonoBehaviourPun
     {
         var gridObject = new GameObject("Grid");
         _grid = gridObject.AddComponent<Grid>();
-        
+
         var goFloor = new GameObject("TilemapFloor");
         goFloor.transform.SetParent(_grid.gameObject.transform);
         _tilemapFloor = goFloor.AddComponent<Tilemap>();
         goFloor.AddComponent<TilemapRenderer>();
-        
+
+        NavMeshModifier navMeshModifierFloor = goFloor.AddComponent<NavMeshModifier>();
+        navMeshModifierFloor.overrideArea = true;
+        navMeshModifierFloor.area = 0; //0 means walkable
+
         var goWall = new GameObject("TilemapWall");
         goWall.transform.SetParent(_grid.gameObject.transform);
         _tilemapWall = goWall.AddComponent<Tilemap>();
         goWall.AddComponent<TilemapRenderer>();
         goWall.AddComponent<TilemapCollider2D>();
         Rigidbody2D rigidbody2DWall = goWall.AddComponent<Rigidbody2D>();
-        rigidbody2DWall.bodyType = RigidbodyType2D.Kinematic;  
+        rigidbody2DWall.bodyType = RigidbodyType2D.Kinematic;
         goWall.AddComponent<CompositeCollider2D>();
         goWall.GetComponent<TilemapCollider2D>().usedByComposite = true;
-    
+
+        NavMeshModifier navMeshModifierWall = goWall.AddComponent<NavMeshModifier>();
+        navMeshModifierWall.overrideArea = true;
+        navMeshModifierWall.area = 1; //1 means not walkable
+
         var goObject = new GameObject("TilemapObject");
         goObject.transform.SetParent(_grid.gameObject.transform);
         _tilemapObject = goObject.AddComponent<Tilemap>();
         TilemapRenderer renderer =  goObject.AddComponent<TilemapRenderer>();
         renderer.sortingLayerName = "Object";
+
+        NavMeshModifier navMeshModifierObject = goWall.AddComponent<NavMeshModifier>();
+        navMeshModifierObject.overrideArea = true;
+        navMeshModifierObject.area = 1; //1 means not walkable
         
         var goCorridorFloor = new GameObject("TilemapCorridorFloor");
         goCorridorFloor.transform.SetParent(_grid.gameObject.transform);
@@ -101,7 +116,7 @@ public class LevelMap : MonoBehaviourPun
     }
 
     private void Connect(RoomAbstract exitRoom, RoomAbstract entranceRoom)
-    {    
+    {
         foreach (Tile tileExitOne in exitRoom.Exit)
         {
             foreach (Tile tileExitTwo in exitRoom.Exit)
@@ -119,17 +134,17 @@ public class LevelMap : MonoBehaviourPun
         {
             moovingCoordinatesLeft = ToPaddingRegion(moovingCoordinatesLeft, startingDirection,exitRoom.AssetsCollection,Direction.West);
         }
-        
+
         //Position the moovingCoordinates from left into the central region before moving on the axis
         moovingCoordinatesLeft = ToCenterRegion(moovingCoordinatesLeft, Direction.West, exitRoom,exitRoom.AssetsCollection);
-        
+
         //position to the start of the padding zone from right
         List<Vector3Int> moovingCoordinatesRight = entranceRoom.Entrance.Select(x => x.Coordinates).ToList();
         if (arrivalDirection == Direction.North || arrivalDirection == Direction.South)
         {
             moovingCoordinatesRight = ToPaddingRegion(moovingCoordinatesRight, arrivalDirection, exitRoom.AssetsCollection,Direction.East);
         }
-        
+
         //arrive to the central zone from right
         moovingCoordinatesRight = ToCenterRegion(moovingCoordinatesRight, Direction.East, entranceRoom,exitRoom.AssetsCollection);
 
@@ -223,7 +238,7 @@ public class LevelMap : MonoBehaviourPun
                 {
                     _tilemapCorridorFloor.SetTile(moovingCoordinatesFromLeft[j]+Direction.South.GetDirection(),asset.GetTileFromType(AssetType.Floor)[0]);
                     moovingCoordinatesFromLeft[j] += Direction.South.GetDirection();
-                }     
+                }
                 if(i>moovingCoordinatesFromRight.Min(pos=>pos.y)+moovingCoordinatesFromRight.Count) _tilemapWall.SetTile(new Vector3Int(moovingCoordinatesFromLeft.Max(pos=>pos.x)+1,moovingCoordinatesFromLeft[0].y,0), asset.GetTileFromType(AssetType.WallBottomRight)[0]);
                 _tilemapWall.SetTile(new Vector3Int(moovingCoordinatesFromLeft.Min(pos=>pos.x)-1,moovingCoordinatesFromLeft[0].y,0),asset.GetTileFromType(AssetType.WallTopLeft)[0]);
             }
@@ -258,7 +273,7 @@ public class LevelMap : MonoBehaviourPun
                 {
                     _tilemapCorridorFloor.SetTile(moovingCoordinatesFromLeft[j]+Direction.North.GetDirection(),asset.GetTileFromType(AssetType.Floor)[0]);
                     moovingCoordinatesFromLeft[j] += Direction.North.GetDirection();
-                }        
+                }
                 if(i<moovingCoordinatesFromRight.Max(pos=>pos.y)-moovingCoordinatesFromRight.Count) _tilemapWall.SetTile(new Vector3Int(moovingCoordinatesFromLeft.Max(pos=>pos.x)+1,moovingCoordinatesFromLeft[0].y,0), asset.GetTileFromType(AssetType.WallBottomRight)[0]);
                  _tilemapWall.SetTile(new Vector3Int(moovingCoordinatesFromLeft.Min(pos=>pos.x)-1,moovingCoordinatesFromLeft[0].y,0),asset.GetTileFromType(AssetType.WallTopLeft)[0]);
             }
@@ -269,7 +284,7 @@ public class LevelMap : MonoBehaviourPun
             {
                 _tilemapWall.SetTile(new Vector3Int(moovingCoordinatesFromLeft[i].x,moovingCoordinatesFromLeft.Max(x=>x.y)+1,0),asset.GetTileFromType(AssetType.WallTopLeft)[0]);
             }
-        }    
+        }
     }
 
     private List<Vector3Int> ToCenterRegion(List<Vector3Int> moovingCoordinates, Direction direction, RoomAbstract room, AssetsCollection asset)
@@ -309,7 +324,7 @@ public class LevelMap : MonoBehaviourPun
         //Move down for the size necessary to make a corner plus some padding
         for (int i = 0; i < moovingCoordinates.Count+PaddingRoom; i++)
         {
-            //Put the floor as long as your are moving up or down    
+            //Put the floor as long as your are moving up or down
             for (int j = 0; j < moovingCoordinates.Count; j++)
             {
                 _tilemapCorridorFloor.SetTile(moovingCoordinates[j]+startingDirection.GetDirection(),asset.GetTileFromType(AssetType.Floor)[0]);
@@ -357,7 +372,7 @@ public class LevelMap : MonoBehaviourPun
                             asset.GetTileFromType(AssetType.WallTopLeft)[0]);
                     if (i < PaddingRoom)_tilemapWall.SetTile(
                         new Vector3Int(moovingCoordinates.Max(x => x.x) + 1, moovingCoordinates[0].y, 0),
-                        asset.GetTileFromType(AssetType.WallBottomRight)[0]); 
+                        asset.GetTileFromType(AssetType.WallBottomRight)[0]);
                 }
 
             }
@@ -391,10 +406,10 @@ public class LevelMap : MonoBehaviourPun
         for (int i = 0; i < moovingCoordinates.Count; i++)
         {
             if (nextDirection == Direction.West)
-            {            
+            {
                 if (startingDirection == Direction.South)
                     moovingCoordinates[i] = new Vector3Int(moovingCoordinates.Max(x=>x.x), moovingCoordinates[i].y + i, 0);
-                else 
+                else
                     moovingCoordinates[i] = new Vector3Int(moovingCoordinates.Max(x=>x.x), moovingCoordinates[i].y - i, 0);
             }
             else
@@ -411,11 +426,11 @@ public class LevelMap : MonoBehaviourPun
 
     private void RoomPlacement()
     {
-        foreach (RoomAbstract room in _selectedRooms)  
+        foreach (RoomAbstract room in _selectedRooms)
         {
             Vector3Int coordinates = _selectedRooms.IndexOf(room)==0 ? new Vector3Int(0,0,0) : RandomCoordinates(room,_selectedRooms[_selectedRooms.IndexOf(room)-1]);
             //while (!FreeSpace(room, coordinates = RandomCoordinates())); //start placing the starting room
-            room.PlaceRoom(_tilemapFloor,_tilemapWall,_tilemapObject,coordinates); 
+            room.PlaceRoom(_tilemapFloor,_tilemapWall,_tilemapObject,coordinates);
         }
     }
 
@@ -441,8 +456,7 @@ public class LevelMap : MonoBehaviourPun
         {
             RoomAbstract room = SelectRoom();
             room.Generate(_seed);
-            _selectedRooms.Add(room); 
-            
+            _selectedRooms.Add(room);
         }
         _selectedRooms.Add(roomCollection.FinalRoom);
         roomCollection.FinalRoom.Generate(_seed);

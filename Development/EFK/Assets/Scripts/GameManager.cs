@@ -6,6 +6,7 @@ using Random = System.Random;
 using System.Linq;
 using System.Collections.Generic;
 using System;
+using UnityEngine.AI;
 
 public class GameManager : MonoBehaviourPun
 {
@@ -16,6 +17,7 @@ public class GameManager : MonoBehaviourPun
     [SerializeField] private CinemachineVirtualCamera mainCamera;
     private CinemachineVirtualCamera _cameraInstance;
 
+    [SerializeField] private GameObject navMesh;
 
     void Start()
     {
@@ -35,6 +37,7 @@ public class GameManager : MonoBehaviourPun
             _levelMap = Instantiate(levelPrefab);
             _levelMap.Seed = UnityEngine.Random.Range(0, 10000);
             _levelMap.CreateMap();
+            navMesh.GetComponent<NavMeshSurface2d>().BuildNavMesh();
         }
    
         if (!PhotonNetwork.IsConnected) {
