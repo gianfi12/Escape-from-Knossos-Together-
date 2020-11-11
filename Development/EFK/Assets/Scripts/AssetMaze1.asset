@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d697c11b03e4b34429d77a64cf3bea4e, type: 3}
+  m_Name: AssetMaze1
+  m_EditorClassIdentifier: 
+  Assets:
+  - AssetType: 0
+    tileBases:
+    - {fileID: 11400000, guid: 6f147c893e185824c81596b4e8d72f98, type: 2}
+  - AssetType: 1
+    tileBases:
+    - {fileID: 11400000, guid: 187fe61f5078f8e48a35aca4854b1552, type: 2}
+  - AssetType: 2
+    tileBases:
+    - {fileID: 11400000, guid: 8fb0401d5f3ee624d87b18a792433c9c, type: 2}
+  - AssetType: 3
+    tileBases:
+    - {fileID: 11400000, guid: 2b2f02b063c1d19409141fce2d2dcae9, type: 2}
+  - AssetType: 4
+    tileBases:
+    - {fileID: 11400000, guid: faff6ae120aa8c847af962f5034d6985, type: 2}
