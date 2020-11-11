@@ -341,6 +341,12 @@
           <e p="GameManager.cs" t="Include" />
           <e p="LevelMap.cs" t="Include" />
           <e p="LineOfSight.cs" t="Include" />
+          <e p="Maze" t="Include">
+            <e p="Cell.cs" t="Include" />
+            <e p="Edge.cs" t="Include" />
+            <e p="Room.cs" t="Include" />
+            <e p="RoomMaze.cs" t="Include" />
+          </e>
           <e p="Menus" t="Include">
             <e p="MainMenu.cs" t="Include" />
             <e p="PlayerNameInput.cs" t="Include" />
@@ -360,7 +366,6 @@
           <e p="PlayerSpawner.cs" t="Include" />
           <e p="RoomAbstract.cs" t="Include" />
           <e p="RoomCollection.cs" t="Include" />
-          <e p="RoomMaze.cs" t="Include" />
           <e p="RoomPrefab.cs" t="Include" />
           <e p="Tile.cs" t="Include" />
         </e>

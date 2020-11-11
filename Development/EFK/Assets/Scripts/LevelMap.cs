@@ -10,6 +10,7 @@ using Random = UnityEngine.Random;
 public class LevelMap : MonoBehaviourPun
 {
     private Tilemap _tilemapFloor;
+    private Tilemap _tilemapCorridorFloor;
     private Tilemap _tilemapWall;
     private Tilemap _tilemapObject;
     private Grid _grid;
@@ -84,6 +85,11 @@ public class LevelMap : MonoBehaviourPun
         _tilemapObject = goObject.AddComponent<Tilemap>();
         TilemapRenderer renderer =  goObject.AddComponent<TilemapRenderer>();
         renderer.sortingLayerName = "Object";
+        
+        var goCorridorFloor = new GameObject("TilemapCorridorFloor");
+        goCorridorFloor.transform.SetParent(_grid.gameObject.transform);
+        _tilemapCorridorFloor = goCorridorFloor.AddComponent<Tilemap>();
+        goCorridorFloor.AddComponent<TilemapRenderer>();
     }
 
     private void RoomConnect()
@@ -133,16 +139,77 @@ public class LevelMap : MonoBehaviourPun
 
     private void ConnectOnTheCenter(List<Vector3Int> moovingCoordinatesFromLeft, List<Vector3Int> moovingCoordinatesFromRight, AssetsCollection asset)
     {
-        if (moovingCoordinatesFromLeft.Max(x=> x.y) >= moovingCoordinatesFromRight.Max(x=>x.y))//means that from the left we are coming more higher
+        if (moovingCoordinatesFromLeft.Max(x=> x.y) == moovingCoordinatesFromRight.Max(x=>x.y)){
+            for (int i = 0; i < moovingCoordinatesFromLeft.Count; i++)
+            {
+                _tilemapWall.SetTile(new Vector3Int(moovingCoordinatesFromLeft[0].x-i,moovingCoordinatesFromLeft.Max(x=>x.y)+1,0),asset.GetTileFromType(AssetType.WallTopLeft)[0]);
+                _tilemapWall.SetTile(new Vector3Int(moovingCoordinatesFromLeft[0].x-i,moovingCoordinatesFromLeft.Min(x=>x.y)-1,0),asset.GetTileFromType(AssetType.WallBottomRight)[0]);
+            }
+            if (moovingCoordinatesFromLeft.Count > moovingCoordinatesFromRight.Count)
+            {
+                //place the walls on the corner of the border
+                _tilemapWall.SetTile(new Vector3Int(moovingCoordinatesFromLeft[0].x+1,moovingCoordinatesFromLeft.Min(x=>x.y)-1,0),asset.GetTileFromType(AssetType.WallBottomRight)[0]);
+                for (int i = 0; i < moovingCoordinatesFromLeft.Count-moovingCoordinatesFromRight.Count-1;i++)
+                {
+                    _tilemapWall.SetTile(new Vector3Int(moovingCoordinatesFromLeft[0].x+1,moovingCoordinatesFromLeft.Min(x=>x.y)+i,0),asset.GetTileFromType(AssetType.WallTopLeft)[0]);
+                }
+
+            }else if (moovingCoordinatesFromLeft.Count < moovingCoordinatesFromRight.Count)
+            {
+                for (int i = 0; i < moovingCoordinatesFromRight.Count-moovingCoordinatesFromLeft.Count-1;i++)
+                {
+                    _tilemapWall.SetTile(new Vector3Int(moovingCoordinatesFromLeft[0].x-1,moovingCoordinatesFromLeft.Min(x=>x.y)+i+2,0),asset.GetTileFromType(AssetType.WallTopLeft)[0]);
+                }
+                _tilemapWall.SetTile(new Vector3Int(moovingCoordinatesFromLeft[0].x+1,moovingCoordinatesFromLeft.Min(x=>x.y)+moovingCoordinatesFromRight.Count-moovingCoordinatesFromLeft.Count,0),asset.GetTileFromType(AssetType.WallBottomRight)[0]);
+            }
+
+        }else if (moovingCoordinatesFromLeft.Min(x=> x.y) == moovingCoordinatesFromRight.Min(x=>x.y))
+        {
+            if (moovingCoordinatesFromLeft.Count > moovingCoordinatesFromRight.Count)
+            {
+                //place the walls on the corner of the border
+                _tilemapWall.SetTile(new Vector3Int(moovingCoordinatesFromLeft[0].x+1,moovingCoordinatesFromLeft.Max(x=>x.y)+1,0),asset.GetTileFromType(AssetType.WallTopLeft)[0]);
+                //place the walls on the top of the border and on the right border
+                for (int i = 0; (i < moovingCoordinatesFromLeft.Count); i++)
+                {
+                    _tilemapWall.SetTile(new Vector3Int(moovingCoordinatesFromLeft[0].x-i,moovingCoordinatesFromLeft.Min(x=>x.y)-1,0),asset.GetTileFromType(AssetType.WallBottomRight)[0]);
+                    _tilemapWall.SetTile(new Vector3Int(moovingCoordinatesFromLeft[0].x-i,moovingCoordinatesFromLeft.Max(x=>x.y)+1,0),asset.GetTileFromType(AssetType.WallTopLeft)[0]);
+                    if(moovingCoordinatesFromLeft[i].y>moovingCoordinatesFromRight.Max(pos=>pos.y))_tilemapWall.SetTile(new Vector3Int(moovingCoordinatesFromLeft[0].x+1,moovingCoordinatesFromLeft[i].y,0),asset.GetTileFromType(AssetType.WallBottomRight)[0]);
+                }
+            }else if (moovingCoordinatesFromLeft.Count < moovingCoordinatesFromRight.Count)
+            {
+                //place the walls on the corner of the border
+                _tilemapWall.SetTile(new Vector3Int(moovingCoordinatesFromRight[0].x-1,moovingCoordinatesFromRight.Max(x=>x.y)+1,0),asset.GetTileFromType(AssetType.WallTopLeft)[0]);
+                //place the walls on the top of the border and on the right border
+                for (int i = 0; (i < moovingCoordinatesFromRight.Count); i++)
+                {
+                    _tilemapWall.SetTile(new Vector3Int(moovingCoordinatesFromLeft[0].x-i,moovingCoordinatesFromLeft.Min(x=>x.y)-1,0),asset.GetTileFromType(AssetType.WallBottomRight)[0]);
+                    _tilemapWall.SetTile(new Vector3Int(moovingCoordinatesFromRight[0].x+i,moovingCoordinatesFromLeft.Max(x=>x.y)+1,0),asset.GetTileFromType(AssetType.WallTopLeft)[0]);
+                    if(moovingCoordinatesFromRight[i].y>moovingCoordinatesFromLeft.Max(pos=>pos.y))_tilemapWall.SetTile(new Vector3Int(moovingCoordinatesFromRight[0].x-1,moovingCoordinatesFromRight[i].y,0),asset.GetTileFromType(AssetType.WallTopLeft)[0]);
+                }
+            }
+
+        }else if (moovingCoordinatesFromLeft.Min(x=> x.y) == moovingCoordinatesFromRight.Min(x=>x.y) && moovingCoordinatesFromLeft.Max(x=> x.y) == moovingCoordinatesFromRight.Max(x=>x.y))
+        {
+            for (int i = 0; i < moovingCoordinatesFromLeft.Count; i++)
+            {
+                _tilemapWall.SetTile(
+                    new Vector3Int(moovingCoordinatesFromLeft[0].x - i, moovingCoordinatesFromLeft.Max(x => x.y) + 1,
+                        0), asset.GetTileFromType(AssetType.WallTopLeft)[0]);
+                _tilemapWall.SetTile(
+                    new Vector3Int(moovingCoordinatesFromLeft[0].x - i, moovingCoordinatesFromLeft.Min(x => x.y) - 1,
+                        0), asset.GetTileFromType(AssetType.WallBottomRight)[0]);
+            }
+        }else if (moovingCoordinatesFromLeft.Max(x=> x.y) > moovingCoordinatesFromRight.Max(x=>x.y))//means that from the left we are coming more higher
         {
             int minY = moovingCoordinatesFromLeft.Min(x=>x.y);
             //place the walls on the corner of the border
-            _tilemapWall.SetTile(new Vector3Int(moovingCoordinatesFromLeft[0].x+1,moovingCoordinatesFromLeft.Max(x=>x.y)+1,0),asset.GetTileFromType(AssetType.WallTop)[0]);
+            _tilemapWall.SetTile(new Vector3Int(moovingCoordinatesFromLeft[0].x+1,moovingCoordinatesFromLeft.Max(x=>x.y)+1,0),asset.GetTileFromType(AssetType.WallTopLeft)[0]);
             //place the walls on the top of the border and on the right border
             for (int i = 0; (i < moovingCoordinatesFromLeft.Count); i++)
             {
-                _tilemapWall.SetTile(new Vector3Int(moovingCoordinatesFromLeft[0].x-i,moovingCoordinatesFromLeft.Max(x=>x.y)+1,0),asset.GetTileFromType(AssetType.WallTop)[0]);
-                if(moovingCoordinatesFromLeft[i].y>moovingCoordinatesFromRight.Max(pos=>pos.y))_tilemapWall.SetTile(new Vector3Int(moovingCoordinatesFromLeft[0].x+1,moovingCoordinatesFromLeft[i].y,0),asset.GetTileFromType(AssetType.WallTop)[0]);
+                _tilemapWall.SetTile(new Vector3Int(moovingCoordinatesFromLeft[0].x-i,moovingCoordinatesFromLeft.Max(x=>x.y)+1,0),asset.GetTileFromType(AssetType.WallTopLeft)[0]);
+                if(moovingCoordinatesFromLeft[i].y>moovingCoordinatesFromRight.Max(pos=>pos.y))_tilemapWall.SetTile(new Vector3Int(moovingCoordinatesFromLeft[0].x+1,moovingCoordinatesFromLeft[i].y,0),asset.GetTileFromType(AssetType.WallBottomRight)[0]);
             }
             //Rotate the mooving coordinates in order to reach the bottom
             for (int i = 0; i < moovingCoordinatesFromLeft.Count; i++)
@@ -154,30 +221,30 @@ public class LevelMap : MonoBehaviourPun
             {
                 for (int j = 0; j < moovingCoordinatesFromLeft.Count; j++)
                 {
-                    _tilemapFloor.SetTile(moovingCoordinatesFromLeft[j]+Direction.South.GetDirection(),asset.GetTileFromType(AssetType.Floor)[0]);
+                    _tilemapCorridorFloor.SetTile(moovingCoordinatesFromLeft[j]+Direction.South.GetDirection(),asset.GetTileFromType(AssetType.Floor)[0]);
                     moovingCoordinatesFromLeft[j] += Direction.South.GetDirection();
                 }     
-                if(i>moovingCoordinatesFromRight.Min(pos=>pos.y)+moovingCoordinatesFromRight.Count) _tilemapWall.SetTile(new Vector3Int(moovingCoordinatesFromLeft.Max(pos=>pos.x)+1,moovingCoordinatesFromLeft[0].y,0), asset.GetTileFromType(AssetType.WallTop)[0]);
-                _tilemapWall.SetTile(new Vector3Int(moovingCoordinatesFromLeft.Min(pos=>pos.x)-1,moovingCoordinatesFromLeft[0].y,0),asset.GetTileFromType(AssetType.WallBottom)[0]);
+                if(i>moovingCoordinatesFromRight.Min(pos=>pos.y)+moovingCoordinatesFromRight.Count) _tilemapWall.SetTile(new Vector3Int(moovingCoordinatesFromLeft.Max(pos=>pos.x)+1,moovingCoordinatesFromLeft[0].y,0), asset.GetTileFromType(AssetType.WallBottomRight)[0]);
+                _tilemapWall.SetTile(new Vector3Int(moovingCoordinatesFromLeft.Min(pos=>pos.x)-1,moovingCoordinatesFromLeft[0].y,0),asset.GetTileFromType(AssetType.WallTopLeft)[0]);
             }
             //place the wall now in the bootom corner and bottom border
-            _tilemapWall.SetTile(new Vector3Int(moovingCoordinatesFromLeft.Min(pos=>pos.x)-1,moovingCoordinatesFromLeft[0].y-1,0),asset.GetTileFromType(AssetType.WallBottom)[0]);
+            _tilemapWall.SetTile(new Vector3Int(moovingCoordinatesFromLeft.Min(pos=>pos.x)-1,moovingCoordinatesFromLeft[0].y-1,0),asset.GetTileFromType(AssetType.WallBottomRight)[0]);
             //place the walls on the top of the border and on the right border
             for (int i = 0; i < moovingCoordinatesFromLeft.Count; i++)
             {
-                _tilemapWall.SetTile(new Vector3Int(moovingCoordinatesFromLeft[i].x,moovingCoordinatesFromLeft.Max(x=>x.y)-1,0),asset.GetTileFromType(AssetType.WallBottom)[0]);
+                _tilemapWall.SetTile(new Vector3Int(moovingCoordinatesFromLeft[i].x,moovingCoordinatesFromLeft.Max(x=>x.y)-1,0),asset.GetTileFromType(AssetType.WallBottomRight)[0]);
             }
         }
         else //means that we have to go up
         {
             int maxY = moovingCoordinatesFromLeft.Max(pos=>pos.y);
             //place the walls on the corner of the border
-            _tilemapWall.SetTile(new Vector3Int(moovingCoordinatesFromLeft[0].x+1,moovingCoordinatesFromLeft.Min(x=>x.y)-1,0),asset.GetTileFromType(AssetType.WallBottom)[0]);
-            //place the walls on the top of the border and on the right border
+            _tilemapWall.SetTile(new Vector3Int(moovingCoordinatesFromLeft[0].x+1,moovingCoordinatesFromLeft.Min(x=>x.y)-1,0),asset.GetTileFromType(AssetType.WallBottomRight)[0]);
+            //place the walls on the bottom of the border and on the right border
             for (int i = 0; i < moovingCoordinatesFromLeft.Count; i++)
             {
-                _tilemapWall.SetTile(new Vector3Int(moovingCoordinatesFromLeft[0].x-i,moovingCoordinatesFromLeft.Min(x=>x.y)-1,0),asset.GetTileFromType(AssetType.WallBottom)[0]);
-                if(moovingCoordinatesFromLeft[i].y<moovingCoordinatesFromRight.Min(pos=>pos.y))_tilemapWall.SetTile(new Vector3Int(moovingCoordinatesFromLeft[0].x+1,moovingCoordinatesFromLeft[i].y,0),asset.GetTileFromType(AssetType.WallBottom)[0]);
+                _tilemapWall.SetTile(new Vector3Int(moovingCoordinatesFromLeft[0].x-i,moovingCoordinatesFromLeft.Min(x=>x.y)-1,0),asset.GetTileFromType(AssetType.WallBottomRight)[0]);
+                if(moovingCoordinatesFromLeft[i].y<moovingCoordinatesFromRight.Min(pos=>pos.y))_tilemapWall.SetTile(new Vector3Int(moovingCoordinatesFromLeft[0].x+1,moovingCoordinatesFromLeft[i].y,0),asset.GetTileFromType(AssetType.WallBottomRight)[0]);
             }
             //Rotate the mooving coordinates in order to reach the top
             for (int i = 0; i < moovingCoordinatesFromLeft.Count; i++)
@@ -189,18 +256,18 @@ public class LevelMap : MonoBehaviourPun
             {
                 for (int j = 0; j < moovingCoordinatesFromLeft.Count; j++)
                 {
-                    _tilemapFloor.SetTile(moovingCoordinatesFromLeft[j]+Direction.North.GetDirection(),asset.GetTileFromType(AssetType.Floor)[0]);
+                    _tilemapCorridorFloor.SetTile(moovingCoordinatesFromLeft[j]+Direction.North.GetDirection(),asset.GetTileFromType(AssetType.Floor)[0]);
                     moovingCoordinatesFromLeft[j] += Direction.North.GetDirection();
                 }        
-                if(i<moovingCoordinatesFromRight.Max(pos=>pos.y)-moovingCoordinatesFromRight.Count) _tilemapWall.SetTile(new Vector3Int(moovingCoordinatesFromLeft.Max(pos=>pos.x)+1,moovingCoordinatesFromLeft[0].y,0), asset.GetTileFromType(AssetType.WallBottom)[0]);
-                 _tilemapWall.SetTile(new Vector3Int(moovingCoordinatesFromLeft.Min(pos=>pos.x)-1,moovingCoordinatesFromLeft[0].y,0),asset.GetTileFromType(AssetType.WallTop)[0]);
+                if(i<moovingCoordinatesFromRight.Max(pos=>pos.y)-moovingCoordinatesFromRight.Count) _tilemapWall.SetTile(new Vector3Int(moovingCoordinatesFromLeft.Max(pos=>pos.x)+1,moovingCoordinatesFromLeft[0].y,0), asset.GetTileFromType(AssetType.WallBottomRight)[0]);
+                 _tilemapWall.SetTile(new Vector3Int(moovingCoordinatesFromLeft.Min(pos=>pos.x)-1,moovingCoordinatesFromLeft[0].y,0),asset.GetTileFromType(AssetType.WallTopLeft)[0]);
             }
             //place the wall now in top corner and upper border
-            _tilemapWall.SetTile(new Vector3Int(moovingCoordinatesFromLeft.Min(pos=>pos.x)-1,moovingCoordinatesFromLeft[0].y+1,0),asset.GetTileFromType(AssetType.WallTop)[0]);
+            _tilemapWall.SetTile(new Vector3Int(moovingCoordinatesFromLeft.Min(pos=>pos.x)-1,moovingCoordinatesFromLeft[0].y+1,0),asset.GetTileFromType(AssetType.WallTopLeft)[0]);
             //place the walls on the top of the border and on the right border
             for (int i = 0; i < moovingCoordinatesFromLeft.Count; i++)
             {
-                _tilemapWall.SetTile(new Vector3Int(moovingCoordinatesFromLeft[i].x,moovingCoordinatesFromLeft.Max(x=>x.y)+1,0),asset.GetTileFromType(AssetType.WallTop)[0]);
+                _tilemapWall.SetTile(new Vector3Int(moovingCoordinatesFromLeft[i].x,moovingCoordinatesFromLeft.Max(x=>x.y)+1,0),asset.GetTileFromType(AssetType.WallTopLeft)[0]);
             }
         }    
     }
@@ -223,14 +290,14 @@ public class LevelMap : MonoBehaviourPun
         {
             for (int j = 0; j < moovingCoordinates.Count; j++)
             {
-                _tilemapFloor.SetTile(moovingCoordinates[j]+direction.GetDirection(),asset.GetTileFromType(AssetType.Floor)[0]);
+                _tilemapCorridorFloor.SetTile(moovingCoordinates[j]+direction.GetDirection(),asset.GetTileFromType(AssetType.Floor)[0]);
                 moovingCoordinates[j] += direction.GetDirection();
             }
             //here we place the wall only before the ending of the padding zone, the wall for the corner has to be decided when we know if we will go up or down
             if (i < room.DisplacementX + room.RequiredWidthSpace + PaddingRoom-1)
             {
-                _tilemapWall.SetTile(new Vector3Int(moovingCoordinates[0].x,moovingCoordinates.Max(pos=>pos.y)+1,0), asset.GetTileFromType(AssetType.WallTop)[0]);
-                _tilemapWall.SetTile(new Vector3Int(moovingCoordinates[0].x,moovingCoordinates.Min(pos=>pos.y)-1,0), asset.GetTileFromType(AssetType.WallBottom)[0]);
+                _tilemapWall.SetTile(new Vector3Int(moovingCoordinates[0].x,moovingCoordinates.Max(pos=>pos.y)+1,0), asset.GetTileFromType(AssetType.WallTopLeft)[0]);
+                _tilemapWall.SetTile(new Vector3Int(moovingCoordinates[0].x,moovingCoordinates.Min(pos=>pos.y)-1,0), asset.GetTileFromType(AssetType.WallBottomRight)[0]);
             }
         }
         //it returns the updated value of the moving coordinates up to now
@@ -245,7 +312,7 @@ public class LevelMap : MonoBehaviourPun
             //Put the floor as long as your are moving up or down    
             for (int j = 0; j < moovingCoordinates.Count; j++)
             {
-                _tilemapFloor.SetTile(moovingCoordinates[j]+startingDirection.GetDirection(),asset.GetTileFromType(AssetType.Floor)[0]);
+                _tilemapCorridorFloor.SetTile(moovingCoordinates[j]+startingDirection.GetDirection(),asset.GetTileFromType(AssetType.Floor)[0]);
                 moovingCoordinates[j] += startingDirection.GetDirection();
             }
             //Add also the wall, but if you are going:
@@ -258,19 +325,19 @@ public class LevelMap : MonoBehaviourPun
                     if (i < PaddingRoom)
                         _tilemapWall.SetTile(
                             new Vector3Int(moovingCoordinates.Max(x => x.x) + 1, moovingCoordinates[0].y, 0),
-                            asset.GetTileFromType(AssetType.WallTop)[0]);
+                            asset.GetTileFromType(AssetType.WallBottomRight)[0]);
                     _tilemapWall.SetTile(
                         new Vector3Int(moovingCoordinates.Min(x => x.x) - 1, moovingCoordinates[0].y, 0),
-                        asset.GetTileFromType(AssetType.WallBottom)[0]);
+                        asset.GetTileFromType(AssetType.WallTopLeft)[0]);
                 }
                 else
                 {
                     _tilemapWall.SetTile(
                             new Vector3Int(moovingCoordinates.Max(x => x.x) + 1, moovingCoordinates[0].y, 0),
-                            asset.GetTileFromType(AssetType.WallBottom)[0]);
+                            asset.GetTileFromType(AssetType.WallBottomRight)[0]);
                     if (i < PaddingRoom) _tilemapWall.SetTile(
                         new Vector3Int(moovingCoordinates.Min(x => x.x) - 1, moovingCoordinates[0].y, 0),
-                        asset.GetTileFromType(AssetType.WallTop)[0]);
+                        asset.GetTileFromType(AssetType.WallTopLeft)[0]);
                 }
             }
             else
@@ -279,18 +346,18 @@ public class LevelMap : MonoBehaviourPun
                     if (i < PaddingRoom)
                         _tilemapWall.SetTile(
                             new Vector3Int(moovingCoordinates.Min(x => x.x) - 1, moovingCoordinates[0].y, 0),
-                            asset.GetTileFromType(AssetType.WallBottom)[0]);
+                            asset.GetTileFromType(AssetType.WallTopLeft)[0]);
                     _tilemapWall.SetTile(
                         new Vector3Int(moovingCoordinates.Max(x => x.x) + 1, moovingCoordinates[0].y, 0),
-                        asset.GetTileFromType(AssetType.WallTop)[0]);
+                        asset.GetTileFromType(AssetType.WallBottomRight)[0]);
                 }else
                 {
                     _tilemapWall.SetTile(
                             new Vector3Int(moovingCoordinates.Min(x => x.x) - 1, moovingCoordinates[0].y, 0),
-                            asset.GetTileFromType(AssetType.WallTop)[0]);
+                            asset.GetTileFromType(AssetType.WallTopLeft)[0]);
                     if (i < PaddingRoom)_tilemapWall.SetTile(
                         new Vector3Int(moovingCoordinates.Max(x => x.x) + 1, moovingCoordinates[0].y, 0),
-                        asset.GetTileFromType(AssetType.WallBottom)[0]); 
+                        asset.GetTileFromType(AssetType.WallBottomRight)[0]); 
                 }
 
             }
@@ -299,18 +366,18 @@ public class LevelMap : MonoBehaviourPun
         if(startingDirection==Direction.South) {
             if(nextDirection==Direction.West) _tilemapWall.SetTile(
             new Vector3Int(moovingCoordinates.Min(x => x.x)-1, moovingCoordinates[0].y, 0)+startingDirection.GetDirection(),
-            asset.GetTileFromType(AssetType.WallBottom)[0]);
+            asset.GetTileFromType(AssetType.WallBottomRight)[0]);
             else _tilemapWall.SetTile(
                 new Vector3Int(moovingCoordinates.Max(x => x.x)+1, moovingCoordinates[0].y, 0)+startingDirection.GetDirection(),
-                asset.GetTileFromType(AssetType.WallBottom)[0]);
+                asset.GetTileFromType(AssetType.WallBottomRight)[0]);
         }
         else {
             if(nextDirection==Direction.East) _tilemapWall.SetTile(
             new Vector3Int(moovingCoordinates.Max(x => x.x)+1, moovingCoordinates[0].y, 0)+startingDirection.GetDirection(),
-            asset.GetTileFromType(AssetType.WallTop)[0]);
+            asset.GetTileFromType(AssetType.WallTopLeft)[0]);
             else _tilemapWall.SetTile(
                 new Vector3Int(moovingCoordinates.Min(x => x.x)-1, moovingCoordinates[0].y, 0)+startingDirection.GetDirection(),
-                asset.GetTileFromType(AssetType.WallTop)[0]);
+                asset.GetTileFromType(AssetType.WallTopLeft)[0]);
         }
 
         //Put the tile of the wall also on the other part of the cornet before changing and rotating the moving direction in the West direction
@@ -318,7 +385,7 @@ public class LevelMap : MonoBehaviourPun
         {
             _tilemapWall.SetTile(
                 new Vector3Int(pos.x, moovingCoordinates[0].y, 0)+startingDirection.GetDirection(),
-                startingDirection==Direction.North? asset.GetTileFromType(AssetType.WallTop)[0]:asset.GetTileFromType(AssetType.WallBottom)[0]);
+                startingDirection==Direction.North? asset.GetTileFromType(AssetType.WallTopLeft)[0]:asset.GetTileFromType(AssetType.WallBottomRight)[0]);
         }
         //Rotate the moving directions in order to continue and go to West in the next function
         for (int i = 0; i < moovingCoordinates.Count; i++)
@@ -350,25 +417,6 @@ public class LevelMap : MonoBehaviourPun
             //while (!FreeSpace(room, coordinates = RandomCoordinates())); //start placing the starting room
             room.PlaceRoom(_tilemapFloor,_tilemapWall,_tilemapObject,coordinates); 
         }
-    }
-
-    private bool FreeSpace(RoomAbstract room,Vector3Int coordinates)
-    {
-        IEnumerable<Vector3Int> coordinatesFirstRoom = room.TileList.Select(x => x.Coordinates);
-        for (int i = 0; _selectedRooms[i] != room; i++)
-        {
-            IEnumerable<Vector3Int> coordinatesSecondRoom = _selectedRooms[i].TileList.Select(x => x.Coordinates);
-            foreach (Vector3Int tileFirst in coordinatesFirstRoom)
-            {
-                foreach (Vector3Int tileSecond in coordinatesSecondRoom)
-                {
-                    if (Vector3Int.Distance(tileFirst, tileSecond) == 0) return false;
-                }
-            }
-
-        }
-
-        return true;
     }
 
     private Vector3Int RandomCoordinates(RoomAbstract nextRoom,RoomAbstract previousRoom)
@@ -408,7 +456,6 @@ public class LevelMap : MonoBehaviourPun
         roomCollection.StartingRoomPlayer2.Generate();
 
     }
-
 
     private RoomAbstract SelectRoom()
     {
