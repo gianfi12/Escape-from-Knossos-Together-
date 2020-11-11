@@ -45,4 +45,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   assetsCollection: {fileID: 11400000, guid: faf00a2f1fb745748ad852f25f064f70, type: 2}
   maxSpace: 20
+<<<<<<< HEAD
   minRoomSize: 3
+=======
+  minRoomSize: 0
+>>>>>>> 1d8ad49cd3447c3f976b22f51174d70f8a904c77
