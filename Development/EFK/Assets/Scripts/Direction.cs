@@ -55,4 +55,15 @@ public static class DirectionExtensions
             return Direction.North;
         }
     }
+    
+    public static Direction FindDirection(Tile tile,Tilemap tilemap)
+    {
+        TileBase checkTile = tilemap.GetTile(tile.Coordinates + Direction.South.GetDirection());
+        if (!(checkTile is null)) return Direction.North;
+        checkTile = tilemap.GetTile(tile.Coordinates + Direction.North.GetDirection());
+        if (!(checkTile is null)) return Direction.South;
+        checkTile = tilemap.GetTile(tile.Coordinates + Direction.West.GetDirection());
+        if (!(checkTile is null)) return Direction.East;
+        return Direction.West;
+    }
 }

@@ -125,8 +125,13 @@ public class LevelMap : MonoBehaviourPun
                     throw new InvalidDataException("The entrance/exit tile are not linearly disposed.");
             }
         }
-        Direction startingDirection = DirectionExtensions.FindDirection(exitRoom.Exit[0], exitRoom.Exit[1],_tilemapFloor);
-        Direction arrivalDirection = DirectionExtensions.FindDirection(entranceRoom.Entrance[0], entranceRoom.Entrance[1], _tilemapFloor);
+
+        Direction startingDirection;
+        Direction arrivalDirection;
+        if(exitRoom.Exit.Count==1) startingDirection = DirectionExtensions.FindDirection(exitRoom.Exit[0],_tilemapFloor);
+        else startingDirection = DirectionExtensions.FindDirection(exitRoom.Exit[0], exitRoom.Exit[1],_tilemapFloor);
+        if(entranceRoom.Entrance.Count==1) arrivalDirection = DirectionExtensions.FindDirection(entranceRoom.Entrance[0], _tilemapFloor);
+        else arrivalDirection = DirectionExtensions.FindDirection(entranceRoom.Entrance[0], entranceRoom.Entrance[1], _tilemapFloor);
         List<Vector3Int> moovingCoordinatesLeft = exitRoom.Exit.Select(x => x.Coordinates).ToList();
 
         //position to the start of the padding zone from left

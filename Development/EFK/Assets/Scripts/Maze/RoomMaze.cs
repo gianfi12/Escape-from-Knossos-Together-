@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 
 public class RoomMaze : RoomAbstract
 {
-    private const int _minSetSpace=20;
+    private const int _minSetSpace=21;//has to be odd
     private const int _maxSetSpace=100;
 
     [SerializeField][Range(_minSetSpace,_maxSetSpace)] private int maxSpace;
@@ -22,16 +22,68 @@ public class RoomMaze : RoomAbstract
     public override void Generate(int seed)
     {
         Random.InitState(seed);
-        while ((_sizeX = Random.Range(_minSetSpace, maxSpace)) % 2 != 0);
-        while ((_sizeY = Random.Range(_minSetSpace, maxSpace)) % 2 != 0);
+        int random;
+        while ((random = Random.Range(_minSetSpace, maxSpace)) % 2 == 0);
+        //while ((_sizeY = Random.Range(_minSetSpace, maxSpace)) % 2 == 0);
+        _sizeX = random;
+        _sizeY = random;
         _requiredWidthSpace = _sizeX+2;//due to the walls
         
-        GenerateWall();
         GenerateInternal();
+        FindRoomNeighbor();
         ReshapeRooms();
+        ConnectNeighbor();
         GenerateTile();
+        GenerateWall();
+
         _lowestX = -1;//these are due to the presence of the wall
         _lowestY = -1;
+    }
+
+    private void ConnectNeighbor()
+    {
+        foreach (Room room in _roomList)
+        {
+            foreach (Room neighbor in room.GetNeighbor())
+            {
+                if (!neighbor.IsNeighborAlreadyConnected(room))
+                {
+                    neighbor.AddConnectedNeighbor(room);
+                    room.AddConnectedNeighbor(neighbor);
+                    List<Cell> _neighborCell = new List<Cell>();
+                    foreach (Cell cell in room.GetCellsList())
+                    {
+                        if(cell.IsAdjacent(neighbor)) _neighborCell.Add(cell);
+                    }
+                    Cell selectedCell = _neighborCell[Random.Range(0,_neighborCell.Count-1)];
+                    Edge selectedEdge = selectedCell.GetAdjacentEdge(neighbor);
+                    selectedEdge.EdgeType = Edge.EdgeTypes.Door;
+                }
+                else
+                {
+                    room.AddConnectedNeighbor(neighbor);
+                }
+            }
+        }
+    }
+
+    private void FindRoomNeighbor()
+    {
+        foreach (Room room in _roomList)
+        {
+            foreach (Cell cell in room.GetCellsList())
+            {
+                foreach (Direction direction in (Direction[]) Enum.GetValues(typeof(Direction)))
+                {
+                    Edge edge = cell.GetEdge(direction);
+                    if(!(edge is null))
+                    {
+                        Cell otherCell = cell.GetEdge(direction).GetOther(cell);
+                        if(!(otherCell is null)) room.AddNeighbor(otherCell.Room);
+                    } 
+                }
+            }
+        }
     }
 
     private void ReshapeRooms()
@@ -41,50 +93,141 @@ public class RoomMaze : RoomAbstract
             if (_roomList[i].GetCellsList().Count < minRoomSize)
             {
                 Room removedRoom = _roomList[i];
-                _roomList.RemoveAt(i);
-                int index = Random.Range(0, removedRoom.GetNeighbor().Count);
+                _roomList.Remove(removedRoom);
+                int index = Random.Range(0, removedRoom.GetNeighbor().Count-1);
                 Room mergedRoom = removedRoom.GetNeighbor()[index];
                 mergedRoom.RemoveNeighbor(removedRoom);
                 foreach (Cell cell in removedRoom.GetCellsList())
                 {
-                    cell.Room = mergedRoom;
                     mergedRoom.AddCell(cell);
+                    cell.ReshapeCell(mergedRoom);
                 }
             }
         }
+
+        foreach (Room room in _roomList)
+        {
+            room.ResetNeighbor();
+        }
+        FindRoomNeighbor();
     }
 
     private void GenerateTile()
     {
-        foreach (Room room in _roomList)
+        //first position the floor
+        foreach (Cell cell in _cellMap.Values) 
         {
-            foreach (Cell cell in room.GetCellsList())
+            Vector2Int position = new Vector2Int(cell.Position.x*2+1,cell.Position.y*2+1); 
+            PositionTile(position,cell.Room.Color,Floor,assetsCollection.GetTileFromType(AssetType.Floor)[0]);
+            foreach (Direction direction in (Direction[]) Enum.GetValues(typeof(Direction)))
             {
-                for (int i = 0; i < 2; i++)
+                Cell otherCell = cell.GetEdge(direction).GetOther(cell);
+                if ((cell.GetEdge(direction).EdgeType==Edge.EdgeTypes.Passage || cell.GetEdge(direction).EdgeType==Edge.EdgeTypes.Door))
                 {
-                    for (int j = 0; j < 2; j++)
+                    Vector2Int startingPosition;
+                    Direction movementDirection;
+                    if(otherCell is null) otherCell = new Cell(cell.Position+(Vector2Int)direction.GetDirection(),null);
+                    if (cell.Position.x == otherCell.Position.x)
                     {
-                       Vector2Int position = new Vector2Int(cell.Position.x*2+i,cell.Position.y*2+j);
-                       Tile tile = new Tile(assetsCollection.GetTileFromType(AssetType.Floor)[0],(Vector3Int)position);
-                       tile.Color = room.Color;
-                       Floor.Add(tile);
-                       TileList.Add(tile); 
+                        movementDirection = Direction.West;
+                        if (cell.Position.y > otherCell.Position.y)
+                        {
+                            startingPosition = new Vector2Int(cell.Position.x*2,cell.Position.y*2);
+                        }
+                        else
+                        {
+                            startingPosition = new Vector2Int(cell.Position.x*2,cell.Position.y*2+2);
+                        }
+                    }
+                    else
+                    {
+                        movementDirection = Direction.North;
+                        if (cell.Position.x < otherCell.Position.x)
+                        {
+                            startingPosition = new Vector2Int(cell.Position.x*2+2,cell.Position.y*2);
+                        }
+                        else
+                        {
+                            startingPosition = new Vector2Int(cell.Position.x*2,cell.Position.y*2);
+                        }
+                    }
+                    for (int i = 0; i < 3; i++)
+                    {
+                        PositionTile(startingPosition,cell.Room.Color,Floor,assetsCollection.GetTileFromType(AssetType.Floor)[0]);
+                        startingPosition += (Vector2Int)movementDirection.GetDirection();
+                    }
+                }
+            }
+        }
+        
+        // //then the walls
+        foreach (Cell cell in _cellMap.Values)
+        {
+            foreach (Direction direction in (Direction[]) Enum.GetValues(typeof(Direction)))
+            {
+                Cell otherCell = cell.GetEdge(direction).GetOther(cell);
+                if ((cell.GetEdge(direction).EdgeType==Edge.EdgeTypes.Wall))
+                {
+                    Vector2Int startingPosition;
+                    Direction movementDirection;
+                    if(otherCell is null) otherCell = new Cell(cell.Position+(Vector2Int)direction.GetDirection(),null);
+                    if (cell.Position.x == otherCell.Position.x)
+                    {
+                        movementDirection = Direction.West;
+                        if (cell.Position.y > otherCell.Position.y)
+                        {
+                            startingPosition = new Vector2Int(cell.Position.x*2,cell.Position.y*2);
+                        }
+                        else
+                        {
+                            startingPosition = new Vector2Int(cell.Position.x*2,cell.Position.y*2+2);
+                        }
+                    }
+                    else
+                    {
+                        movementDirection = Direction.North;
+                        if (cell.Position.x < otherCell.Position.x)
+                        {
+                            startingPosition = new Vector2Int(cell.Position.x*2+2,cell.Position.y*2);
+                        }
+                        else
+                        {
+                            startingPosition = new Vector2Int(cell.Position.x*2,cell.Position.y*2);
+                        }
+                    }
+                    TileBase tileBase;
+                    if (direction == Direction.East || direction == Direction.North)
+                    {
+                        tileBase = assetsCollection.GetTileFromType(AssetType.WallTopLeft)[0];
+                    }
+                    else tileBase = assetsCollection.GetTileFromType(AssetType.WallBottomRight)[0];
+                    for (int i = 0; i < 3; i++)
+                    {
+                        PositionTile(startingPosition,cell.Room.Color,Floor,tileBase);
+                        startingPosition += (Vector2Int)movementDirection.GetDirection();
                     }
                 }
             }
         }
     }
 
+    private void PositionTile(Vector2Int position, Color color, List<Tile> specificList, TileBase tileBase)
+    {
+        Tile tile = new Tile(tileBase,(Vector3Int)position);
+        tile.Color = color;
+        specificList.Add(tile);
+        TileList.Add(tile);
+    }
+    
     private void GenerateInternal()
     {
         Room startingRoom = new Room();
         _roomList.Add(startingRoom);
-        int randX = Random.Range(0,_sizeX/2-1);
-        int randY = Random.Range(0, _sizeY / 2 - 1);
-        Cell startingCell = new Cell(new Vector2Int(randX,randY), startingRoom);
-        startingRoom.AddCell(startingCell);
+        int randX = Random.Range(0,(_sizeX-1)/2);
+        int randY = Random.Range(0, (_sizeY-1)/2 );
+        Cell startingCell = AddCell(startingRoom, new Vector2Int(randX, randY));
 
-        _actualRoomCellsStack.Push(startingRoom.GetFirstCell());
+        _actualRoomCellsStack.Push(startingCell);
         while (_actualRoomCellsStack.Count>0)
         {
             Cell actualCell = _actualRoomCellsStack.Pop();
@@ -120,7 +263,11 @@ public class RoomMaze : RoomAbstract
             if (cell.GetEdge(direction) is null)
             {
                 Vector2Int neighborPosition = cell.Position + (Vector2Int) direction.GetDirection();
-                if (neighborPosition.x < 0 || neighborPosition.y < 0 || neighborPosition.x>=_sizeX/2 || neighborPosition.y>=_sizeY/2) cell.SetEdge(direction, new Edge(cell, null));
+                if (neighborPosition.x < 0 || neighborPosition.y < 0 || neighborPosition.x>=(_sizeY - 1)/2  || neighborPosition.y>=(_sizeY - 1)/2)
+                {
+                    cell.SetEdge(direction, new Edge(cell, null));
+                    cell.GetEdge(direction).EdgeType = Edge.EdgeTypes.Passage;
+                }
                 else
                 {
                     Cell otherCell;
@@ -133,31 +280,37 @@ public class RoomMaze : RoomAbstract
                         otherCell = AddCell(null, neighborPosition);
                         _otherRoomCellsStack.Push(otherCell);
                     }
-                    
-                    if(!(otherCell.Room is null))cell.Room.AddNeighbor(otherCell.Room);
-                    
-                    SetConnection(direction, cell, otherCell);
+
+                    Edge edge = SetConnection(direction, cell, otherCell);
                     if (otherCell.Room is null && Random.Range(1, 100) > 60)
                     {
+                        edge.EdgeType = Edge.EdgeTypes.Passage;
                         cell.Room.AddCell(otherCell);
                         _actualRoomCellsStack.Push(otherCell);
-                    }else if(!_otherRoomCellsStack.Contains(otherCell)) 
-                        _otherRoomCellsStack.Push(otherCell);
+                    }else
+                    {
+                        edge.EdgeType = Edge.EdgeTypes.Wall;
+                        if (!_otherRoomCellsStack.Contains(otherCell))
+                        {
+                            _otherRoomCellsStack.Push(otherCell);
+                        }
+                    }
                 }
             }
         }
     }
 
-    private void SetConnection(Direction direction, Cell cell, Cell otherCell)
+    private Edge SetConnection(Direction direction, Cell cell, Cell otherCell)
     {
         Edge edge = new Edge(cell,otherCell);
         cell.SetEdge(direction, edge);
         otherCell.SetEdge(direction.GetOpposite(),edge);
+        return edge;
     }
 
     private int GetID(Vector2Int position)
     {
-        return position.x + _sizeX / 2 * position.y;
+        return position.x + (_sizeY - 1)/2  * position.y;
     }
 
     private void GenerateWall()
@@ -165,6 +318,7 @@ public class RoomMaze : RoomAbstract
         bool hasEntrance = false, hasExit = false;
         Direction[] directions = {Direction.East, Direction.South, Direction.West, Direction.North};
         int directionChange = 0;
+        int exitHasToBeInDirectionChange=-1;
         int index = _sizeX;//starts from the upper left side and we go in an anti clockwise round
         int startingIndex = index;
         Vector3Int position = new Vector3Int(_sizeX-1,_sizeY,0);
@@ -172,19 +326,14 @@ public class RoomMaze : RoomAbstract
         {
             if ((directionChange == 1 || directionChange == 0))
             {
-                if (!hasEntrance && ((directionChange == 1 && index == 3) || (Random.Range(1, 100) > 90 && index%2==0 && index<startingIndex)))
+                if (!hasEntrance && ((directionChange == 1 && index == 2) || (Random.Range(1, 100) > 90 && index%2==0 && index<startingIndex)))
                 {
                     hasEntrance = true;
-                    index--;
                     Tile tile = new Tile(assetsCollection.GetTileFromType(AssetType.Entrace)[0],
-                        position);
-                    position += directions[directionChange].GetDirection();
+                        position); 
                     TileList.Add(tile);
                     Entrance.Add(tile);
-                    tile = new Tile(assetsCollection.GetTileFromType(AssetType.Entrace)[0], 
-                        position);
-                    TileList.Add(tile);
-                    Entrance.Add(tile);
+                    exitHasToBeInDirectionChange = directionChange+2;
                 }else
                 {
                     PutWall(directionChange,position);
@@ -192,16 +341,10 @@ public class RoomMaze : RoomAbstract
             }
             else
             {
-                if (!hasExit && ((directionChange == 3 && index == 3) || (Random.Range(1, 100) >90 && index%2==0 && index<startingIndex)))
+                if (!hasExit && ((directionChange == exitHasToBeInDirectionChange && index == 2) || (Random.Range(1, 100) >90 && index%2==0 && index<startingIndex && exitHasToBeInDirectionChange==directionChange)))
                 {
                     hasExit = true;
-                    index--;
                     Tile tile = new Tile(assetsCollection.GetTileFromType(AssetType.Exit)[0],
-                        position);
-                    position += directions[directionChange].GetDirection();
-                    TileList.Add(tile);
-                    Exit.Add(tile);
-                    tile = new Tile(assetsCollection.GetTileFromType(AssetType.Exit)[0],
                         position);
                     TileList.Add(tile);
                     Exit.Add(tile);
@@ -228,7 +371,6 @@ public class RoomMaze : RoomAbstract
                         index = _sizeY + 2;
                         break;
                 }
-
                 startingIndex = index;
             }
         }
@@ -267,10 +409,10 @@ public class RoomMaze : RoomAbstract
             else
             {
                 tilemapFloor.SetTile(tile.Coordinates, tile.TileBase);
-                if (tile.HasColor())
-                {
-                    tilemapFloor.SetColor(tile.Coordinates,tile.Color);
-                }
+                // if (tile.HasColor())
+                // {
+                //     tilemapFloor.SetColor(tile.Coordinates,tile.Color);
+                // }
             }
         }
 

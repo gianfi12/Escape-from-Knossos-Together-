@@ -7,7 +7,19 @@ public class Room
     private List<Cell> _cells = new List<Cell>();
     private Color color;
     private List<Room> _neighborRoomList = new List<Room>();
+    private List<Room> _neighborConnected = new List<Room>();
 
+
+    public void AddConnectedNeighbor(Room room)
+    {
+        _neighborConnected.Add(room);
+    }
+
+    public bool IsNeighborAlreadyConnected(Room room)
+    {
+        return _neighborConnected.Contains(room);
+    }
+    
     public Room()
     {
         color = Random.ColorHSV();
@@ -26,7 +38,7 @@ public class Room
     //add and checks if the room already had find this neighbor 
     public void AddNeighbor(Room room)
     {
-        if(!_neighborRoomList.Contains(room)) _neighborRoomList.Add(room);
+        if(!_neighborRoomList.Contains(room) && room!=this) _neighborRoomList.Add(room);
     }
 
     public List<Room> GetNeighbor()
@@ -37,5 +49,10 @@ public class Room
     public void RemoveNeighbor( Room room)
     {
         if (_neighborRoomList.Contains(room)) _neighborRoomList.Remove(room);
+    }
+
+    public void ResetNeighbor()
+    {
+        _neighborRoomList = new List<Room>();
     }
 }
