@@ -459,6 +459,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   wanderRadius: 5
+  checkpoints: []
 --- !u!212 &1309392834
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -517,8 +518,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1309392832}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 19.24, y: 4.39, z: 0}
-  m_LocalScale: {x: 7, y: 7, z: 1}
+  m_LocalPosition: {x: 19.2161, y: 4.4377, z: 0}
+  m_LocalScale: {x: 4.98, y: 6.602239, z: 1}
   m_Children:
   - {fileID: 370801651}
   m_Father: {fileID: 0}
