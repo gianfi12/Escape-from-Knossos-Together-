@@ -21,6 +21,10 @@
   <component name="ChangeListManager">
     <list default="true" id="42b741fa-8516-4a76-ad90-f64f2f44ef01" name="Default Changelist" comment="First version of maze room, and now the floor of the corrider is positioned on a different tilemap">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.EFK/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.EFK/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AgentController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AgentController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Maze/RoomMaze.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Maze/RoomMaze.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/RoomPrefab.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RoomPrefab.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SpriteOutline/Shaders.meta" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,21 +38,16 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Menus/PlayerNameInput.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/RoomAbstract.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.cinemachine@2.3.4/Runtime/Core/CinemachineVirtualCameraBase.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../../../../../../../../Program Files/Unity/Hub/Editor/2019.4.11f1/Editor/Data/Resources/PackageManager/BuiltInPackages/com.unity.ugui/Runtime/UI/Core/VertexModifiers/Outline.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ObjectScript/ChestScript.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ObjectScript/Door2Script.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/8691AD70-05ED-4755-A182-8378FF0B52B1/5f/2854244f/Color.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Maze/Room.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/8691AD70-05ED-4755-A182-8378FF0B52B1/1f/4a3135d9/SetupCoroutine.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Maze/Cell.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/8691AD70-05ED-4755-A182-8378FF0B52B1/22/7d62e036/Component.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/ObjectScript/SingleDoor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ObjectScript/Door2Script.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Maze/Cell.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Menus/PlayerNameInput.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ObjectScript/ChestScript.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Maze/Room.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/RoomAbstract.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/AgentController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../Videogame/Projects/2D Shooter/Assets/SpaceShooter/Script/PlayerShipController.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -76,11 +75,12 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Maze/Edge.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Maze/Cell.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/RoomAbstract.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/RoomPrefab.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Tile.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Maze/Room.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Maze/RoomMaze.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/LevelMap.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Maze/RoomMaze.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/RoomPrefab.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/AgentController.cs" />
       </list>
     </option>
   </component>
@@ -390,14 +390,7 @@
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/Maze/RoomMaze.cs</url>
           <line>246</line>
-          <properties documentPath="C:\Users\Gianf\Documents\VDP\EFK\Escape-from-Knossos-Together-\Development\EFK\Assets\Scripts\Maze\RoomMaze.cs" initialLine="249">
-            <startOffsets>
-              <option value="9022" />
-            </startOffsets>
-            <endOffsets>
-              <option value="9042" />
-            </endOffsets>
-          </properties>
+          <properties documentPath="C:\Users\Gianf\Documents\VDP\EFK\Escape-from-Knossos-Together-\Development\EFK\Assets\Scripts\Maze\RoomMaze.cs" initialLine="249" />
           <option name="timeStamp" value="22" />
         </line-breakpoint>
       </breakpoints>
