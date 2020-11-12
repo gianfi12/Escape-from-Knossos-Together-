@@ -203,7 +203,7 @@ public class RoomMaze : RoomAbstract
                     else tileBase = assetsCollection.GetTileFromType(AssetType.WallBottomRight)[0];
                     for (int i = 0; i < 3; i++)
                     {
-                        PositionTile(startingPosition,cell.Room.Color,Floor,tileBase);
+                        PositionTile(startingPosition,cell.Room.Color,Wall,tileBase);
                         startingPosition += (Vector2Int)movementDirection.GetDirection();
                     }
                 }
