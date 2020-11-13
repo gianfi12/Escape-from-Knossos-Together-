@@ -13,6 +13,7 @@ public abstract class RoomAbstract : MonoBehaviour
     public readonly List<Tile> Floor = new List<Tile>();
     public readonly List<Transform> Object = new List<Transform>();
     public readonly List<Tile> Spawn = new List<Tile>();
+    public readonly List<Tile> Decoration = new List<Tile>();
     
     public readonly List<Tile> TileList = new List<Tile>();
     
@@ -31,5 +32,5 @@ public abstract class RoomAbstract : MonoBehaviour
 
     public abstract void Generate(int seed);
 
-    public abstract void PlaceRoom(Tilemap tilemapFloor, Tilemap tilemapWall, Tilemap tilemapObject, Vector3Int coordinates);
+    public abstract void PlaceRoom(Tilemap tilemapFloor, Tilemap tilemapWall, Tilemap tilemapObject,Tilemap tilemapDecoration, Vector3Int coordinates);
 }
