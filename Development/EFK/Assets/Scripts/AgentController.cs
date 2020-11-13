@@ -18,6 +18,11 @@ public class AgentController : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+
+        if (checkpoints.Length != 0)
+        {
+            transform.position = checkpoints[0].position;
+        }
     }
 
     private void Seek(Vector3 location)
