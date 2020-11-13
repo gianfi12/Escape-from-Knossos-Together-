@@ -108,9 +108,14 @@ public class LevelMap : MonoBehaviourPun
         
         var goDecoration = new GameObject("TilemapDecoration");
         goDecoration.transform.SetParent(_grid.gameObject.transform);
-        _tilemapDecoration = goCorridorFloor.AddComponent<Tilemap>();
+        _tilemapDecoration = goDecoration.AddComponent<Tilemap>();
         goDecoration.AddComponent<TilemapRenderer>();
         goDecoration.layer = 2;
+        goDecoration.AddComponent<TilemapCollider2D>();
+        Rigidbody2D rigidbody2DDecoration = goDecoration.AddComponent<Rigidbody2D>();
+        rigidbody2DDecoration.bodyType = RigidbodyType2D.Kinematic;
+        goDecoration.AddComponent<CompositeCollider2D>();
+        goDecoration.GetComponent<TilemapCollider2D>().usedByComposite = true;
     }
 
     private void RoomConnect()
