@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Photon.Pun;
@@ -14,6 +13,7 @@ public class LevelMap : MonoBehaviourPun
     private Tilemap _tilemapCorridorFloor;
     private Tilemap _tilemapWall;
     private Tilemap _tilemapObject;
+    private Tilemap _tilemapDecoration;
     private Grid _grid;
     [SerializeField] private RoomCollection roomCollection;
     [SerializeField] private int numberOfRoom;
@@ -105,6 +105,12 @@ public class LevelMap : MonoBehaviourPun
         goCorridorFloor.transform.SetParent(_grid.gameObject.transform);
         _tilemapCorridorFloor = goCorridorFloor.AddComponent<Tilemap>();
         goCorridorFloor.AddComponent<TilemapRenderer>();
+        
+        var goDecoration = new GameObject("TilemapDecoration");
+        goDecoration.transform.SetParent(_grid.gameObject.transform);
+        _tilemapDecoration = goCorridorFloor.AddComponent<Tilemap>();
+        goDecoration.AddComponent<TilemapRenderer>();
+        goDecoration.layer = 2;
     }
 
     private void RoomConnect()
@@ -435,7 +441,7 @@ public class LevelMap : MonoBehaviourPun
         {
             Vector3Int coordinates = _selectedRooms.IndexOf(room)==0 ? new Vector3Int(0,0,0) : RandomCoordinates(room,_selectedRooms[_selectedRooms.IndexOf(room)-1]);
             //while (!FreeSpace(room, coordinates = RandomCoordinates())); //start placing the starting room
-            room.PlaceRoom(_tilemapFloor,_tilemapWall,_tilemapObject,coordinates);
+            room.PlaceRoom(_tilemapFloor,_tilemapWall,_tilemapObject,_tilemapDecoration,coordinates);
         }
     }
 

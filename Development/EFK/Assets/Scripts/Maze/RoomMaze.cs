@@ -397,7 +397,7 @@ public class RoomMaze : RoomAbstract
         Wall.Add(tile);
     }
     
-    public override void PlaceRoom(Tilemap tilemapFloor, Tilemap tilemapWall, Tilemap tilemapObject, Vector3Int coordinates) 
+    public override void PlaceRoom(Tilemap tilemapFloor, Tilemap tilemapWall, Tilemap tilemapObject, Tilemap tilemapDecoration, Vector3Int coordinates) 
     {
         _displacementX = coordinates.x;
         _displacementY = coordinates.y;

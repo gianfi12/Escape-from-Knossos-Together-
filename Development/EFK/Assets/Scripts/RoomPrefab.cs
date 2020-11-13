@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Tilemaps;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -13,6 +10,7 @@ public class RoomPrefab : RoomAbstract
     [SerializeField] private Tilemap tilemapEntrance;
     [SerializeField] private Tilemap tilemapWall;
     [SerializeField] private Tilemap tilemapSpawn;
+    [SerializeField] private Tilemap tilemapDecoration;
 
     private int _higherX;
     private bool _firstTile = true;
@@ -21,6 +19,7 @@ public class RoomPrefab : RoomAbstract
     {
         IterateTilemap(tilemapFloor,Floor);
         IterateTilemap(tilemapWall,Wall);
+        IterateTilemap(tilemapDecoration,Decoration);
         IterateTilemapObject(tilemapObject,Object);
         IterateTilemap(tilemapExit,Exit);
         IterateTilemap(tilemapEntrance,Entrance);
@@ -71,7 +70,7 @@ public class RoomPrefab : RoomAbstract
         }
     }
     
-    public override void PlaceRoom(Tilemap tilemapFloor, Tilemap tilemapWall, Tilemap tilemapObject, Vector3Int coordinates) 
+    public override void PlaceRoom(Tilemap tilemapFloor, Tilemap tilemapWall, Tilemap tilemapObject,Tilemap tilemapDecoration, Vector3Int coordinates) 
     {
         _displacementX = coordinates.x;
         _displacementY = coordinates.y;
@@ -80,6 +79,8 @@ public class RoomPrefab : RoomAbstract
             tile.Coordinates = tile.Coordinates - new Vector3Int(_lowestX,_lowestY,0) + coordinates; 
             if (Wall.Contains(tile)) 
                 tilemapWall.SetTile(tile.Coordinates,tile.TileBase);
+            else if(Decoration.Contains(tile))
+                tilemapDecoration.SetTile(tile.Coordinates,tile.TileBase);
             else
                 tilemapFloor.SetTile(tile.Coordinates,tile.TileBase);
         }
