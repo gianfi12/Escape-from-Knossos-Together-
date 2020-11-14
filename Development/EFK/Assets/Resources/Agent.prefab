@@ -178,10 +178,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   wanderRadius: 5
-  checkpoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  checkpointName: 
 --- !u!195 &2483861399637240489
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -216,7 +213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 176fcca7a1185bb478fd742f030d6e8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewRadius: 7
+  viewRadius: 3
   viewAngle: 360
   targetMask:
     serializedVersion: 2

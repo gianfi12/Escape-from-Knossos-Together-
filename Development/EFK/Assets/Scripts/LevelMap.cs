@@ -116,6 +116,10 @@ public class LevelMap : MonoBehaviourPun
         rigidbody2DDecoration.bodyType = RigidbodyType2D.Kinematic;
         goDecoration.AddComponent<CompositeCollider2D>();
         goDecoration.GetComponent<TilemapCollider2D>().usedByComposite = true;
+        
+        NavMeshModifier navMeshModifierDecoration = goDecoration.AddComponent<NavMeshModifier>();
+        navMeshModifierDecoration.overrideArea = true;
+        navMeshModifierDecoration.area = 1; //1 means not walkable
     }
 
     private void RoomConnect()

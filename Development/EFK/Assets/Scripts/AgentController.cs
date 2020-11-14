@@ -1,6 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 public class AgentController : MonoBehaviour
 {
@@ -9,7 +12,10 @@ public class AgentController : MonoBehaviour
     private NavMeshAgent agent;
 
     [SerializeField] private float wanderRadius = 5;
-    [SerializeField] private Transform[] checkpoints;
+    private CheckpointManager checkpointManager;
+    [SerializeField] private string checkpointName;
+    private List<GameObject> checkpoints;
+    
     private int currentCheckpoint = 0;
     
     // Start is called before the first frame update
@@ -19,9 +25,12 @@ public class AgentController : MonoBehaviour
         agent.updateRotation = false;
         agent.updateUpAxis = false;
 
-        if (checkpoints.Length != 0)
+        checkpointManager = (CheckpointManager)FindObjectOfType(typeof(CheckpointManager));
+        checkpoints = checkpointManager.getSelectedCheckpoint(checkpointName);
+        
+        if (checkpoints.Count != 0)
         {
-            transform.position = checkpoints[0].position;
+            transform.position = checkpoints[0].transform.position;
         }
     }
 
@@ -42,10 +51,10 @@ public class AgentController : MonoBehaviour
     {
         if (!agent.pathPending && agent.remainingDistance < 0.5f)
         {
-            if (checkpoints.Length == 0) return;
+            if (checkpoints.Count == 0) return;
         
-            Seek(checkpoints[currentCheckpoint].position);
-            currentCheckpoint = (currentCheckpoint + 1) % checkpoints.Length;
+            Seek(checkpoints[currentCheckpoint].transform.position);
+            currentCheckpoint = (currentCheckpoint + 1) % checkpoints.Count;
         }
     }
     

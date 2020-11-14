@@ -20,11 +20,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42b741fa-8516-4a76-ad90-f64f2f44ef01" name="Default Changelist" comment="First version of maze room, and now the floor of the corrider is positioned on a different tilemap">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.EFK/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.EFK/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.EFK/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.EFK/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/RoomMid3.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/RoomMid3.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Agent.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Agent.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Main.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Main.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MapScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MapScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/AgentController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AgentController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Maze/RoomMaze.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Maze/RoomMaze.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/RoomPrefab.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RoomPrefab.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/LevelMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/LevelMap.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/SpriteOutline/Shaders.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/QualitySettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/QualitySettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/Assembly-CSharp.csprojAssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/Assembly-CSharp.csprojAssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/PhotonUnityNetworking.Editor.csprojAssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/PhotonUnityNetworking.Editor.csprojAssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/PhotonWebSocket.csprojAssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/PhotonWebSocket.csprojAssemblyReference.cache" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +79,6 @@
         <option value="$PROJECT_DIR$/Assets/Shader/Outline.shader" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PlayerScripts/PlayerInteraction.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/MapSeedScript.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/AssetType.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/RoomMaze.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Maze/Edge.cs" />
@@ -77,10 +86,12 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/RoomAbstract.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Tile.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Maze/Room.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/LevelMap.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Maze/RoomMaze.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/RoomPrefab.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/AgentController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/LevelMap.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/CheckpointManager.cs" />
       </list>
     </option>
   </component>
@@ -163,6 +174,8 @@
       <workItem from="1604676271523" duration="1989000" />
       <workItem from="1604930315353" duration="18146000" />
       <workItem from="1604997038776" duration="11190000" />
+      <workItem from="1605275969726" duration="1954000" />
+      <workItem from="1605362761222" duration="3916000" />
     </task>
     <task id="LOCAL-00001" summary="Update map generation and Object interaction">
       <created>1604498027969</created>
