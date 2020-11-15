@@ -34,7 +34,7 @@ public class AgentController : MonoBehaviour
         }
     }
 
-    private void Seek(Vector3 location)
+    public void Seek(Vector3 location)
     {
         agent.SetDestination(location);
     }
@@ -76,5 +76,9 @@ public class AgentController : MonoBehaviour
     void Update()
     {
         Patrol();
+    }
+
+    public float GetDirectionAngle() {
+        return Vector3.SignedAngle(transform.up, agent.velocity.normalized, Vector3.forward);
     }
 }
