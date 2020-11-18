@@ -16,6 +16,30 @@
         <e p="Editor" t="Include">
           <e p="LineOfSightEditor.cs" t="Include" />
         </e>
+        <e p="NavMeshPlus-master" t="Include">
+          <e p="NavMeshComponents" t="Include">
+            <e p="Editor" t="Include">
+              <e p="NavMeshAssetManager.cs" t="Include" />
+              <e p="NavMeshAssetManager2d.cs" t="Include" />
+              <e p="NavMeshComponentsEditor.asmdef" t="Include" />
+              <e p="NavMeshComponentsGUIUtility.cs" t="Include" />
+              <e p="NavMeshLinkEditor.cs" t="Include" />
+              <e p="NavMeshModifierEditor.cs" t="Include" />
+              <e p="NavMeshModifierVolumeEditor.cs" t="Include" />
+              <e p="NavMeshSurfaceEditor.cs" t="Include" />
+              <e p="NavMeshSurfaceEditor2d.cs" t="Include" />
+            </e>
+            <e p="Scripts" t="Include">
+              <e p="NavMeshBuilder2d.cs" t="Include" />
+              <e p="NavMeshComponents.asmdef" t="Include" />
+              <e p="NavMeshLink.cs" t="Include" />
+              <e p="NavMeshModifier.cs" t="Include" />
+              <e p="NavMeshModifierVolume.cs" t="Include" />
+              <e p="NavMeshSurface.cs" t="Include" />
+              <e p="NavMeshSurface2d.cs" t="Include" />
+            </e>
+          </e>
+        </e>
         <e p="Photon" t="Include">
           <e p="PhotonChat" t="Include">
             <e p="Code" t="Include">
@@ -333,9 +357,11 @@
           </e>
         </e>
         <e p="Scripts" t="Include">
+          <e p="AgentController.cs" t="Include" />
           <e p="AssetsCollection.cs" t="Include" />
           <e p="AssetType.cs" t="Include" />
           <e p="CameraController.cs" t="Include" />
+          <e p="CheckpointManager.cs" t="Include" />
           <e p="Direction.cs" t="Include" />
           <e p="Door.cs" t="Include" />
           <e p="GameManager.cs" t="Include" />
@@ -354,8 +380,10 @@
           <e p="ObjectScript" t="Include">
             <e p="ChestScript.cs" t="Include" />
             <e p="Door2Script.cs" t="Include" />
+            <e p="InteractableObject.cs" t="Include" />
             <e p="PlayerOutline.cs" t="Include" />
             <e p="SingleDoor.cs" t="Include" />
+            <e p="Wardrobe.cs" t="Include" />
           </e>
           <e p="PlayerScripts" t="Include">
             <e p="PlayerControllerMap.cs" t="Include" />
@@ -450,6 +478,8 @@
         </e>
       </e>
       <e p="EFK.sln" t="IncludeFlat" />
+      <e p="NavMeshComponents.csproj" t="IncludeRecursive" />
+      <e p="NavMeshComponentsEditor.csproj" t="IncludeRecursive" />
       <e p="obj" t="ExcludeRecursive" />
       <e p="Packages" t="ExcludeRecursive" />
       <e p="PhotonChat.csproj" t="IncludeRecursive" />

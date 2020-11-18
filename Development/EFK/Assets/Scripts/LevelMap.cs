@@ -482,7 +482,10 @@ public class LevelMap : MonoBehaviourPun
         roomCollection.FinalRoom.Generate(_seed);
         for (int i = 0; i < numberOfRoom; i++)
         {
-            RoomAbstract room = SelectRoom();
+            int specularPosition = _selectedRooms.Count-1-i;
+            RoomAbstract room;
+            if (_selectedRooms[specularPosition].HasTwin) room = _selectedRooms[specularPosition].TwinRoom;
+            else room = SelectRoom();
             room.Generate(_seed);
             _selectedRooms.Add(room);
         }

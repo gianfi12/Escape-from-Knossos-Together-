@@ -22,7 +22,6 @@ public class PlayerInteraction : MonoBehaviour
         Vector2 origin = new Vector2(transform.position.x, transform.position.y);
         Vector3 direction3D = GetComponent<PlayerControllerMap>().Movement;
         Vector2 direction = new Vector2(direction3D.x, direction3D.y);
-        //RaycastHit2D hit = Physics2D.Raycast(origin, direction, interactionDistance, interactionLayer);
         Bounds bounds = transform.GetComponent<Collider2D>().bounds;
         RaycastHit2D hit = Physics2D.CircleCast(origin, bounds.extents.y/2, direction, interactionDistance, interactionLayer);
         if (hit)
@@ -34,7 +33,7 @@ public class PlayerInteraction : MonoBehaviour
                 {
                     Material shader = hit.transform.GetComponent<SpriteRenderer>().material;
                     shader.SetFloat("_Thickness",5f);
-                    
+                    hit.transform.GetComponent<InteractableObject>().Interact(transform.gameObject);
                     Destroy(_instatiatedText);
                     _instatiatedText = Instantiate(interactiveText);
                     _instatiatedText.transform.parent = trans;
@@ -51,4 +50,8 @@ public class PlayerInteraction : MonoBehaviour
             _hasPreviousValue = false;
         }
     }
+
+    public Transform PreviousInteraction => _previousInteraction;
+
+    public bool HasPreviousValue => _hasPreviousValue;
 }

@@ -2077,6 +2077,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   assetsCollection: {fileID: 11400000, guid: 55d586d2096a3454bbdfe9f671b4eb18, type: 2}
+  hasTwin: 0
+  twinRoom: {fileID: 0}
   tilemapFloor: {fileID: 8751012525530252973}
   tilemapObject: {fileID: 559139358898053583}
   tilemapExit: {fileID: 6671701075013261676}

@@ -13,6 +13,9 @@ public class PlayerInput : MonoBehaviourPun
     private VoiceController _voiceController;
     private float _horizontal;
     private float _vertical;
+    //indicates if the player can move, so if it is in the scene or it is disable, if false it is also not visible and so
+    //it shouldn't been seen from the agent moving in the map
+    private bool _canMove=true;
 
     [SerializeField] private GameObject _playerUI;
 
@@ -35,8 +38,16 @@ public class PlayerInput : MonoBehaviourPun
     }
     private void FixedUpdate()
     {
-        _horizontal = Input.GetAxisRaw("Horizontal");
-        _vertical = Input.GetAxisRaw("Vertical");
+        if(_canMove)
+        {
+            _horizontal = Input.GetAxisRaw("Horizontal");
+            _vertical = Input.GetAxisRaw("Vertical");
+        }
+        else
+        {
+            _horizontal = 0f;
+            _vertical = 0f;
+        }
         if (PhotonNetwork.IsConnected)
         {
             if (photonView.IsMine)
@@ -47,6 +58,13 @@ public class PlayerInput : MonoBehaviourPun
         else
         {
             if(Math.Abs(_horizontal)>Double.Epsilon || Math.Abs(_vertical)>Double.Epsilon) _playerController.Move(new Vector3(_horizontal,_vertical,0f));
+        }
+
+        PlayerInteraction playerInteraction = transform.gameObject.GetComponent<PlayerInteraction>();
+        if (Input.GetButtonDown(KeyCode.E.ToString()) && playerInteraction.HasPreviousValue){}
+        {
+            InteractableObject interactableObject = playerInteraction.PreviousInteraction.GetComponent<InteractableObject>();
+            interactableObject.Interact(transform.gameObject);
         }
     }
 
@@ -62,5 +80,11 @@ public class PlayerInput : MonoBehaviourPun
             }
         }
         catch (NullReferenceException) {}
+    }
+
+    public bool CanMove
+    {
+        get => _canMove;
+        set => _canMove = value;
     }
 }

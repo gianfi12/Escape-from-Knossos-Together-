@@ -3,12 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChestScript : MonoBehaviour
+public class ChestScript : InteractableObject
 {
-    
-    // private void OnMouseDown() 
-    // {
-    //     Debug.Log(transform.name);
-    // }
-    
+    public override void Interact(GameObject player)
+    {
+        throw new NotImplementedException();
+    }
 }
