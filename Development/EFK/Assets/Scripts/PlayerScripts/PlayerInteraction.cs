@@ -19,21 +19,20 @@ public class PlayerInteraction : MonoBehaviour
 
     private void Update()
     {
-        Vector2 origin = new Vector2(transform.position.x, transform.position.y);
         Vector3 direction3D = GetComponent<PlayerControllerMap>().Movement;
         Vector2 direction = new Vector2(direction3D.x, direction3D.y);
         Bounds bounds = transform.GetComponent<Collider2D>().bounds;
-        RaycastHit2D hit = Physics2D.CircleCast(origin, bounds.extents.y/2, direction, interactionDistance, interactionLayer);
+        RaycastHit2D hit = Physics2D.CircleCast(bounds.center, bounds.extents.y/2, direction, interactionDistance, interactionLayer);
         if (hit)
         {
-            Transform trans = hit.transform;
-            if (trans.name == "Chest")
+            Transform trans = hit.transform; 
+            if (trans.gameObject.layer==8)
             {
                 if (!_hasPreviousValue || trans.GetInstanceID() != _previousInteraction.transform.GetInstanceID())
                 {
                     Material shader = hit.transform.GetComponent<SpriteRenderer>().material;
                     shader.SetFloat("_Thickness",5f);
-                    hit.transform.GetComponent<InteractableObject>().Interact(transform.gameObject);
+                    //hit.transform.GetComponent<InteractableObject>().Interact(transform.gameObject);
                     Destroy(_instatiatedText);
                     _instatiatedText = Instantiate(interactiveText);
                     _instatiatedText.transform.parent = trans;

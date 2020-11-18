@@ -16,9 +16,10 @@ public class PlayerInput : MonoBehaviourPun
     //indicates if the player can move, so if it is in the scene or it is disable, if false it is also not visible and so
     //it shouldn't been seen from the agent moving in the map
     private bool _canMove=true;
+    private PlayerInteraction _playerInteraction;
 
     [SerializeField] private GameObject _playerUI;
-
+    
     // Start is called before the first frame update
     void Start() {
         try {
@@ -35,6 +36,7 @@ public class PlayerInput : MonoBehaviourPun
     {
         _playerController = GetComponent<PlayerControllerMap>();
         _voiceController = GetComponent<VoiceController>();
+        _playerInteraction = GetComponent<PlayerInteraction>();
     }
     private void FixedUpdate()
     {
@@ -60,10 +62,10 @@ public class PlayerInput : MonoBehaviourPun
             if(Math.Abs(_horizontal)>Double.Epsilon || Math.Abs(_vertical)>Double.Epsilon) _playerController.Move(new Vector3(_horizontal,_vertical,0f));
         }
 
-        PlayerInteraction playerInteraction = transform.gameObject.GetComponent<PlayerInteraction>();
-        if (Input.GetButtonDown("Interact") && playerInteraction.HasPreviousValue){}
+
+        if (Input.GetButtonDown("Interact") && _playerInteraction.HasPreviousValue)
         {
-            InteractableObject interactableObject = playerInteraction.PreviousInteraction.GetComponent<InteractableObject>();
+            InteractableObject interactableObject = _playerInteraction.PreviousInteraction.GetComponent<InteractableObject>();
             interactableObject.Interact(transform.gameObject);
         }
     }
