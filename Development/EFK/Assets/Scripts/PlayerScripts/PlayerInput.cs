@@ -61,7 +61,7 @@ public class PlayerInput : MonoBehaviourPun
         }
 
         PlayerInteraction playerInteraction = transform.gameObject.GetComponent<PlayerInteraction>();
-        if (Input.GetButtonDown(KeyCode.E.ToString()) && playerInteraction.HasPreviousValue){}
+        if (Input.GetButtonDown("Interact") && playerInteraction.HasPreviousValue){}
         {
             InteractableObject interactableObject = playerInteraction.PreviousInteraction.GetComponent<InteractableObject>();
             interactableObject.Interact(transform.gameObject);
