@@ -116,6 +116,10 @@ public class LevelMap : MonoBehaviourPun
         rigidbody2DDecoration.bodyType = RigidbodyType2D.Kinematic;
         goDecoration.AddComponent<CompositeCollider2D>();
         goDecoration.GetComponent<TilemapCollider2D>().usedByComposite = true;
+        
+        NavMeshModifier navMeshModifierDecoration = goDecoration.AddComponent<NavMeshModifier>();
+        navMeshModifierDecoration.overrideArea = true;
+        navMeshModifierDecoration.area = 1; //1 means not walkable
     }
 
     private void RoomConnect()
@@ -478,7 +482,10 @@ public class LevelMap : MonoBehaviourPun
         roomCollection.FinalRoom.Generate(_seed);
         for (int i = 0; i < numberOfRoom; i++)
         {
-            RoomAbstract room = SelectRoom();
+            int specularPosition = _selectedRooms.Count-1-i;
+            RoomAbstract room;
+            if (_selectedRooms[specularPosition].HasTwin) room = _selectedRooms[specularPosition].TwinRoom;
+            else room = SelectRoom();
             room.Generate(_seed);
             _selectedRooms.Add(room);
         }

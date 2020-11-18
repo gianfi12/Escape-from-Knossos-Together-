@@ -5,8 +5,10 @@ using UnityEngine;
 
 public class LineOfSight : MonoBehaviour
 {
+    public bool isNPC;
     public float viewRadius;
     [Range(0,360)] public float viewAngle;
+    public float senseRadius;
 
     public LayerMask targetMask;
     public LayerMask obstacleMask;
@@ -20,6 +22,10 @@ public class LineOfSight : MonoBehaviour
 
     public MeshFilter viewMeshFilter;
     private Mesh viewMesh;
+
+    private AgentController npcController;
+
+    public float movementAngleOffset; 
 
     public struct ViewCastInfo {
         public bool hit;
@@ -51,10 +57,13 @@ public class LineOfSight : MonoBehaviour
         viewMesh.name = "View Mesh";
         viewMeshFilter.mesh = viewMesh;
 
+        if (isNPC) npcController = GetComponent<AgentController>();
+
         StartCoroutine("FindTargetsWithDelay", 0.2f);
     }
 
     private void LateUpdate() {
+        if (isNPC) movementAngleOffset = npcController.GetDirectionAngle();
         DrawLineOfSight();    
     }
 
@@ -68,19 +77,24 @@ public class LineOfSight : MonoBehaviour
     void FindVisibleTargets() {
         visibleTargets.Clear();
 
-        Collider[] targetsInViewRadius = Physics.OverlapSphere(transform.position, viewRadius, targetMask);
+        Collider2D[] targetsInViewRadius = Physics2D.OverlapCircleAll(transform.position, viewRadius, targetMask);
 
         for(int i=0; i< targetsInViewRadius.Length; i++) {
             Transform target = targetsInViewRadius[i].transform;
-            Vector3 directionToTarget = (target.position - transform.position).normalized;
-            if(Vector3.Angle(transform.up, directionToTarget) < viewAngle / 2) {
-                float dstToTarget = Vector3.Distance(transform.position, target.position);
-                
-                if(!Physics.Raycast(transform.position, directionToTarget, dstToTarget, obstacleMask)) {
-                    visibleTargets.Add(target);
+            float dstToTarget = Vector3.Distance(transform.position, target.position);
+
+            if (dstToTarget < senseRadius) visibleTargets.Add(target);
+            else {
+                Vector3 directionToTarget = (target.position - transform.position).normalized;
+                if (Vector3.Angle(DirFromAngle(movementAngleOffset, true), directionToTarget) < viewAngle/ 2) {
+                    if (!Physics2D.Raycast(transform.position, directionToTarget, dstToTarget, obstacleMask)) {
+                        visibleTargets.Add(target);
+                    }
                 }
             }
         }
+
+        if (isNPC && visibleTargets.Count != 0)  npcController.Seek(visibleTargets.First().position);
     }
 
     public Vector3 DirFromAngle(float angleInDegrees, bool angleIsGlobal) {
@@ -137,14 +151,15 @@ public class LineOfSight : MonoBehaviour
     }
 
     ViewCastInfo ViewCast(float globalAngle) {
-        Vector3 dir = DirFromAngle(globalAngle, true);
+        float angle = globalAngle + movementAngleOffset;
+        Vector3 dir = DirFromAngle(angle, true);
         RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, viewRadius, obstacleMask);
      
         if (hit) {
-            return new ViewCastInfo(true, hit.point, hit.distance, globalAngle);
+            return new ViewCastInfo(true, hit.point, hit.distance, angle);
         }
         else {
-            return new ViewCastInfo(false, transform.position + dir * viewRadius, viewRadius, globalAngle);
+            return new ViewCastInfo(false, transform.position + dir * viewRadius, viewRadius, angle);
         }
     }
 
