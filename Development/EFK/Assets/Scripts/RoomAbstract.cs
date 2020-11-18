@@ -6,7 +6,9 @@ using UnityEngine.Tilemaps;
 public abstract class RoomAbstract : MonoBehaviour
 {
     [SerializeField] protected AssetsCollection assetsCollection;
-
+    [SerializeField] private bool hasTwin;
+    [SerializeField] private RoomAbstract twinRoom;
+    
     public readonly List<Tile> Entrance = new List<Tile>();
     public readonly List<Tile> Exit = new List<Tile>();
     public readonly List<Tile> Wall = new List<Tile>();
@@ -33,4 +35,8 @@ public abstract class RoomAbstract : MonoBehaviour
     public abstract void Generate(int seed);
 
     public abstract void PlaceRoom(Tilemap tilemapFloor, Tilemap tilemapWall, Tilemap tilemapObject,Tilemap tilemapDecoration, Vector3Int coordinates);
+
+    public bool HasTwin => hasTwin;
+
+    public RoomAbstract TwinRoom => twinRoom;
 }
