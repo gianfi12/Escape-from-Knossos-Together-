@@ -374,8 +374,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 176fcca7a1185bb478fd742f030d6e8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isNPC: 0
   viewRadius: 7
   viewAngle: 360
+  senseRadius: 0
   targetMask:
     serializedVersion: 2
     m_Bits: 256
@@ -387,6 +389,7 @@ MonoBehaviour:
   edgeResolveIterations: 4
   edgeDistanceThreshold: 1
   viewMeshFilter: {fileID: 3473025674799170586}
+  movementAngleOffset: 0
 --- !u!114 &-1716568761402658737
 MonoBehaviour:
   m_ObjectHideFlags: 0

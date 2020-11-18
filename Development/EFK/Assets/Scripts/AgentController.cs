@@ -8,12 +8,13 @@ using Random = UnityEngine.Random;
 public class AgentController : MonoBehaviour
 {
 
-    [SerializeField] private Transform target;
+    private Transform target;
     private NavMeshAgent agent;
 
     [SerializeField] private float wanderRadius = 5;
     private CheckpointManager checkpointManager;
     [SerializeField] private string checkpointName;
+    [SerializeField] private bool isWanderer;
     private List<GameObject> checkpoints;
     
     private int currentCheckpoint = 0;
@@ -75,8 +76,9 @@ public class AgentController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Patrol();
-    }
+        if (isWanderer) Wander();
+        else Patrol();
+        }
 
     public float GetDirectionAngle() {
         return Vector3.SignedAngle(transform.up, agent.velocity.normalized, Vector3.forward);
