@@ -4961,6 +4961,11 @@ PrefabInstance:
       propertyPath: checkpointName
       value: CheckpointRoom1
       objectReference: {fileID: 0}
+    - target: {fileID: 2483861399637240492, guid: a51cf60735870584dac2932ab62ed88f,
+        type: 3}
+      propertyPath: isWanderer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2483861399637240493, guid: a51cf60735870584dac2932ab62ed88f,
         type: 3}
       propertyPath: m_Name
