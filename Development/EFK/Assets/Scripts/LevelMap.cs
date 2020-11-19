@@ -83,7 +83,7 @@ public class LevelMap : MonoBehaviourPun
         goWall.AddComponent<TilemapRenderer>();
         goWall.AddComponent<TilemapCollider2D>();
         Rigidbody2D rigidbody2DWall = goWall.AddComponent<Rigidbody2D>();
-        rigidbody2DWall.bodyType = RigidbodyType2D.Kinematic;
+        rigidbody2DWall.bodyType = RigidbodyType2D.Static;
         goWall.AddComponent<CompositeCollider2D>();
         goWall.GetComponent<TilemapCollider2D>().usedByComposite = true;
 
@@ -113,7 +113,7 @@ public class LevelMap : MonoBehaviourPun
         goDecoration.layer = 2;
         goDecoration.AddComponent<TilemapCollider2D>();
         Rigidbody2D rigidbody2DDecoration = goDecoration.AddComponent<Rigidbody2D>();
-        rigidbody2DDecoration.bodyType = RigidbodyType2D.Kinematic;
+        rigidbody2DDecoration.bodyType = RigidbodyType2D.Static;
         goDecoration.AddComponent<CompositeCollider2D>();
         goDecoration.GetComponent<TilemapCollider2D>().usedByComposite = true;
         
