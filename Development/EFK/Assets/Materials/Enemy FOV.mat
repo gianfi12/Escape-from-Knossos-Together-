@@ -8,14 +8,15 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Enemy FOV
-  m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: -6465566751694194690, guid: 63dd8e17fb2074442a632e03a09cd02d,
+    type: 3}
   m_ShaderKeywords: _ALPHAPREMULTIPLY_ON _GLOSSYREFLECTIONS_OFF _OUTLINEENABLED_ON
     _OUTLINEMODE_SOLID _OUTLINEPOSITION_INSIDE_UNDER_SPRITE _OUTLINESHAPE_CONTOUR
     _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A _TILEMODE_STRETCH
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
+  m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
@@ -105,6 +106,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_EB3407B5_Texture_1:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -115,6 +120,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - PixelSnap: 0
+    - Vector1_7EB218CA: 0.05
+    - Vector1_8C5F7218: 0.9
     - _AlphaClip: 0
     - _AlphaThreshold: 0
     - _Angle: 45
@@ -177,11 +184,12 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 0
     m_Colors:
+    - Color_3F6C1335: {r: 0.8867924, g: 0.07947665, b: 0.07947665, a: 0}
     - Color_EFA5AE03: {r: 0.9245283, g: 0.12646852, b: 0.12646852, a: 0}
     - _BASE_COLOR: {r: 1, g: 0.25, b: 0.25, a: 1}
     - _BaseColor: {r: 0.58944464, g: 0.6981132, b: 0.69467443, a: 1}
     - _CameraFadeParams: {r: 0, g: Infinity, b: 0, a: 0}
-    - _Color: {r: 0.43827873, g: 0.6320754, b: 0.6087708, a: 0.42745098}
+    - _Color: {r: 0.5802777, g: 0.6709922, b: 0.754717, a: 1}
     - _ColorAddSubDiff: {r: 0, g: 0, b: 0, a: 0}
     - _EMISSION_COLOR: {r: 0, g: 0, b: 0, a: 0}
     - _Emission: {r: 0, g: 0, b: 0, a: 0}
