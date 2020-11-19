@@ -18,6 +18,7 @@ public class PlayerInput : MonoBehaviourPun
     //it shouldn't been seen from the agent moving in the map
     private bool _canMove=true;
     private float _lastDir;
+    private PlayerInteraction _playerInteraction;
 
     [SerializeField] private GameObject _playerUI;
 
@@ -38,6 +39,7 @@ public class PlayerInput : MonoBehaviourPun
         _playerController = GetComponent<PlayerControllerMap>();
         _voiceController = GetComponent<VoiceController>();
         _animator = GetComponent<Animator>();
+        _playerInteraction = GetComponent<PlayerInteraction>();
     }
     private void FixedUpdate()
     {
@@ -61,15 +63,15 @@ public class PlayerInput : MonoBehaviourPun
             }
         }
 
-        PlayerInteraction playerInteraction = transform.gameObject.GetComponent<PlayerInteraction>();
-        if (Input.GetButtonDown(KeyCode.E.ToString()) && playerInteraction.HasPreviousValue){}
+
+        if (Input.GetButtonDown("Interact") && _playerInteraction.HasPreviousValue)
         {
-            InteractableObject interactableObject = playerInteraction.PreviousInteraction.GetComponent<InteractableObject>();
+            InteractableObject interactableObject = _playerInteraction.PreviousInteraction.GetComponent<InteractableObject>();
             interactableObject.Interact(transform.gameObject);
         }
     }
 
-    private void Update() 
+    private void Update()
     {
         if(_canMove)
         {
@@ -81,12 +83,12 @@ public class PlayerInput : MonoBehaviourPun
             _movement.x = 0f;
             _movement.y = 0f;
         }
-        
+
         _animator.SetFloat("Speed", _movement.SqrMagnitude());
         _animator.SetFloat("Horizontal", _movement.x);
         _animator.SetFloat("Vertical", _movement.y);
         _animator.SetFloat("Direction", _lastDir);
-        
+
         try {
             if (photonView.IsMine) {
                 if (Input.GetButtonDown("Voice")) {

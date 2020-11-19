@@ -7,6 +7,5 @@ public class ChestScript : InteractableObject
 {
     public override void Interact(GameObject player)
     {
-        throw new NotImplementedException();
     }
 }
