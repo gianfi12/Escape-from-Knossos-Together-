@@ -12,6 +12,8 @@ public class RoomMaze : RoomAbstract
 
     [SerializeField][Range(_minSetSpace,_maxSetSpace)] private int maxSpace;
     [SerializeField] private int minRoomSize;
+    [SerializeField] private GameObject doorPrefab;
+    [SerializeField] private GameObject wardrobePrefab;
     
     private int _sizeX, _sizeY;
 
