@@ -418,11 +418,11 @@ public class RoomMaze : RoomAbstract
             }
         }
 
-        foreach (Transform transform1 in Object)
-        {
-            GameObject gameObject = Instantiate(transform1.gameObject);
-            gameObject.name = transform1.gameObject.name;
-            transform1.position = transform1.position - new Vector3Int(_lowestX, _lowestY, 0) + coordinates;
-        }
+        // foreach (Transform transform1 in Object)
+        // {
+        //     GameObject gameObject = Instantiate(transform1.gameObject);
+        //     gameObject.name = transform1.gameObject.name;
+        //     transform1.position = transform1.position - new Vector3Int(_lowestX, _lowestY, 0) + coordinates;
+        // }
     }
 }

@@ -27,11 +27,14 @@ public class RoomPrefab : RoomAbstract
         _requiredWidthSpace = _higherX - _lowestX;
     }
 
-    private void IterateTilemapObject(Tilemap tilemap, List<Transform> gameObjects)
+    private void IterateTilemapObject(Tilemap tilemap, List<ObjectInRoom> gameObjects)
     {
         for (int i = 0; i < tilemap.transform.childCount; i++)
         {
-            gameObjects.Add(tilemap.transform.GetChild(i));
+            Transform selectedObjectTransform = tilemap.transform.GetChild(i);
+            Vector3Int position = new Vector3Int((int)selectedObjectTransform.position.x,(int)selectedObjectTransform.position.y,0);
+            ObjectInRoom objectInRoom = new ObjectInRoom(position,selectedObjectTransform);
+            gameObjects.Add(objectInRoom);
         }
     }
 
@@ -85,12 +88,12 @@ public class RoomPrefab : RoomAbstract
                 tilemapFloor.SetTile(tile.Coordinates,tile.TileBase);
         }
 
-        foreach (Transform transform1 in Object)
+        foreach (ObjectInRoom objectInRoom in Object)
         {
-            GameObject gameObject = Instantiate(transform1.gameObject);
-            transform1.position = gameObject.transform.position - new Vector3Int(_lowestX, _lowestY, 0) + coordinates;
-            gameObject.name = transform1.gameObject.name;
-            gameObject.transform.position = transform1.position;
+            GameObject gameObject = Instantiate(objectInRoom.ObjectTransform.gameObject);
+            objectInRoom.Coordinates = objectInRoom.Coordinates - new Vector3Int(_lowestX, _lowestY, 0) + coordinates;
+            gameObject.name = objectInRoom.ObjectTransform.gameObject.name;
+            gameObject.transform.position = objectInRoom.ObjectTransform.position;
         }
     }
 }

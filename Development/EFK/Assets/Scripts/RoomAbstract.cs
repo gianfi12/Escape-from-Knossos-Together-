@@ -15,7 +15,7 @@ public abstract class RoomAbstract : MonoBehaviour
     public readonly List<Tile> Exit = new List<Tile>();
     public readonly List<Tile> Wall = new List<Tile>();
     public readonly List<Tile> Floor = new List<Tile>();
-    public readonly List<Transform> Object = new List<Transform>();
+    public readonly List<ObjectInRoom> Object = new List<ObjectInRoom>();
     public readonly List<Tile> Spawn = new List<Tile>();
     public readonly List<Tile> Decoration = new List<Tile>();
     
