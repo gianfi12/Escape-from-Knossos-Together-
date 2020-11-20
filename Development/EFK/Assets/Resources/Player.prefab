@@ -363,6 +363,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3695e46038510904c81cf19d9818b6f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _speed: 4
 --- !u!114 &3311339839380459383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -376,7 +377,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isNPC: 0
-  viewRadius: 7
+  viewRadius: 11
   viewAngle: 360
   senseRadius: 0
   targetMask:

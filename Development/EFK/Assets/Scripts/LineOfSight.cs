@@ -59,7 +59,7 @@ public class LineOfSight : MonoBehaviour
 
         if (isNPC) npcController = GetComponent<AgentController>();
 
-        StartCoroutine("FindTargetsWithDelay", 0.2f);
+        StartCoroutine("FindTargetsWithDelay", 0.1f);
     }
 
     private void LateUpdate() {
@@ -94,7 +94,7 @@ public class LineOfSight : MonoBehaviour
             }
         }
 
-        if (isNPC && visibleTargets.Count != 0)  npcController.Seek(visibleTargets.First().position);
+        if (isNPC && visibleTargets.Count != 0)  npcController.SeekPlayer(visibleTargets.First().position);
     }
 
     public Vector3 DirFromAngle(float angleInDegrees, bool angleIsGlobal) {

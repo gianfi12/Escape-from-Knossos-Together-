@@ -19,7 +19,15 @@ public class AgentController : MonoBehaviour
     private List<GameObject> checkpoints;
     
     private int currentCheckpoint = 0;
-    
+
+    private LineOfSight lineOfSight;
+    private Material fovMaterial;
+    [SerializeField] private Color standardFovColor;
+    [SerializeField] private Color seekingFovColor;
+
+    private bool isSeekingPlayer;
+    private bool isWandering;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,30 +43,44 @@ public class AgentController : MonoBehaviour
         {
             transform.position = checkpoints[0].transform.position;
         }
+
+        lineOfSight = GetComponent<LineOfSight>();
+        fovMaterial = GetComponentInChildren<MeshRenderer>().material;
     }
 
-    public void Seek(Vector3 location)
+    private void Seek(Vector3 location)
     {
+        agent.SetDestination(location);
+    }
+
+    public void SeekPlayer(Vector3 location) {
+        isSeekingPlayer = true;
+        fovMaterial.SetColor("_Color", seekingFovColor);
+        lineOfSight.viewAngle = 110;
+        agent.speed = 3f;
         agent.SetDestination(location);
     }
 
     private void Wander()
     {
-        if (!agent.pathPending && agent.remainingDistance < 0.5f)
-        {
-            Seek(RandomNavMeshLocation());
-        }
+        isWandering = true;
+        Seek(RandomNavMeshLocation());
+    }
+
+    IEnumerator StopAgent(float delay) {
+        agent.isStopped = true;
+        GetComponentInChildren<MeshRenderer>().enabled = false;
+        yield return new WaitForSeconds(delay);
+        GetComponentInChildren<MeshRenderer>().enabled = true;
+        agent.isStopped = false;
     }
 
     private void Patrol()
     {
-        if (!agent.pathPending && agent.remainingDistance < 0.5f)
-        {
-            if (checkpoints.Count == 0) return;
+        if (checkpoints.Count == 0) return;
         
-            Seek(checkpoints[currentCheckpoint].transform.position);
-            currentCheckpoint = (currentCheckpoint + 1) % checkpoints.Count;
-        }
+        Seek(checkpoints[currentCheckpoint].transform.position);
+        currentCheckpoint = (currentCheckpoint + 1) % checkpoints.Count;
     }
     
     private Vector3 RandomNavMeshLocation()
@@ -78,8 +100,20 @@ public class AgentController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isWanderer) Wander();
-        else Patrol();
+        if (isSeekingPlayer && agent.pathStatus == NavMeshPathStatus.PathComplete && agent.remainingDistance == 0) {
+            isSeekingPlayer = false;
+            Wander();
+        }
+        else if (isWandering && agent.pathStatus == NavMeshPathStatus.PathComplete && agent.remainingDistance == 0) {
+            StartCoroutine("StopAgent", 2.5f);
+            isWandering = false;
+        }
+        else if (agent.pathStatus == NavMeshPathStatus.PathComplete && agent.remainingDistance == 0) {
+            fovMaterial.SetColor("_Color", standardFovColor);
+            lineOfSight.viewAngle = 50;
+            agent.speed = 1.5f;
+            Patrol();
+        }
 
         Vector3 currentMovement = agent.velocity.normalized;
         animator.SetFloat("Horizontal", currentMovement.x);
