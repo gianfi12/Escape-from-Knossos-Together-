@@ -10,6 +10,7 @@ public class AgentController : MonoBehaviour
 
     private Transform target;
     private NavMeshAgent agent;
+    private Animator animator;
 
     [SerializeField] private float wanderRadius = 5;
     private CheckpointManager checkpointManager;
@@ -22,6 +23,7 @@ public class AgentController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
@@ -78,7 +80,13 @@ public class AgentController : MonoBehaviour
     {
         if (isWanderer) Wander();
         else Patrol();
-        }
+
+        Vector3 currentMovement = agent.velocity.normalized;
+        animator.SetFloat("Horizontal", currentMovement.x);
+        animator.SetFloat("Vertical", currentMovement.y);
+        animator.SetFloat("Speed", currentMovement.sqrMagnitude);
+        //animator.SetFloat("Direction", currentMovement.x);
+    }
 
     public float GetDirectionAngle() {
         return Vector3.SignedAngle(transform.up, agent.velocity.normalized, Vector3.forward);
