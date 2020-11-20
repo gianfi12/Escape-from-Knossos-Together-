@@ -93,7 +93,7 @@ public class RoomPrefab : RoomAbstract
             GameObject gameObject = Instantiate(objectInRoom.ObjectTransform.gameObject);
             objectInRoom.Coordinates = objectInRoom.Coordinates - new Vector3Int(_lowestX, _lowestY, 0) + coordinates;
             gameObject.name = objectInRoom.ObjectTransform.gameObject.name;
-            gameObject.transform.position = objectInRoom.ObjectTransform.position;
+            gameObject.transform.position = objectInRoom.Coordinates;
         }
     }
 }
