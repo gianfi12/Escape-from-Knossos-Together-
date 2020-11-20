@@ -44,5 +44,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   assetsCollection: {fileID: 11400000, guid: faf00a2f1fb745748ad852f25f064f70, type: 2}
+  hasTwin: 0
+  twinRoom: {fileID: 0}
+  doorExit: {fileID: 0}
+  doorEntrance: {fileID: 0}
   maxSpace: 50
   minRoomSize: 5
+  doorPrefab: {fileID: 611721949337760788, guid: c775da782f978084b93226ee5a8033ee,
+    type: 3}
+  wardrobePrefab: {fileID: 8932908033788877102, guid: f76ddd8479156834482b1489728c0c3c,
+    type: 3}

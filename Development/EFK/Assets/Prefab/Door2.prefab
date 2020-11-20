@@ -9,7 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6131634210749784400}
-  m_Layer: 9
+  - component: {fileID: -4109916261130982996}
+  m_Layer: 0
   m_Name: Door2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31,6 +32,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-4109916261130982996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3102420862606774056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f770ef1ddda041bc9e36f64fabee6ded, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  closingDirection: 0
 --- !u!1 &3387403571483678330
 GameObject:
   m_ObjectHideFlags: 0
@@ -42,7 +56,7 @@ GameObject:
   - component: {fileID: 7998489150125797474}
   - component: {fileID: 2981961193629204984}
   - component: {fileID: 7235989232188482837}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Door Down
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -138,7 +152,7 @@ GameObject:
   - component: {fileID: 6194033277925831544}
   - component: {fileID: 534030734380219534}
   - component: {fileID: 4077361220962339883}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -210,7 +224,7 @@ GameObject:
   - component: {fileID: 2000500954547035069}
   - component: {fileID: 4921176938389829694}
   - component: {fileID: 5036763892195700822}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Door Up
   m_TagString: Untagged
   m_Icon: {fileID: 0}
