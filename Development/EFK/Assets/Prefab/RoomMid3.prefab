@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 654907017717596585}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.96, y: -1.81, z: 0}
+  m_LocalPosition: {x: 176.04001, y: -5.81, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7647140354659968202}
@@ -2074,7 +2074,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4811957412743714979}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.3, y: 0.32, z: 0}
+  m_LocalPosition: {x: 188.3, y: -3.6799998, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7647140354659968202}
@@ -2245,7 +2245,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5071042774304669035}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.58, y: 3.79, z: 0}
+  m_LocalPosition: {x: 174.42, y: -0.21000004, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7647140354659968202}
@@ -4892,6 +4892,8 @@ MonoBehaviour:
   assetsCollection: {fileID: 11400000, guid: 55d586d2096a3454bbdfe9f671b4eb18, type: 2}
   hasTwin: 0
   twinRoom: {fileID: 0}
+  doorExit: {fileID: 0}
+  doorEntrance: {fileID: 0}
   tilemapFloor: {fileID: 1600667976922422832}
   tilemapObject: {fileID: 8636457051081996146}
   tilemapExit: {fileID: 4531216780577040024}
@@ -4923,7 +4925,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9107180693980345416}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.83, y: 5.45, z: 0}
+  m_LocalPosition: {x: 185.83, y: 1.4499998, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7647140354659968202}
@@ -4973,12 +4975,12 @@ PrefabInstance:
     - target: {fileID: 2483861399637240494, guid: a51cf60735870584dac2932ab62ed88f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 177
       objectReference: {fileID: 0}
     - target: {fileID: 2483861399637240494, guid: a51cf60735870584dac2932ab62ed88f,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.44
+      value: -5.44
       objectReference: {fileID: 0}
     - target: {fileID: 2483861399637240494, guid: a51cf60735870584dac2932ab62ed88f,
         type: 3}

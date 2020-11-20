@@ -1540,6 +1540,8 @@ MonoBehaviour:
   assetsCollection: {fileID: 11400000, guid: 55d586d2096a3454bbdfe9f671b4eb18, type: 2}
   hasTwin: 0
   twinRoom: {fileID: 0}
+  doorExit: {fileID: 0}
+  doorEntrance: {fileID: 0}
   tilemapFloor: {fileID: 6300615789690446129}
   tilemapObject: {fileID: 8948515205563838396}
   tilemapExit: {fileID: 1883046730043625201}
@@ -1554,6 +1556,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6949087959666398212}
     m_Modifications:
+    - target: {fileID: -4109916261130982996, guid: 43f9529aa0a00ca4fb6708de1fd289d1,
+        type: 3}
+      propertyPath: closingDirection
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3102420862606774056, guid: 43f9529aa0a00ca4fb6708de1fd289d1,
         type: 3}
       propertyPath: m_Name

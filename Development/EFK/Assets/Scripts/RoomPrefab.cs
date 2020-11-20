@@ -88,10 +88,9 @@ public class RoomPrefab : RoomAbstract
         foreach (Transform transform1 in Object)
         {
             GameObject gameObject = Instantiate(transform1.gameObject);
+            transform1.position = gameObject.transform.position - new Vector3Int(_lowestX, _lowestY, 0) + coordinates;
             gameObject.name = transform1.gameObject.name;
-            gameObject.transform.position = gameObject.transform.position - new Vector3Int(_lowestX, _lowestY, 0) + coordinates;
-
+            gameObject.transform.position = transform1.position;
         }
     }
-    
 }

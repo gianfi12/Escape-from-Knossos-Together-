@@ -152,21 +152,21 @@ public class LevelMap : MonoBehaviourPun
         //position to the start of the padding zone from left
         if (startingDirection == Direction.North || startingDirection == Direction.South)
         {
-            moovingCoordinatesLeft = ToPaddingRegion(moovingCoordinatesLeft, startingDirection,exitRoom.AssetsCollection,Direction.West);
+            moovingCoordinatesLeft = ToPaddingRegion(moovingCoordinatesLeft, startingDirection,exitRoom.AssetsCollection,Direction.East);
         }
 
         //Position the moovingCoordinates from left into the central region before moving on the axis
-        moovingCoordinatesLeft = ToCenterRegion(moovingCoordinatesLeft, Direction.West, exitRoom,exitRoom.AssetsCollection);
+        moovingCoordinatesLeft = ToCenterRegion(moovingCoordinatesLeft, Direction.East, exitRoom,exitRoom.AssetsCollection);
 
         //position to the start of the padding zone from right
         List<Vector3Int> moovingCoordinatesRight = entranceRoom.Entrance.Select(x => x.Coordinates).ToList();
         if (arrivalDirection == Direction.North || arrivalDirection == Direction.South)
         {
-            moovingCoordinatesRight = ToPaddingRegion(moovingCoordinatesRight, arrivalDirection, exitRoom.AssetsCollection,Direction.East);
+            moovingCoordinatesRight = ToPaddingRegion(moovingCoordinatesRight, arrivalDirection, exitRoom.AssetsCollection,Direction.West);
         }
 
         //arrive to the central zone from right
-        moovingCoordinatesRight = ToCenterRegion(moovingCoordinatesRight, Direction.East, entranceRoom,exitRoom.AssetsCollection);
+        moovingCoordinatesRight = ToCenterRegion(moovingCoordinatesRight, Direction.West, entranceRoom,exitRoom.AssetsCollection);
 
         //move on the vertical central axes
         ConnectOnTheCenter(moovingCoordinatesLeft,moovingCoordinatesRight,exitRoom.AssetsCollection);
@@ -311,7 +311,7 @@ public class LevelMap : MonoBehaviourPun
     {
         int i;
         int topValue;
-        if (direction==Direction.West)
+        if (direction==Direction.East)
         {
             i = moovingCoordinates[0].x;
             topValue = room.DisplacementX + room.RequiredWidthSpace + PaddingRoom + room.Exit.Count - 1;
@@ -355,7 +355,7 @@ public class LevelMap : MonoBehaviourPun
             //- to North you have to put also the wall after the padding zone before doing the cornet on the right
             if (startingDirection == Direction.South)
             {
-                if (nextDirection == Direction.West)
+                if (nextDirection == Direction.East)
                 {
                     if (i < PaddingRoom)
                         _tilemapWall.SetTile(
@@ -377,7 +377,7 @@ public class LevelMap : MonoBehaviourPun
             }
             else
             {
-                if(nextDirection==Direction.East){
+                if(nextDirection==Direction.West){
                     if (i < PaddingRoom)
                         _tilemapWall.SetTile(
                             new Vector3Int(moovingCoordinates.Min(x => x.x) - 1, moovingCoordinates[0].y, 0),
@@ -399,7 +399,7 @@ public class LevelMap : MonoBehaviourPun
         }
         //Put the tile of the wall also on the corner
         if(startingDirection==Direction.South) {
-            if(nextDirection==Direction.West) _tilemapWall.SetTile(
+            if(nextDirection==Direction.East) _tilemapWall.SetTile(
             new Vector3Int(moovingCoordinates.Min(x => x.x)-1, moovingCoordinates[0].y, 0)+startingDirection.GetDirection(),
             asset.GetTileFromType(AssetType.WallBottomRight)[0]);
             else _tilemapWall.SetTile(
@@ -407,7 +407,7 @@ public class LevelMap : MonoBehaviourPun
                 asset.GetTileFromType(AssetType.WallBottomRight)[0]);
         }
         else {
-            if(nextDirection==Direction.East) _tilemapWall.SetTile(
+            if(nextDirection==Direction.West) _tilemapWall.SetTile(
             new Vector3Int(moovingCoordinates.Max(x => x.x)+1, moovingCoordinates[0].y, 0)+startingDirection.GetDirection(),
             asset.GetTileFromType(AssetType.WallTopLeft)[0]);
             else _tilemapWall.SetTile(
@@ -425,7 +425,7 @@ public class LevelMap : MonoBehaviourPun
         //Rotate the moving directions in order to continue and go to West in the next function
         for (int i = 0; i < moovingCoordinates.Count; i++)
         {
-            if (nextDirection == Direction.West)
+            if (nextDirection == Direction.East)
             {
                 if (startingDirection == Direction.South)
                     moovingCoordinates[i] = new Vector3Int(moovingCoordinates.Max(x=>x.x), moovingCoordinates[i].y + i, 0);

@@ -131,7 +131,7 @@ public class RoomMaze : RoomAbstract
                     if(otherCell is null) otherCell = new Cell(cell.Position+(Vector2Int)direction.GetDirection(),null);
                     if (cell.Position.x == otherCell.Position.x)
                     {
-                        movementDirection = Direction.West;
+                        movementDirection = Direction.East;
                         if (cell.Position.y > otherCell.Position.y)
                         {
                             startingPosition = new Vector2Int(cell.Position.x*2,cell.Position.y*2);
@@ -175,7 +175,7 @@ public class RoomMaze : RoomAbstract
                     if(otherCell is null) otherCell = new Cell(cell.Position+(Vector2Int)direction.GetDirection(),null);
                     if (cell.Position.x == otherCell.Position.x)
                     {
-                        movementDirection = Direction.West;
+                        movementDirection = Direction.East;
                         if (cell.Position.y > otherCell.Position.y)
                         {
                             startingPosition = new Vector2Int(cell.Position.x*2,cell.Position.y*2);
@@ -198,7 +198,7 @@ public class RoomMaze : RoomAbstract
                         }
                     }
                     TileBase tileBase;
-                    if (direction == Direction.East || direction == Direction.North)
+                    if (direction == Direction.West || direction == Direction.North)
                     {
                         tileBase = assetsCollection.GetTileFromType(AssetType.WallTopLeft)[0];
                     }
@@ -318,7 +318,7 @@ public class RoomMaze : RoomAbstract
     private void GenerateWall()
     {
         bool hasEntrance = false, hasExit = false;
-        Direction[] directions = {Direction.East, Direction.South, Direction.West, Direction.North};
+        Direction[] directions = {Direction.West, Direction.South, Direction.East, Direction.North};
         int directionChange = 0;
         int exitHasToBeInDirectionChange=-1;
         int index = _sizeX;//starts from the upper left side and we go in an anti clockwise round

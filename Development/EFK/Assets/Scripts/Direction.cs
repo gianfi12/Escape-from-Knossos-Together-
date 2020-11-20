@@ -7,8 +7,8 @@ public enum Direction
 {
     North,
     South,
-    East,
-    West
+    West,
+    East
 }
 
 public static class DirectionExtensions
@@ -24,8 +24,8 @@ public static class DirectionExtensions
     {
         Direction.South,
         Direction.North,
-        Direction.West,
-        Direction.East
+        Direction.East,
+        Direction.West
     };
 
     public static Vector3Int GetDirection(this Direction direction)
@@ -44,8 +44,8 @@ public static class DirectionExtensions
         {
             TileBase checkTile = tilemap.GetTile(first.Coordinates + new Vector3Int(1, 0, 0));
             if (checkTile != null)
-                return Direction.East;
-            return Direction.West;
+                return Direction.West;
+            return Direction.East;
         }
         else
         {
@@ -62,8 +62,8 @@ public static class DirectionExtensions
         if (!(checkTile is null)) return Direction.North;
         checkTile = tilemap.GetTile(tile.Coordinates + Direction.North.GetDirection());
         if (!(checkTile is null)) return Direction.South;
-        checkTile = tilemap.GetTile(tile.Coordinates + Direction.West.GetDirection());
-        if (!(checkTile is null)) return Direction.East;
-        return Direction.West;
+        checkTile = tilemap.GetTile(tile.Coordinates + Direction.East.GetDirection());
+        if (!(checkTile is null)) return Direction.West;
+        return Direction.East;
     }
 }
