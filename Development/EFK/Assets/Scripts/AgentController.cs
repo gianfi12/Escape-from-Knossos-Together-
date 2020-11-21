@@ -28,6 +28,9 @@ public class AgentController : MonoBehaviour
     private bool isSeekingPlayer;
     private bool isWandering;
 
+    private Vector3 currentMovement;
+    private float lastDir;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -100,6 +103,7 @@ public class AgentController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (agent.remainingDistance < 0.5 && agent.remainingDistance > 0.4) lastDir = SetDirection();
         if (isSeekingPlayer && agent.pathStatus == NavMeshPathStatus.PathComplete && agent.remainingDistance == 0) {
             isSeekingPlayer = false;
             Wander();
@@ -114,15 +118,29 @@ public class AgentController : MonoBehaviour
             agent.speed = 1.5f;
             Patrol();
         }
-
-        Vector3 currentMovement = agent.velocity.normalized;
+        
+        currentMovement = agent.velocity.normalized;
         animator.SetFloat("Horizontal", currentMovement.x);
         animator.SetFloat("Vertical", currentMovement.y);
         animator.SetFloat("Speed", currentMovement.sqrMagnitude);
-        //animator.SetFloat("Direction", currentMovement.x);
+        animator.SetFloat("Direction", lastDir);
     }
 
     public float GetDirectionAngle() {
         return Vector3.SignedAngle(transform.up, agent.velocity.normalized, Vector3.forward);
+    }
+    
+    private float SetDirection()
+    {
+        if (Mathf.Abs(currentMovement.x) > Double.Epsilon && Math.Abs(currentMovement.x) > Mathf.Abs(currentMovement.y))
+        {
+            if (currentMovement.x > Double.Epsilon) return 3; //right
+            return 4; //left
+        }
+        else
+        {
+            if (currentMovement.y > Double.Epsilon) return 2; //up
+            return 1; //down
+        }
     }
 }

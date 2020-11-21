@@ -108,7 +108,7 @@ public class PlayerInput : MonoBehaviourPun
         set => _canMove = value;
     }
 
-    private int SetDirection()
+    private float SetDirection()
     {
         if (Mathf.Abs(_movement.x) > Double.Epsilon && Math.Abs(_movement.x) > Mathf.Abs(_movement.y))
         {
