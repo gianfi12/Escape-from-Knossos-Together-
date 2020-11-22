@@ -54,4 +54,4 @@ MonoBehaviour:
     type: 3}
   wardrobePrefab: {fileID: 8932908033788877102, guid: f76ddd8479156834482b1489728c0c3c,
     type: 3}
-  numberOfWardrobe: 3
+  numberOfWardrobe: 10

@@ -47,39 +47,60 @@ public class RoomMaze : RoomAbstract
     {
         for (int i = 0; i < numberOfWardrobe; i++)
         {
-            Tile randomWallTile = Wall[Random.Range(0,Wall.Count-1)];
+            Tile randomFloorTile = getRandomFloor();
             Direction randomDirection;
             Vector3Int checkPosition;
-            while (thereIsAnotherWall((randomDirection = DirectionExtensions.getRandomDirection()),(checkPosition=randomWallTile.Coordinates+randomDirection.GetDirection())));
+            while (!thereIsAWall((randomDirection = DirectionExtensions.getRandomDirection()),
+                (checkPosition = randomFloorTile.Coordinates + randomDirection.GetDirection())))
+            {
+                randomFloorTile = getRandomFloor();
+            }
+            
+
+            Transform wardrobeTransform = Instantiate(wardrobePrefab).transform;
+            Vector3 wardrobePosition=checkPosition;
+            switch (randomDirection)
+            {
+                case Direction.North:
+                    wardrobePosition += new Vector3(0.5f,0,0);
+                    break;
+                case Direction.South:
+                    wardrobePosition += new Vector3(0.5f,1f,0);
+                    break;  
+                case Direction.East:
+                    wardrobePosition += new Vector3(0f,0.5f,0);
+                    wardrobeTransform.rotation *= Quaternion.Euler(0, 0, 90); 
+                    break;
+                case Direction.West:
+                    wardrobePosition += new Vector3(1f,0.5f,0);
+                    wardrobeTransform.rotation *= Quaternion.Euler(0, 0, 90);
+                    break;
+            }
             if(randomDirection==Direction.North)
             {
-                Transform wardrobeTransform = Instantiate(wardrobePrefab).transform;
-                Vector3Int wardrobePosition=checkPosition;
-                switch (randomDirection)
-                {
-                    case Direction.North:
-                        wardrobeTransform.position += new Vector3(0.5f,0,0);
-                        break;
-                    case Direction.South:
-                        wardrobeTransform.position += new Vector3(0.5f,-1f,0);
-                        break;
-                    case Direction.East:
-                        wardrobeTransform.position += new Vector3(0.5f,-0.5f,0);
-                        wardrobeTransform.rotation *= Quaternion.Euler(0, 0, 90);
-                        break;
-                    case Direction.West:
-                        wardrobeTransform.position += new Vector3(-0.5f,-0.5f,0);
-                        wardrobeTransform.rotation *= Quaternion.Euler(0, 0, 90);
-                        break;
-                }
-
-                    ObjectInRoom wardrobe = new ObjectInRoom(wardrobePosition, wardrobeTransform);
-                    Object.Add(wardrobe);
+                ObjectInRoom wardrobe = new ObjectInRoom(wardrobePosition, wardrobeTransform);
+                Object.Add(wardrobe);
             }
         }
     }
 
-    bool thereIsAnotherWall(Direction direction,Vector3Int checkPosition)
+    Tile getRandomFloor()
+    {
+        Tile floorTile=null;
+        bool isOverlapped=true;
+        while (isOverlapped)
+        {
+            floorTile = Floor[Random.Range(0,Wall.Count-1)];
+            isOverlapped = false;
+            for (int i = 0; i < Wall.Count && !isOverlapped; i++)
+            {
+                if (Wall[i].Coordinates == floorTile.Coordinates) isOverlapped = true;
+            }
+        }
+        return floorTile;
+    }
+
+    bool thereIsAWall(Direction direction,Vector3Int checkPosition)
     {
         bool found = false;
         for (int i = 0; i < Wall.Count && !found; i++)

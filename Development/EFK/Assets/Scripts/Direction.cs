@@ -74,6 +74,6 @@ public static class DirectionExtensions
 
     public static Direction getRandomDirection()
     {
-        return (Direction) directionList.GetValue(Random.Range(0, directionList.Length - 1));
+        return (Direction) directionList.GetValue(Random.Range(0, directionList.Length ));
     }
 }
