@@ -14,6 +14,8 @@ public class RoomMaze : RoomAbstract
     [SerializeField] private GameObject doorPrefab;
     [SerializeField] private GameObject wardrobePrefab;
     [SerializeField] private int numberOfWardrobe;
+    [SerializeField] private GameObject guardPrefab;
+    [SerializeField] private int numberOfGuard;
     
     private int _sizeX, _sizeY;
 
@@ -38,9 +40,22 @@ public class RoomMaze : RoomAbstract
         GenerateTile();
         GenerateWall();
         InsertWardrobe();
+        SpawnAgent();
 
         _lowestX = -1;//these are due to the presence of the wall
         _lowestY = -1;
+    }
+
+    private void SpawnAgent()
+    {
+        for (int i = 0; i < numberOfGuard; i++)
+        {
+            Tile floor = getRandomFloor();
+            Transform agentTransform = Instantiate(guardPrefab).transform;
+            Vector3 agentPosition=floor.Coordinates;
+            ObjectInRoom wardrobe = new ObjectInRoom(agentPosition, agentTransform);
+            Object.Add(wardrobe);
+        }
     }
 
     private void InsertWardrobe()

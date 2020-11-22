@@ -55,3 +55,6 @@ MonoBehaviour:
   wardrobePrefab: {fileID: 8932908033788877102, guid: f76ddd8479156834482b1489728c0c3c,
     type: 3}
   numberOfWardrobe: 10
+  guardPrefab: {fileID: 2483861399637240493, guid: a51cf60735870584dac2932ab62ed88f,
+    type: 3}
+  numberOfGuard: 3
