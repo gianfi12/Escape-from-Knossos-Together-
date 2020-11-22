@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public enum Direction
 {
@@ -13,6 +15,9 @@ public enum Direction
 
 public static class DirectionExtensions
 {
+    
+    private static Array directionList = Enum.GetValues(typeof(Direction));
+        
     private static Vector3Int[] _direction =
     {
         new Vector3Int(0, 1, 0),
@@ -65,5 +70,10 @@ public static class DirectionExtensions
         checkTile = tilemap.GetTile(tile.Coordinates + Direction.East.GetDirection());
         if (!(checkTile is null)) return Direction.West;
         return Direction.East;
+    }
+
+    public static Direction getRandomDirection()
+    {
+        return (Direction) directionList.GetValue(Random.Range(0, directionList.Length - 1));
     }
 }
