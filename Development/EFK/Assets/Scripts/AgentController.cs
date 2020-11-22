@@ -45,6 +45,11 @@ public class AgentController : MonoBehaviour
         if (checkpoints.Count != 0)
         {
             transform.position = checkpoints[0].transform.position;
+            isWanderer = false;
+        }
+        else
+        {
+            isWanderer = true;
         }
 
         lineOfSight = GetComponent<LineOfSight>();
@@ -112,12 +117,14 @@ public class AgentController : MonoBehaviour
             StartCoroutine("StopAgent", 2.5f);
             isWandering = false;
         }
-        else if (agent.pathStatus == NavMeshPathStatus.PathComplete && agent.remainingDistance == 0) {
+        else if (!isWanderer && agent.pathStatus == NavMeshPathStatus.PathComplete && agent.remainingDistance == 0) {
             fovMaterial.SetColor("_Color", standardFovColor);
             lineOfSight.viewAngle = 50;
             agent.speed = 1.5f;
             Patrol();
         }
+        
+        if (isWanderer) Wander();
         
         currentMovement = agent.velocity.normalized;
         animator.SetFloat("Horizontal", currentMovement.x);
