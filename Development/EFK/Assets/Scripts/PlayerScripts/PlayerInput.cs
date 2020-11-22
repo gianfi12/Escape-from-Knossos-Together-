@@ -16,11 +16,14 @@ public class PlayerInput : MonoBehaviourPun
     private Vector2 _movement;
     //indicates if the player can move, so if it is in the scene or it is disable, if false it is also not visible and so
     //it shouldn't been seen from the agent moving in the map
-    private bool _canMove=true;
+    public bool _canMove = true;
     private float _lastDir;
     private PlayerInteraction _playerInteraction;
 
     [SerializeField] private GameObject _playerUI;
+    [SerializeField] private GameObject diaryPanel;
+    [SerializeField] private GameObject diaryImage;
+    private bool isDiaryActive;
 
     // Start is called before the first frame update
     void Start() {
@@ -31,6 +34,8 @@ public class PlayerInput : MonoBehaviourPun
         catch (NullReferenceException) {
             Debug.Log("Voice controls disabled");
         }
+        
+        if (!PhotonNetwork.IsConnected) _playerUI.SetActive(true);
     }
 
 
@@ -97,9 +102,41 @@ public class PlayerInput : MonoBehaviourPun
                 else if (Input.GetButtonUp("Voice")) {
                     _voiceController.disableVoice();
                 }
+
+                if (Input.GetButtonDown("Map") )
+                {
+                    if (!isDiaryActive)
+                    {
+                        diaryPanel.SetActive(true);
+                        diaryImage.SetActive(false);
+                        isDiaryActive = true; 
+                    }
+                    else
+                    {
+                        diaryPanel.SetActive(false);
+                        diaryImage.SetActive(true);
+                        isDiaryActive = false;
+                    }
+                
+                }
             }
         }
         catch (NullReferenceException) {}
+
+        if (!PhotonNetwork.IsConnected)
+        {
+            if (Input.GetButtonDown("Map"))
+            {
+                diaryPanel.SetActive(true);
+                diaryImage.SetActive(false);
+            }
+    
+            else if (Input.GetButtonUp("Map"))
+            {
+                diaryPanel.SetActive(false);
+                diaryImage.SetActive(true);
+            }
+        }
     }
 
     public bool CanMove

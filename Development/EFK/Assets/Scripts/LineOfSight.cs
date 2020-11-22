@@ -94,7 +94,11 @@ public class LineOfSight : MonoBehaviour
             }
         }
 
-        if (isNPC && visibleTargets.Count != 0)  npcController.SeekPlayer(visibleTargets.First().position);
+        if (isNPC && visibleTargets.Count != 0)
+        {
+            if (visibleTargets.First().GetComponent<PlayerInput>()._canMove)
+                npcController.SeekPlayer(visibleTargets.First().position);
+        }
     }
 
     public Vector3 DirFromAngle(float angleInDegrees, bool angleIsGlobal) {

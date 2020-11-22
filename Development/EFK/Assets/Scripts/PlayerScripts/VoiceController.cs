@@ -13,6 +13,7 @@ public class VoiceController : MonoBehaviourPun
     
     private PhotonVoiceView _photonVoiceView;
     private Recorder _recorder;
+    [SerializeField] private Color disactiveColor;
     
     private void Awake()
     {
@@ -35,6 +36,6 @@ public class VoiceController : MonoBehaviourPun
 
     internal void disableVoice() {
         _recorder.TransmitEnabled = false;
-        _pushToTalk.color = Color.black;
+        _pushToTalk.color = disactiveColor;
     }
 }
