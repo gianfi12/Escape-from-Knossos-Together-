@@ -13,4 +13,10 @@ public class Door : MonoBehaviour
             door2Script.Direction = closingDirection;
         }
     }
+
+    public Direction ClosingDirection
+    {
+        get => closingDirection;
+        set => closingDirection = value;
+    }
 }

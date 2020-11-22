@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -14,6 +13,7 @@ public class RoomMaze : RoomAbstract
     [SerializeField] private int minRoomSize;
     [SerializeField] private GameObject doorPrefab;
     [SerializeField] private GameObject wardrobePrefab;
+    [SerializeField] private int numberOfWardrobe;
     
     private int _sizeX, _sizeY;
 
@@ -37,9 +37,56 @@ public class RoomMaze : RoomAbstract
         ConnectNeighbor();
         GenerateTile();
         GenerateWall();
+        InsertWardrobe();
 
         _lowestX = -1;//these are due to the presence of the wall
         _lowestY = -1;
+    }
+
+    private void InsertWardrobe()
+    {
+        for (int i = 0; i < numberOfWardrobe; i++)
+        {
+            Tile randomWallTile = Wall[Random.Range(0,Wall.Count-1)];
+            Direction randomDirection;
+            Vector3Int checkPosition;
+            while (thereIsAnotherWall((randomDirection = DirectionExtensions.getRandomDirection()),(checkPosition=randomWallTile.Coordinates+randomDirection.GetDirection())));
+            if(randomDirection==Direction.North)
+            {
+                Transform wardrobeTransform = Instantiate(wardrobePrefab).transform;
+                Vector3Int wardrobePosition=checkPosition;
+                switch (randomDirection)
+                {
+                    case Direction.North:
+                        wardrobeTransform.position += new Vector3(0.5f,0,0);
+                        break;
+                    case Direction.South:
+                        wardrobeTransform.position += new Vector3(0.5f,-1f,0);
+                        break;
+                    case Direction.East:
+                        wardrobeTransform.position += new Vector3(0.5f,-0.5f,0);
+                        wardrobeTransform.rotation *= Quaternion.Euler(0, 0, 90);
+                        break;
+                    case Direction.West:
+                        wardrobeTransform.position += new Vector3(-0.5f,-0.5f,0);
+                        wardrobeTransform.rotation *= Quaternion.Euler(0, 0, 90);
+                        break;
+                }
+
+                    ObjectInRoom wardrobe = new ObjectInRoom(wardrobePosition, wardrobeTransform);
+                    Object.Add(wardrobe);
+            }
+        }
+    }
+
+    bool thereIsAnotherWall(Direction direction,Vector3Int checkPosition)
+    {
+        bool found = false;
+        for (int i = 0; i < Wall.Count && !found; i++)
+        {
+            if (Wall[i].Coordinates == checkPosition) found = true;
+        }
+        return found;
     }
 
     private void ConnectNeighbor()
@@ -328,14 +375,29 @@ public class RoomMaze : RoomAbstract
         {
             if ((directionChange == 1 || directionChange == 0))
             {
-                if (!hasEntrance && ((directionChange == 1 && index == 2) || (Random.Range(1, 100) > 90 && index%2==0 && index<startingIndex)))
+                if (!hasEntrance && ((directionChange == 1 && index == 2) || (Random.Range(1, 100) > 95 && index%2==0 && index<startingIndex)))
                 {
                     hasEntrance = true;
-                    Tile tile = new Tile(assetsCollection.GetTileFromType(AssetType.Entrace)[0],
-                        position); 
+                    Tile tile = new Tile(assetsCollection.GetTileFromType(AssetType.Entrace)[0],position); 
                     TileList.Add(tile);
                     Entrance.Add(tile);
                     exitHasToBeInDirectionChange = directionChange+2;
+                    Transform doorTransform = Instantiate(doorPrefab).transform;
+                    Vector3Int doorPosition;
+                    if (directionChange == 0)
+                    {
+                        doorTransform.rotation *= Quaternion.Euler(0, 0, 90);
+                        doorPosition = position + new Vector3Int(1, 0, 0);
+                        doorTransform.GetComponent<Door>().ClosingDirection=Direction.South;
+                    }
+                    else
+                    {
+                        doorTransform.rotation *= Quaternion.Euler(0, 0, 180);
+                        doorPosition = position + new Vector3Int(0, 1, 0);
+                        doorTransform.GetComponent<Door>().ClosingDirection=Direction.East;
+                    }
+                    ObjectInRoom entranceDoor = new ObjectInRoom(doorPosition, doorTransform);
+                    Object.Add(entranceDoor);
                 }else
                 {
                     PutWall(directionChange,position);
@@ -350,6 +412,22 @@ public class RoomMaze : RoomAbstract
                         position);
                     TileList.Add(tile);
                     Exit.Add(tile);
+                    Transform doorTransform = Instantiate(doorPrefab).transform;
+                    Vector3Int doorPosition;
+                    if (directionChange == 2)
+                    {
+                        doorTransform.rotation *= Quaternion.Euler(0, 0, 90);
+                        doorPosition = position + new Vector3Int(1, 0, 0);
+                        doorTransform.GetComponent<Door>().ClosingDirection=Direction.South;
+                    }
+                    else
+                    {
+                        doorTransform.rotation *= Quaternion.Euler(0, 0, 180);
+                        doorPosition = position + new Vector3Int(0, 1, 0);
+                        doorTransform.GetComponent<Door>().ClosingDirection=Direction.East;
+                    }
+                    ObjectInRoom entranceDoor = new ObjectInRoom(doorPosition, doorTransform);
+                    Object.Add(entranceDoor);
                 }else
                 {
                     PutWall(directionChange,position);
@@ -417,12 +495,12 @@ public class RoomMaze : RoomAbstract
                 // }
             }
         }
-
-        // foreach (Transform transform1 in Object)
-        // {
-        //     GameObject gameObject = Instantiate(transform1.gameObject);
-        //     gameObject.name = transform1.gameObject.name;
-        //     transform1.position = transform1.position - new Vector3Int(_lowestX, _lowestY, 0) + coordinates;
-        // }
+        foreach (ObjectInRoom objectInRoom in Object)
+        {
+            GameObject gameObject = Instantiate(objectInRoom.ObjectTransform.gameObject);
+            objectInRoom.Coordinates = objectInRoom.Coordinates - new Vector3Int(_lowestX, _lowestY, 0) + coordinates;
+            gameObject.name = objectInRoom.ObjectTransform.gameObject.name;
+            gameObject.transform.position = objectInRoom.Coordinates;
+        }
     }
 }

@@ -513,6 +513,16 @@ public class LevelMap : MonoBehaviourPun
             player.SetLocation(
                 _tilemapFloor.layoutGrid.CellToWorld(_selectedRooms[_selectedRooms.Count - 1].Spawn[0].Coordinates) +
                 new Vector3Int(1, 1, 0));
+    }
 
+    void getTileOfRoom(int index,List<Tile> floor,List<Tile> wall,List<ObjectInRoom> objects,List<Tile> decorations,List<Tile> entrance,List<Tile> exit)
+    {
+        RoomAbstract selectedRoom = _selectedRooms[index];
+        floor = selectedRoom.Floor;
+        wall = selectedRoom.Wall;
+        objects = selectedRoom.Object;
+        decorations = selectedRoom.Decoration;
+        entrance = selectedRoom.Entrance;
+        exit = selectedRoom.Exit;
     }
 }

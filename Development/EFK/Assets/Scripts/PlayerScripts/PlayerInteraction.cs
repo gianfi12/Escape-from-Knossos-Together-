@@ -35,7 +35,8 @@ public class PlayerInteraction : MonoBehaviour
                     //hit.transform.GetComponent<InteractableObject>().Interact(transform.gameObject);
                     Destroy(_instatiatedText);
                     _instatiatedText = Instantiate(interactiveText);
-                    _instatiatedText.transform.parent = trans;
+                    _instatiatedText.transform.SetParent(trans);
+                    // _instatiatedText.transform.parent = trans;
                     _instatiatedText.transform.position = trans.position + new Vector3(13.5f,-2.7f,0f);
                     _previousInteraction = hit.transform;
                     _hasPreviousValue = true;
