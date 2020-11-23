@@ -219,7 +219,7 @@ MonoBehaviour:
   isNPC: 1
   viewRadius: 7
   viewAngle: 50
-  senseRadius: 1
+  senseRadius: 2
   targetMask:
     serializedVersion: 2
     m_Bits: 1024

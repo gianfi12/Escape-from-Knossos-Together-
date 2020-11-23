@@ -1038,6 +1038,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 384e724f08edeba4a85446f02595cf93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _canMove: 1
   _playerUI: {fileID: 6139589961878084805}
   diaryPanel: {fileID: 3690557783144270758}
   diaryImage: {fileID: 311690724240254438}
@@ -1081,7 +1082,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isNPC: 0
-  viewRadius: 11
+  viewRadius: 13
   viewAngle: 360
   senseRadius: 0
   targetMask:
@@ -1091,7 +1092,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   visibleTargets: []
-  meshResolution: 1
+  meshResolution: 1.2
   edgeResolveIterations: 4
   edgeDistanceThreshold: 1
   viewMeshFilter: {fileID: 3473025674799170586}
