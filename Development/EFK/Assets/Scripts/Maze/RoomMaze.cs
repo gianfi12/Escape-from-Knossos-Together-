@@ -23,8 +23,10 @@ public class RoomMaze : RoomAbstract
     private Stack<Cell> _actualRoomCellsStack = new Stack<Cell>();
     private List<Room> _roomList = new List<Room>();
     private Dictionary<int,Cell> _cellMap = new Dictionary<int, Cell>();
+    private Transform _mazeTransform;
     public override void Generate(int seed)
     {
+        _mazeTransform = new GameObject("RoomMaze").transform;
         Random.InitState(seed);
         int random;
         while ((random = Random.Range(_minSetSpace, maxSpace)) % 2 == 0);
@@ -53,9 +55,18 @@ public class RoomMaze : RoomAbstract
             Tile floor = getRandomFloor();
             Transform agentTransform = Instantiate(guardPrefab).transform;
             Vector3 agentPosition=floor.Coordinates;
-            ObjectInRoom wardrobe = new ObjectInRoom(agentPosition, agentTransform);
-            Object.Add(wardrobe);
+            // ObjectInRoom wardrobe = new ObjectInRoom(agentPosition, agentTransform);
+            // Object.Add(wardrobe);
+            SpawnObjectInRoom(agentPosition,agentTransform);
         }
+    }
+
+    private void SpawnObjectInRoom(Vector3 position,Transform objectTrasform)
+    {
+        ObjectInRoom objectInRoom = new ObjectInRoom(position,objectTrasform);
+        Object.Add(objectInRoom);
+        objectTrasform.SetParent(_mazeTransform);
+        objectTrasform.gameObject.SetActive(false);
     }
 
     private void InsertWardrobe()
@@ -93,8 +104,9 @@ public class RoomMaze : RoomAbstract
             }
             if(randomDirection==Direction.North)
             {
-                ObjectInRoom wardrobe = new ObjectInRoom(wardrobePosition, wardrobeTransform);
-                Object.Add(wardrobe);
+                // ObjectInRoom wardrobe = new ObjectInRoom(wardrobePosition, wardrobeTransform);
+                // Object.Add(wardrobe);
+                SpawnObjectInRoom(wardrobePosition,wardrobeTransform);
             }
         }
     }
@@ -432,8 +444,9 @@ public class RoomMaze : RoomAbstract
                         doorPosition = position + new Vector3Int(0, 1, 0);
                         doorTransform.GetComponent<Door>().ClosingDirection=Direction.East;
                     }
-                    ObjectInRoom entranceDoor = new ObjectInRoom(doorPosition, doorTransform);
-                    Object.Add(entranceDoor);
+                    // ObjectInRoom entranceDoor = new ObjectInRoom(doorPosition, doorTransform);
+                    // Object.Add(entranceDoor);
+                    SpawnObjectInRoom(doorPosition,doorTransform);
                 }else
                 {
                     PutWall(directionChange,position);
@@ -462,8 +475,9 @@ public class RoomMaze : RoomAbstract
                         doorPosition = position + new Vector3Int(0, 1, 0);
                         doorTransform.GetComponent<Door>().ClosingDirection=Direction.East;
                     }
-                    ObjectInRoom entranceDoor = new ObjectInRoom(doorPosition, doorTransform);
-                    Object.Add(entranceDoor);
+                    // ObjectInRoom entranceDoor = new ObjectInRoom(doorPosition, doorTransform);
+                    // Object.Add(entranceDoor);
+                    SpawnObjectInRoom(doorPosition,doorTransform);
                 }else
                 {
                     PutWall(directionChange,position);
@@ -537,6 +551,7 @@ public class RoomMaze : RoomAbstract
             objectInRoom.Coordinates = objectInRoom.Coordinates - new Vector3Int(_lowestX, _lowestY, 0) + coordinates;
             gameObject.name = objectInRoom.ObjectTransform.gameObject.name;
             gameObject.transform.position = objectInRoom.Coordinates;
+            gameObject.SetActive(true);
         }
     }
 }
