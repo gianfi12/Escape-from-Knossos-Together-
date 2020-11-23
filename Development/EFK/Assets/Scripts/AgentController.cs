@@ -15,7 +15,7 @@ public class AgentController : MonoBehaviour
     [SerializeField] private float wanderRadius = 5;
     private CheckpointManager checkpointManager;
     [SerializeField] private string checkpointName;
-    [SerializeField] private bool isWanderer;
+    [SerializeField] private bool isPatroller;
     private List<GameObject> checkpoints;
     
     private int currentCheckpoint = 0;
@@ -26,7 +26,7 @@ public class AgentController : MonoBehaviour
     [SerializeField] private Color seekingFovColor;
 
     private bool isSeekingPlayer;
-    private bool isWandering;
+    private bool isWanderingAfterSeeking;
 
     private Vector3 currentMovement;
     private float lastDir;
@@ -39,17 +39,15 @@ public class AgentController : MonoBehaviour
         agent.updateRotation = false;
         agent.updateUpAxis = false;
 
-        checkpointManager = (CheckpointManager)FindObjectOfType(typeof(CheckpointManager));
-        checkpoints = checkpointManager.getSelectedCheckpoint(checkpointName);
+        if (isPatroller)
+        {
+            checkpointManager = (CheckpointManager)FindObjectOfType(typeof(CheckpointManager));
+            checkpoints = checkpointManager.getSelectedCheckpoint(checkpointName);
         
-        if (checkpoints.Count != 0)
-        {
-            transform.position = checkpoints[0].transform.position;
-            isWanderer = false;
-        }
-        else
-        {
-            isWanderer = true;
+            if (checkpoints.Count != 0)
+            {
+                transform.position = checkpoints[0].transform.position;
+            }
         }
 
         lineOfSight = GetComponent<LineOfSight>();
@@ -71,7 +69,6 @@ public class AgentController : MonoBehaviour
 
     private void Wander()
     {
-        isWandering = true;
         Seek(RandomNavMeshLocation());
     }
 
@@ -111,20 +108,27 @@ public class AgentController : MonoBehaviour
         if (agent.remainingDistance < 0.5 && agent.remainingDistance > 0.4) lastDir = SetDirection();
         if (isSeekingPlayer && agent.pathStatus == NavMeshPathStatus.PathComplete && agent.remainingDistance == 0) {
             isSeekingPlayer = false;
+            isWanderingAfterSeeking = true;
             Wander();
         }
-        else if (isWandering && agent.pathStatus == NavMeshPathStatus.PathComplete && agent.remainingDistance == 0) {
+        else if (isWanderingAfterSeeking && agent.pathStatus == NavMeshPathStatus.PathComplete && agent.remainingDistance == 0) {
             StartCoroutine("StopAgent", 2.5f);
-            isWandering = false;
+            isWanderingAfterSeeking = false;
         }
-        else if (!isWanderer && agent.pathStatus == NavMeshPathStatus.PathComplete && agent.remainingDistance == 0) {
+        else if (isPatroller && agent.pathStatus == NavMeshPathStatus.PathComplete && agent.remainingDistance == 0) {
             fovMaterial.SetColor("_Color", standardFovColor);
             lineOfSight.viewAngle = 50;
             agent.speed = 1.5f;
             Patrol();
         }
-        
-        if (isWanderer) Wander();
+
+        if (!isPatroller && agent.pathStatus == NavMeshPathStatus.PathComplete && agent.remainingDistance == 0)
+        {
+            fovMaterial.SetColor("_Color", standardFovColor);
+            lineOfSight.viewAngle = 50;
+            agent.speed = 1.5f;
+            Wander();
+        }
         
         currentMovement = agent.velocity.normalized;
         animator.SetFloat("Horizontal", currentMovement.x);
