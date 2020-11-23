@@ -35,6 +35,8 @@ public class Door2Script : MonoBehaviour
 
             transform.GetComponent<Collider2D>().isTrigger = false;
         }
+
+        gameObject.layer = LayerMask.NameToLayer("Default");
     }
 
     public Direction Direction

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8531144094237956716}
   - component: {fileID: 5164523546646525326}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 5508765497240734558}
   - component: {fileID: 725443896857000644}
   - component: {fileID: 5122883432833310249}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -152,7 +152,7 @@ GameObject:
   - component: {fileID: 8540767711369726020}
   - component: {fileID: 2601396781299894194}
   - component: {fileID: 2010563544236422935}
-  m_Layer: 9
+  m_Layer: 2
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
