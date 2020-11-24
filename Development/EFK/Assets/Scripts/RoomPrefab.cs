@@ -38,7 +38,7 @@ public class RoomPrefab : RoomAbstract
         }
     }
 
-    private void IterateTilemap(Tilemap tilemap, List<Tile> list)
+    protected void IterateTilemap(Tilemap tilemap, List<Tile> list)
     {
         for (int n = tilemap.cellBounds.xMin; n < tilemap.cellBounds.xMax; n++)
         {

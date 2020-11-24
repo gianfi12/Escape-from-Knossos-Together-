@@ -2189,7 +2189,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1681367257898218791}
-  - component: {fileID: 8992623809543891691}
+  - component: {fileID: 6727362201517843673}
   m_Layer: 0
   m_Name: RoomMid4
   m_TagString: Untagged
@@ -2212,7 +2212,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8992623809543891691
+--- !u!114 &6727362201517843673
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
