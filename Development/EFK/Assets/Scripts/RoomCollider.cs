@@ -21,4 +21,10 @@ public class RoomCollider : MonoBehaviour
     {
         room.Player = null;
     }
+
+    public RoomAbstract Room
+    {
+        get => room;
+        set => room = value;
+    }
 }
