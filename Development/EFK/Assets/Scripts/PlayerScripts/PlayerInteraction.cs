@@ -1,14 +1,16 @@
-﻿
-using System;
+﻿using System;
+using System.Linq;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
 {
     [SerializeField] private float interactionDistance;
-    [SerializeField] private LayerMask interactionLayer;
+    [SerializeField] private float interactionAngle;
     [SerializeField] private GameObject interactiveText;
-    private Transform _previousInteraction;
-    private bool _hasPreviousValue = false;
+    private Transform _SelectedTarget;
+    private bool _hasTargetSelected = false;
     private GameObject _instatiatedText;
     private Collider2D _playerCollider;
 
@@ -17,41 +19,49 @@ public class PlayerInteraction : MonoBehaviour
         _playerCollider = transform.GetComponent<Collider2D>();
     }
 
-    private void Update()
-    {
-        Vector3 direction3D = GetComponent<PlayerControllerMap>().Movement;
-        Vector2 direction = new Vector2(direction3D.x, direction3D.y);
-        Bounds bounds = transform.GetComponent<Collider2D>().bounds;
-        RaycastHit2D hit = Physics2D.CircleCast(bounds.center, bounds.extents.y/2, direction, interactionDistance, interactionLayer);
-        if (hit)
-        {
-            Transform trans = hit.transform; 
-            if (trans.gameObject.layer==8)
-            {
-                if (!_hasPreviousValue || trans.GetInstanceID() != _previousInteraction.transform.GetInstanceID())
-                {
-                    Material shader = hit.transform.GetComponent<SpriteRenderer>().material;
-                    shader.SetFloat("_Thickness",5f);
-                    //hit.transform.GetComponent<InteractableObject>().Interact(transform.gameObject);
+
+    public void SelectInteractableTarget(List<Transform> visibleTargets) {
+        PlayerControllerMap playerControllerMap = GetComponent<PlayerControllerMap>();
+        Vector2 playerPosition = new Vector2(playerControllerMap.transform.position.x, playerControllerMap.transform.position.y);
+        Vector2 playerDirection = new Vector2(playerControllerMap.Movement.x, playerControllerMap.Movement.y);
+
+        Transform selectableTarget = visibleTargets.Where(t => Vector2.Distance(playerPosition, t.position) < interactionDistance)
+                                                           .Where(t => Vector2.Angle(playerDirection, (new Vector2(t.position.x, t.position.y) - playerPosition).normalized) < interactionAngle)
+                                                           .OrderBy(t => Vector2.Angle(playerDirection, (new Vector2(t.position.x, t.position.y) - playerPosition).normalized))
+                                                           .FirstOrDefault();
+
+        if (selectableTarget != null) {
+            if (!_hasTargetSelected || selectableTarget.GetInstanceID() != _SelectedTarget.transform.GetInstanceID()) {
+                Material shader;
+                if (_hasTargetSelected) {
+                    shader = _SelectedTarget.GetComponent<SpriteRenderer>().material;
+                    shader.SetFloat("_Thickness", 0f);
                     Destroy(_instatiatedText);
-                    _instatiatedText = Instantiate(interactiveText);
-                    _instatiatedText.transform.SetParent(trans);
-                    // _instatiatedText.transform.parent = trans;
-                    _instatiatedText.transform.position = trans.position + new Vector3(13.5f,-2.7f,0f);
-                    _previousInteraction = hit.transform;
-                    _hasPreviousValue = true;
                 }
+
+                shader = selectableTarget.GetComponent<SpriteRenderer>().material;
+                shader.SetFloat("_Thickness", 5f);
+                Destroy(_instatiatedText);
+                _instatiatedText = Instantiate(interactiveText);
+                _instatiatedText.transform.SetParent(selectableTarget);
+                _instatiatedText.transform.position = selectableTarget.position + new Vector3(13.5f, -2.7f, 0f);
+                _SelectedTarget = selectableTarget;
+                _hasTargetSelected = true;
             }
-        }else if (_instatiatedText)
-        {
-            Material shader = _previousInteraction.GetComponent<SpriteRenderer>().material;
-            shader.SetFloat("_Thickness",0f);
+        }
+        else if (_hasTargetSelected) {
+            Material shader = _SelectedTarget.GetComponent<SpriteRenderer>().material;
+            shader.SetFloat("_Thickness", 0f);
             Destroy(_instatiatedText);
-            _hasPreviousValue = false;
+            _hasTargetSelected = false;
         }
     }
 
-    public Transform PreviousInteraction => _previousInteraction;
+    public void InteractWithTarget(GameObject player) {
+        if (HasTargetSelected) SelectedTarget.GetComponent<InteractableObject>().Interact(player);
+    }
 
-    public bool HasPreviousValue => _hasPreviousValue;
+    public Transform SelectedTarget => _SelectedTarget;
+
+    public bool HasTargetSelected => _hasTargetSelected;
 }

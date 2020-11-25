@@ -1112,9 +1112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionDistance: 1
-  interactionLayer:
-    serializedVersion: 2
-    m_Bits: 256
+  interactionAngle: 50
   interactiveText: {fileID: 5968220957823141551, guid: 484af2d07da5c4f4ba4392fe8395f035,
     type: 3}
 --- !u!70 &-2120274815647389100
