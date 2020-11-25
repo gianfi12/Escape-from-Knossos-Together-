@@ -436,13 +436,13 @@ public class RoomMaze : RoomAbstract
                     {
                         doorTransform.rotation *= Quaternion.Euler(0, 0, 90);
                         doorPosition = position + new Vector3Int(1, 0, 0);
-                        doorTransform.GetComponent<Door>().ClosingDirection=Direction.South;
+                        doorTransform.GetComponent<Doors>().ClosingDirection=Direction.South;
                     }
                     else
                     {
                         doorTransform.rotation *= Quaternion.Euler(0, 0, 180);
                         doorPosition = position + new Vector3Int(0, 1, 0);
-                        doorTransform.GetComponent<Door>().ClosingDirection=Direction.East;
+                        doorTransform.GetComponent<Doors>().ClosingDirection=Direction.East;
                     }
                     // ObjectInRoom entranceDoor = new ObjectInRoom(doorPosition, doorTransform);
                     // Object.Add(entranceDoor);
@@ -467,13 +467,13 @@ public class RoomMaze : RoomAbstract
                     {
                         doorTransform.rotation *= Quaternion.Euler(0, 0, 90);
                         doorPosition = position + new Vector3Int(1, 0, 0);
-                        doorTransform.GetComponent<Door>().ClosingDirection=Direction.South;
+                        doorTransform.GetComponent<Doors>().ClosingDirection=Direction.South;
                     }
                     else
                     {
                         doorTransform.rotation *= Quaternion.Euler(0, 0, 180);
                         doorPosition = position + new Vector3Int(0, 1, 0);
-                        doorTransform.GetComponent<Door>().ClosingDirection=Direction.East;
+                        doorTransform.GetComponent<Doors>().ClosingDirection=Direction.East;
                     }
                     // ObjectInRoom entranceDoor = new ObjectInRoom(doorPosition, doorTransform);
                     // Object.Add(entranceDoor);

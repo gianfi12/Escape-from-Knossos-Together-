@@ -1084,7 +1084,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isNPC: 0
-  viewRadius: 11
+  viewRadius: 13
   viewAngle: 360
   senseRadius: 0
   targetMask:
@@ -1094,7 +1094,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   visibleTargets: []
-  meshResolution: 1
+  meshResolution: 1.2
   edgeResolveIterations: 4
   edgeDistanceThreshold: 1
   viewMeshFilter: {fileID: 3473025674799170586}
