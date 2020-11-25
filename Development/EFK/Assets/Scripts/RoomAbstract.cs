@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.UI;
 
 public abstract class RoomAbstract : MonoBehaviour
 {
@@ -26,6 +28,11 @@ public abstract class RoomAbstract : MonoBehaviour
     protected int _lowestX;
     protected int _lowestY;
     
+    private List<GameObject> diaryComponents;
+    private PlayerControllerMap player;
+    [SerializeField] private List<GameObject> diaryText;
+    [SerializeField] private List<GameObject> diaryImage;
+    
     public int RequiredWidthSpace => _requiredWidthSpace;
 
     public int DisplacementX => _displacementX;
@@ -41,4 +48,17 @@ public abstract class RoomAbstract : MonoBehaviour
     public bool HasTwin => hasTwin;
 
     public RoomAbstract TwinRoom => twinRoom;
+
+    public List<GameObject> GetDiaryComponents()
+    {
+            diaryComponents.AddRange(diaryText);
+            diaryComponents.AddRange(diaryImage);
+            return diaryComponents;
+    }
+
+    public PlayerControllerMap Player
+    {
+        get => player;
+        set => player = value;
+    }
 }

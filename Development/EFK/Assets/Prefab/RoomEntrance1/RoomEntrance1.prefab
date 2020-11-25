@@ -701,6 +701,7 @@ Transform:
   - {fileID: 7355504908073805573}
   - {fileID: 5508786921141183486}
   - {fileID: 5200466322261959385}
+  - {fileID: 9205258744610657048}
   m_Father: {fileID: 7572846793304249979}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -789,6 +790,77 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
+--- !u!1 &5096049063845222180
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9205258744610657048}
+  - component: {fileID: 200237493588347003}
+  - component: {fileID: 432628285157202345}
+  m_Layer: 2
+  m_Name: RoomCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9205258744610657048
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5096049063845222180}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6949087959666398212}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &200237493588347003
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5096049063845222180}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 3.280299, y: 3.0167212}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 5.711305, y: 7.0334425}
+  m_EdgeRadius: 0
+--- !u!114 &432628285157202345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5096049063845222180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f885426ea200b6d40b68255fbccde17d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  room: {fileID: 3134405057706924811}
 --- !u!1 &5785708966915290603
 GameObject:
   m_ObjectHideFlags: 0
@@ -1542,6 +1614,9 @@ MonoBehaviour:
   twinRoom: {fileID: 0}
   doorExit: {fileID: 0}
   doorEntrance: {fileID: 0}
+  diaryText:
+  - {fileID: 1294902411931776137, guid: 037f20e031d3cc044872a48b2a904c27, type: 3}
+  diaryImage: []
   tilemapFloor: {fileID: 6300615789690446129}
   tilemapObject: {fileID: 8948515205563838396}
   tilemapExit: {fileID: 1883046730043625201}

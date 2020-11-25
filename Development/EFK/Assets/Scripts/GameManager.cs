@@ -7,6 +7,8 @@ using System.Linq;
 using System.Collections.Generic;
 using System;
 using UnityEngine.AI;
+using UnityEngine.Rendering;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviourPun
 {
@@ -40,11 +42,12 @@ public class GameManager : MonoBehaviourPun
             _levelMap.CreateMap();
             navMesh.GetComponent<NavMeshSurface2d>().BuildNavMesh();
             checkpointManager.builCheckpointList();
-        
+
             _playerInstance = Instantiate(playerPrefab).GetComponent<PlayerControllerMap>();
             _cameraInstance = Instantiate(mainCamera);
             _cameraInstance.m_Follow = _playerInstance.transform;
             _levelMap.PlacePlayer(_playerInstance, 1);
+            _playerInstance.SetGameManager(this);
         }
     }
 
@@ -56,4 +59,5 @@ public class GameManager : MonoBehaviourPun
         navMesh.GetComponent<NavMeshSurface2d>().BuildNavMesh();
         checkpointManager.builCheckpointList();
     }
+    
 }
