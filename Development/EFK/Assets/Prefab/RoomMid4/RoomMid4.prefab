@@ -2222,13 +2222,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f6c72b4ffba587e4a92e1d2fdbda94b8, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   assetsCollection: {fileID: 11400000, guid: 55d586d2096a3454bbdfe9f671b4eb18, type: 2}
   hasTwin: 0
   twinRoom: {fileID: 0}
   doorExit: {fileID: 0}
   doorEntrance: {fileID: 0}
+  diaryText:
+  - {fileID: 2095481766478864748, guid: a5be85b2a382ea640ad8d328640176f6, type: 3}
+  diaryImage: []
   tilemapFloor: {fileID: 8960462860841896913}
   tilemapObject: {fileID: 5079929792368495074}
   tilemapExit: {fileID: 3135656067988250238}
@@ -3114,8 +3117,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2778113893236710086}
-  - component: {fileID: 543389282482393375}
   - component: {fileID: 3307068600400710542}
+  - component: {fileID: 4512931181085408472}
   m_Layer: 2
   m_Name: RoomCollider
   m_TagString: Untagged
@@ -3135,10 +3138,23 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3546237382966230731}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!60 &543389282482393375
-PolygonCollider2D:
+--- !u!114 &3307068600400710542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3380459539152717348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f885426ea200b6d40b68255fbccde17d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  room: {fileID: 6727362201517843673}
+--- !u!61 &4512931181085408472
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -3150,7 +3166,7 @@ PolygonCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.15624523, y: -1.4454689}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -3160,28 +3176,9 @@ PolygonCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 3.7574334, y: 6.38785}
-      - {x: -7.00285, y: 6.295516}
-      - {x: -7.0718493, y: 1.3860332}
-      - {x: -4.955637, y: -3.9468985}
-      - {x: -0.0018987656, y: -4.001817}
-      - {x: 5.3427653, y: -3.9353}
-      - {x: 6.5705786, y: 2.1714833}
---- !u!114 &3307068600400710542
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3380459539152717348}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f885426ea200b6d40b68255fbccde17d, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
-  room: {fileID: 8992623809543891691}
+  serializedVersion: 2
+  m_Size: {x: 15.529982, y: 21.236565}
+  m_EdgeRadius: 0
 --- !u!1 &5035763682663810150
 GameObject:
   m_ObjectHideFlags: 0
@@ -3684,6 +3681,7 @@ Transform:
   m_Children:
   - {fileID: 4472365492592755044}
   - {fileID: 5931140570892006931}
+  - {fileID: 2778113893236710086}
   m_Father: {fileID: 4125543339111957005}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
