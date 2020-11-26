@@ -11,17 +11,19 @@ public class PlayerInteraction : MonoBehaviour
     private bool _hasPreviousValue = false;
     private GameObject _instatiatedText;
     private Collider2D _playerCollider;
+    private PlayerControllerMap playerControllerMap;
 
     private void Awake()
     {
         _playerCollider = transform.GetComponent<Collider2D>();
+        playerControllerMap = GetComponent<PlayerControllerMap>();
     }
 
     private void Update()
     {
-        Vector3 direction3D = GetComponent<PlayerControllerMap>().Movement;
+        Vector3 direction3D = playerControllerMap.Movement;
         Vector2 direction = new Vector2(direction3D.x, direction3D.y);
-        Bounds bounds = transform.GetComponent<Collider2D>().bounds;
+        Bounds bounds = _playerCollider.bounds;
         RaycastHit2D hit = Physics2D.CircleCast(bounds.center, bounds.extents.y/2, direction, interactionDistance, interactionLayer);
         if (hit)
         {
@@ -37,7 +39,7 @@ public class PlayerInteraction : MonoBehaviour
                     _instatiatedText = Instantiate(interactiveText);
                     _instatiatedText.transform.SetParent(trans);
                     // _instatiatedText.transform.parent = trans;
-                    _instatiatedText.transform.position = trans.position + new Vector3(13.5f,-2.7f,0f);
+                    _instatiatedText.transform.position = trans.position + new Vector3(13.5f,-2.4f,0f);
                     _previousInteraction = hit.transform;
                     _hasPreviousValue = true;
                 }

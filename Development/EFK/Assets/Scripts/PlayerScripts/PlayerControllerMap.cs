@@ -12,6 +12,7 @@ public class PlayerControllerMap : MonoBehaviour
 
     private GameManager gameManager;
     [SerializeField] private Text diaryText;
+    [SerializeField] private List<ItemSlot> slots;
     private RoomAbstract roomManager;
     private List<GameObject> diaryComponents;
     
@@ -72,5 +73,10 @@ public class PlayerControllerMap : MonoBehaviour
         diaryComponents = new List<GameObject>();
         diaryComponents = roomManager.GetDiaryComponents();
         BuildCurrentDiary();
+    }
+
+    public ItemSlot GetFirstFreeSlot()
+    {
+        return slots.Find(s => s.GetIsFree());
     }
 }
