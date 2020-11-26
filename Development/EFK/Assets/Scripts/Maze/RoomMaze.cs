@@ -48,6 +48,19 @@ public class RoomMaze : RoomAbstract
         _lowestY = -1;
     }
 
+    private void AddCollider()
+    {
+        GameObject collider = new GameObject("Collider");
+        collider.transform.SetParent(_mazeTransform);
+        BoxCollider2D boxCollider2D = collider.AddComponent<BoxCollider2D>();
+        RoomCollider roomCollider = collider.AddComponent<RoomCollider>();
+        roomCollider.Room = this;
+        collider.transform.position = new Vector3(_sizeX/2+_displacementX+1.5f,_sizeY/2+_displacementY+1.5f,0f);
+        boxCollider2D.isTrigger = true;
+        boxCollider2D.size = new Vector2(_sizeX+1,_sizeY+1);
+        
+    }
+
     private void SpawnAgent()
     {
         for (int i = 0; i < numberOfGuard; i++)
@@ -55,8 +68,6 @@ public class RoomMaze : RoomAbstract
             Tile floor = getRandomFloor();
             Transform agentTransform = Instantiate(guardPrefab).transform;
             Vector3 agentPosition=floor.Coordinates;
-            // ObjectInRoom wardrobe = new ObjectInRoom(agentPosition, agentTransform);
-            // Object.Add(wardrobe);
             SpawnObjectInRoom(agentPosition,agentTransform);
         }
     }
@@ -102,12 +113,8 @@ public class RoomMaze : RoomAbstract
                     wardrobeTransform.rotation *= Quaternion.Euler(0, 0, 90);
                     break;
             }
-            if(randomDirection==Direction.North)
-            {
-                // ObjectInRoom wardrobe = new ObjectInRoom(wardrobePosition, wardrobeTransform);
-                // Object.Add(wardrobe);
-                SpawnObjectInRoom(wardrobePosition,wardrobeTransform);
-            }
+            
+            SpawnObjectInRoom(wardrobePosition,wardrobeTransform);
         }
     }
 
@@ -553,5 +560,6 @@ public class RoomMaze : RoomAbstract
             gameObject.transform.position = objectInRoom.Coordinates;
             gameObject.SetActive(true);
         }
+        AddCollider();
     }
 }
