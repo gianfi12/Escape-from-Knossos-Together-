@@ -643,7 +643,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionDistance: 1
   interactionAngle: 50
-  interactiveText: {fileID: 5968220957823141551, guid: 484af2d07da5c4f4ba4392fe8395f035,
+  interactiveText: {fileID: 369923057134520842, guid: 605d7cb29de3b0d4590a4a08b1b053b9,
     type: 3}
 --- !u!70 &-2120274815647389100
 CapsuleCollider2D:

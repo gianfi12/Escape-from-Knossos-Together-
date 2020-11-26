@@ -12,18 +12,17 @@ public class PlayerInteraction : MonoBehaviour
     private Transform _SelectedTarget;
     private bool _hasTargetSelected = false;
     private GameObject _instatiatedText;
-    private Collider2D _playerCollider;
     private PlayerControllerMap playerControllerMap;
 
     private void Awake()
     {
-        _playerCollider = transform.GetComponent<Collider2D>();
         playerControllerMap = GetComponent<PlayerControllerMap>();
+        _instatiatedText = Instantiate(interactiveText);
+        _instatiatedText.SetActive(false);
     }
 
 
     public void SelectInteractableTarget(List<Transform> visibleTargets) {
-        PlayerControllerMap playerControllerMap = GetComponent<PlayerControllerMap>();
         Vector2 playerPosition = new Vector2(playerControllerMap.transform.position.x, playerControllerMap.transform.position.y);
         Vector2 playerDirection = new Vector2(playerControllerMap.Movement.x, playerControllerMap.Movement.y);
 
@@ -38,15 +37,15 @@ public class PlayerInteraction : MonoBehaviour
                 if (_hasTargetSelected) {
                     shader = _SelectedTarget.GetComponent<SpriteRenderer>().material;
                     shader.SetFloat("_Thickness", 0f);
-                    Destroy(_instatiatedText);
+                    _instatiatedText.SetActive(false);
                 }
-
+                
                 shader = selectableTarget.GetComponent<SpriteRenderer>().material;
                 shader.SetFloat("_Thickness", 5f);
-                Destroy(_instatiatedText);
-                _instatiatedText = Instantiate(interactiveText);
                 _instatiatedText.transform.SetParent(selectableTarget);
-                _instatiatedText.transform.position = selectableTarget.position + new Vector3(13.5f, -2.7f, 0f);
+                _instatiatedText.transform.position =
+                    selectableTarget.GetComponent<InteractableObject>().GetTopRight().position;
+                _instatiatedText.SetActive(true);
                 _SelectedTarget = selectableTarget;
                 _hasTargetSelected = true;
             }
@@ -54,7 +53,7 @@ public class PlayerInteraction : MonoBehaviour
         else if (_hasTargetSelected) {
             Material shader = _SelectedTarget.GetComponent<SpriteRenderer>().material;
             shader.SetFloat("_Thickness", 0f);
-            Destroy(_instatiatedText);
+            _instatiatedText.SetActive(false);
             _hasTargetSelected = false;
         }
     }
