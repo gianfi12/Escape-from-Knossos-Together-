@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class ObjectInRoom
+public class ObjectInRoom: MonoBehaviour
 {
     private Vector3 _coordinates;
     private Transform _transform;
@@ -18,4 +18,13 @@ public class ObjectInRoom
     }
 
     public Transform ObjectTransform => _transform;
+
+    public void resetAndPlaceObjectInRoom(Vector3 coordinates)
+    {
+        GameObject gameObject = Instantiate(_transform.gameObject);
+        gameObject.name = _transform.gameObject.name;
+        gameObject.transform.position = _coordinates;
+        gameObject.SetActive(true);
+        _transform = gameObject.transform;
+    }
 }
