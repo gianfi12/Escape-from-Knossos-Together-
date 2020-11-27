@@ -24,6 +24,7 @@ public class LineOfSight : MonoBehaviour
     private Mesh viewMesh;
 
     private AgentController npcController;
+    private PlayerInteraction playerInteractionController;
 
     public float movementAngleOffset; 
 
@@ -51,13 +52,13 @@ public class LineOfSight : MonoBehaviour
         }
     }
 
-
     private void Start() {
         viewMesh = new Mesh();
         viewMesh.name = "View Mesh";
         viewMeshFilter.mesh = viewMesh;
 
         if (isNPC) npcController = GetComponent<AgentController>();
+        else playerInteractionController = GetComponent<PlayerInteraction>();
 
         StartCoroutine("FindTargetsWithDelay", 0.1f);
     }
@@ -98,6 +99,9 @@ public class LineOfSight : MonoBehaviour
         {
             if (visibleTargets.First().GetComponent<PlayerInput>()._canMove)
                 npcController.SeekPlayer(visibleTargets.First().position);
+        }
+        else if(!isNPC){
+            playerInteractionController.SelectInteractableTarget(visibleTargets);
         }
     }
 

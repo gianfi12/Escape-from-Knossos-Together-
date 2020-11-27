@@ -26,7 +26,8 @@ public class Wardrobe : InteractableObject
             _playerTransform = player.transform;
 
         }
-        if(_playerInput.CanMove)
+
+        if(!_hasBeenActivated && _playerInput.CanMove)
         {
             _hasBeenActivated = true;
             _playerInput.CanMove = false;
@@ -36,12 +37,7 @@ public class Wardrobe : InteractableObject
             _playerCollider.enabled = false;
             _timeOfActivation = Time.time;
         }
-    }
-
-    private void Update()
-    {
-        if (_hasBeenActivated && Input.GetButtonDown("Interact") && (Time.time-_timeOfActivation)>minTimeInWardrobe)
-        {
+        else if(_hasBeenActivated && (Time.time - _timeOfActivation) > minTimeInWardrobe) {
             _hasBeenActivated = false;
             _playerInput.CanMove = true;
             _playerTransform.position = _previousPlayerPosition;

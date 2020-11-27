@@ -3,6 +3,7 @@
 public abstract class InteractableObject : MonoBehaviour
 {
     protected bool _hasBeenActivated;
+    [SerializeField] private Transform topRight;
 
     public bool HasBeenActivated
     {
@@ -11,5 +12,10 @@ public abstract class InteractableObject : MonoBehaviour
     }
 
     public abstract void Interact(GameObject player);
+
+    public Transform GetTopRight()
+    {
+        return topRight;
+    }
     
 }

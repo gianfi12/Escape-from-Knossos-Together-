@@ -67,13 +67,6 @@ public class PlayerInput : MonoBehaviourPun
                 _lastDir = SetDirection();
             }
         }
-
-
-        if (Input.GetButtonDown("Interact") && _playerInteraction.HasPreviousValue)
-        {
-            InteractableObject interactableObject = _playerInteraction.PreviousInteraction.GetComponent<InteractableObject>();
-            interactableObject.Interact(transform.gameObject);
-        }
     }
 
     private void Update()
@@ -136,6 +129,10 @@ public class PlayerInput : MonoBehaviourPun
                 diaryPanel.SetActive(false);
                 diaryImage.SetActive(true);
             }
+        }
+
+        if (Input.GetButtonDown("Interact")) {
+            _playerInteraction.InteractWithTarget(transform.gameObject);
         }
     }
 
