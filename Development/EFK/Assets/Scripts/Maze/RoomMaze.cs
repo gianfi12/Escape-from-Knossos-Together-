@@ -560,7 +560,4 @@ public class RoomMaze : RoomAbstract
         AddCollider();
     }
 
-    //This is a list with an ObjectInRoom that represents each objects that has been instantiated in the room, as long as the coordinates that you can use to find it in the room and the trasnform of the instantiated object
-    //TODO if needed I can return directly a list with transsform or gameobject instead of the objectinroom
-    public List<ObjectInRoom> ListOfObjectInRooms => Object;
 }
