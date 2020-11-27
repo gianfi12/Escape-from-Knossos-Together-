@@ -16,15 +16,20 @@ public class ObjectInRoom: MonoBehaviour
         get => _coordinates;
         set => _coordinates = value;
     }
-
-    public Transform ObjectTransform => _transform;
-
+    
     public void resetAndPlaceObjectInRoom(Vector3 coordinates)
     {
+        _coordinates = coordinates;
         GameObject gameObject = Instantiate(_transform.gameObject);
         gameObject.name = _transform.gameObject.name;
         gameObject.transform.position = _coordinates;
         gameObject.SetActive(true);
         _transform = gameObject.transform;
+    }
+
+    public Transform objectTransform
+    {
+        get => _transform;
+        set => _transform = value;
     }
 }
