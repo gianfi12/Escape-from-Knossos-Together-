@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SingleDoor : MonoBehaviour {
     [SerializeField] private float rotation;
-    private bool isOpen;
+    private bool isOpen=true;
 
     public void Close()
     {
