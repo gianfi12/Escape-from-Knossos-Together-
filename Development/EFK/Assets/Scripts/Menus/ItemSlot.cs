@@ -20,14 +20,12 @@ public class ItemSlot : MonoBehaviour, IDropHandler
         isFree = true;
     }
 
-    
-    
     public void OnDrop(PointerEventData eventData)
     {
         if (eventData.pointerDrag != null && isFree)
         {
             DraggableUI draggableObject = eventData.pointerDrag.GetComponent<DraggableUI>();
-            draggableObject.SetIsOnValidPosition();
+            draggableObject.GetMySlot().SetIsFree();
             inventoryImage.AddImage(draggableObject.GetImage().sprite,this);
             draggableObject.GetImage().enabled = false;
             draggableObject.SetMySlot(this);

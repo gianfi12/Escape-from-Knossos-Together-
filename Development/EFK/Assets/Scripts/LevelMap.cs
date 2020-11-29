@@ -12,7 +12,6 @@ public class LevelMap : MonoBehaviourPun
     private Tilemap _tilemapFloor;
     private Tilemap _tilemapCorridorFloor;
     private Tilemap _tilemapWall;
-    private Tilemap _tilemapObject;
     private Tilemap _tilemapDecoration;
     private Grid _grid;
     [SerializeField] private RoomCollection roomCollection;
@@ -93,11 +92,11 @@ public class LevelMap : MonoBehaviourPun
         navMeshModifierWall.overrideArea = true;
         navMeshModifierWall.area = 1; //1 means not walkable
 
-        var goObject = new GameObject("TilemapObject");
-        goObject.transform.SetParent(_grid.gameObject.transform);
-        _tilemapObject = goObject.AddComponent<Tilemap>();
-        TilemapRenderer renderer =  goObject.AddComponent<TilemapRenderer>();
-        renderer.sortingLayerName = "Object";
+        // var goObject = new GameObject("TilemapObject");
+        // goObject.transform.SetParent(_grid.gameObject.transform);
+        // _tilemapObject = goObject.AddComponent<Tilemap>();
+        // TilemapRenderer renderer =  goObject.AddComponent<TilemapRenderer>();
+        // renderer.sortingLayerName = "Object";
 
         NavMeshModifier navMeshModifierObject = goWall.AddComponent<NavMeshModifier>();
         navMeshModifierObject.overrideArea = true;
@@ -452,7 +451,7 @@ public class LevelMap : MonoBehaviourPun
         {
             Vector3Int coordinates = _selectedRooms.IndexOf(room)==0 ? new Vector3Int(0,0,0) : RandomCoordinates(room,_selectedRooms[_selectedRooms.IndexOf(room)-1]);
             //while (!FreeSpace(room, coordinates = RandomCoordinates())); //start placing the starting room
-            room.PlaceRoom(_tilemapFloor,_tilemapWall,_tilemapObject,_tilemapDecoration,coordinates);
+            room.PlaceRoom(_tilemapFloor,_tilemapWall,_tilemapDecoration,coordinates);
         }
     }
 
@@ -515,16 +514,5 @@ public class LevelMap : MonoBehaviourPun
             player.SetLocation(
                 _tilemapFloor.layoutGrid.CellToWorld(_selectedRooms[_selectedRooms.Count - 1].Spawn[0].Coordinates) +
                 new Vector3Int(1, 1, 0));
-    }
-
-    void getTileOfRoom(int index,List<Tile> floor,List<Tile> wall,List<ObjectInRoom> objects,List<Tile> decorations,List<Tile> entrance,List<Tile> exit)
-    {
-        RoomAbstract selectedRoom = _selectedRooms[index];
-        floor = selectedRoom.Floor;
-        wall = selectedRoom.Wall;
-        objects = selectedRoom.Object;
-        decorations = selectedRoom.Decoration;
-        entrance = selectedRoom.Entrance;
-        exit = selectedRoom.Exit;
     }
 }

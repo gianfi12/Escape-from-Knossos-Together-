@@ -55,7 +55,7 @@ public class PlayerInput : MonoBehaviourPun
                 if (Math.Abs(_movement.x) > Double.Epsilon || Math.Abs(_movement.y) > Double.Epsilon)
                 {
                     _playerController.Move(new Vector3(_movement.x, _movement.y, 0f));
-                    _lastDir = SetDirection();
+                    //_lastDir = SetDirection();
                 }
             }
         }
@@ -64,7 +64,7 @@ public class PlayerInput : MonoBehaviourPun
             if (Math.Abs(_movement.x) > Double.Epsilon || Math.Abs(_movement.y) > Double.Epsilon)
             {
                 _playerController.Move(new Vector3(_movement.x, _movement.y, 0f));
-                _lastDir = SetDirection();
+                //_lastDir = SetDirection();
             }
         }
     }
@@ -85,7 +85,7 @@ public class PlayerInput : MonoBehaviourPun
         _animator.SetFloat("Speed", _movement.SqrMagnitude());
         _animator.SetFloat("Horizontal", _movement.x);
         _animator.SetFloat("Vertical", _movement.y);
-        _animator.SetFloat("Direction", _lastDir);
+        //_animator.SetFloat("Direction", _lastDir);
 
         try {
             if (photonView.IsMine) {

@@ -8,8 +8,6 @@ public class Tile
 {
     private TileBase _tileBase;
     private Vector3Int _coordinates;
-    private Color _color;
-    private bool _hasColor;
 
     public Tile(TileBase tileBase, Vector3Int coordinates)
     {
@@ -26,19 +24,5 @@ public class Tile
     {
         get => _coordinates;
         set => _coordinates = value;
-    }
-
-    public Color Color
-    {
-        get => _color;
-        set {
-            _color = value;
-            _hasColor = true;
-        }
-    }
-
-    public bool HasColor()
-    {
-        return _hasColor;
     }
 }

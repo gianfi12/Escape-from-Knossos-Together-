@@ -11,7 +11,6 @@ public class DraggableUI : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
     private RectTransform rectTransform;
     private Vector3 originalPosition;
     private CanvasGroup canvasGroup;
-    private bool isOnValidPosition;
     private Image image;
     private ItemSlot mySlot;
 
@@ -20,7 +19,6 @@ public class DraggableUI : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
         rectTransform = GetComponent<RectTransform>();
         originalPosition = transform.position;
         canvasGroup = GetComponent<CanvasGroup>();
-        isOnValidPosition = true;
         image = GetComponent<Image>();
     }
 
@@ -34,30 +32,27 @@ public class DraggableUI : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
         mySlot = slot;
     }
     
+    public ItemSlot GetMySlot()
+    {
+        return mySlot;
+    }
+    
     public void OnBeginDrag(PointerEventData eventData)
     {
         canvasGroup.alpha = .6f;
         canvasGroup.blocksRaycasts = false;
-        isOnValidPosition = false;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
         canvasGroup.alpha = 1f;
         canvasGroup.blocksRaycasts = true;
-        if (!isOnValidPosition) transform.localPosition = Vector3.zero;
+        transform.localPosition = Vector3.zero;
     }
 
     public void OnDrag(PointerEventData eventData)
     {
         rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
-    }
-
-    public void SetIsOnValidPosition()
-    {
-        isOnValidPosition = true;
-        mySlot.SetIsFree();
-        transform.position = originalPosition;
     }
 
     public void AddImage(Sprite sprite, ItemSlot slot)
