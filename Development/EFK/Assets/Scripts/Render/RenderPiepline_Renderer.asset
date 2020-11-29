@@ -91,7 +91,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Active: 1
   settings:
-    passTag: PlayerOnTop
+    passTag: Player and UI on top
     Event: 550
     filterSettings:
       RenderQueueType: 1

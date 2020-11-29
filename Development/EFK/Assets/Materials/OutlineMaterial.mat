@@ -21,7 +21,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _FrameTex:
-        m_Texture: {fileID: 2800000, guid: 80644f8400ff5294a837573bd72f5424, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -44,4 +44,4 @@ Material:
     - _GradientOutline1: {r: 1, g: 1, b: 1, a: 1}
     - _GradientOutline2: {r: 1, g: 1, b: 1, a: 1}
     - _ImageOutline: {r: 1, g: 1, b: 1, a: 1}
-    - _SolidOutline: {r: 1, g: 1, b: 1, a: 1}
+    - _SolidOutline: {r: 2.9960785, g: 2.9960785, b: 2.9960785, a: 1}

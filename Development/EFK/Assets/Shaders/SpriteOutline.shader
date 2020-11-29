@@ -15,11 +15,11 @@
 		[KeywordEnum(Inside under sprite, Inside over sprite, Outside)] _OutlinePosition("Outline Position (Frame Only)", Float) = 0
 
 		[Header(Solid Settings)]
-		_SolidOutline ("Outline Color Base", Color) = (1,1,1,1)
+		[HDR]_SolidOutline ("Outline Color Base", Color) = (1,1,1,1)
 
 		[Header(Gradient Settings)]
-		_GradientOutline1 ("Outline Color 1", Color) = (1,1,1,1)
-		_GradientOutline2 ("Outline Color 2", Color) = (1,1,1,1)
+		[HDR]_GradientOutline1 ("Outline Color 1", Color) = (1,1,1,1)
+		[HDR]_GradientOutline2 ("Outline Color 2", Color) = (1,1,1,1)
         _Weight ("Weight", Range (0, 1)) = 0.5
         _Angle ("Gradient Angle (General gradient Only)", float) = 45
 		//[KeywordEnum(General, Frame directed)] _FrameMode("Frame Mode (Frame Only)", Float) = 0
