@@ -87,15 +87,7 @@ public class RoomPrefab : RoomAbstract
             else
                 tilemapFloor.SetTile(tile.Coordinates,tile.TileBase);
         }
-
-        // foreach (ObjectInRoom objectInRoom in Object)
-        // {
-        //     // GameObject gameObject = Instantiate(objectInRoom.ObjectTransform.gameObject);
-        //     // objectInRoom.Coordinates = objectInRoom.Coordinates - new Vector3Int(_lowestX, _lowestY, 0) + coordinates;
-        //     // gameObject.name = objectInRoom.ObjectTransform.gameObject.name;
-        //     // gameObject.transform.position = objectInRoom.Coordinates;
-        //     objectInRoom.resetAndPlaceObjectInRoom(objectInRoom.Coordinates - new Vector3Int(_lowestX, _lowestY, 0) + coordinates);
-        // }
+        
         Transform room = Instantiate(gameObject).transform;
         Transform child;
         for (int i = 0; i < room.transform.childCount; i++)
@@ -105,7 +97,8 @@ public class RoomPrefab : RoomAbstract
                 Destroy(child.gameObject);
             }
         }
-        room.position = coordinates;
+        
+        room.localPosition = coordinates +(transform.position - new Vector3(_lowestX,_lowestY,0));
 
     }
 }
