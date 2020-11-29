@@ -30,7 +30,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8552575005341084199}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1839735485 &389126262511612857
 Tilemap:
@@ -171,7 +171,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8552575005341084199}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1839735485 &5428976642581793458
 Tilemap:
@@ -355,10 +355,10 @@ Transform:
   - {fileID: 1426088448844251649}
   - {fileID: 1877565192279325404}
   - {fileID: 7633428405690627356}
-  - {fileID: 602296475499698691}
   - {fileID: 8290898228804466938}
   - {fileID: 3274122786408491443}
   - {fileID: 7938469631658767784}
+  - {fileID: 602296475499698691}
   m_Father: {fileID: 1445744963723494004}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1367,7 +1367,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 8234564122723864118}
+  - {fileID: 4248645621294736036}
   - {fileID: 6412359046679997992}
   m_Father: {fileID: 8552575005341084199}
   m_RootOrder: 2
@@ -1487,7 +1487,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8552575005341084199}
-  m_RootOrder: 3
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1839735485 &8058270273651568892
 Tilemap:
@@ -1677,7 +1677,6 @@ MonoBehaviour:
   - {fileID: 5131558726448639006, guid: 7a64b67efa31d154e8d6eded7fe69b89, type: 3}
   diaryImage: []
   tilemapFloor: {fileID: 1113330203571674640}
-  tilemapObject: {fileID: 6572842005731971141}
   tilemapExit: {fileID: 5428976642581793458}
   tilemapEntrance: {fileID: 8058270273651568892}
   tilemapWall: {fileID: 4717259973382526260}
@@ -1713,7 +1712,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8552575005341084199}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1839735485 &6249444363282643557
 Tilemap:
@@ -2651,7 +2650,7 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
---- !u!1001 &2833041943020072806
+--- !u!1001 &8061945248669303796
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -2720,9 +2719,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43f9529aa0a00ca4fb6708de1fd289d1, type: 3}
---- !u!4 &8234564122723864118 stripped
+--- !u!4 &4248645621294736036 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6131634210749784400, guid: 43f9529aa0a00ca4fb6708de1fd289d1,
     type: 3}
-  m_PrefabInstance: {fileID: 2833041943020072806}
+  m_PrefabInstance: {fileID: 8061945248669303796}
   m_PrefabAsset: {fileID: 0}
