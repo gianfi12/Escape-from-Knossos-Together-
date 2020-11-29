@@ -566,13 +566,22 @@ public class RoomMaze : RoomAbstract
         Wall.Add(tile);
     }
     
-    public override void PlaceRoom(Tilemap tilemapFloor, Tilemap tilemapWall, Tilemap tilemapDecoration, Vector3Int coordinates) 
+    public override void PlaceObject(Vector3Int coordinates)
     {
         _displacementX = coordinates.x;
         _displacementY = coordinates.y;
+        
+                
+        _mazeTransform.position = coordinates+ new Vector3Int(1,1,0);
+        AddCollider();
+    }
+    
+    
+    public override void PlaceRoom(Tilemap tilemapFloor, Tilemap tilemapWall, Tilemap tilemapDecoration) 
+    {
         foreach (var tile in TileList)
         {
-            tile.Coordinates = tile.Coordinates - new Vector3Int(_lowestX, _lowestY, 0) + coordinates;
+            tile.Coordinates = tile.Coordinates - new Vector3Int(_lowestX, _lowestY, 0) + new Vector3Int(_displacementX,_displacementY,0);
             if (Wall.Contains(tile))
                 tilemapWall.SetTile(tile.Coordinates, tile.TileBase);
             else
@@ -580,13 +589,7 @@ public class RoomMaze : RoomAbstract
                 tilemapFloor.SetTile(tile.Coordinates, tile.TileBase);
             }
         }
-        // foreach (ObjectInRoom objectInRoom in Object)
-        // {
-        //     objectInRoom.resetAndPlaceObjectInRoom(objectInRoom.Coordinates - new Vector3Int(_lowestX, _lowestY, 0) + coordinates);
-        //
-        // }
-        _mazeTransform.position = coordinates+ new Vector3Int(1,1,0);
-        AddCollider();
+
     }
 
     private void removeOverlappingWallsAndFloor()

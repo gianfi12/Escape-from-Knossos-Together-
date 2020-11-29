@@ -42,7 +42,8 @@ public abstract class RoomAbstract : MonoBehaviour
 
     public abstract void Generate(int seed);
 
-    public abstract void PlaceRoom(Tilemap tilemapFloor, Tilemap tilemapWall,Tilemap tilemapDecoration, Vector3Int coordinates);
+    public abstract void PlaceRoom(Tilemap tilemapFloor, Tilemap tilemapWall,Tilemap tilemapDecoration);
+    public abstract void PlaceObject(Vector3Int coordinates);
 
     public bool HasTwin => hasTwin;
 

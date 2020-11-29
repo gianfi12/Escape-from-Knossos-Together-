@@ -72,22 +72,13 @@ public class RoomPrefab : RoomAbstract
             }
         }
     }
-    
-    public override void PlaceRoom(Tilemap tilemapFloor, Tilemap tilemapWall,Tilemap tilemapDecoration, Vector3Int coordinates) 
+
+    public override void PlaceObject(Vector3Int coordinates)
     {
         _displacementX = coordinates.x;
         _displacementY = coordinates.y;
-        foreach (var tile in TileList)
-        {
-            tile.Coordinates = tile.Coordinates - new Vector3Int(_lowestX,_lowestY,0) + coordinates; 
-            if (Wall.Contains(tile)) 
-                tilemapWall.SetTile(tile.Coordinates,tile.TileBase);
-            else if(Decoration.Contains(tile))
-                tilemapDecoration.SetTile(tile.Coordinates,tile.TileBase);
-            else
-                tilemapFloor.SetTile(tile.Coordinates,tile.TileBase);
-        }
         
+                
         Transform room = Instantiate(gameObject).transform;
         Transform child;
         for (int i = 0; i < room.transform.childCount; i++)
@@ -99,6 +90,23 @@ public class RoomPrefab : RoomAbstract
         }
         
         room.localPosition = coordinates +(transform.position - new Vector3(_lowestX,_lowestY,0));
-
     }
+
+    public override void PlaceRoom(Tilemap tilemapFloor, Tilemap tilemapWall,Tilemap tilemapDecoration) 
+    {
+
+        foreach (var tile in TileList)
+        {
+            tile.Coordinates = tile.Coordinates - new Vector3Int(_lowestX,_lowestY,0) + new Vector3Int(_displacementX,_displacementY,0); 
+            if (Wall.Contains(tile)) 
+                tilemapWall.SetTile(tile.Coordinates,tile.TileBase);
+            else if(Decoration.Contains(tile))
+                tilemapDecoration.SetTile(tile.Coordinates,tile.TileBase);
+            else
+                tilemapFloor.SetTile(tile.Coordinates,tile.TileBase);
+        }
+        
+    }
+    
+    
 }

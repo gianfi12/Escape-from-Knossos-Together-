@@ -45,8 +45,23 @@ public class LevelMap : MonoBehaviourPun
         RoomGeneration();
         RoomPlacement();
         RoomConnect();
+        AddNavMesh();
 
 
+    }
+
+    private void AddNavMesh() 
+    {
+        NavMeshModifier navMeshModifierFloor = _tilemapFloor.gameObject.AddComponent<NavMeshModifier>();
+        navMeshModifierFloor.overrideArea = true;
+        navMeshModifierFloor.area = 0; //0 means walkable
+        NavMeshModifier navMeshModifierWall = _tilemapWall.gameObject.AddComponent<NavMeshModifier>();
+        navMeshModifierWall.overrideArea = true;
+        navMeshModifierWall.area = 1; //1 means not walkable
+        NavMeshModifier navMeshModifierDecoration = _tilemapDecoration.gameObject.AddComponent<NavMeshModifier>();
+        navMeshModifierDecoration.overrideArea = true;
+        navMeshModifierDecoration.area = 1; //1 means not walkable
+        
     }
 
     [PunRPC]
@@ -73,10 +88,7 @@ public class LevelMap : MonoBehaviourPun
         goFloor.transform.SetParent(_grid.gameObject.transform);
         _tilemapFloor = goFloor.AddComponent<Tilemap>();
         goFloor.AddComponent<TilemapRenderer>();
-
-        NavMeshModifier navMeshModifierFloor = goFloor.AddComponent<NavMeshModifier>();
-        navMeshModifierFloor.overrideArea = true;
-        navMeshModifierFloor.area = 0; //0 means walkable
+        
 
         var goWall = new GameObject("TilemapWall");
         goWall.transform.SetParent(_grid.gameObject.transform);
@@ -88,9 +100,7 @@ public class LevelMap : MonoBehaviourPun
         goWall.AddComponent<CompositeCollider2D>();
         goWall.GetComponent<TilemapCollider2D>().usedByComposite = true;
 
-        NavMeshModifier navMeshModifierWall = goWall.AddComponent<NavMeshModifier>();
-        navMeshModifierWall.overrideArea = true;
-        navMeshModifierWall.area = 1; //1 means not walkable
+
 
         // var goObject = new GameObject("TilemapObject");
         // goObject.transform.SetParent(_grid.gameObject.transform);
@@ -117,10 +127,6 @@ public class LevelMap : MonoBehaviourPun
         rigidbody2DDecoration.bodyType = RigidbodyType2D.Static;
         goDecoration.AddComponent<CompositeCollider2D>();
         goDecoration.GetComponent<TilemapCollider2D>().usedByComposite = true;
-        
-        NavMeshModifier navMeshModifierDecoration = goDecoration.AddComponent<NavMeshModifier>();
-        navMeshModifierDecoration.overrideArea = true;
-        navMeshModifierDecoration.area = 1; //1 means not walkable
     }
 
     private void RoomConnect()
@@ -451,8 +457,13 @@ public class LevelMap : MonoBehaviourPun
         {
             Vector3Int coordinates = _selectedRooms.IndexOf(room)==0 ? new Vector3Int(0,0,0) : RandomCoordinates(room,_selectedRooms[_selectedRooms.IndexOf(room)-1]);
             //while (!FreeSpace(room, coordinates = RandomCoordinates())); //start placing the starting room
-            room.PlaceRoom(_tilemapFloor,_tilemapWall,_tilemapDecoration,coordinates);
+            room.PlaceObject(coordinates);
         }
+        foreach (RoomAbstract room in _selectedRooms)
+        {
+            room.PlaceRoom(_tilemapFloor,_tilemapWall,_tilemapDecoration);
+        }
+        
     }
 
     private Vector3Int RandomCoordinates(RoomAbstract nextRoom,RoomAbstract previousRoom)
