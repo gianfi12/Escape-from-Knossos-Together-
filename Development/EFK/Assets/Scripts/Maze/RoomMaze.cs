@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class RoomMaze : RoomAbstract
@@ -44,9 +45,42 @@ public class RoomMaze : RoomAbstract
         GenerateWall();
         InsertWardrobe();
         SpawnAgent();
+        removeOverlappingWallsAndFloor();
+        AddDiaryMap();
 
         _lowestX = -1;//these are due to the presence of the wall
         _lowestY = -1;
+    }
+
+    private GameObject AddDiaryMap()
+    {
+        GameObject textGameObject = new GameObject();
+        Text text = textGameObject.AddComponent<Text>();
+        String returnedString = "";
+        for (int i = 0; i < _sizeX+2; i++)
+        {
+            for (int j = 0; j < _sizeY+2; j++)
+            {
+                if (Wall.Where(e => e.Coordinates == new Vector3Int(i, j, 0)).Count() > 0)
+                {
+                    returnedString += "x";
+                }
+                else
+                    returnedString += " ";
+            }
+
+            returnedString += "\n";
+        }
+
+        text.text = returnedString;
+        return textGameObject;
+    }
+    
+    
+    public override List<GameObject> GetDiaryComponents()
+    {
+        diaryComponents.Add(AddDiaryMap());
+        return diaryComponents;
     }
 
     private void AddCollider()
@@ -536,7 +570,6 @@ public class RoomMaze : RoomAbstract
     {
         _displacementX = coordinates.x;
         _displacementY = coordinates.y;
-        removeOverlappingWallsAndFloor();
         foreach (var tile in TileList)
         {
             tile.Coordinates = tile.Coordinates - new Vector3Int(_lowestX, _lowestY, 0) + coordinates;

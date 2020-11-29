@@ -27,8 +27,8 @@ public abstract class RoomAbstract : MonoBehaviour
     protected int _lowestX;
     protected int _lowestY;
     
-    private List<GameObject> diaryComponents;
-    private PlayerControllerMap player;
+    protected List<GameObject> diaryComponents;
+    protected PlayerControllerMap player;
     [SerializeField] private List<GameObject> diaryText;
     [SerializeField] private List<GameObject> diaryImage;
     
@@ -48,7 +48,7 @@ public abstract class RoomAbstract : MonoBehaviour
 
     public RoomAbstract TwinRoom => twinRoom;
 
-    public List<GameObject> GetDiaryComponents()
+    public virtual List<GameObject> GetDiaryComponents()
     {
             diaryComponents.AddRange(diaryText);
             diaryComponents.AddRange(diaryImage);
