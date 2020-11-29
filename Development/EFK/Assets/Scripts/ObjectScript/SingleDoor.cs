@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SingleDoor : MonoBehaviour
-{
+public class SingleDoor : MonoBehaviour {
     [SerializeField] private float rotation;
-    private bool isOpen = true;
+    private bool isOpen=true;
+
     public void Close()
     {
         if(isOpen)
@@ -17,7 +17,7 @@ public class SingleDoor : MonoBehaviour
 
     public void Open()
     {
-        if(!isOpen)
+        if (!isOpen)
         {
             transform.rotation *= Quaternion.Euler(0, 0, -rotation);
             isOpen = true;

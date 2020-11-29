@@ -554,12 +554,10 @@ public class RoomMaze : RoomAbstract
         }
         foreach (ObjectInRoom objectInRoom in Object)
         {
-            GameObject gameObject = Instantiate(objectInRoom.ObjectTransform.gameObject);
-            objectInRoom.Coordinates = objectInRoom.Coordinates - new Vector3Int(_lowestX, _lowestY, 0) + coordinates;
-            gameObject.name = objectInRoom.ObjectTransform.gameObject.name;
-            gameObject.transform.position = objectInRoom.Coordinates;
-            gameObject.SetActive(true);
+            objectInRoom.resetAndPlaceObjectInRoom(objectInRoom.Coordinates - new Vector3Int(_lowestX, _lowestY, 0) + coordinates);
+
         }
         AddCollider();
     }
+
 }

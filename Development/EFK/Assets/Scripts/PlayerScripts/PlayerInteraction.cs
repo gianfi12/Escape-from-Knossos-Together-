@@ -4,21 +4,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PlayerInteraction : MonoBehaviour
 {
     [SerializeField] private float interactionDistance;
     [SerializeField] private float interactionAngle;
-    [SerializeField] private GameObject interactiveText;
+    [SerializeField] private GameObject textBubble;
+    private Vector3 textBubbleOffset;
+
     private Transform _SelectedTarget;
     private bool _hasTargetSelected = false;
-    private GameObject _instatiatedText;
+    private GameObject _instantiatedText;
     private PlayerControllerMap playerControllerMap;
 
     private void Awake()
     {
         playerControllerMap = GetComponent<PlayerControllerMap>();
-        _instatiatedText = Instantiate(interactiveText);
-        _instatiatedText.SetActive(false);
+        _instantiatedText = Instantiate(textBubble);
+        _instantiatedText.SetActive(false);
+        textBubbleOffset = _instantiatedText.GetComponentInChildren<SpriteRenderer>().bounds.extents/2;
+        Debug.Log(textBubbleOffset);
     }
 
 
@@ -33,27 +38,28 @@ public class PlayerInteraction : MonoBehaviour
 
         if (selectableTarget != null) {
             if (!_hasTargetSelected || selectableTarget.GetInstanceID() != _SelectedTarget.transform.GetInstanceID()) {
-                Material shader;
+                Material material;
                 if (_hasTargetSelected) {
-                    shader = _SelectedTarget.GetComponent<SpriteRenderer>().material;
-                    shader.SetFloat("_Thickness", 0f);
-                    _instatiatedText.SetActive(false);
+                    material = _SelectedTarget.GetComponent<SpriteRenderer>().material;
+                    material.SetFloat("_Thickness", 0f);
+                    _instantiatedText.SetActive(false);
                 }
-                
-                shader = selectableTarget.GetComponent<SpriteRenderer>().material;
-                shader.SetFloat("_Thickness", 5f);
-                _instatiatedText.transform.SetParent(selectableTarget);
-                _instatiatedText.transform.position =
-                    selectableTarget.GetComponent<InteractableObject>().GetTopRight().position;
-                _instatiatedText.SetActive(true);
+
+                material = selectableTarget.GetComponent<SpriteRenderer>().material;
+                material.SetFloat("_Thickness", 5f);
+
+                InteractableObject interactableObject = selectableTarget.GetComponent<InteractableObject>();
+                _instantiatedText.transform.position = interactableObject.GetTextPosition() + textBubbleOffset;
+                _instantiatedText.GetComponentInChildren<TMPro.TextMeshPro>().text = interactableObject.InteractiveText; 
+                _instantiatedText.SetActive(true);
                 _SelectedTarget = selectableTarget;
                 _hasTargetSelected = true;
             }
         }
         else if (_hasTargetSelected) {
-            Material shader = _SelectedTarget.GetComponent<SpriteRenderer>().material;
-            shader.SetFloat("_Thickness", 0f);
-            _instatiatedText.SetActive(false);
+            Material material = _SelectedTarget.GetComponent<SpriteRenderer>().material;
+            material.SetFloat("_Thickness", 0f);
+            _instantiatedText.SetActive(false);
             _hasTargetSelected = false;
         }
     }
