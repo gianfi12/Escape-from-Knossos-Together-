@@ -20,7 +20,7 @@ MonoBehaviour:
   - {fileID: -6967109705885033667, guid: 40115cc17553c2e47b7a3de493baae6d, type: 3}
   startingRoomPlayer1: {fileID: 3134405057706924811, guid: d1f382e6fcda230449058478cd59c831,
     type: 3}
-  startingRoomPlayer2: {fileID: 1253660647329385761, guid: 6c140ce33eb6ec447b7e3cb3e5ade755,
+  startingRoomPlayer2: {fileID: 8367161880732279808, guid: b792ea4120406f4489a70dfba853190b,
     type: 3}
   finalRoom: {fileID: -2714702761895653754, guid: 7d43cac3f6798be4eaca08a7aad80dc3,
     type: 3}

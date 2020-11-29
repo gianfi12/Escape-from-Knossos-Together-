@@ -17,7 +17,6 @@ public abstract class RoomAbstract : MonoBehaviour
     public readonly List<Tile> Exit = new List<Tile>();
     public readonly List<Tile> Wall = new List<Tile>();
     public readonly List<Tile> Floor = new List<Tile>();
-    public readonly List<ObjectInRoom> Object = new List<ObjectInRoom>();
     public readonly List<Tile> Spawn = new List<Tile>();
     public readonly List<Tile> Decoration = new List<Tile>();
     
@@ -43,7 +42,7 @@ public abstract class RoomAbstract : MonoBehaviour
 
     public abstract void Generate(int seed);
 
-    public abstract void PlaceRoom(Tilemap tilemapFloor, Tilemap tilemapWall, Tilemap tilemapObject,Tilemap tilemapDecoration, Vector3Int coordinates);
+    public abstract void PlaceRoom(Tilemap tilemapFloor, Tilemap tilemapWall,Tilemap tilemapDecoration, Vector3Int coordinates);
 
     public bool HasTwin => hasTwin;
 
@@ -63,7 +62,4 @@ public abstract class RoomAbstract : MonoBehaviour
     }
     
     
-    //This is a list with an ObjectInRoom that represents each objects that has been instantiated in the room, as long as the coordinates that you can use to find it in the room and the trasnform of the instantiated object
-    //TODO if needed I can return directly a list with transsform or gameobject instead of the objectinroom
-    public List<ObjectInRoom> ListOfObjectInRooms => Object;
 }

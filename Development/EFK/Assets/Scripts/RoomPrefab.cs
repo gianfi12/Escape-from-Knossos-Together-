@@ -5,7 +5,7 @@ using UnityEngine.Tilemaps;
 public class RoomPrefab : RoomAbstract
 {
     [SerializeField] private Tilemap tilemapFloor;
-    [SerializeField] private Tilemap tilemapObject;
+    // [SerializeField] private Tilemap tilemapObject;
     [SerializeField] private Tilemap tilemapExit;
     [SerializeField] private Tilemap tilemapEntrance;
     [SerializeField] private Tilemap tilemapWall;
@@ -20,23 +20,23 @@ public class RoomPrefab : RoomAbstract
         IterateTilemap(tilemapFloor,Floor);
         IterateTilemap(tilemapWall,Wall);
         IterateTilemap(tilemapDecoration,Decoration);
-        IterateTilemapObject(tilemapObject,Object);
+        // IterateTilemapObject(tilemapObject,Object);
         IterateTilemap(tilemapExit,Exit);
         IterateTilemap(tilemapEntrance,Entrance);
         IterateTilemap(tilemapSpawn,Spawn);
         _requiredWidthSpace = _higherX - _lowestX;
     }
 
-    private void IterateTilemapObject(Tilemap tilemap, List<ObjectInRoom> gameObjects)
-    {
-        for (int i = 0; i < tilemap.transform.childCount; i++)
-        {
-            Transform selectedObjectTransform = tilemap.transform.GetChild(i);
-            Vector3Int position = new Vector3Int((int)selectedObjectTransform.position.x,(int)selectedObjectTransform.position.y,0);
-            ObjectInRoom objectInRoom = new ObjectInRoom(position,selectedObjectTransform);
-            gameObjects.Add(objectInRoom);
-        }
-    }
+    // private void IterateTilemapObject(Tilemap tilemap, List<ObjectInRoom> gameObjects)
+    // {
+    //     for (int i = 0; i < tilemap.transform.childCount; i++)
+    //     {
+    //         Transform selectedObjectTransform = tilemap.transform.GetChild(i);
+    //         Vector3Int position = new Vector3Int((int)selectedObjectTransform.position.x,(int)selectedObjectTransform.position.y,0);
+    //         ObjectInRoom objectInRoom = new ObjectInRoom(position,selectedObjectTransform);
+    //         gameObjects.Add(objectInRoom);
+    //     }
+    // }
 
     protected void IterateTilemap(Tilemap tilemap, List<Tile> list)
     {
@@ -73,7 +73,7 @@ public class RoomPrefab : RoomAbstract
         }
     }
     
-    public override void PlaceRoom(Tilemap tilemapFloor, Tilemap tilemapWall, Tilemap tilemapObject,Tilemap tilemapDecoration, Vector3Int coordinates) 
+    public override void PlaceRoom(Tilemap tilemapFloor, Tilemap tilemapWall,Tilemap tilemapDecoration, Vector3Int coordinates) 
     {
         _displacementX = coordinates.x;
         _displacementY = coordinates.y;
@@ -88,13 +88,24 @@ public class RoomPrefab : RoomAbstract
                 tilemapFloor.SetTile(tile.Coordinates,tile.TileBase);
         }
 
-        foreach (ObjectInRoom objectInRoom in Object)
+        // foreach (ObjectInRoom objectInRoom in Object)
+        // {
+        //     // GameObject gameObject = Instantiate(objectInRoom.ObjectTransform.gameObject);
+        //     // objectInRoom.Coordinates = objectInRoom.Coordinates - new Vector3Int(_lowestX, _lowestY, 0) + coordinates;
+        //     // gameObject.name = objectInRoom.ObjectTransform.gameObject.name;
+        //     // gameObject.transform.position = objectInRoom.Coordinates;
+        //     objectInRoom.resetAndPlaceObjectInRoom(objectInRoom.Coordinates - new Vector3Int(_lowestX, _lowestY, 0) + coordinates);
+        // }
+        Transform room = Instantiate(gameObject).transform;
+        Transform child;
+        for (int i = 0; i < room.transform.childCount; i++)
         {
-            // GameObject gameObject = Instantiate(objectInRoom.ObjectTransform.gameObject);
-            // objectInRoom.Coordinates = objectInRoom.Coordinates - new Vector3Int(_lowestX, _lowestY, 0) + coordinates;
-            // gameObject.name = objectInRoom.ObjectTransform.gameObject.name;
-            // gameObject.transform.position = objectInRoom.Coordinates;
-            objectInRoom.resetAndPlaceObjectInRoom(objectInRoom.Coordinates - new Vector3Int(_lowestX, _lowestY, 0) + coordinates);
+            if ((child = room.GetChild(i)).name == "Grid")
+            {
+                Destroy(child.gameObject);
+            }
         }
+        room.position = coordinates;
+
     }
 }

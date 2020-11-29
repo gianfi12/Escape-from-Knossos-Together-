@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
@@ -67,17 +68,15 @@ public class RoomMaze : RoomAbstract
         {
             Tile floor = getRandomFloor();
             Transform agentTransform = Instantiate(guardPrefab).transform;
-            Vector3 agentPosition=floor.Coordinates;
+            Vector3 agentPosition=floor.Coordinates+new Vector3(0.5f,0.5f,0f);
             SpawnObjectInRoom(agentPosition,agentTransform);
         }
     }
 
     private void SpawnObjectInRoom(Vector3 position,Transform objectTrasform)
     {
-        ObjectInRoom objectInRoom = new ObjectInRoom(position,objectTrasform);
-        Object.Add(objectInRoom);
         objectTrasform.SetParent(_mazeTransform);
-        objectTrasform.gameObject.SetActive(false);
+        objectTrasform.position = position;
     }
 
     private void InsertWardrobe()
@@ -318,7 +317,6 @@ public class RoomMaze : RoomAbstract
     private void PositionTile(Vector2Int position, Color color, List<Tile> specificList, TileBase tileBase)
     {
         Tile tile = new Tile(tileBase,(Vector3Int)position);
-        tile.Color = color;
         specificList.Add(tile);
         TileList.Add(tile);
     }
@@ -534,10 +532,11 @@ public class RoomMaze : RoomAbstract
         Wall.Add(tile);
     }
     
-    public override void PlaceRoom(Tilemap tilemapFloor, Tilemap tilemapWall, Tilemap tilemapObject, Tilemap tilemapDecoration, Vector3Int coordinates) 
+    public override void PlaceRoom(Tilemap tilemapFloor, Tilemap tilemapWall, Tilemap tilemapDecoration, Vector3Int coordinates) 
     {
         _displacementX = coordinates.x;
         _displacementY = coordinates.y;
+        removeOverlappingWallsAndFloor();
         foreach (var tile in TileList)
         {
             tile.Coordinates = tile.Coordinates - new Vector3Int(_lowestX, _lowestY, 0) + coordinates;
@@ -546,18 +545,33 @@ public class RoomMaze : RoomAbstract
             else
             {
                 tilemapFloor.SetTile(tile.Coordinates, tile.TileBase);
-                // if (tile.HasColor())
-                // {
-                //     tilemapFloor.SetColor(tile.Coordinates,tile.Color);
-                // }
             }
         }
-        foreach (ObjectInRoom objectInRoom in Object)
-        {
-            objectInRoom.resetAndPlaceObjectInRoom(objectInRoom.Coordinates - new Vector3Int(_lowestX, _lowestY, 0) + coordinates);
-
-        }
+        // foreach (ObjectInRoom objectInRoom in Object)
+        // {
+        //     objectInRoom.resetAndPlaceObjectInRoom(objectInRoom.Coordinates - new Vector3Int(_lowestX, _lowestY, 0) + coordinates);
+        //
+        // }
+        _mazeTransform.position = coordinates+ new Vector3Int(1,1,0);
         AddCollider();
+    }
+
+    private void removeOverlappingWallsAndFloor()
+    {
+        foreach (Tile wall in Wall)
+        { 
+            IEnumerable<Tile> enumerationRemovableTile = Floor.Where(e => e.Coordinates == wall.Coordinates);
+            List<Tile> removableTile = new List<Tile>();
+            foreach (Tile floorTile in enumerationRemovableTile)
+            {
+                removableTile.Add(floorTile);
+            }
+            foreach (Tile floorTile in removableTile)
+            {
+                Floor.Remove(floorTile);
+                TileList.Remove(floorTile);
+            }
+        }
     }
 
 }
