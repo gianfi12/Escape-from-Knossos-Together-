@@ -31,9 +31,13 @@ public class EntrancePanel : MonoBehaviour
                     controlledDoors.OpenDoors();
                     disabled = true;
                 }
+                else {
+                    foreach (EntranceButton button in GetComponentsInChildren<EntranceButton>()) button.ResetLight();
+                    pressed.Clear();
+                }
 
-                pressed.Clear();
             }
         }
     }
+
 }
