@@ -79,6 +79,7 @@ public class RoomMaze : RoomAbstract
     private void AddCollider()
     {
         GameObject collider = new GameObject("Collider");
+        collider.layer = LayerMask.NameToLayer("Ignore Raycast");
         collider.transform.SetParent(_mazeTransform);
         BoxCollider2D boxCollider2D = collider.AddComponent<BoxCollider2D>();
         RoomCollider roomCollider = collider.AddComponent<RoomCollider>();
