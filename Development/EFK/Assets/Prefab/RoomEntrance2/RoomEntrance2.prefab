@@ -459,11 +459,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3682805345843324721}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.056601927, y: 0.0038652522, z: 0}
+  m_LocalPosition: {x: -0.05660194, y: 0.003865242, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4348704271101665121}
-  m_RootOrder: 1
+  m_Father: {fileID: 9026061989589049921}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &8680677124815850186
 BoxCollider2D:
@@ -533,7 +533,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2536083832050238988}
-  - {fileID: 5454118565116319953}
+  - {fileID: 9026061989589049921}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -554,6 +554,7 @@ MonoBehaviour:
   twinRoom: {fileID: 0}
   doorExit: {fileID: 0}
   doorEntrance: {fileID: 0}
+  objectsParent: {fileID: 5402391881399504159}
   diaryText:
   - {fileID: 1294902411931776137, guid: 037f20e031d3cc044872a48b2a904c27, type: 3}
   diaryImage: []
@@ -563,6 +564,37 @@ MonoBehaviour:
   tilemapWall: {fileID: 3438185286540785304}
   tilemapSpawn: {fileID: 4349128059689695685}
   tilemapDecoration: {fileID: 8204636095884284398}
+--- !u!1 &5402391881399504159
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9026061989589049921}
+  m_Layer: 0
+  m_Name: RoomEntrance2Objects
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9026061989589049921
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5402391881399504159}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 5454118565116319953}
+  m_Father: {fileID: 4348704271101665121}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5425072396879876825
 GameObject:
   m_ObjectHideFlags: 0

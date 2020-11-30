@@ -12,6 +12,7 @@ public abstract class RoomAbstract : MonoBehaviour
     [SerializeField] private RoomAbstract twinRoom;
     [SerializeField] private GameObject doorExit;
     [SerializeField] private GameObject doorEntrance;
+    [SerializeField] protected GameObject objectsParent;
 
     public readonly List<Tile> Entrance = new List<Tile>();
     public readonly List<Tile> Exit = new List<Tile>();

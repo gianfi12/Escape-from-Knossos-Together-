@@ -79,15 +79,15 @@ public class RoomPrefab : RoomAbstract
         _displacementY = coordinates.y;
         
                 
-        Transform room = Instantiate(gameObject).transform;
-        Transform child;
-        for (int i = 0; i < room.transform.childCount; i++)
-        {
-            if ((child = room.GetChild(i)).name == "Grid")
-            {
-                Destroy(child.gameObject);
-            }
-        }
+        Transform room = Instantiate(objectsParent).transform;
+        // Transform child;
+        // for (int i = 0; i < room.transform.childCount; i++)
+        // {
+        //     if ((child = room.GetChild(i)).name == "Grid")
+        //     {
+        //         Destroy(child.gameObject);
+        //     }
+        // }
         
         room.localPosition = coordinates +(transform.position - new Vector3(_lowestX,_lowestY,0));
     }
