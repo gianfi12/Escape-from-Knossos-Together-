@@ -5,7 +5,6 @@ using UnityEngine.Tilemaps;
 public class RoomPrefab : RoomAbstract
 {
     [SerializeField] private Tilemap tilemapFloor;
-    // [SerializeField] private Tilemap tilemapObject;
     [SerializeField] private Tilemap tilemapExit;
     [SerializeField] private Tilemap tilemapEntrance;
     [SerializeField] private Tilemap tilemapWall;
@@ -15,28 +14,25 @@ public class RoomPrefab : RoomAbstract
     private int _higherX;
     private bool _firstTile = true;
     
-    public override void Generate(int seed)
+    public override void Generate(int seed,bool isPlayer2)
     {
         IterateTilemap(tilemapFloor,Floor);
         IterateTilemap(tilemapWall,Wall);
         IterateTilemap(tilemapDecoration,Decoration);
-        // IterateTilemapObject(tilemapObject,Object);
         IterateTilemap(tilemapExit,Exit);
         IterateTilemap(tilemapEntrance,Entrance);
         IterateTilemap(tilemapSpawn,Spawn);
+        if (isPlayer2 && useSameEntrance)
+        {
+            List<Tile> temp = Entrance;
+            Entrance = new List<Tile>();
+            Entrance.AddRange(Exit);
+            Exit = new List<Tile>();
+            Exit.AddRange(temp);
+        }
         _requiredWidthSpace = _higherX - _lowestX;
+        
     }
-
-    // private void IterateTilemapObject(Tilemap tilemap, List<ObjectInRoom> gameObjects)
-    // {
-    //     for (int i = 0; i < tilemap.transform.childCount; i++)
-    //     {
-    //         Transform selectedObjectTransform = tilemap.transform.GetChild(i);
-    //         Vector3Int position = new Vector3Int((int)selectedObjectTransform.position.x,(int)selectedObjectTransform.position.y,0);
-    //         ObjectInRoom objectInRoom = new ObjectInRoom(position,selectedObjectTransform);
-    //         gameObjects.Add(objectInRoom);
-    //     }
-    // }
 
     protected void IterateTilemap(Tilemap tilemap, List<Tile> list)
     {

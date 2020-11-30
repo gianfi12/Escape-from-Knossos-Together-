@@ -1035,8 +1035,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7c35da75985588046880cecb11e0ee7e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
 --- !u!1 &1930836983417849654
 GameObject:
   m_ObjectHideFlags: 0
@@ -3694,8 +3694,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f885426ea200b6d40b68255fbccde17d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   room: {fileID: -9198477274379803462}
 --- !u!1 &4811957412743714979
 GameObject:
@@ -12334,15 +12334,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f6c72b4ffba587e4a92e1d2fdbda94b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   assetsCollection: {fileID: 11400000, guid: 55d586d2096a3454bbdfe9f671b4eb18, type: 2}
   hasTwin: 0
   twinRoom: {fileID: 0}
   doorExit: {fileID: 0}
   doorEntrance: {fileID: 0}
   objectsParent: {fileID: 1102780792100664036}
-  diaryTextList:
+  useSameEntrance: 1
+  diaryText:
   - {fileID: 2819570876558205853, guid: d54f2a42c9fd7604398fc3553400b981, type: 3}
   diaryImageList: []
   tilemapFloor: {fileID: 1600667976922422832}
@@ -12391,7 +12392,7 @@ PrefabInstance:
     - target: {fileID: 1545052664625401099, guid: 04b08d86d2af1f94da53f87dc7ad1bba,
         type: 3}
       propertyPath: m_Sprite
-      value: 
+      value:
       objectReference: {fileID: 21300000, guid: 2e236c2e389508f468bd37ec565e8620,
         type: 3}
     - target: {fileID: 1545052664625401099, guid: 04b08d86d2af1f94da53f87dc7ad1bba,
@@ -12571,12 +12572,12 @@ PrefabInstance:
     - target: {fileID: 2483861399637240492, guid: a51cf60735870584dac2932ab62ed88f,
         type: 3}
       propertyPath: checkpoints.Array.data[0]
-      value: 
+      value:
       objectReference: {fileID: 5071042774304669035}
     - target: {fileID: 2483861399637240492, guid: a51cf60735870584dac2932ab62ed88f,
         type: 3}
       propertyPath: checkpoints.Array.data[1]
-      value: 
+      value:
       objectReference: {fileID: 4811957412743714979}
     - target: {fileID: 2483861399637240492, guid: a51cf60735870584dac2932ab62ed88f,
         type: 3}
@@ -12596,12 +12597,12 @@ PrefabInstance:
     - target: {fileID: 2483861399637240492, guid: a51cf60735870584dac2932ab62ed88f,
         type: 3}
       propertyPath: checkpoints.Array.data[2]
-      value: 
+      value:
       objectReference: {fileID: 9107180693980345416}
     - target: {fileID: 2483861399637240492, guid: a51cf60735870584dac2932ab62ed88f,
         type: 3}
       propertyPath: checkpoints.Array.data[3]
-      value: 
+      value:
       objectReference: {fileID: 654907017717596585}
     - target: {fileID: 2483861399637240493, guid: a51cf60735870584dac2932ab62ed88f,
         type: 3}
@@ -12691,7 +12692,7 @@ PrefabInstance:
     - target: {fileID: 1545052664625401099, guid: 04b08d86d2af1f94da53f87dc7ad1bba,
         type: 3}
       propertyPath: m_Sprite
-      value: 
+      value:
       objectReference: {fileID: 21300000, guid: 33074e4e939a15d4a951d061980e491a,
         type: 3}
     - target: {fileID: 1545052664625401099, guid: 04b08d86d2af1f94da53f87dc7ad1bba,
