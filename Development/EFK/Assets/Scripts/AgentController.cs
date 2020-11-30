@@ -13,10 +13,8 @@ public class AgentController : MonoBehaviour
     private Animator animator;
 
     [SerializeField] private float wanderRadius = 5;
-    private CheckpointManager checkpointManager;
-    [SerializeField] private string checkpointName;
     [SerializeField] private bool isPatroller;
-    private List<GameObject> checkpoints;
+    [SerializeField] private List<GameObject> checkpoints;
     
     private int currentCheckpoint = 0;
 
@@ -41,9 +39,6 @@ public class AgentController : MonoBehaviour
 
         if (isPatroller)
         {
-            checkpointManager = (CheckpointManager)FindObjectOfType(typeof(CheckpointManager));
-            checkpoints = checkpointManager.getSelectedCheckpoint(checkpointName);
-        
             if (checkpoints.Count != 0)
             {
                 transform.position = checkpoints[0].transform.position;

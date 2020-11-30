@@ -101,17 +101,6 @@ public class LevelMap : MonoBehaviourPun
         goWall.GetComponent<TilemapCollider2D>().usedByComposite = true;
 
 
-
-        // var goObject = new GameObject("TilemapObject");
-        // goObject.transform.SetParent(_grid.gameObject.transform);
-        // _tilemapObject = goObject.AddComponent<Tilemap>();
-        // TilemapRenderer renderer =  goObject.AddComponent<TilemapRenderer>();
-        // renderer.sortingLayerName = "Object";
-
-        NavMeshModifier navMeshModifierObject = goWall.AddComponent<NavMeshModifier>();
-        navMeshModifierObject.overrideArea = true;
-        navMeshModifierObject.area = 1; //1 means not walkable
-        
         var goCorridorFloor = new GameObject("TilemapCorridorFloor");
         goCorridorFloor.transform.SetParent(_grid.gameObject.transform);
         _tilemapCorridorFloor = goCorridorFloor.AddComponent<Tilemap>();

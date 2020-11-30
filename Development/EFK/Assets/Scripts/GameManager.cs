@@ -20,7 +20,6 @@ public class GameManager : MonoBehaviourPun
     private CinemachineVirtualCamera _cameraInstance;
 
     [SerializeField] private GameObject navMesh;
-    [SerializeField] private CheckpointManager checkpointManager;
 
     void Start()
     {
@@ -41,7 +40,6 @@ public class GameManager : MonoBehaviourPun
             _levelMap.Seed = UnityEngine.Random.Range(0, 10000);
             _levelMap.CreateMap();
             navMesh.GetComponent<NavMeshSurface2d>().BuildNavMesh();
-            checkpointManager.builCheckpointList();
 
             _playerInstance = Instantiate(playerPrefab).GetComponent<PlayerControllerMap>();
             _cameraInstance = Instantiate(mainCamera);
@@ -57,7 +55,6 @@ public class GameManager : MonoBehaviourPun
         _cameraInstance.m_Follow = _playerInstance.transform;
         
         navMesh.GetComponent<NavMeshSurface2d>().BuildNavMesh();
-        checkpointManager.builCheckpointList();
     }
     
 }

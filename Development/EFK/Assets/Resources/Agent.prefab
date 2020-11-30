@@ -109,7 +109,7 @@ Transform:
   m_GameObject: {fileID: 2483861399637240493}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 19.2161, y: 4.4377, z: 0}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 1}
+  m_LocalScale: {x: 0.17, y: 0.17, z: 1}
   m_Children:
   - {fileID: 2483861398698651294}
   m_Father: {fileID: 0}
@@ -154,7 +154,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 7cefe9e9e8c984bbd9ff43235be8f54f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 15ae49c3eff68064b91ec12da1d18bcb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -179,6 +179,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wanderRadius: 5
   checkpointName: 
+  isPatroller: 0
   standardFovColor: {r: 0.5802777, g: 0.6709922, b: 0.754717, a: 1}
   seekingFovColor: {r: 0.7735849, g: 0.19339623, b: 0.22001049, a: 1}
 --- !u!195 &2483861399637240489
@@ -239,7 +240,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2483861399637240493}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 35284bd3bd210cb4ea524200625bbff8, type: 2}
   m_CullingMode: 0

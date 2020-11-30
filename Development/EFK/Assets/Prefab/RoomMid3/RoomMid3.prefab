@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1460574864736142300}
   m_Layer: 0
-  m_Name: CheckpointRoom1 (3)
+  m_Name: Checkpoint (3)
   m_TagString: Checkpoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -56,7 +56,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 947293168649044093}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2475391032689153744}
@@ -1013,8 +1013,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3579706572229500530}
-  - {fileID: 6874696189405890403}
   - {fileID: 8150624365515603077}
+  - {fileID: 6874696189405890403}
   - {fileID: 8610442698948111180}
   - {fileID: 3222393575784129662}
   - {fileID: 1460574864736142300}
@@ -3706,7 +3706,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8610442698948111180}
   m_Layer: 0
-  m_Name: CheckpointRoom1 (1)
+  m_Name: Checkpoint (1)
   m_TagString: Checkpoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3877,7 +3877,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6874696189405890403}
   m_Layer: 0
-  m_Name: CheckpointRoom1
+  m_Name: Checkpoint
   m_TagString: Checkpoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3895,7 +3895,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4118755893930793060}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5587778685155651884
 GameObject:
@@ -12360,7 +12360,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3222393575784129662}
   m_Layer: 0
-  m_Name: CheckpointRoom1 (2)
+  m_Name: Checkpoint (2)
   m_TagString: Checkpoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12560,23 +12560,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 74518110, guid: a51cf60735870584dac2932ab62ed88f, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2483861399637240492, guid: a51cf60735870584dac2932ab62ed88f,
         type: 3}
       propertyPath: checkpoints.Array.size
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2483861399637240492, guid: a51cf60735870584dac2932ab62ed88f,
         type: 3}
       propertyPath: checkpoints.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 5071042774304669035}
     - target: {fileID: 2483861399637240492, guid: a51cf60735870584dac2932ab62ed88f,
         type: 3}
       propertyPath: checkpoints.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 4811957412743714979}
     - target: {fileID: 2483861399637240492, guid: a51cf60735870584dac2932ab62ed88f,
         type: 3}
       propertyPath: checkpointName
@@ -12592,6 +12592,16 @@ PrefabInstance:
       propertyPath: isPatroller
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2483861399637240492, guid: a51cf60735870584dac2932ab62ed88f,
+        type: 3}
+      propertyPath: checkpoints.Array.data[2]
+      value: 
+      objectReference: {fileID: 9107180693980345416}
+    - target: {fileID: 2483861399637240492, guid: a51cf60735870584dac2932ab62ed88f,
+        type: 3}
+      propertyPath: checkpoints.Array.data[3]
+      value: 
+      objectReference: {fileID: 654907017717596585}
     - target: {fileID: 2483861399637240493, guid: a51cf60735870584dac2932ab62ed88f,
         type: 3}
       propertyPath: m_Name
@@ -12635,7 +12645,7 @@ PrefabInstance:
     - target: {fileID: 2483861399637240494, guid: a51cf60735870584dac2932ab62ed88f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2483861399637240494, guid: a51cf60735870584dac2932ab62ed88f,
         type: 3}
@@ -12655,12 +12665,12 @@ PrefabInstance:
     - target: {fileID: 2483861399637240494, guid: a51cf60735870584dac2932ab62ed88f,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.7
+      value: 0.17
       objectReference: {fileID: 0}
     - target: {fileID: 2483861399637240494, guid: a51cf60735870584dac2932ab62ed88f,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.7
+      value: 0.17
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a51cf60735870584dac2932ab62ed88f, type: 3}
