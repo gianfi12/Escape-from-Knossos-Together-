@@ -26,7 +26,7 @@ public class RoomMaze : RoomAbstract
     private List<Room> _roomList = new List<Room>();
     private Dictionary<int,Cell> _cellMap = new Dictionary<int, Cell>();
     private Transform _mazeTransform;
-    public override void Generate(int seed)
+    public override void Generate(int seed, bool isPlayer2)
     {
         _mazeTransform = new GameObject("RoomMaze").transform;
         Random.InitState(seed);

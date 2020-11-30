@@ -12341,6 +12341,7 @@ MonoBehaviour:
   doorExit: {fileID: 0}
   doorEntrance: {fileID: 0}
   objectsParent: {fileID: 1102780792100664036}
+  useSameEntrance: 1
   diaryText:
   - {fileID: 2819570876558205853, guid: d54f2a42c9fd7604398fc3553400b981, type: 3}
   diaryImage: []

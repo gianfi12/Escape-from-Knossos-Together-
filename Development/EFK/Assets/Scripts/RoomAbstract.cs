@@ -13,9 +13,10 @@ public abstract class RoomAbstract : MonoBehaviour
     [SerializeField] private GameObject doorExit;
     [SerializeField] private GameObject doorEntrance;
     [SerializeField] protected GameObject objectsParent;
+    [SerializeField] protected bool useSameEntrance;
 
-    public readonly List<Tile> Entrance = new List<Tile>();
-    public readonly List<Tile> Exit = new List<Tile>();
+    public List<Tile> Entrance = new List<Tile>();
+    public List<Tile> Exit = new List<Tile>();
     public readonly List<Tile> Wall = new List<Tile>();
     public readonly List<Tile> Floor = new List<Tile>();
     public readonly List<Tile> Spawn = new List<Tile>();
@@ -41,7 +42,7 @@ public abstract class RoomAbstract : MonoBehaviour
 
     public AssetsCollection AssetsCollection => assetsCollection;
 
-    public abstract void Generate(int seed);
+    public abstract void Generate(int seed,bool isPlayer2);
 
     public abstract void PlaceRoom(Tilemap tilemapFloor, Tilemap tilemapWall,Tilemap tilemapDecoration);
     public abstract void PlaceObject(Vector3Int coordinates);
