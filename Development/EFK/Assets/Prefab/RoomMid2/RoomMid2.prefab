@@ -2044,8 +2044,9 @@ MonoBehaviour:
   doorExit: {fileID: 0}
   doorEntrance: {fileID: 0}
   objectsParent: {fileID: 8497909911887139481}
-  diaryTextList:
-  - {fileID: 6346661490858767382, guid: 5a415b6a78ee9ba45bed37a8e48d7a32, type: 3}
+  useSameEntrance: 0
+  diaryText: {fileID: 8433167850375541341, guid: 5a415b6a78ee9ba45bed37a8e48d7a32,
+    type: 3}
   diaryImageList: []
   tilemapFloor: {fileID: 8751012525530252973}
   tilemapExit: {fileID: 6671701075013261676}
@@ -2962,6 +2963,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Door2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3102420862606774056, guid: 43f9529aa0a00ca4fb6708de1fd289d1,
+        type: 3}
+      propertyPath: m_TagString
+      value: MainDoor
       objectReference: {fileID: 0}
     - target: {fileID: 4077361220962339883, guid: 43f9529aa0a00ca4fb6708de1fd289d1,
         type: 3}

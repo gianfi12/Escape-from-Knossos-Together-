@@ -4,8 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Checkpoint
   - Diary
+  - MainDoor
+  - DiaryImage
   layers:
   - Default
   - TransparentFX

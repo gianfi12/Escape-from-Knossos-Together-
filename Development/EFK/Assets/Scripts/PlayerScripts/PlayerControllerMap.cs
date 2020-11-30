@@ -11,13 +11,16 @@ public class PlayerControllerMap : MonoBehaviour
     private bool _hasChange = false;
 
     private GameManager gameManager;
-    [SerializeField] private Text diaryText;
+    private GameObject diaryPanel;
+    [SerializeField] private Text diaryTextGUI;
     [SerializeField] private List<ItemSlot> slots;
     private RoomAbstract myRoom;
-    private List<GameObject> diaryTextList;
-    private List<GameObject> diaryImageList;
 
-    
+    public void Start() {
+        diaryPanel = transform.Find("Canvas").Find("Diary-Panel").gameObject;
+        diaryPanel.SetActive(false);
+    }
+
     public void SetLocation(Vector3 position)
     {
         transform.localPosition = position;
@@ -47,35 +50,30 @@ public class PlayerControllerMap : MonoBehaviour
 
     public void SetMyRoom(RoomAbstract room)
     {
+        ResetDiaryImages();
         myRoom = room;
-        diaryTextList = new List<GameObject>();
-        diaryImageList = new List<GameObject>();
-        diaryTextList = myRoom.DiaryTextList;
-        diaryImageList = myRoom.DiaryImageList;
-        BuildCurrentDiary();
+        SetText(myRoom.DiaryText);
+        BuildDiaryImages();
     }
-    public void BuildCurrentDiary()
-    {
-        if (diaryTextList != null)
-        {
-            foreach (var component in diaryTextList)
-            {
-                //assegno il testo
-                SetText(component.GetComponent<Text>());
-            }
+
+    private void ResetDiaryImages() {
+        foreach (Transform child in diaryPanel.transform){
+            if (child.CompareTag("DiaryImage")) Destroy(child.gameObject);
         }
-        if (diaryImageList != null)
+    }
+
+    public void BuildDiaryImages()
+    {
+        List<Image> imageList = myRoom.DiaryImageList;
+        foreach (Image image in imageList)
         {
-            foreach (var component in diaryImageList)
-            {
-                //assegno l'immagine
-            }
+            if(image!=null) Instantiate(image, diaryPanel.transform);
         }
     }
 
     private void SetText(Text newText)
     {
-        diaryText.text = newText.text;
+        diaryTextGUI.text = newText.text;
     }
     
     public ItemSlot GetFirstFreeSlot()

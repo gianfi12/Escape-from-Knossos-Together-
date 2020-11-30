@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8410843893669827579}
   - component: {fileID: 8174495376197050150}
   - component: {fileID: 4811128234561284043}
-  m_Layer: 10
+  m_Layer: 5
   m_Name: Diary-Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,7 +85,7 @@ GameObject:
   - component: {fileID: 8898451646193651469}
   - component: {fileID: 2857482465821868101}
   - component: {fileID: 2983275917237432098}
-  m_Layer: 10
+  m_Layer: 5
   m_Name: PTT_Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -159,13 +159,13 @@ GameObject:
   - component: {fileID: 6813471427867874375}
   - component: {fileID: 1846240362729509501}
   - component: {fileID: 5933495362916007992}
-  m_Layer: 10
-  m_Name: DIary-Panel
+  m_Layer: 5
+  m_Name: Diary-Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6813471427867874375
 RectTransform:
   m_ObjectHideFlags: 0
@@ -235,7 +235,7 @@ GameObject:
   - component: {fileID: 4820834221452270979}
   - component: {fileID: 6875973810136216619}
   - component: {fileID: 921601573728412192}
-  m_Layer: 10
+  m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -336,7 +336,7 @@ GameObject:
   - component: {fileID: 4422724042445775054}
   - component: {fileID: 286279476266401305}
   - component: {fileID: 463464956043560061}
-  m_Layer: 10
+  m_Layer: 5
   m_Name: Inventory-Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -594,7 +594,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 3
-  diaryText: {fileID: 5189929952083450324}
+  diaryTextGUI: {fileID: 5189929952083450324}
   slots:
   - {fileID: 2120704519485957577}
   - {fileID: 1906107952063275387}
@@ -791,7 +791,7 @@ GameObject:
   - component: {fileID: 8006907526498171103}
   - component: {fileID: 6697782299472779546}
   - component: {fileID: 5189929952083450324}
-  m_Layer: 10
+  m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -814,7 +814,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 120}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6697782299472779546
@@ -1017,12 +1017,12 @@ PrefabInstance:
     - target: {fileID: 77933382144662589, guid: 43507d62058c63c4bbacd6d143e74751,
         type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4820337504916871012, guid: 43507d62058c63c4bbacd6d143e74751,
         type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4866219691920966432, guid: 43507d62058c63c4bbacd6d143e74751,
         type: 3}
@@ -1169,12 +1169,12 @@ PrefabInstance:
     - target: {fileID: 77933382144662589, guid: 43507d62058c63c4bbacd6d143e74751,
         type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4820337504916871012, guid: 43507d62058c63c4bbacd6d143e74751,
         type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4866219691920966432, guid: 43507d62058c63c4bbacd6d143e74751,
         type: 3}
@@ -1321,12 +1321,12 @@ PrefabInstance:
     - target: {fileID: 77933382144662589, guid: 43507d62058c63c4bbacd6d143e74751,
         type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4820337504916871012, guid: 43507d62058c63c4bbacd6d143e74751,
         type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4866219691920966432, guid: 43507d62058c63c4bbacd6d143e74751,
         type: 3}
@@ -1473,12 +1473,12 @@ PrefabInstance:
     - target: {fileID: 77933382144662589, guid: 43507d62058c63c4bbacd6d143e74751,
         type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4820337504916871012, guid: 43507d62058c63c4bbacd6d143e74751,
         type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4866219691920966432, guid: 43507d62058c63c4bbacd6d143e74751,
         type: 3}
@@ -1625,12 +1625,12 @@ PrefabInstance:
     - target: {fileID: 77933382144662589, guid: 43507d62058c63c4bbacd6d143e74751,
         type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4820337504916871012, guid: 43507d62058c63c4bbacd6d143e74751,
         type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4866219691920966432, guid: 43507d62058c63c4bbacd6d143e74751,
         type: 3}

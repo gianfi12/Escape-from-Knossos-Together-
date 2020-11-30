@@ -53,4 +53,8 @@ public class Doors : MonoBehaviour
         transform.GetComponent<Collider2D>().isTrigger = false;
         gameObject.layer = LayerMask.NameToLayer("Default");
     }
+
+    public void FlipClosingDirection() {
+        closingDirection = closingDirection.GetOpposite();
+    }
 }

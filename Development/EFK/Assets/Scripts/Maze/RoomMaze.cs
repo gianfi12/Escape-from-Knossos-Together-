@@ -54,8 +54,9 @@ public class RoomMaze : RoomAbstract
 
     private void AddDiaryMap()
     {
-        GameObject textGameObject = new GameObject();
-        Text text = textGameObject.AddComponent<Text>();
+        GameObject diaryTextObject = new GameObject();
+        Text diaryText = diaryTextObject.AddComponent<Text>();
+
         String returnedString = "";
         for (int i = 0; i < _sizeX+2; i++)
         {
@@ -71,9 +72,8 @@ public class RoomMaze : RoomAbstract
 
             returnedString += "\n";
         }
-
-        text.text = returnedString;
-        AddDiaryText(textGameObject);
+        diaryText.text = returnedString;
+        SetDiaryText(diaryText);
     }
 
     private void AddCollider()

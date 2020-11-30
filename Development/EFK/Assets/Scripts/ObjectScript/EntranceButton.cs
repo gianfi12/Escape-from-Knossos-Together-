@@ -16,11 +16,15 @@ public class EntranceButton : InteractableObject {
 
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
         materialCopy = new Material(spriteRenderer.material);
-        buttonColor = spriteRenderer.color;
         materialCopy.SetColor("OutlineColor", Color.black);
         materialCopy.SetTexture("SampledTexture", spriteRenderer.sprite.texture);
         materialCopy.SetFloat("OutlineThickness", 1);
         spriteRenderer.material = materialCopy;
+    }
+
+    public void SetButtonColor(Color color) {
+        buttonColor = color;
+        GetComponent<SpriteRenderer>().color = color;
     }
 
     public override void Interact(GameObject player) {
