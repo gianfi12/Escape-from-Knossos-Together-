@@ -20,17 +20,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42b741fa-8516-4a76-ad90-f64f2f44ef01" name="Default Changelist" comment="First version of maze room, and now the floor of the corrider is positioned on a different tilemap">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/ObjectScript/InteractableObject.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/ObjectScript/InteractableObject.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/ObjectScript/Wardrobe.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/ObjectScript/Wardrobe.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.EFK/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.EFK/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.EFK/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.EFK/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.EFK/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.EFK/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ObjectScript/ChestScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ObjectScript/ChestScript.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerScripts/PlayerInput.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerScripts/PlayerInput.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerScripts/PlayerInteraction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerScripts/PlayerInteraction.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/QualitySettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/QualitySettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/RoomEntrance1/RoomEntrance1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/RoomEntrance1/RoomEntrance1.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/RoomEntrance2/RoomEntrance2.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/RoomEntrance2/RoomEntrance2.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/RoomExit/RoomExit.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/RoomExit/RoomExit.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/RoomMid1/RoomMid1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/RoomMid1/RoomMid1.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/RoomMid2/RoomMid2.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/RoomMid2/RoomMid2.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/RoomMid3.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/RoomMid3/RoomMid3.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/RoomMid3/RoomMid3.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/RoomMid3/Runa.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/RoomMid3/Runa.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/RoomMid3/Text.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/RoomMid3/Text.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/RoomMid4/RoomMid4.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/RoomMid4/RoomMid4.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Main.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Main.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Maze/RoomMaze.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Maze/RoomMaze.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerScripts/PlayerControllerMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerScripts/PlayerControllerMap.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/RoomAbstract.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RoomAbstract.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/RoomCollider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RoomCollider.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/RoomMid3Manager.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/RoomMid3Manager.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/Assembly-CSharp.csprojAssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/Assembly-CSharp.csprojAssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/PhotonUnityNetworking.Editor.csprojAssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/PhotonUnityNetworking.Editor.csprojAssemblyReference.cache" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,19 +58,14 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Menus/PlayerNameInput.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/RoomAbstract.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.cinemachine@2.3.4/Runtime/Core/CinemachineVirtualCameraBase.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../../../../../../../../Program Files/Unity/Hub/Editor/2019.4.11f1/Editor/Data/Resources/PackageManager/BuiltInPackages/com.unity.ugui/Runtime/UI/Core/VertexModifiers/Outline.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ObjectScript/ChestScript.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/8691AD70-05ED-4755-A182-8378FF0B52B1/f6/4109a920/Random.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ObjectScript/Door2Script.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/8691AD70-05ED-4755-A182-8378FF0B52B1/5f/2854244f/Color.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Maze/Room.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/8691AD70-05ED-4755-A182-8378FF0B52B1/1f/4a3135d9/SetupCoroutine.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Maze/Cell.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/8691AD70-05ED-4755-A182-8378FF0B52B1/22/7d62e036/Component.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/ObjectScript/SingleDoor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Maze/Cell.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Menus/PlayerNameInput.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ObjectScript/ChestScript.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/RoomManagers/AlphabetRoomManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Maze/Room.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/RoomAbstract.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/AgentController.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
@@ -73,7 +82,6 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/RoomCollection.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ObjectScript/InteractiveMessageScript.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ObjectScript/PlayerOutline.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerScripts/PlayerControllerMap.cs" />
         <option value="$PROJECT_DIR$/Assets/Shader/Outline.shader" />
         <option value="$PROJECT_DIR$/Assets/Scripts/MapSeedScript.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
@@ -81,11 +89,9 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/RoomMaze.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Maze/Edge.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Maze/Cell.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/RoomAbstract.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Tile.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Maze/Room.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/LevelMap.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Maze/RoomMaze.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/RoomPrefab.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/AgentController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ObjectScript/InteractableObject.cs" />
@@ -93,6 +99,12 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/PlayerScripts/PlayerInteraction.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PlayerScripts/PlayerInput.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ObjectScript/Wardrobe.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/RoomMid3Manager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/RoomManagers/AlphabetRoomManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/RoomCollider.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerScripts/PlayerControllerMap.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/RoomAbstract.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Maze/RoomMaze.cs" />
       </list>
     </option>
   </component>
@@ -175,6 +187,7 @@
       <workItem from="1604676271523" duration="1989000" />
       <workItem from="1604930315353" duration="18146000" />
       <workItem from="1604997038776" duration="11190000" />
+      <workItem from="1606746197368" duration="3482000" />
     </task>
     <task id="LOCAL-00001" summary="Update map generation and Object interaction">
       <created>1604498027969</created>
@@ -347,9 +360,10 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="598" y="301" key="MultipleFileMergeDialog/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1604427418639" />
-    <state x="764" y="214" key="RiderGenerateDialog" timestamp="1605688198272">
-      <screen x="0" y="0" width="1920" height="1080" />
+    <state x="611" y="163" key="RiderGenerateDialog" timestamp="1606747648916">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
+    <state x="611" y="163" key="RiderGenerateDialog/0.0.1536.824@0.0.1536.824" timestamp="1606747648916" />
     <state x="764" y="214" key="RiderGenerateDialog/0.0.1920.1080/1920.0.1366.768@0.0.1920.1080" timestamp="1604396123109" />
     <state x="764" y="214" key="RiderGenerateDialog/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1604870120005" />
     <state x="764" y="214" key="RiderGenerateDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1605688198272" />
@@ -383,6 +397,10 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="679" y="330" key="git4idea.ui.GitUnstashDialog/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1604427554287" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1606747396167">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1606747396167" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -401,7 +419,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/Maze/RoomMaze.cs</url>
-          <line>246</line>
+          <line>239</line>
           <properties documentPath="C:\Users\Gianf\Documents\VDP\EFK\Escape-from-Knossos-Together-\Development\EFK\Assets\Scripts\Maze\RoomMaze.cs" initialLine="249" />
           <option name="timeStamp" value="22" />
         </line-breakpoint>

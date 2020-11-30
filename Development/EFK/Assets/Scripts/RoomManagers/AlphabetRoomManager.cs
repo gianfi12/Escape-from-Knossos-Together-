@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class RoomMid3Manager : MonoBehaviour
+public class AlphabetRoomManager : MonoBehaviour
 {
     private List<int> selectedNumbers = new List<int>();
     public struct Mode
@@ -72,6 +72,7 @@ public class RoomMid3Manager : MonoBehaviour
         {
             chosen = Random.Range(start, 26 - remaining);
             selectedNumbers.Add(numbers[chosen]);
+            Debug.Log("NUMERISSIMI");
             start = chosen + 1;
             remaining--;
         }

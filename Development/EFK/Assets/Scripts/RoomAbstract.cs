@@ -13,9 +13,10 @@ public abstract class RoomAbstract : MonoBehaviour
     [SerializeField] private GameObject doorExit;
     [SerializeField] private GameObject doorEntrance;
     [SerializeField] protected GameObject objectsParent;
+    [SerializeField] protected bool useSameEntrance;
 
-    public readonly List<Tile> Entrance = new List<Tile>();
-    public readonly List<Tile> Exit = new List<Tile>();
+    public List<Tile> Entrance = new List<Tile>();
+    public List<Tile> Exit = new List<Tile>();
     public readonly List<Tile> Wall = new List<Tile>();
     public readonly List<Tile> Floor = new List<Tile>();
     public readonly List<Tile> Spawn = new List<Tile>();
@@ -28,11 +29,25 @@ public abstract class RoomAbstract : MonoBehaviour
     protected int _lowestX;
     protected int _lowestY;
     
-    protected List<GameObject> diaryComponents;
     protected PlayerControllerMap player;
-    [SerializeField] private List<GameObject> diaryText;
-    [SerializeField] private List<GameObject> diaryImage;
+    [SerializeField] private List<GameObject> diaryTextList = new List<GameObject>();
+    [SerializeField] private List<GameObject> diaryImageList = new List<GameObject>();
+
+    public List<GameObject> DiaryTextList => diaryTextList;
+
+    public void AddDiaryText(GameObject diaryText)
+    {
+        diaryTextList.Add(diaryText);
+    }
     
+    public List<GameObject> DiaryImageList => diaryImageList;
+     
+    public void AddDiaryImage(GameObject diaryImage)
+    {
+        diaryImageList.Add(diaryImage);
+    }
+
+
     public int RequiredWidthSpace => _requiredWidthSpace;
 
     public int DisplacementX => _displacementX;
@@ -41,7 +56,7 @@ public abstract class RoomAbstract : MonoBehaviour
 
     public AssetsCollection AssetsCollection => assetsCollection;
 
-    public abstract void Generate(int seed);
+    public abstract void Generate(int seed,bool isPlayer2);
 
     public abstract void PlaceRoom(Tilemap tilemapFloor, Tilemap tilemapWall,Tilemap tilemapDecoration);
     public abstract void PlaceObject(Vector3Int coordinates);
@@ -49,14 +64,7 @@ public abstract class RoomAbstract : MonoBehaviour
     public bool HasTwin => hasTwin;
 
     public RoomAbstract TwinRoom => twinRoom;
-
-    public virtual List<GameObject> GetDiaryComponents()
-    {
-            diaryComponents.AddRange(diaryText);
-            diaryComponents.AddRange(diaryImage);
-            return diaryComponents;
-    }
-
+    
     public PlayerControllerMap Player
     {
         get => player;

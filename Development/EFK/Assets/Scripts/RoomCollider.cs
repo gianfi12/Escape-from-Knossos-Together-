@@ -12,7 +12,7 @@ public class RoomCollider : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             PlayerControllerMap player = other.GetComponent<PlayerControllerMap>();
-            player.SetRoomManager(room);
+            player.SetMyRoom(room);
             room.Player = player; 
         }
     }

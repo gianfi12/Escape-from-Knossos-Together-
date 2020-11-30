@@ -468,7 +468,7 @@ public class LevelMap : MonoBehaviourPun
     private void RoomGeneration()
     {
         _selectedRooms.Add(roomCollection.StartingRoomPlayer1);
-        roomCollection.StartingRoomPlayer1.Generate(_seed);
+        roomCollection.StartingRoomPlayer1.Generate(_seed,false);
         if (numberOfRoom*2 > roomCollection.Rooms.Count)
         {
             throw new InvalidDataException("Not enough Room.");
@@ -476,22 +476,22 @@ public class LevelMap : MonoBehaviourPun
         for (int i = 0; i < numberOfRoom; i++)
         {
             RoomAbstract room = SelectRoom();
-            room.Generate(_seed);
+            room.Generate(_seed,false);
             _selectedRooms.Add(room);
         }
         _selectedRooms.Add(roomCollection.FinalRoom);
-        roomCollection.FinalRoom.Generate(_seed);
+        roomCollection.FinalRoom.Generate(_seed,false);
         for (int i = 0; i < numberOfRoom; i++)
         {
             int specularPosition = _selectedRooms.Count-1-i;
             RoomAbstract room;
             if (_selectedRooms[specularPosition].HasTwin) room = _selectedRooms[specularPosition].TwinRoom;
             else room = SelectRoom();
-            room.Generate(_seed);
+            room.Generate(_seed,true);
             _selectedRooms.Add(room);
         }
         _selectedRooms.Add(roomCollection.StartingRoomPlayer2);
-        roomCollection.StartingRoomPlayer2.Generate(_seed);
+        roomCollection.StartingRoomPlayer2.Generate(_seed,false);
 
     }
 

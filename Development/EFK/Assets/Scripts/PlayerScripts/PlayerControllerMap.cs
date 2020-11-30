@@ -13,8 +13,10 @@ public class PlayerControllerMap : MonoBehaviour
     private GameManager gameManager;
     [SerializeField] private Text diaryText;
     [SerializeField] private List<ItemSlot> slots;
-    private RoomAbstract roomManager;
-    private List<GameObject> diaryComponents;
+    private RoomAbstract myRoom;
+    private List<GameObject> diaryTextList;
+    private List<GameObject> diaryImageList;
+
     
     public void SetLocation(Vector3 position)
     {
@@ -43,21 +45,30 @@ public class PlayerControllerMap : MonoBehaviour
         gameManager = manager;
     }
 
+    public void SetMyRoom(RoomAbstract room)
+    {
+        myRoom = room;
+        diaryTextList = new List<GameObject>();
+        diaryImageList = new List<GameObject>();
+        diaryTextList = myRoom.DiaryTextList;
+        diaryImageList = myRoom.DiaryImageList;
+        BuildCurrentDiary();
+    }
     public void BuildCurrentDiary()
     {
-        if (diaryComponents != null)
+        if (diaryTextList != null)
         {
-            foreach (var component in diaryComponents)
+            foreach (var component in diaryTextList)
             {
-                if (component.name.Contains("Text"))
-                {
-                    //assegno il testo
-                    SetText(component.GetComponent<Text>());
-                }
-                else if (component.name.Contains("Image"))
-                {
-                    //assegno l'immagine
-                }
+                //assegno il testo
+                SetText(component.GetComponent<Text>());
+            }
+        }
+        if (diaryImageList != null)
+        {
+            foreach (var component in diaryImageList)
+            {
+                //assegno l'immagine
             }
         }
     }
@@ -66,15 +77,7 @@ public class PlayerControllerMap : MonoBehaviour
     {
         diaryText.text = newText.text;
     }
-
-    public void SetRoomManager(RoomAbstract manager)
-    {
-        roomManager = manager;
-        diaryComponents = new List<GameObject>();
-        diaryComponents = roomManager.GetDiaryComponents();
-        BuildCurrentDiary();
-    }
-
+    
     public ItemSlot GetFirstFreeSlot()
     {
         return slots.Find(s => s.GetIsFree());
