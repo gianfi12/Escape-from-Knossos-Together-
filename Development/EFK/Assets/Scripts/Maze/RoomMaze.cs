@@ -52,7 +52,7 @@ public class RoomMaze : RoomAbstract
         _lowestY = -1;
     }
 
-    private GameObject AddDiaryMap()
+    private void AddDiaryMap()
     {
         GameObject textGameObject = new GameObject();
         Text text = textGameObject.AddComponent<Text>();
@@ -73,14 +73,7 @@ public class RoomMaze : RoomAbstract
         }
 
         text.text = returnedString;
-        return textGameObject;
-    }
-    
-    
-    public override List<GameObject> GetDiaryComponents()
-    {
-        diaryComponents.Add(AddDiaryMap());
-        return diaryComponents;
+        AddDiaryText(textGameObject);
     }
 
     private void AddCollider()

@@ -28,11 +28,25 @@ public abstract class RoomAbstract : MonoBehaviour
     protected int _lowestX;
     protected int _lowestY;
     
-    protected List<GameObject> diaryComponents;
     protected PlayerControllerMap player;
-    [SerializeField] private List<GameObject> diaryText;
-    [SerializeField] private List<GameObject> diaryImage;
+    [SerializeField] private List<GameObject> diaryTextList = new List<GameObject>();
+    [SerializeField] private List<GameObject> diaryImageList = new List<GameObject>();
+
+    public List<GameObject> DiaryTextList => diaryTextList;
+
+    public void AddDiaryText(GameObject diaryText)
+    {
+        diaryTextList.Add(diaryText);
+    }
     
+    public List<GameObject> DiaryImageList => diaryImageList;
+     
+    public void AddDiaryImage(GameObject diaryImage)
+    {
+        diaryImageList.Add(diaryImage);
+    }
+
+
     public int RequiredWidthSpace => _requiredWidthSpace;
 
     public int DisplacementX => _displacementX;
@@ -49,14 +63,7 @@ public abstract class RoomAbstract : MonoBehaviour
     public bool HasTwin => hasTwin;
 
     public RoomAbstract TwinRoom => twinRoom;
-
-    public virtual List<GameObject> GetDiaryComponents()
-    {
-            diaryComponents.AddRange(diaryText);
-            diaryComponents.AddRange(diaryImage);
-            return diaryComponents;
-    }
-
+    
     public PlayerControllerMap Player
     {
         get => player;

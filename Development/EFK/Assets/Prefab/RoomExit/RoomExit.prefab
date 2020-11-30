@@ -1587,9 +1587,9 @@ MonoBehaviour:
   doorExit: {fileID: 0}
   doorEntrance: {fileID: 0}
   objectsParent: {fileID: 1434125500694514438}
-  diaryText:
+  diaryTextList:
   - {fileID: 5131558726448639006, guid: 7a64b67efa31d154e8d6eded7fe69b89, type: 3}
-  diaryImage: []
+  diaryImageList: []
   tilemapFloor: {fileID: 1113330203571674640}
   tilemapExit: {fileID: 5428976642581793458}
   tilemapEntrance: {fileID: 8058270273651568892}
