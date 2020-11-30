@@ -641,7 +641,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30512f5c0d2b47e4b4172ab37f372b06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionDistance: 1
+  interactionDistance: 1.1
   interactionAngle: 90
   textBubble: {fileID: 369923057134520842, guid: 605d7cb29de3b0d4590a4a08b1b053b9,
     type: 3}
@@ -658,8 +658,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.20801766, y: -1.5749764}
-  m_Size: {x: 2.0682034, y: 4.797437}
+  m_Offset: {x: -0.20801766, y: -2.1371582}
+  m_Size: {x: 2.0682034, y: 5.921801}
   m_Direction: 0
 --- !u!50 &-4891384171262013872
 Rigidbody2D:

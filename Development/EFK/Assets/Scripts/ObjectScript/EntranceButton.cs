@@ -24,11 +24,19 @@ public class EntranceButton : InteractableObject {
     }
 
     public override void Interact(GameObject player) {
+        gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
         GetComponent<SpriteRenderer>().material.SetColor("OutlineColor", buttonColor);
         panel.ButtonPressed(transform.GetSiblingIndex());
     }
 
     public void ResetLight() {
+        StartCoroutine("ResetLightWithDelay", 0.3f);
+   
+    }
+
+    IEnumerator ResetLightWithDelay(float delay) {
+        yield return new WaitForSeconds(delay);
         GetComponent<SpriteRenderer>().material.SetColor("OutlineColor", Color.black);
+        gameObject.layer = LayerMask.NameToLayer("Interactable");
     }
 }

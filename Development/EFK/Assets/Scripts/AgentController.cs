@@ -58,7 +58,7 @@ public class AgentController : MonoBehaviour
         isSeekingPlayer = true;
         fovMaterial.SetColor("_Color", seekingFovColor);
         lineOfSight.viewAngle = 110;
-        agent.speed = 3f;
+        agent.speed = 2.5f;
         agent.SetDestination(location);
     }
 
