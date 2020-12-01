@@ -8,7 +8,9 @@ using UnityEngine.UI;
 public class ItemSlot : MonoBehaviour, IDropHandler
 {
     private bool isFree = true;
-    [SerializeField] private DraggableUI inventoryImage;
+    [SerializeField] private DraggableUI slotImage;
+
+    public DraggableUI SlotImage => slotImage;
 
     public bool GetIsFree()
     {
@@ -22,20 +24,28 @@ public class ItemSlot : MonoBehaviour, IDropHandler
 
     public void OnDrop(PointerEventData eventData)
     {
-        if (eventData.pointerDrag != null && isFree)
+        if (eventData.pointerDrag != null)
         {
             DraggableUI draggableObject = eventData.pointerDrag.GetComponent<DraggableUI>();
-            draggableObject.GetMySlot().SetIsFree();
-            inventoryImage.AddImage(draggableObject.GetImage().sprite,this);
-            draggableObject.GetImage().enabled = false;
-            draggableObject.SetMySlot(this);
-            isFree = false;
+            if (isFree)
+            {
+                draggableObject.GetMySlot().SetIsFree();
+                slotImage.AddImage(draggableObject.GetImage().sprite);
+                draggableObject.GetImage().enabled = false;
+                isFree = false;
+            }
+            else
+            {
+                Sprite tempSprite = draggableObject.GetImage().sprite;
+                draggableObject.AddImage(slotImage.GetImage().sprite);
+                slotImage.AddImage(tempSprite);
+            }
         }
     }
 
     public void AddObject(Sprite sprite)
     {
-        inventoryImage.AddImage(sprite,this);
+        slotImage.AddImage(sprite);
         isFree = false;
     }
 }

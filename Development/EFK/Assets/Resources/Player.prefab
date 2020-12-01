@@ -1181,6 +1181,11 @@ PrefabInstance:
       propertyPath: canvas
       value: 
       objectReference: {fileID: 4820834221452270979}
+    - target: {fileID: 6661915211909661400, guid: 43507d62058c63c4bbacd6d143e74751,
+        type: 3}
+      propertyPath: m_Maskable
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8833294796001808592, guid: 43507d62058c63c4bbacd6d143e74751,
         type: 3}
       propertyPath: m_LocalPosition.x

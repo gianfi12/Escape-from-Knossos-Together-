@@ -8,6 +8,13 @@ using UnityEngine.UI;
 public class DraggableUI : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
     [SerializeField] private Canvas canvas;
+
+    public Canvas Canvas
+    {
+        get => canvas;
+        set => canvas = value;
+    }
+
     private RectTransform rectTransform;
     private Vector3 originalPosition;
     private CanvasGroup canvasGroup;
@@ -20,6 +27,7 @@ public class DraggableUI : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
         originalPosition = transform.position;
         canvasGroup = GetComponent<CanvasGroup>();
         image = GetComponent<Image>();
+        mySlot = transform.parent.GetComponent<ItemSlot>();
     }
 
     public Image GetImage()
@@ -27,11 +35,6 @@ public class DraggableUI : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
         return image;
     }
 
-    public void SetMySlot(ItemSlot slot)
-    {
-        mySlot = slot;
-    }
-    
     public ItemSlot GetMySlot()
     {
         return mySlot;
@@ -39,12 +42,14 @@ public class DraggableUI : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
     
     public void OnBeginDrag(PointerEventData eventData)
     {
+        transform.SetParent(canvas.transform);
         canvasGroup.alpha = .6f;
         canvasGroup.blocksRaycasts = false;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        transform.SetParent(mySlot.transform);
         canvasGroup.alpha = 1f;
         canvasGroup.blocksRaycasts = true;
         transform.localPosition = Vector3.zero;
@@ -55,10 +60,9 @@ public class DraggableUI : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
         rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
     }
 
-    public void AddImage(Sprite sprite, ItemSlot slot)
+    public void AddImage(Sprite sprite)
     {
         image.sprite = sprite;
         image.enabled = true;
-        mySlot = slot;
     }
 }
