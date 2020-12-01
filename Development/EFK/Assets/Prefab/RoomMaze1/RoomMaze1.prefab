@@ -48,8 +48,10 @@ MonoBehaviour:
   twinRoom: {fileID: 0}
   doorExit: {fileID: 0}
   doorEntrance: {fileID: 0}
-  diaryText: []
-  diaryImage: []
+  objectsParent: {fileID: 0}
+  useSameEntrance: 0
+  diaryText: {fileID: 0}
+  diaryImageList: []
   maxSpace: 50
   minRoomSize: 5
   doorPrefab: {fileID: 611721949337760788, guid: c775da782f978084b93226ee5a8033ee,
@@ -60,3 +62,5 @@ MonoBehaviour:
   guardPrefab: {fileID: 2483861399637240493, guid: a51cf60735870584dac2932ab62ed88f,
     type: 3}
   numberOfGuard: 3
+  buttonPanel: {fileID: 9051257268286659532, guid: bea4ef9a5cb447f418939a625600354a,
+    type: 3}
