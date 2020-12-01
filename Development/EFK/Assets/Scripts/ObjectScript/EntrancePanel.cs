@@ -2,23 +2,29 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EntrancePanel : MonoBehaviour
 {
     [SerializeField] private Doors controlledDoors;
+    [SerializeField] private Image[] guiImages;
+    [SerializeField] private Color[] buttonColors;
     int[] order = new int[3] {0, 1, 2};
     List<int> pressed = new List<int>();
 
+
     private bool disabled=false;
 
-    void Start()
+    void Awake()
     {
         System.Random rnd = new System.Random();
         order = order.OrderBy(x => rnd.Next()).ToArray();
 
-        foreach(int i in order) {
-            Debug.Log(i);
+        for (int i = 0; i < order.Count(); i++) {
+            transform.GetChild(i).GetComponent<EntranceButton>().SetButtonColor(buttonColors[i]);
+            guiImages[i].color = buttonColors[order[i]];
         }
+
     }
 
 

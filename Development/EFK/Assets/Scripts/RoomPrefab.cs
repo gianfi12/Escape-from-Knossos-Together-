@@ -13,9 +13,11 @@ public class RoomPrefab : RoomAbstract
 
     private int _higherX;
     private bool _firstTile = true;
+    private bool flipDoors;
     
     public override void Generate(int seed,bool isPlayer2)
     {
+        flipDoors = isPlayer2 && !useSameEntrance;
         IterateTilemap(tilemapFloor,Floor);
         IterateTilemap(tilemapWall,Wall);
         IterateTilemap(tilemapDecoration,Decoration);
@@ -76,15 +78,13 @@ public class RoomPrefab : RoomAbstract
         
                 
         Transform room = Instantiate(objectsParent).transform;
-        // Transform child;
-        // for (int i = 0; i < room.transform.childCount; i++)
-        // {
-        //     if ((child = room.GetChild(i)).name == "Grid")
-        //     {
-        //         Destroy(child.gameObject);
-        //     }
-        // }
-        
+
+        if (flipDoors) {
+            foreach (Transform child in room) {
+                if (child.CompareTag("MainDoor")) child.GetComponent<Doors>().FlipClosingDirection();
+            }
+        }
+
         room.localPosition = coordinates +(transform.position - new Vector3(_lowestX,_lowestY,0));
     }
 

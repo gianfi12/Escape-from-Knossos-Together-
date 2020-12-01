@@ -30,19 +30,19 @@ public abstract class RoomAbstract : MonoBehaviour
     protected int _lowestY;
     
     protected PlayerControllerMap player;
-    [SerializeField] private List<GameObject> diaryTextList = new List<GameObject>();
-    [SerializeField] private List<GameObject> diaryImageList = new List<GameObject>();
+    [SerializeField] private Text diaryText;
+    [SerializeField] private List<Image> diaryImageList = new List<Image>();
 
-    public List<GameObject> DiaryTextList => diaryTextList;
+    public Text DiaryText => diaryText;
 
-    public void AddDiaryText(GameObject diaryText)
+    public void SetDiaryText(Text diaryText)
     {
-        diaryTextList.Add(diaryText);
+        this.diaryText = diaryText;
     }
     
-    public List<GameObject> DiaryImageList => diaryImageList;
+    public List<Image> DiaryImageList => diaryImageList;
      
-    public void AddDiaryImage(GameObject diaryImage)
+    public void AddDiaryImage(Image diaryImage)
     {
         diaryImageList.Add(diaryImage);
     }

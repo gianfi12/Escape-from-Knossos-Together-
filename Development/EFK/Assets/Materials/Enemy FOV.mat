@@ -120,7 +120,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - PixelSnap: 0
-    - Vector1_7EB218CA: 0.05
+    - Vector1_7EB218CA: 0.015
     - Vector1_8C5F7218: 0.9
     - _AlphaClip: 0
     - _AlphaThreshold: 0
