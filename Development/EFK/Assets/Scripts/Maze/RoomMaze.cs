@@ -26,6 +26,9 @@ public class RoomMaze : RoomAbstract
     private List<Room> _roomList = new List<Room>();
     private Dictionary<int,Cell> _cellMap = new Dictionary<int, Cell>();
     private Transform _mazeTransform;
+
+    private Vector3Int _coordinatesNotEntrance;
+    private Vector3Int _coordinatesNotExit;
     public override void Generate(int seed, bool isPlayer2)
     {
         _mazeTransform = new GameObject("RoomMaze").transform;
@@ -57,19 +60,20 @@ public class RoomMaze : RoomAbstract
         GameObject textGameObject = new GameObject();
         Text text = textGameObject.AddComponent<Text>();
         String returnedString = "";
-        for (int i = 0; i < _sizeX+2; i++)
+        for (int i = -1; i < _sizeX+1; i++)
         {
-            for (int j = 0; j < _sizeY+2; j++)
+            String temp="";
+            for (int j = -1; j < _sizeY+1; j++)
             {
-                if (Wall.Where(e => e.Coordinates == new Vector3Int(i, j, 0)).Count() > 0)
+                if (Wall.Where(e => e.Coordinates == new Vector3Int(j, i, 0)).Count() > 0)
                 {
-                    returnedString += "x";
+                    temp += "x";
                 }
                 else
-                    returnedString += " ";
+                    temp += " ";
             }
 
-            returnedString += "\n";
+            returnedString = temp+ "\n"+ returnedString;
         }
 
         text.text = returnedString;
@@ -79,6 +83,7 @@ public class RoomMaze : RoomAbstract
     private void AddCollider()
     {
         GameObject collider = new GameObject("Collider");
+        collider.layer = LayerMask.NameToLayer("Ignore Raycast");
         collider.transform.SetParent(_mazeTransform);
         BoxCollider2D boxCollider2D = collider.AddComponent<BoxCollider2D>();
         RoomCollider roomCollider = collider.AddComponent<RoomCollider>();
@@ -469,15 +474,15 @@ public class RoomMaze : RoomAbstract
                         doorTransform.rotation *= Quaternion.Euler(0, 0, 90);
                         doorPosition = position + new Vector3Int(1, 0, 0);
                         doorTransform.GetComponent<Doors>().ClosingDirection=Direction.South;
+                        _coordinatesNotEntrance = position + Direction.South.GetDirection();
                     }
                     else
                     {
                         doorTransform.rotation *= Quaternion.Euler(0, 0, 180);
                         doorPosition = position + new Vector3Int(0, 1, 0);
                         doorTransform.GetComponent<Doors>().ClosingDirection=Direction.East;
+                        _coordinatesNotEntrance = position + Direction.East.GetDirection();
                     }
-                    // ObjectInRoom entranceDoor = new ObjectInRoom(doorPosition, doorTransform);
-                    // Object.Add(entranceDoor);
                     SpawnObjectInRoom(doorPosition,doorTransform);
                 }else
                 {
@@ -500,15 +505,15 @@ public class RoomMaze : RoomAbstract
                         doorTransform.rotation *= Quaternion.Euler(0, 0, 90);
                         doorPosition = position + new Vector3Int(1, 0, 0);
                         doorTransform.GetComponent<Doors>().ClosingDirection=Direction.South;
+                        _coordinatesNotExit = position + Direction.North.GetDirection();
                     }
                     else
                     {
                         doorTransform.rotation *= Quaternion.Euler(0, 0, 180);
                         doorPosition = position + new Vector3Int(0, 1, 0);
                         doorTransform.GetComponent<Doors>().ClosingDirection=Direction.East;
+                        _coordinatesNotExit = position + Direction.West.GetDirection();
                     }
-                    // ObjectInRoom entranceDoor = new ObjectInRoom(doorPosition, doorTransform);
-                    // Object.Add(entranceDoor);
                     SpawnObjectInRoom(doorPosition,doorTransform);
                 }else
                 {
@@ -587,6 +592,15 @@ public class RoomMaze : RoomAbstract
 
     private void removeOverlappingWallsAndFloor()
     {
+        List<Tile> removableWall=new List<Tile>();
+        foreach (Tile tile in Wall)
+        {
+            if(tile.Coordinates==_coordinatesNotEntrance || tile.Coordinates==_coordinatesNotExit) removableWall.Add(tile);
+        }
+        foreach (Tile tile in removableWall)
+        {
+            Wall.Remove(tile);
+        }
         foreach (Tile wall in Wall)
         { 
             IEnumerable<Tile> enumerationRemovableTile = Floor.Where(e => e.Coordinates == wall.Coordinates);
@@ -601,6 +615,8 @@ public class RoomMaze : RoomAbstract
                 TileList.Remove(floorTile);
             }
         }
+
+        
     }
 
 }
