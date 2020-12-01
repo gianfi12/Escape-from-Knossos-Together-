@@ -32,6 +32,7 @@ public class RoomMaze : RoomAbstract
     public override void Generate(int seed, bool isPlayer2)
     {
         _mazeTransform = new GameObject("RoomMaze").transform;
+        _mazeTransform.gameObject.AddComponent<ObjectsContainer>();
         Random.InitState(seed);
         int random;
         while ((random = Random.Range(_minSetSpace, maxSpace)) % 2 == 0);

@@ -17,7 +17,8 @@ public class EntrancePanel : MonoBehaviour
 
     void Awake()
     {
-        System.Random rnd = new System.Random();
+        System.Random rnd = new System.Random(GetComponentInParent<ObjectsContainer>().Seed);
+
         order = order.OrderBy(x => rnd.Next()).ToArray();
 
         for (int i = 0; i < order.Count(); i++) {

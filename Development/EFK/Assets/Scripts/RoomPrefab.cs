@@ -11,12 +11,14 @@ public class RoomPrefab : RoomAbstract
     [SerializeField] private Tilemap tilemapSpawn;
     [SerializeField] private Tilemap tilemapDecoration;
 
+    private int seed;
     private int _higherX;
     private bool _firstTile = true;
     private bool flipDoors;
     
     public override void Generate(int seed,bool isPlayer2)
     {
+        this.seed = seed;
         flipDoors = isPlayer2 && !useSameEntrance;
         IterateTilemap(tilemapFloor,Floor);
         IterateTilemap(tilemapWall,Wall);
@@ -78,6 +80,7 @@ public class RoomPrefab : RoomAbstract
         
                 
         Transform room = Instantiate(objectsParent).transform;
+        room.GetComponent<ObjectsContainer>().SetSeed(seed);
 
         if (flipDoors) {
             foreach (Transform child in room) {
