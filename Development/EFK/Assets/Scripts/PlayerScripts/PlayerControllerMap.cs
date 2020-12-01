@@ -19,7 +19,7 @@ public class PlayerControllerMap : MonoBehaviour
 
     private bool networkMine;
 
-    public void Start() {
+    public void Awake() {
         diaryPanel = transform.Find("Canvas").Find("Diary-Panel").gameObject;
         diaryPanel.SetActive(false);
     }
