@@ -581,8 +581,7 @@ public class RoomMaze : RoomAbstract
     
     public override void PlaceRoom(Tilemap tilemapFloor, Tilemap tilemapWall, Tilemap tilemapDecoration)
     {
-        Transform buttonsCont = Instantiate(buttonPanel).transform;
-        buttonsCont.SetParent(_mazeTransform);
+        Transform buttonsCont = Instantiate(buttonPanel, _mazeTransform).transform;
         
         List<Color> colors = GetColors(buttonsCont);
         foreach (var tile in TileList)
@@ -603,7 +602,7 @@ public class RoomMaze : RoomAbstract
     private List<Color> GetColors(Transform buttonsCont)
     {
         List<Color> returnedList = new List<Color>();
-        for (int i = 0; i < buttonsCont.childCount-1; i++)
+        for (int i = 0; i < buttonsCont.childCount; i++)
         {
             SpriteRenderer renderer = buttonsCont.GetChild(i).GetComponent<SpriteRenderer>();
             returnedList.Add(renderer.color);
