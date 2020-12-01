@@ -13,17 +13,21 @@ public class RoomCollider : MonoBehaviour
     {
         if (other.CompareTag("Player")) {
             PlayerControllerMap player;
-            GameObject[] playersList = GameObject.FindGameObjectsWithTag("Player");
-
+            
             if (PhotonNetwork.IsConnected) {
-                player = playersList.Where(x => !x.GetComponent<PhotonView>().IsMine).First().GetComponent<PlayerControllerMap>();
+                // If connected, set room to own player only when room is entered/triggered by other player
+                if (!other.GetComponent<PhotonView>().IsMine) {
+                    GameObject[] playersList = GameObject.FindGameObjectsWithTag("Player");
+                    player = playersList.Where(x => x.GetComponent<PhotonView>().IsMine).First().GetComponent<PlayerControllerMap>();
+                    player.SetRoom(room);
+                    room.Player = player;
+                }
             }
             else {
-                player = playersList[0].GetComponent<PlayerControllerMap>();
+                player = other.GetComponent<PlayerControllerMap>();
+                player.SetRoom(room);
+                room.Player = player;
             }
-        
-            player.SetMyRoom(room);
-            room.Player = player;
         }
     }
     

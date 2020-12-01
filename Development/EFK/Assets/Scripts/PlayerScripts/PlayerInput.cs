@@ -29,7 +29,7 @@ public class PlayerInput : MonoBehaviourPun
     void Start() {
         try {
             //Set active the UI for each player
-            if (photonView.IsMine) _playerUI.SetActive(true);
+            if (!photonView.IsMine) _playerUI.SetActive(false);
         }
         catch (NullReferenceException) {
             Debug.Log("Voice controls disabled");
