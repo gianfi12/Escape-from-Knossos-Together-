@@ -2032,6 +2032,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4426639707403442910}
+  - component: {fileID: 1784162088209182661}
   m_Layer: 0
   m_Name: RoomMid1Objects
   m_TagString: Untagged
@@ -2055,6 +2056,18 @@ Transform:
   m_Father: {fileID: 7214109946856155223}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1784162088209182661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5042435813351997772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 996d1c91e2c6e4f46ab7d47f38d6f161, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5077856195435547027
 GameObject:
   m_ObjectHideFlags: 0

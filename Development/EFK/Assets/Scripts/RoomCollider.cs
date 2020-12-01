@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Photon.Pun;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class RoomCollider : MonoBehaviour
@@ -9,17 +11,27 @@ public class RoomCollider : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
-        {
-            PlayerControllerMap player = other.GetComponent<PlayerControllerMap>();
+        if (other.CompareTag("Player")) {
+            PlayerControllerMap player;
+            GameObject[] playersList = GameObject.FindGameObjectsWithTag("Player");
+
+            if (PhotonNetwork.IsConnected) {
+                player = playersList.Where(x => !x.GetComponent<PhotonView>().IsMine).First().GetComponent<PlayerControllerMap>();
+            }
+            else {
+                player = playersList[0].GetComponent<PlayerControllerMap>();
+            }
+        
             player.SetMyRoom(room);
-            room.Player = player; 
+            room.Player = player;
         }
     }
     
     private void OnTriggerExit2D(Collider2D other)
     {
-        room.Player = null;
+        if (other.CompareTag("Player")) {
+            room.Player = null;
+        }
     }
 
     public RoomAbstract Room
