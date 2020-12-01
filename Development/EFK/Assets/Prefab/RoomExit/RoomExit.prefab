@@ -150,6 +150,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 195664770994205891}
+  - component: {fileID: 4316074229885170475}
   m_Layer: 0
   m_Name: RoomExitObjects
   m_TagString: Untagged
@@ -173,6 +174,18 @@ Transform:
   m_Father: {fileID: 1445744963723494004}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4316074229885170475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1434125500694514438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 996d1c91e2c6e4f46ab7d47f38d6f161, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1614863691169085273
 GameObject:
   m_ObjectHideFlags: 0

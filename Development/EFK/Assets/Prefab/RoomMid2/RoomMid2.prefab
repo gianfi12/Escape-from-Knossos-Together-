@@ -2924,6 +2924,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9207662233438858745}
+  - component: {fileID: 4419251074612001010}
   m_Layer: 0
   m_Name: RoomMid2Objects
   m_TagString: Untagged
@@ -2947,6 +2948,18 @@ Transform:
   m_Father: {fileID: 5792260768022587056}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4419251074612001010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8497909911887139481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 996d1c91e2c6e4f46ab7d47f38d6f161, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1276402991165971271
 PrefabInstance:
   m_ObjectHideFlags: 0
