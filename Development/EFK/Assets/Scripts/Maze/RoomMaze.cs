@@ -18,6 +18,7 @@ public class RoomMaze : RoomAbstract
     [SerializeField] private int numberOfWardrobe;
     [SerializeField] private GameObject guardPrefab;
     [SerializeField] private int numberOfGuard;
+    [SerializeField] private GameObject buttonPanel;     
     
     private int _sizeX, _sizeY;
 
@@ -130,17 +131,17 @@ public class RoomMaze : RoomAbstract
             switch (randomDirection)
             {
                 case Direction.North:
-                    wardrobePosition += new Vector3(0.5f,0,0);
+                    wardrobePosition += new Vector3(0.6f,0,0);
                     break;
                 case Direction.South:
-                    wardrobePosition += new Vector3(0.5f,1f,0);
+                    wardrobePosition += new Vector3(0.6f,1f,0);
                     break;  
                 case Direction.East:
-                    wardrobePosition += new Vector3(0f,0.5f,0);
+                    wardrobePosition += new Vector3(0f,0.6f,0);
                     wardrobeTransform.rotation *= Quaternion.Euler(0, 0, 90); 
                     break;
                 case Direction.West:
-                    wardrobePosition += new Vector3(1f,0.5f,0);
+                    wardrobePosition += new Vector3(1f,0.6f,0);
                     wardrobeTransform.rotation *= Quaternion.Euler(0, 0, 90);
                     break;
             }
@@ -416,7 +417,7 @@ public class RoomMaze : RoomAbstract
                     }
 
                     Edge edge = SetConnection(direction, cell, otherCell);
-                    if (otherCell.Room is null && Random.Range(1, 100) > 60)
+                    if (otherCell.Room is null && Random.Range(1, 100) > 40)
                     {
                         edge.EdgeType = Edge.EdgeTypes.Passage;
                         cell.Room.AddCell(otherCell);
@@ -499,6 +500,8 @@ public class RoomMaze : RoomAbstract
                     TileList.Add(tile);
                     Exit.Add(tile);
                     Transform doorTransform = Instantiate(doorPrefab).transform;
+                    Doors doorScript = doorTransform.GetComponent<Doors>();
+                    doorScript.CloseDoors();
                     Vector3Int doorPosition;
                     if (directionChange == 2)
                     {
@@ -575,16 +578,82 @@ public class RoomMaze : RoomAbstract
     }
     
     
-    public override void PlaceRoom(Tilemap tilemapFloor, Tilemap tilemapWall, Tilemap tilemapDecoration) 
+    public override void PlaceRoom(Tilemap tilemapFloor, Tilemap tilemapWall, Tilemap tilemapDecoration)
     {
+        Transform buttonsCont = Instantiate(buttonPanel).transform;
+        buttonsCont.SetParent(_mazeTransform);
+        
+        List<Color> colors = GetColors(buttonsCont);
         foreach (var tile in TileList)
         {
-            tile.Coordinates = tile.Coordinates - new Vector3Int(_lowestX, _lowestY, 0) + new Vector3Int(_displacementX,_displacementY,0);
+            Vector3Int normalizedCoordinates = tile.Coordinates - new Vector3Int(_lowestX, _lowestY, 0);
+            tile.Coordinates =  normalizedCoordinates + new Vector3Int(_displacementX,_displacementY,0);
             if (Wall.Contains(tile))
                 tilemapWall.SetTile(tile.Coordinates, tile.TileBase);
             else
             {
                 tilemapFloor.SetTile(tile.Coordinates, tile.TileBase);
+                tilemapFloor.SetColor(tile.Coordinates,ColorFromCoordinates(normalizedCoordinates,colors));
+
+            }
+        }
+    }
+
+    private List<Color> GetColors(Transform buttonsCont)
+    {
+        List<Color> returnedList = new List<Color>();
+        for (int i = 0; i < buttonsCont.childCount-1; i++)
+        {
+            SpriteRenderer renderer = buttonsCont.GetChild(i).GetComponent<SpriteRenderer>();
+            returnedList.Add(renderer.color);
+        }
+        return returnedList;
+    }
+
+
+    private Color ColorFromCoordinates(Vector3Int tileCoordinates, List<Color> colors)
+    {
+        int offsetX = _sizeX / 3;
+        int offsetY = _sizeY / 3;
+        if (tileCoordinates.x < offsetX)
+        {
+            if (tileCoordinates.y < offsetY)
+            {
+                return colors[0];
+            }else if (tileCoordinates.y < offsetY * 2)
+            {
+                return colors[1];
+            }
+            else
+            {
+                return colors[2];
+            }
+        }else if (tileCoordinates.x < offsetX * 2)
+        {
+            if (tileCoordinates.y < offsetY)
+            {
+                return colors[3];
+            }else if (tileCoordinates.y < offsetY * 2)
+            {
+                return colors[4];
+            }
+            else
+            {
+                return colors[5];
+            }
+        }
+        else
+        {
+            if (tileCoordinates.y < offsetY)
+            {
+                return colors[6];
+            }else if (tileCoordinates.y < offsetY * 2)
+            {
+                return colors[7];
+            }
+            else
+            {
+                return colors[8];
             }
         }
 

@@ -9,7 +9,7 @@ public class EntrancePanel : MonoBehaviour
     [SerializeField] private Doors controlledDoors;
     [SerializeField] private Image[] guiImages;
     [SerializeField] private Color[] buttonColors;
-    int[] order = new int[3] {0, 1, 2};
+    private int[] order;
     List<int> pressed = new List<int>();
 
 
@@ -17,6 +17,11 @@ public class EntrancePanel : MonoBehaviour
 
     void Awake()
     {
+        order = new int[buttonColors.Length];
+        for (int i = 0; i < buttonColors.Length; i++)
+        {
+            order[i] = i;
+        }
         System.Random rnd = new System.Random();
         order = order.OrderBy(x => rnd.Next()).ToArray();
 
