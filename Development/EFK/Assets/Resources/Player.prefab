@@ -160,11 +160,7 @@ GameObject:
   - component: {fileID: 1846240362729509501}
   - component: {fileID: 5933495362916007992}
   m_Layer: 5
-<<<<<<< HEAD
-  m_Name: DIary-Panel
-=======
   m_Name: Diary-Panel
->>>>>>> 41d972530858c385326365bc20ab717fee81dc74
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -818,13 +814,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-<<<<<<< HEAD
-  m_AnchoredPosition: {x: 0.000043825, y: 0.00012207}
-  m_SizeDelta: {x: 274.10638, y: 374.74875}
-=======
   m_AnchoredPosition: {x: 0, y: 120}
   m_SizeDelta: {x: 160, y: 30}
->>>>>>> 41d972530858c385326365bc20ab717fee81dc74
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6697782299472779546
 CanvasRenderer:
