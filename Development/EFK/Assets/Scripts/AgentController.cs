@@ -127,9 +127,9 @@ public class AgentController : MonoBehaviour
         
         currentMovement = agent.velocity.normalized;
         animator.SetFloat("Horizontal", currentMovement.x);
-        animator.SetFloat("Vertical", currentMovement.y);
-        animator.SetFloat("Speed", currentMovement.sqrMagnitude);
-        animator.SetFloat("Direction", lastDir);
+        //animator.SetFloat("Vertical", currentMovement.y);
+        //animator.SetFloat("Speed", currentMovement.sqrMagnitude);
+        //animator.SetFloat("Direction", lastDir);
     }
 
     public float GetDirectionAngle() {
