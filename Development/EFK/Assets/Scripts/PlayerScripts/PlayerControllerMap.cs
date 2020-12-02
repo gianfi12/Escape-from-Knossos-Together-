@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Photon.Pun;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,7 +17,9 @@ public class PlayerControllerMap : MonoBehaviour
     [SerializeField] private List<ItemSlot> slots;
     private RoomAbstract myRoom;
 
-    public void Start() {
+    private bool networkMine;
+
+    public void Awake() {
         diaryPanel = transform.Find("Canvas").Find("Diary-Panel").gameObject;
         diaryPanel.SetActive(false);
     }
@@ -48,7 +51,7 @@ public class PlayerControllerMap : MonoBehaviour
         gameManager = manager;
     }
 
-    public void SetMyRoom(RoomAbstract room)
+    public void SetRoom(RoomAbstract room)
     {
         ResetDiaryImages();
         myRoom = room;

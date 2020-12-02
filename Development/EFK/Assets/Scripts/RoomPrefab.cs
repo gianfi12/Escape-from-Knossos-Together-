@@ -77,10 +77,10 @@ public class RoomPrefab : RoomAbstract
     {
         _displacementX = coordinates.x;
         _displacementY = coordinates.y;
-        
-                
+
+
+        objectsParent.GetComponent<ObjectsContainer>().Seed = seed;
         Transform room = Instantiate(objectsParent).transform;
-        room.GetComponent<ObjectsContainer>().SetSeed(seed);
 
         if (flipDoors) {
             foreach (Transform child in room) {

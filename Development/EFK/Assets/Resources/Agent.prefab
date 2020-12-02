@@ -154,12 +154,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 15ae49c3eff68064b91ec12da1d18bcb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 53e4df58ca2bbd0438d77897b93a1cf0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.56, y: 1.28}
+  m_Size: {x: 5.94, y: 8.66}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -178,8 +178,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wanderRadius: 5
-  checkpointName: 
   isPatroller: 0
+  checkpoints: []
   standardFovColor: {r: 0.5802777, g: 0.6709922, b: 0.754717, a: 1}
   seekingFovColor: {r: 0.7735849, g: 0.19339623, b: 0.22001049, a: 1}
 --- !u!195 &2483861399637240489
@@ -240,9 +240,9 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2483861399637240493}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 35284bd3bd210cb4ea524200625bbff8, type: 2}
+  m_Controller: {fileID: 9100000, guid: 388f65356171dfc42aae503f673e3cf5, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

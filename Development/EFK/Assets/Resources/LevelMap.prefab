@@ -46,7 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomCollection: {fileID: 11400000, guid: a3676319eac9ecd47a7e3b9aecff0289, type: 2}
   numberOfRoom: 2
-  tilemapMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   playerPrefab: {fileID: 6670318139074350463, guid: 7c1dde98195689c40ba26116a5adbb64,
     type: 3}
 --- !u!114 &3452229506978066234

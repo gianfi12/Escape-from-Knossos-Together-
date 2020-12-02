@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class ObjectsContainer : MonoBehaviour
 {
-    private int seed;
-    public int Seed => seed;
+    public int Seed;
 
-    public void SetSeed(int seed) {
-        this.seed = seed;
-    }
 }

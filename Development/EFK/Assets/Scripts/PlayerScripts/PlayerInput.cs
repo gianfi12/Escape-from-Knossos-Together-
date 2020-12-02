@@ -29,7 +29,7 @@ public class PlayerInput : MonoBehaviourPun
     void Start() {
         try {
             //Set active the UI for each player
-            if (photonView.IsMine) _playerUI.SetActive(true);
+            if (!photonView.IsMine) _playerUI.SetActive(false);
         }
         catch (NullReferenceException) {
             Debug.Log("Voice controls disabled");
@@ -96,21 +96,16 @@ public class PlayerInput : MonoBehaviourPun
                     _voiceController.disableVoice();
                 }
 
-                if (Input.GetButtonDown("Map") )
+                if (Input.GetButtonDown("Map"))
                 {
-                    if (!isDiaryActive)
-                    {
-                        diaryPanel.SetActive(true);
-                        diaryImage.SetActive(false);
-                        isDiaryActive = true; 
-                    }
-                    else
-                    {
-                        diaryPanel.SetActive(false);
-                        diaryImage.SetActive(true);
-                        isDiaryActive = false;
-                    }
-                
+                    diaryPanel.SetActive(true);
+                    diaryImage.SetActive(false);
+                }
+    
+                else if (Input.GetButtonUp("Map"))
+                {
+                    diaryPanel.SetActive(false);
+                    diaryImage.SetActive(true);
                 }
             }
         }
