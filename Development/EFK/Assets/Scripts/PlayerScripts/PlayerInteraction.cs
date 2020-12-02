@@ -38,9 +38,11 @@ public class PlayerInteraction : MonoBehaviour
                                                            .FirstOrDefault();
 
         if (selectableTarget != null && canChangeLastInteractableObejct) {
-            if ((!_hasTargetSelected || selectableTarget.GetInstanceID() != _SelectedTarget.transform.GetInstanceID())) {
+            if ((!_hasTargetSelected || selectableTarget.GetInstanceID() != _SelectedTarget.transform.GetInstanceID()))
+            {
                 Material material;
-                if (_hasTargetSelected) {
+                if (_hasTargetSelected)
+                {
                     material = _SelectedTarget.GetComponent<SpriteRenderer>().material;
                     material.SetFloat("_Thickness", 0f);
                     _instantiatedText.SetActive(false);
@@ -51,22 +53,34 @@ public class PlayerInteraction : MonoBehaviour
 
                 InteractableObject interactableObject = selectableTarget.GetComponent<InteractableObject>();
                 _instantiatedText.transform.position = interactableObject.GetTextPosition() + textBubbleOffset;
-                _instantiatedText.GetComponentInChildren<TMPro.TextMeshPro>().text = interactableObject.InteractiveText; 
+                _instantiatedText.GetComponentInChildren<TMPro.TextMeshPro>().text = interactableObject.InteractiveText;
                 _instantiatedText.SetActive(true);
                 _SelectedTarget = selectableTarget;
                 _hasTargetSelected = true;
             }
+
+            // } else if (_hasTargetSelected && selectableTarget.GetInstanceID() != _SelectedTarget.transform.GetInstanceID()) {
+            //     Material material = _SelectedTarget.GetComponent<SpriteRenderer>().material;
+            //     material.SetFloat("_Thickness", 0f);
+            //     _instantiatedText.SetActive(false);
+            //     _hasTargetSelected = false;
+            // }
         }
-        else if (_hasTargetSelected) {
+
+        
+        if (selectableTarget == null && canChangeLastInteractableObejct && _hasTargetSelected)
+        {
             Material material = _SelectedTarget.GetComponent<SpriteRenderer>().material;
             material.SetFloat("_Thickness", 0f);
             _instantiatedText.SetActive(false);
             _hasTargetSelected = false;
         }
+
+
     }
 
     public void InteractWithTarget(GameObject player) {
-        if (SelectedTarget != null) SelectedTarget.GetComponent<InteractableObject>().Interact(player);
+        if (_hasTargetSelected) SelectedTarget.GetComponent<InteractableObject>().Interact(player);
     }
 
     public Transform SelectedTarget => _SelectedTarget;
