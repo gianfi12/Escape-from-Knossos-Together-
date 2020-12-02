@@ -96,21 +96,16 @@ public class PlayerInput : MonoBehaviourPun
                     _voiceController.disableVoice();
                 }
 
-                if (Input.GetButtonDown("Map") )
+                if (Input.GetButtonDown("Map"))
                 {
-                    if (!isDiaryActive)
-                    {
-                        diaryPanel.SetActive(true);
-                        diaryImage.SetActive(false);
-                        isDiaryActive = true; 
-                    }
-                    else
-                    {
-                        diaryPanel.SetActive(false);
-                        diaryImage.SetActive(true);
-                        isDiaryActive = false;
-                    }
-                
+                    diaryPanel.SetActive(true);
+                    diaryImage.SetActive(false);
+                }
+    
+                else if (Input.GetButtonUp("Map"))
+                {
+                    diaryPanel.SetActive(false);
+                    diaryImage.SetActive(true);
                 }
             }
         }

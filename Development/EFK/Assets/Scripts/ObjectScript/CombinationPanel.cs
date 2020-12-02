@@ -29,9 +29,11 @@ public class CombinationPanel : InteractableObject
         if (!_hasBeenActivated)
         {
             _hasBeenActivated = true;
+            player.GetComponent<PlayerInput>()._canMove = false;
             canvasToReturn = panel.transform.parent.GetComponent<Canvas>();
             Canvas playerCanvas = player.GetComponentInChildren<Canvas>();
             panel.transform.SetParent(playerCanvas.transform);
+            panel.transform.SetAsFirstSibling();
             foreach (var slot in slots)
             {
                 slot.SlotImage.Canvas = playerCanvas;
@@ -41,6 +43,7 @@ public class CombinationPanel : InteractableObject
         else
         {
             _hasBeenActivated = false;
+            player.GetComponent<PlayerInput>()._canMove = true;
             panel.transform.SetParent(canvasToReturn.transform);
             foreach (var slot in slots)
             {
