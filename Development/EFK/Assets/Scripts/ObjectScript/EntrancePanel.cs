@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -9,7 +10,8 @@ public class EntrancePanel : MonoBehaviour
     [SerializeField] private Doors controlledDoors;
     [SerializeField] private Image[] guiImages;
     [SerializeField] private Color[] buttonColors;
-    private int[] order;
+    [SerializeField] private int numberOfActiveButtons;
+    private int[] orderedButtons;
     List<int> pressed = new List<int>();
 
 
@@ -17,18 +19,29 @@ public class EntrancePanel : MonoBehaviour
 
     void Awake()
     {
-        order = new int[buttonColors.Length];
-        for (int i = 0; i < buttonColors.Length; i++)
+        System.Random rnd = new System.Random(GetComponentInParent<ObjectsContainer>().Seed);
+
+        orderedButtons = new int[numberOfActiveButtons];
+        for (int i = 0; i < numberOfActiveButtons; i++) orderedButtons[i] = -1;
+
+        int n;
+        for (int i = 0; i < numberOfActiveButtons; i++)
         {
-            order[i] = i;
+
+            do n = rnd.Next(0, buttonColors.Count());
+            while (orderedButtons.Contains(n));
+            
+            orderedButtons[i] = n;
+        }
+        
+        // Set colors to all buttons
+        for (int i = 0; i < buttonColors.Count(); i++) {
+            transform.GetChild(i).GetComponent<EntranceButton>().SetButtonColor(buttonColors[i]);
         }
 
-        System.Random rnd = new System.Random(GetComponentInParent<ObjectsContainer>().Seed);
-        order = order.OrderBy(x => rnd.Next()).ToArray();
-
-        for (int i = 0; i < order.Count(); i++) {
-            transform.GetChild(i).GetComponent<EntranceButton>().SetButtonColor(buttonColors[i]);
-            guiImages[i].color = buttonColors[order[i]];
+        // Set colors to gui images in order only for active buttons
+        for (int i=0; i< orderedButtons.Count(); i++) {
+            guiImages[i].color = buttonColors[orderedButtons[i]];
         }
 
     }
@@ -38,8 +51,8 @@ public class EntrancePanel : MonoBehaviour
         if (!disabled) {
             pressed.Add(index);
 
-            if (pressed.Count() >= 3) {
-                if (order.SequenceEqual(pressed)) {
+            if (pressed.Count() >= numberOfActiveButtons) {
+                if (orderedButtons.SequenceEqual(pressed)) {
                     controlledDoors.OpenDoors();
                     disabled = true;
                 }
