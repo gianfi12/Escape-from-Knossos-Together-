@@ -27,6 +27,7 @@ public class RoomMaze : RoomAbstract
     private List<Room> _roomList = new List<Room>();
     private Dictionary<int,Cell> _cellMap = new Dictionary<int, Cell>();
     private Transform _mazeTransform;
+    private Transform _doorExitTransform;
 
     private Vector3Int _coordinatesNotEntrance;
     private Vector3Int _coordinatesNotExit;
@@ -37,7 +38,6 @@ public class RoomMaze : RoomAbstract
         Random.InitState(seed);
         int random;
         while ((random = Random.Range(_minSetSpace, maxSpace)) % 2 == 0);
-        //while ((_sizeY = Random.Range(_minSetSpace, maxSpace)) % 2 == 0);
         _sizeX = random;
         _sizeY = random;
         _requiredWidthSpace = _sizeX+2;//due to the walls
@@ -501,6 +501,7 @@ public class RoomMaze : RoomAbstract
                     TileList.Add(tile);
                     Exit.Add(tile);
                     Transform doorTransform = Instantiate(doorPrefab).transform;
+                    _doorExitTransform = doorTransform;
                     Doors doorScript = doorTransform.GetComponent<Doors>();
                     doorScript.CloseDoors();
                     Vector3Int doorPosition;
@@ -624,6 +625,8 @@ public class RoomMaze : RoomAbstract
 
     private void GenerateRegions(Transform buttonsCont)
     {
+        EntrancePanel entrancePanel = buttonsCont.GetComponent<EntrancePanel>();
+        // entrancePanel
         for (int i = 0; i < buttonsCont.childCount; i++)
         {
             SpriteRenderer renderer = buttonsCont.GetChild(i).GetComponent<SpriteRenderer>();
