@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4747853903105784690}
   - component: {fileID: -6967109705885033667}
-  - component: {fileID: 5172947580070084089}
   m_Layer: 0
   m_Name: RoomMaze1
   m_TagString: Untagged
@@ -76,19 +75,6 @@ MonoBehaviour:
     type: 3}
   numberOfGuard: 3
   buttonPanel: {fileID: 3507841497656833930}
---- !u!114 &5172947580070084089
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 578123251867535181}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 996d1c91e2c6e4f46ab7d47f38d6f161, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Seed: 0
 --- !u!1 &3507841497656833930
 GameObject:
   m_ObjectHideFlags: 0

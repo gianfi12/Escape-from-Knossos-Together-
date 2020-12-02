@@ -20,31 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42b741fa-8516-4a76-ad90-f64f2f44ef01" name="Default Changelist" comment="First version of maze room, and now the floor of the corrider is positioned on a different tilemap">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.EFK/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.EFK/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.EFK/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.EFK/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.EFK/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.EFK/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/RoomEntrance1/RoomEntrance1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/RoomEntrance1/RoomEntrance1.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/RoomEntrance2/RoomEntrance2.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/RoomEntrance2/RoomEntrance2.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/RoomExit/RoomExit.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/RoomExit/RoomExit.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/RoomMid1/RoomMid1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/RoomMid1/RoomMid1.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/RoomMid2/RoomMid2.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/RoomMid2/RoomMid2.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/RoomMid3.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/RoomMid3/RoomMid3.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/RoomMid3/RoomMid3.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/RoomMid3/Runa.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/RoomMid3/Runa.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/RoomMid3/Text.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/RoomMid3/Text.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/RoomMid4/RoomMid4.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/RoomMid4/RoomMid4.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Main.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Main.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/RoomMaze1/RoomMaze1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/RoomMaze1/RoomMaze1.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Maze/RoomMaze.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Maze/RoomMaze.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerScripts/PlayerControllerMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerScripts/PlayerControllerMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/RoomAbstract.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RoomAbstract.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/RoomCollider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RoomCollider.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/RoomMid3Manager.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/RoomMid3Manager.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/Assembly-CSharp.csprojAssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/Assembly-CSharp.csprojAssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/PhotonUnityNetworking.Editor.csprojAssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/PhotonUnityNetworking.Editor.csprojAssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SpriteOutline/Shaders.meta" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +45,9 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/RoomManagers/AlphabetRoomManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Maze/Room.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/RoomAbstract.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/Downloads/$SpriteCollection.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/AgentController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ObjectScript/CombinationPanel.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -397,10 +378,10 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="679" y="330" key="git4idea.ui.GitUnstashDialog/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1604427554287" />
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1606747396167">
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1606936105477">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1606747396167" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1606936105477" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -417,18 +398,13 @@
           <properties documentPath="C:\Users\Gianf\Documents\VDP\EFK\Escape-from-Knossos-Together-\Development\EFK\Assets\Scripts\PlayerScripts\PlayerInteraction.cs" initialLine="30" />
           <option name="timeStamp" value="9" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Maze/RoomMaze.cs</url>
-          <line>239</line>
-          <properties documentPath="C:\Users\Gianf\Documents\VDP\EFK\Escape-from-Knossos-Together-\Development\EFK\Assets\Scripts\Maze\RoomMaze.cs" initialLine="249" />
-          <option name="timeStamp" value="22" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="Type#Cell" memberName="_edges" />
         <PinnedItemInfo parentTag="Type#RoomMaze" memberName="_actualRoomCellsStack" />
+        <PinnedItemInfo parentTag="Frame#PlayerInteraction.SelectInteractableTarget" memberName="this" />
         <PinnedItemInfo parentTag="Type#RoomMaze" memberName="_otherRoomCellsStack" />
         <PinnedItemInfo parentTag="Type#Cell" memberName="_room" />
         <PinnedItemInfo parentTag="Type#RoomMaze" memberName="_cellMap" />
