@@ -47,6 +47,7 @@ public class AlphabetRoomManager : MonoBehaviour
 
     private void SelectNumbers()
     {
+        Random.InitState(GetComponent<ObjectsContainer>().Seed);
         int remaining = 5;
         int chosen;
         List<int> numbers = new List<int>();
@@ -83,11 +84,6 @@ public class AlphabetRoomManager : MonoBehaviour
             selectedNumbers.Add(numbers[chosen]);
             start = chosen + 1;
             remaining--;
-        }
-
-        foreach (var x in selectedNumbers)
-        {
-            Debug.Log("SELEZIONATO: "+x);
         }
     }
 
@@ -128,7 +124,7 @@ public class AlphabetRoomManager : MonoBehaviour
         runes = GetComponentsInChildren<Rune>();
         SelectNumbers();
         combinationPanel.transform.parent.GetComponentInChildren<Canvas>().GetComponentInChildren<Image>().transform.Find("Order").GetComponent<Text>().text += mode.name;
-        System.Random rnd = new System.Random();
+        System.Random rnd = new System.Random(GetComponent<ObjectsContainer>().Seed);
         int [] randomImages = selectedNumbers.OrderBy(x => rnd.Next()).ToArray();
         for (int i = 0; i < runes.Length; i++)
         {
@@ -142,8 +138,22 @@ public class AlphabetRoomManager : MonoBehaviour
         ItemSlot[] slots = combinationPanel.Slots;
         for (int i = 0; i < slots.Length; i++)
         {
-            if (slots[i].SlotImage.GetImage().sprite != runeSprites[selectedNumbers[i]]) return;
+            if (slots[i].SlotImage.GetImage().sprite != runeSprites[selectedNumbers[i]])
+            {
+                StartCoroutine(ChangePanelColor(Color.red));
+                return;
+            }
         }
+        StartCoroutine(ChangePanelColor(Color.green));
         exitDoor.OpenDoors();
+    }
+
+    IEnumerator ChangePanelColor(Color newColor)
+    {
+        Image backgroundImage = combinationPanel.Panel.GetComponent<Image>();
+        Color originalColor = backgroundImage.color;
+        backgroundImage.color = newColor;
+        yield return new WaitForSeconds(0.5f);
+        backgroundImage.color = originalColor;
     }
 }

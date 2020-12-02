@@ -10,6 +10,7 @@ public class Wardrobe : InteractableObject
     private Collider2D _playerCollider;
     private bool _hasBeenSetted;
     private PlayerInput _playerInput;
+    private PlayerInteraction _playerInteraction;
     private Transform _playerTransform;
     private float _timeOfActivation;
 
@@ -21,6 +22,7 @@ public class Wardrobe : InteractableObject
         {
             _hasBeenSetted = true;
             _playerInput = player.GetComponent<PlayerInput>();
+            _playerInteraction = player.GetComponent<PlayerInteraction>();
             _playerRenderer = player.GetComponent<SpriteRenderer>();
             _playerCollider = player.GetComponent<Collider2D>();
             _playerTransform = player.transform;
@@ -31,6 +33,7 @@ public class Wardrobe : InteractableObject
         {
             _hasBeenActivated = true;
             _playerInput.CanMove = false;
+            _playerInteraction.canChangeLastInteractableObejct = false;
             _previousPlayerPosition = player.transform.position;
             _playerTransform.position = transform.position;
             _playerRenderer.enabled = false;
@@ -40,6 +43,7 @@ public class Wardrobe : InteractableObject
         else if(_hasBeenActivated && (Time.time - _timeOfActivation) > minTimeInWardrobe) {
             _hasBeenActivated = false;
             _playerInput.CanMove = true;
+            _playerInteraction.canChangeLastInteractableObejct = true;
             _playerTransform.position = _previousPlayerPosition;
             _playerRenderer.enabled = true;
             _playerCollider.enabled = true;

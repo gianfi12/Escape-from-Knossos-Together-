@@ -157,7 +157,7 @@ public class RoomMaze : RoomAbstract
         bool isOverlapped=true;
         while (isOverlapped)
         {
-            floorTile = Floor[Random.Range(0,Wall.Count-1)];
+            floorTile = Floor[Random.Range(0,Floor.Count-1)];
             isOverlapped = false;
             for (int i = 0; i < Wall.Count && !isOverlapped; i++)
             {
@@ -583,35 +583,58 @@ public class RoomMaze : RoomAbstract
     {
         Transform buttonsCont = Instantiate(buttonPanel, _mazeTransform).transform;
         
-        List<Color> colors = GetColors(buttonsCont);
+        GenerateRegions(buttonsCont);
+
         foreach (var tile in TileList)
         {
             Vector3Int normalizedCoordinates = tile.Coordinates - new Vector3Int(_lowestX, _lowestY, 0);
             tile.Coordinates =  normalizedCoordinates + new Vector3Int(_displacementX,_displacementY,0);
+            tile.NormalizedCoordinates = normalizedCoordinates;
             if (Wall.Contains(tile))
                 tilemapWall.SetTile(tile.Coordinates, tile.TileBase);
             else
             {
                 tilemapFloor.SetTile(tile.Coordinates, tile.TileBase);
-                tilemapFloor.SetColor(tile.Coordinates,ColorFromCoordinates(normalizedCoordinates,colors));
-
+                tilemapFloor.SetColor(tile.Coordinates,ColorFromCoordinates(normalizedCoordinates).color);
             }
+        }
+        
+        foreach (Region region in _regions)
+        {
+            Tile floor;
+            while (ColorFromCoordinates((floor = getRandomFloor()).NormalizedCoordinates) != region) ;
+            region.button.position = floor.Coordinates+new Vector3(0.5f,0.5f,0f);
+        }
+
+    }
+    
+    protected class Region
+    {
+        public readonly Color color;
+        public readonly Transform button;
+
+        public Region(Color color, Transform button)
+        {
+            this.color = color;
+            this.button = button;
         }
     }
 
-    private List<Color> GetColors(Transform buttonsCont)
+    private List<Region> _regions = new List<Region>();
+
+    private void GenerateRegions(Transform buttonsCont)
     {
-        List<Color> returnedList = new List<Color>();
         for (int i = 0; i < buttonsCont.childCount; i++)
         {
             SpriteRenderer renderer = buttonsCont.GetChild(i).GetComponent<SpriteRenderer>();
-            returnedList.Add(renderer.color);
+            _regions.Add(new Region(renderer.color,buttonsCont.GetChild(i)));
         }
-        return returnedList;
+        System.Random rnd = new System.Random();
+        _regions = _regions.OrderBy(x => rnd.Next()).ToList();
     }
 
 
-    private Color ColorFromCoordinates(Vector3Int tileCoordinates, List<Color> colors)
+    private Region ColorFromCoordinates(Vector3Int tileCoordinates)
     {
         int offsetX = _sizeX / 3;
         int offsetY = _sizeY / 3;
@@ -619,43 +642,35 @@ public class RoomMaze : RoomAbstract
         {
             if (tileCoordinates.y < offsetY)
             {
-                return colors[0];
-            }else if (tileCoordinates.y < offsetY * 2)
-            {
-                return colors[1];
+                return _regions[0];
             }
-            else
+            if (tileCoordinates.y < offsetY * 2)
             {
-                return colors[2];
+                return _regions[1];
             }
-        }else if (tileCoordinates.x < offsetX * 2)
+            return _regions[2];
+        }
+        if (tileCoordinates.x < offsetX * 2)
         {
             if (tileCoordinates.y < offsetY)
             {
-                return colors[3];
-            }else if (tileCoordinates.y < offsetY * 2)
+                return _regions[3];
+            }if (tileCoordinates.y < offsetY * 2)
             {
-                return colors[4];
+                return _regions[4];
             }
-            else
-            {
-                return colors[5];
-            }
+            return _regions[5];
         }
-        else
+
+        if (tileCoordinates.y < offsetY)
         {
-            if (tileCoordinates.y < offsetY)
-            {
-                return colors[6];
-            }else if (tileCoordinates.y < offsetY * 2)
-            {
-                return colors[7];
-            }
-            else
-            {
-                return colors[8];
-            }
+            return _regions[6];
         }
+        if (tileCoordinates.y < offsetY * 2)
+        {
+            return _regions[7];
+        }
+        return _regions[8];
 
     }
 

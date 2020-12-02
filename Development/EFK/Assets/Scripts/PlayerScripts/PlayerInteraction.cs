@@ -14,6 +14,7 @@ public class PlayerInteraction : MonoBehaviour
 
     private Transform _SelectedTarget;
     private bool _hasTargetSelected = false;
+    public bool canChangeLastInteractableObejct = true;
     private GameObject _instantiatedText;
     private PlayerControllerMap playerControllerMap;
 
@@ -36,8 +37,8 @@ public class PlayerInteraction : MonoBehaviour
                                                            .OrderBy(t => Vector2.Angle(playerDirection, (new Vector2(t.position.x, t.position.y) - playerPosition).normalized))
                                                            .FirstOrDefault();
 
-        if (selectableTarget != null) {
-            if (!_hasTargetSelected || selectableTarget.GetInstanceID() != _SelectedTarget.transform.GetInstanceID()) {
+        if (selectableTarget != null && canChangeLastInteractableObejct) {
+            if ((!_hasTargetSelected || selectableTarget.GetInstanceID() != _SelectedTarget.transform.GetInstanceID())) {
                 Material material;
                 if (_hasTargetSelected) {
                     material = _SelectedTarget.GetComponent<SpriteRenderer>().material;
@@ -65,7 +66,7 @@ public class PlayerInteraction : MonoBehaviour
     }
 
     public void InteractWithTarget(GameObject player) {
-        if (HasTargetSelected) SelectedTarget.GetComponent<InteractableObject>().Interact(player);
+        if (SelectedTarget != null) SelectedTarget.GetComponent<InteractableObject>().Interact(player);
     }
 
     public Transform SelectedTarget => _SelectedTarget;
