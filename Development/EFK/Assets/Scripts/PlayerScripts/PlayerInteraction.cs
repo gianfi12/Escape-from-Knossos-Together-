@@ -14,6 +14,7 @@ public class PlayerInteraction : MonoBehaviour
 
     private Transform _SelectedTarget;
     private bool _hasTargetSelected = false;
+    public bool canChangeLastInteractableObejct = true;
     private GameObject _instantiatedText;
     private PlayerControllerMap playerControllerMap;
 
@@ -37,7 +38,7 @@ public class PlayerInteraction : MonoBehaviour
                                                            .FirstOrDefault();
 
         if (selectableTarget != null) {
-            if (!_hasTargetSelected || selectableTarget.GetInstanceID() != _SelectedTarget.transform.GetInstanceID()) {
+            if ((!_hasTargetSelected || selectableTarget.GetInstanceID() != _SelectedTarget.transform.GetInstanceID()) && canChangeLastInteractableObejct) {
                 Material material;
                 if (_hasTargetSelected) {
                     material = _SelectedTarget.GetComponent<SpriteRenderer>().material;
