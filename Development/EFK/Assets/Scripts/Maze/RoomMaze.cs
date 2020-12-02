@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Permissions;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
@@ -18,8 +19,8 @@ public class RoomMaze : RoomAbstract
     [SerializeField] private int numberOfWardrobe;
     [SerializeField] private GameObject guardPrefab;
     [SerializeField] private int numberOfGuard;
-    [SerializeField] private GameObject buttonPanel;     
-    
+    [SerializeField] private GameObject buttonPanel;
+
     private int _sizeX, _sizeY;
 
     private Stack<Cell> _otherRoomCellsStack = new Stack<Cell>();
@@ -59,27 +60,27 @@ public class RoomMaze : RoomAbstract
 
     private void AddDiaryMap()
     {
-        GameObject diaryTextObject = new GameObject();
-        Text diaryText = diaryTextObject.AddComponent<Text>();
-
-        String returnedString = "";
-        for (int i = -1; i < _sizeX+1; i++)
-        {
-            String temp="";
-            for (int j = -1; j < _sizeY+1; j++)
-            {
-                if (Wall.Where(e => e.Coordinates == new Vector3Int(j, i, 0)).Count() > 0)
-                {
-                    temp += "x";
-                }
-                else
-                    temp += " ";
-            }
-
-            returnedString = temp+ "\n"+ returnedString;
-        }
-        diaryText.text = returnedString;
-        SetDiaryText(diaryText);
+        // GameObject diaryTextObject = new GameObject();
+        // Text diaryText = diaryTextObject.AddComponent<Text>();
+        //
+        // String returnedString = "";
+        // for (int i = -1; i < _sizeX+1; i++)
+        // {
+        //     String temp="";
+        //     for (int j = -1; j < _sizeY+1; j++)
+        //     {
+        //         if (Wall.Where(e => e.Coordinates == new Vector3Int(j, i, 0)).Count() > 0)
+        //         {
+        //             temp += "x";
+        //         }
+        //         else
+        //             temp += " ";
+        //     }
+        //
+        //     returnedString = temp+ "\n"+ returnedString;
+        // }
+        // diaryText.text = returnedString;
+        // SetDiaryText(diaryText);
     }
 
     private void AddCollider()
@@ -132,17 +133,17 @@ public class RoomMaze : RoomAbstract
             switch (randomDirection)
             {
                 case Direction.North:
-                    wardrobePosition += new Vector3(0.6f,0,0);
+                    wardrobePosition += new Vector3(0.7f,0,0);
                     break;
                 case Direction.South:
-                    wardrobePosition += new Vector3(0.6f,1f,0);
+                    wardrobePosition += new Vector3(0.7f,1f,0);
                     break;  
                 case Direction.East:
-                    wardrobePosition += new Vector3(0f,0.6f,0);
+                    wardrobePosition += new Vector3(0f,0.7f,0);
                     wardrobeTransform.rotation *= Quaternion.Euler(0, 0, 90); 
                     break;
                 case Direction.West:
-                    wardrobePosition += new Vector3(1f,0.6f,0);
+                    wardrobePosition += new Vector3(1f,0.7f,0);
                     wardrobeTransform.rotation *= Quaternion.Euler(0, 0, 90);
                     break;
             }
@@ -583,7 +584,15 @@ public class RoomMaze : RoomAbstract
     public override void PlaceRoom(Tilemap tilemapFloor, Tilemap tilemapWall, Tilemap tilemapDecoration)
     {
         Transform buttonsCont = Instantiate(buttonPanel, _mazeTransform).transform;
-        
+        EntrancePanel entrancePanel = buttonsCont.GetComponent<EntrancePanel>();
+        buttonsCont.GetComponent<PolygonCollider2D>().isTrigger = true;
+        entrancePanel.ControlledDoors = _doorExitTransform.GetComponent<Doors>();
+
+        foreach (Image image in entrancePanel.GUIImages)
+        {
+            AddDiaryImage(image);    
+        }
+
         GenerateRegions(buttonsCont);
 
         foreach (var tile in TileList)
@@ -625,8 +634,6 @@ public class RoomMaze : RoomAbstract
 
     private void GenerateRegions(Transform buttonsCont)
     {
-        EntrancePanel entrancePanel = buttonsCont.GetComponent<EntrancePanel>();
-        // entrancePanel
         for (int i = 0; i < buttonsCont.childCount; i++)
         {
             SpriteRenderer renderer = buttonsCont.GetChild(i).GetComponent<SpriteRenderer>();

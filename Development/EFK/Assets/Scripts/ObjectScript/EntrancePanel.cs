@@ -64,5 +64,16 @@ public class EntrancePanel : MonoBehaviour
             }
         }
     }
+    
+    public Doors ControlledDoors
+    {
+        get => controlledDoors;
+        set => controlledDoors = value;
+    }
 
+    public Image[] GUIImages
+    {
+        get => guiImages;
+        set => guiImages = value;
+    }
 }
