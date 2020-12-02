@@ -621,42 +621,34 @@ public class RoomMaze : RoomAbstract
             if (tileCoordinates.y < offsetY)
             {
                 return colors[0];
-            }else if (tileCoordinates.y < offsetY * 2)
+            }
+            if (tileCoordinates.y < offsetY * 2)
             {
                 return colors[1];
             }
-            else
-            {
-                return colors[2];
-            }
-        }else if (tileCoordinates.x < offsetX * 2)
+            return colors[2];
+        }
+        if (tileCoordinates.x < offsetX * 2)
         {
             if (tileCoordinates.y < offsetY)
             {
                 return colors[3];
-            }else if (tileCoordinates.y < offsetY * 2)
+            }if (tileCoordinates.y < offsetY * 2)
             {
                 return colors[4];
             }
-            else
-            {
-                return colors[5];
-            }
+            return colors[5];
         }
-        else
+
+        if (tileCoordinates.y < offsetY)
         {
-            if (tileCoordinates.y < offsetY)
-            {
-                return colors[6];
-            }else if (tileCoordinates.y < offsetY * 2)
-            {
-                return colors[7];
-            }
-            else
-            {
-                return colors[8];
-            }
+            return colors[6];
         }
+        if (tileCoordinates.y < offsetY * 2)
+        {
+            return colors[7];
+        }
+        return colors[8];
 
     }
 
