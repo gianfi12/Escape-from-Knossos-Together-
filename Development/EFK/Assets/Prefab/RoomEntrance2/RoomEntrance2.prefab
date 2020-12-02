@@ -1037,6 +1037,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 996d1c91e2c6e4f46ab7d47f38d6f161, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Seed: 0
 --- !u!1 &5425072396879876825
 GameObject:
   m_ObjectHideFlags: 0
@@ -1790,6 +1791,7 @@ MonoBehaviour:
   - {r: 1, g: 0.37453273, b: 0.0990566, a: 1}
   - {r: 0.18753493, g: 0.8584906, b: 0.125534, a: 1}
   - {r: 0.6455057, g: 0.14346743, b: 0.9811321, a: 1}
+  numberOfActiveButtons: 3
 --- !u!212 &1145577821458532142
 SpriteRenderer:
   m_ObjectHideFlags: 0
