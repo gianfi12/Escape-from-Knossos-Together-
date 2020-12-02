@@ -34,8 +34,8 @@ public class Wardrobe : InteractableObject
             _hasBeenActivated = true;
             _playerInput.CanMove = false;
             _playerInteraction.canChangeLastInteractableObejct = false;
-            _previousPlayerPosition = player.transform.position;
-            _playerTransform.position = transform.position;
+            // _previousPlayerPosition = player.transform.position;
+            // _playerTransform.position = transform.position;
             _playerRenderer.enabled = false;
             _playerCollider.enabled = false;
             _timeOfActivation = Time.time;
@@ -44,7 +44,7 @@ public class Wardrobe : InteractableObject
             _hasBeenActivated = false;
             _playerInput.CanMove = true;
             _playerInteraction.canChangeLastInteractableObejct = true;
-            _playerTransform.position = _previousPlayerPosition;
+            // _playerTransform.position = _previousPlayerPosition;
             _playerRenderer.enabled = true;
             _playerCollider.enabled = true;
         }
