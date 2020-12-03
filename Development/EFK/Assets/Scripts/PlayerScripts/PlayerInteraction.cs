@@ -23,8 +23,7 @@ public class PlayerInteraction : MonoBehaviour
         playerControllerMap = GetComponent<PlayerControllerMap>();
         _instantiatedText = Instantiate(textBubble);
         _instantiatedText.SetActive(false);
-        textBubbleOffset = _instantiatedText.GetComponentInChildren<SpriteRenderer>().bounds.extents/2;
-        Debug.Log(textBubbleOffset);
+        textBubbleOffset = _instantiatedText.GetComponentInChildren<SpriteRenderer>().bounds.extents / 2;
     }
 
 

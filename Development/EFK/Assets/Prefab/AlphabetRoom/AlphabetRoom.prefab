@@ -1186,7 +1186,7 @@ GameObject:
   - component: {fileID: 11617837957685370}
   - component: {fileID: 6286903578829090243}
   m_Layer: 0
-  m_Name: RoomMid3Objects
+  m_Name: AlphabetRoomObjects
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3613,7 +3613,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1627760257597656352
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3685,7 +3685,7 @@ GameObject:
   - component: {fileID: 5263616646451974013}
   m_Layer: 5
   m_Name: Image
-  m_TagString: Untagged
+  m_TagString: DiaryImage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13118,6 +13118,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactiveText: Insert
+  slotsNumber: 5
 --- !u!61 &2094716616856381646
 BoxCollider2D:
   m_ObjectHideFlags: 0

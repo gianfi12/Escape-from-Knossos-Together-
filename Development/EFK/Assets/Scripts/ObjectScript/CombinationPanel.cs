@@ -5,9 +5,10 @@ using UnityEngine.UI;
 
 public class CombinationPanel : InteractableObject
 {
+    [SerializeField] private int slotsNumber;
     private GameObject panel;
     private Canvas canvasToReturn;
-    private ItemSlot[] slots = new ItemSlot[5];
+    private ItemSlot[] slots;
 
     public GameObject Panel => panel;
 
@@ -15,6 +16,7 @@ public class CombinationPanel : InteractableObject
 
     void Start()
     {
+        slots = new ItemSlot[slotsNumber];
         panel = transform.parent.GetComponentInChildren<Canvas>().GetComponentInChildren<Image>().gameObject;
         GameObject slotPanel = panel.GetComponentInChildren<GridLayoutGroup>().gameObject;
         for (int i = 0; i < slotPanel.transform.childCount; i++)

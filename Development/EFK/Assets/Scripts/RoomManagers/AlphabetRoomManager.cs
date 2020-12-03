@@ -41,7 +41,7 @@ public class AlphabetRoomManager : MonoBehaviour
                                             };
 
     [SerializeField] private Sprite[] runeSprites;
-    private Rune[] runes;
+    private Collectable[] runes;
     [SerializeField] private CombinationPanel combinationPanel;
     [SerializeField] private Doors exitDoor;
 
@@ -121,15 +121,15 @@ public class AlphabetRoomManager : MonoBehaviour
     
     private void Start()
     {
-        runes = GetComponentsInChildren<Rune>();
+        runes = GetComponentsInChildren<Collectable>();
         SelectNumbers();
         combinationPanel.transform.parent.GetComponentInChildren<Canvas>().GetComponentInChildren<Image>().transform.Find("Order").GetComponent<Text>().text += mode.name;
         System.Random rnd = new System.Random(GetComponent<ObjectsContainer>().Seed);
-        int [] randomImages = selectedNumbers.OrderBy(x => rnd.Next()).ToArray();
+        int [] randomIndex = selectedNumbers.OrderBy(x => rnd.Next()).ToArray();
         for (int i = 0; i < runes.Length; i++)
         {
-            runes[i].GetComponent<SpriteRenderer>().sprite = runeSprites[randomImages[i]];
-            Debug.Log(runeSprites[selectedNumbers[i]].name);
+            runes[i].GetComponent<SpriteRenderer>().sprite = runeSprites[randomIndex[i]];
+            runes[i].ID = randomIndex[i];
         }
     }
 
@@ -138,7 +138,7 @@ public class AlphabetRoomManager : MonoBehaviour
         ItemSlot[] slots = combinationPanel.Slots;
         for (int i = 0; i < slots.Length; i++)
         {
-            if (slots[i].SlotImage.GetImage().sprite != runeSprites[selectedNumbers[i]])
+            if (slots[i].SlotImage.MyCollectable.ID != selectedNumbers[i])
             {
                 StartCoroutine(ChangePanelColor(Color.red));
                 return;

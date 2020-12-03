@@ -4,13 +4,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Rune : InteractableObject
+public class Collectable : InteractableObject
 {
+    private int id;
+
+    public int ID
+    {
+        get => id;
+        set => id = value;
+    }
+
     public override void Interact(GameObject player)
     {
         PlayerControllerMap playerControllerMap = player.GetComponent<PlayerControllerMap>();
         ItemSlot slot = playerControllerMap.GetFirstFreeSlot();
-        slot.AddObject(GetComponent<SpriteRenderer>().sprite);
+        slot.AddObject(this);
         gameObject.SetActive(false);
+        _hasBeenActivated = true;
     }
 }
