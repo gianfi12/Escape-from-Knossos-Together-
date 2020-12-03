@@ -36,8 +36,9 @@ public class PlayerInteraction : MonoBehaviour
                                                            .Where(t => Vector2.Angle(playerDirection, (new Vector2(t.position.x, t.position.y) - playerPosition).normalized) < interactionAngle)
                                                            .OrderBy(t => Vector2.Angle(playerDirection, (new Vector2(t.position.x, t.position.y) - playerPosition).normalized))
                                                            .FirstOrDefault();
-
-        if (selectableTarget != null && canChangeLastInteractableObejct) {
+        InteractableObject interactableObject;
+        if (selectableTarget != null && canChangeLastInteractableObejct &&
+            (interactableObject = selectableTarget.GetComponent<InteractableObject>()) != null) {
             if ((!_hasTargetSelected || selectableTarget.GetInstanceID() != _SelectedTarget.transform.GetInstanceID()))
             {
                 Material material;
@@ -51,20 +52,12 @@ public class PlayerInteraction : MonoBehaviour
                 material = selectableTarget.GetComponent<SpriteRenderer>().material;
                 material.SetFloat("_Thickness", 5f);
 
-                InteractableObject interactableObject = selectableTarget.GetComponent<InteractableObject>();
                 _instantiatedText.transform.position = interactableObject.GetTextPosition() + textBubbleOffset;
                 _instantiatedText.GetComponentInChildren<TMPro.TextMeshPro>().text = interactableObject.InteractiveText;
                 _instantiatedText.SetActive(true);
                 _SelectedTarget = selectableTarget;
                 _hasTargetSelected = true;
             }
-
-            // } else if (_hasTargetSelected && selectableTarget.GetInstanceID() != _SelectedTarget.transform.GetInstanceID()) {
-            //     Material material = _SelectedTarget.GetComponent<SpriteRenderer>().material;
-            //     material.SetFloat("_Thickness", 0f);
-            //     _instantiatedText.SetActive(false);
-            //     _hasTargetSelected = false;
-            // }
         }
 
         

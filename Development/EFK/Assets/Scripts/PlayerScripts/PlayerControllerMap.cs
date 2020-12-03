@@ -10,6 +10,7 @@ public class PlayerControllerMap : MonoBehaviour
     [SerializeField] private float _speed = 4f;
     private Vector3 _movement;
     private bool _hasChange = false;
+    private bool _isDead = false;
 
     private GameManager gameManager;
     private GameObject diaryPanel;
@@ -82,5 +83,16 @@ public class PlayerControllerMap : MonoBehaviour
     public ItemSlot GetFirstFreeSlot()
     {
         return slots.Find(s => s.GetIsFree());
+    }
+
+    public bool IsDead
+    {
+        get => _isDead;
+        set => _isDead = value;
+    }
+
+    public void FinishGame()
+    {
+        
     }
 }
