@@ -7,6 +7,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System;
 using UnityEngine.AI;
+using UnityEngine.Events;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
 
@@ -15,7 +16,8 @@ public class GameManager : MonoBehaviourPun
     [SerializeField] private LevelMap levelPrefab;
     private LevelMap _levelMap;
     [SerializeField] private GameObject playerPrefab;
-    private PlayerControllerMap _playerInstance;
+    private PlayerControllerMap _playerInstanceLocal;
+    private PlayerControllerMap _playerInstanceRemote;
     [SerializeField] private CinemachineVirtualCamera mainCamera;
     private CinemachineVirtualCamera _cameraInstance;
 
@@ -24,6 +26,31 @@ public class GameManager : MonoBehaviourPun
     void Start()
     {
         BeginGame();
+        GameObject [] players = GameObject.FindGameObjectsWithTag("Player");
+        if (players[0] == _playerInstanceLocal.gameObject)
+        {
+            _playerInstanceRemote = players[1].GetComponent<PlayerControllerMap>();
+        }
+        else
+        {
+            _playerInstanceRemote = players[0].GetComponent<PlayerControllerMap>();
+        }
+        EventManager.StartListening(EventType.FinishGame,new UnityAction(FinishGame));
+        
+    }
+
+    void FinishGame()
+    {
+        if (_playerInstanceLocal.IsDead && _playerInstanceRemote.IsDead)
+        {
+            //TODO end game
+        }else if (_playerInstanceLocal.IsDead)
+        {
+            _cameraInstance.m_Follow = _playerInstanceRemote.transform;
+            Destroy(_playerInstanceLocal);
+            //check if online you can control the second player(it shouldn't be)
+        }
+        //the other case is not needed it will be change the camera on the remote side
     }
 
     private void BeginGame()
@@ -41,18 +68,19 @@ public class GameManager : MonoBehaviourPun
             _levelMap.CreateMap();
             navMesh.GetComponent<NavMeshSurface2d>().BuildNavMesh();
 
-            _playerInstance = Instantiate(playerPrefab).GetComponent<PlayerControllerMap>();
+            Instantiate(playerPrefab);
+            _playerInstanceLocal = Instantiate(playerPrefab).GetComponent<PlayerControllerMap>();
             _cameraInstance = Instantiate(mainCamera);
-            _cameraInstance.m_Follow = _playerInstance.transform;
-            _levelMap.PlacePlayer(_playerInstance, 1);
-            _playerInstance.SetGameManager(this);
+            _cameraInstance.m_Follow = _playerInstanceLocal.transform;
+            _levelMap.PlacePlayer(_playerInstanceLocal, 1);
+            _playerInstanceLocal.SetGameManager(this);
         }
     }
 
     public void SetPlayerInstance(PlayerControllerMap playerInstance) {
-        _playerInstance = playerInstance;
+        _playerInstanceLocal = playerInstance;
         _cameraInstance = Instantiate(mainCamera);
-        _cameraInstance.m_Follow = _playerInstance.transform;
+        _cameraInstance.m_Follow = _playerInstanceLocal.transform;
         
         navMesh.GetComponent<NavMeshSurface2d>().BuildNavMesh();
     }

@@ -149,4 +149,15 @@ public class AgentController : MonoBehaviour
             return 1; //down
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Player")
+        {
+            PlayerControllerMap playerControllerMap = other.GetComponent<PlayerControllerMap>();
+            playerControllerMap.IsDead = true;
+            EventManager.TriggerEvent(EventType.FinishGame);
+
+        }
+    }
 }

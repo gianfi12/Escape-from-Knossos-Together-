@@ -8,18 +8,31 @@ using UnityEngine.UI;
 public class DraggableUI : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
     [SerializeField] private Canvas canvas;
+    private Collectable myCollectable;
+    private RectTransform rectTransform;
+    private Vector3 originalPosition;
+    private CanvasGroup canvasGroup;
+    private Image image;
 
+    public Image Image
+    {
+        get => image;
+        set => image = value;
+    }
+
+    private ItemSlot mySlot;
+    
     public Canvas Canvas
     {
         get => canvas;
         set => canvas = value;
     }
-
-    private RectTransform rectTransform;
-    private Vector3 originalPosition;
-    private CanvasGroup canvasGroup;
-    private Image image;
-    private ItemSlot mySlot;
+    
+    public Collectable MyCollectable
+    {
+        get => myCollectable;
+        set => myCollectable = value;
+    }
 
     private void Awake()
     {
@@ -28,11 +41,6 @@ public class DraggableUI : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
         canvasGroup = GetComponent<CanvasGroup>();
         image = GetComponent<Image>();
         mySlot = transform.parent.GetComponent<ItemSlot>();
-    }
-
-    public Image GetImage()
-    {
-        return image;
     }
 
     public ItemSlot GetMySlot()
@@ -60,9 +68,10 @@ public class DraggableUI : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
         rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
     }
 
-    public void AddImage(Sprite sprite)
+    public void AddImage(Collectable collectable)
     {
-        image.sprite = sprite;
+        myCollectable = collectable;
+        image.sprite = collectable.GetComponent<SpriteRenderer>().sprite;
         image.enabled = true;
     }
 }

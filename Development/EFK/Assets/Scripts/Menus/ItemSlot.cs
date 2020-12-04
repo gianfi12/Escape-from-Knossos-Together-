@@ -22,6 +22,14 @@ public class ItemSlot : MonoBehaviour, IDropHandler
         isFree = true;
     }
 
+    public void RemoveImage()
+    {
+        isFree = true;
+        Image image =  slotImage.Image.GetComponent<Image>();
+        image.sprite = null;
+        image.enabled = false;
+    }
+
     public void OnDrop(PointerEventData eventData)
     {
         if (eventData.pointerDrag != null)
@@ -30,22 +38,22 @@ public class ItemSlot : MonoBehaviour, IDropHandler
             if (isFree)
             {
                 draggableObject.GetMySlot().SetIsFree();
-                slotImage.AddImage(draggableObject.GetImage().sprite);
-                draggableObject.GetImage().enabled = false;
+                slotImage.AddImage(draggableObject.MyCollectable);
+                draggableObject.Image.enabled = false;
                 isFree = false;
             }
             else
             {
-                Sprite tempSprite = draggableObject.GetImage().sprite;
-                draggableObject.AddImage(slotImage.GetImage().sprite);
-                slotImage.AddImage(tempSprite);
+                Collectable tempCollectable = draggableObject.MyCollectable;
+                draggableObject.AddImage(slotImage.MyCollectable);
+                slotImage.AddImage(tempCollectable);
             }
         }
     }
 
-    public void AddObject(Sprite sprite)
+    public void AddObject(Collectable collectable)
     {
-        slotImage.AddImage(sprite);
+        slotImage.AddImage(collectable);
         isFree = false;
     }
 }

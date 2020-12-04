@@ -10,9 +10,11 @@ public class PlayerControllerMap : MonoBehaviour
     [SerializeField] private float _speed = 4f;
     private Vector3 _movement;
     private bool _hasChange = false;
+    private bool _isDead = false;
 
     private GameManager gameManager;
     private GameObject diaryPanel;
+    private GameObject inventoryPanel;
     [SerializeField] private Text diaryTextGUI;
     [SerializeField] private List<ItemSlot> slots;
     private RoomAbstract myRoom;
@@ -22,6 +24,7 @@ public class PlayerControllerMap : MonoBehaviour
     public void Awake() {
         diaryPanel = transform.Find("Canvas").Find("Diary-Panel").gameObject;
         diaryPanel.SetActive(false);
+        inventoryPanel = transform.Find("Canvas").GetComponentInChildren<GridLayoutGroup>().gameObject;
     }
 
     public void SetLocation(Vector3 position)
@@ -53,6 +56,7 @@ public class PlayerControllerMap : MonoBehaviour
 
     public void SetRoom(RoomAbstract room)
     {
+        ResetInventory();
         ResetDiaryImages();
         myRoom = room;
         SetText(myRoom.DiaryText);
@@ -62,6 +66,14 @@ public class PlayerControllerMap : MonoBehaviour
     private void ResetDiaryImages() {
         foreach (Transform child in diaryPanel.transform){
             if (child.CompareTag("DiaryImage")) Destroy(child.gameObject);
+        }
+    }
+
+    private void ResetInventory()
+    {
+        for (int i = 0; i < inventoryPanel.transform.childCount; i++)
+        {
+            inventoryPanel.transform.GetChild(i).GetComponent<ItemSlot>().RemoveImage();
         }
     }
 
@@ -82,5 +94,16 @@ public class PlayerControllerMap : MonoBehaviour
     public ItemSlot GetFirstFreeSlot()
     {
         return slots.Find(s => s.GetIsFree());
+    }
+
+    public bool IsDead
+    {
+        get => _isDead;
+        set => _isDead = value;
+    }
+
+    public void FinishGame()
+    {
+        
     }
 }

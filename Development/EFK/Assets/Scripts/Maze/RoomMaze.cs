@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Permissions;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
@@ -18,8 +19,8 @@ public class RoomMaze : RoomAbstract
     [SerializeField] private int numberOfWardrobe;
     [SerializeField] private GameObject guardPrefab;
     [SerializeField] private int numberOfGuard;
-    [SerializeField] private GameObject buttonPanel;     
-    
+    [SerializeField] private GameObject buttonPanel;
+
     private int _sizeX, _sizeY;
 
     private Stack<Cell> _otherRoomCellsStack = new Stack<Cell>();
@@ -27,17 +28,20 @@ public class RoomMaze : RoomAbstract
     private List<Room> _roomList = new List<Room>();
     private Dictionary<int,Cell> _cellMap = new Dictionary<int, Cell>();
     private Transform _mazeTransform;
+    private Transform _doorExitTransform;
+    private bool _isPlayer2;
 
     private Vector3Int _coordinatesNotEntrance;
     private Vector3Int _coordinatesNotExit;
     public override void Generate(int seed, bool isPlayer2)
     {
+        _isPlayer2 = isPlayer2;
         _mazeTransform = new GameObject("RoomMaze").transform;
-        _mazeTransform.gameObject.AddComponent<ObjectsContainer>();
+        ObjectsContainer objectsContainer = _mazeTransform.gameObject.AddComponent<ObjectsContainer>();
+        objectsContainer.Seed = seed;
         Random.InitState(seed);
         int random;
         while ((random = Random.Range(_minSetSpace, maxSpace)) % 2 == 0);
-        //while ((_sizeY = Random.Range(_minSetSpace, maxSpace)) % 2 == 0);
         _sizeX = random;
         _sizeY = random;
         _requiredWidthSpace = _sizeX+2;//due to the walls
@@ -51,37 +55,11 @@ public class RoomMaze : RoomAbstract
         InsertWardrobe();
         SpawnAgent();
         removeOverlappingWallsAndFloor();
-        AddDiaryMap();
 
         _lowestX = -1;//these are due to the presence of the wall
         _lowestY = -1;
     }
-
-    private void AddDiaryMap()
-    {
-        GameObject diaryTextObject = new GameObject();
-        Text diaryText = diaryTextObject.AddComponent<Text>();
-
-        String returnedString = "";
-        for (int i = -1; i < _sizeX+1; i++)
-        {
-            String temp="";
-            for (int j = -1; j < _sizeY+1; j++)
-            {
-                if (Wall.Where(e => e.Coordinates == new Vector3Int(j, i, 0)).Count() > 0)
-                {
-                    temp += "x";
-                }
-                else
-                    temp += " ";
-            }
-
-            returnedString = temp+ "\n"+ returnedString;
-        }
-        diaryText.text = returnedString;
-        SetDiaryText(diaryText);
-    }
-
+    
     private void AddCollider()
     {
         GameObject collider = new GameObject("Collider");
@@ -132,17 +110,17 @@ public class RoomMaze : RoomAbstract
             switch (randomDirection)
             {
                 case Direction.North:
-                    wardrobePosition += new Vector3(0.6f,0,0);
+                    wardrobePosition += new Vector3(0.7f,0,0);
                     break;
                 case Direction.South:
-                    wardrobePosition += new Vector3(0.6f,1f,0);
+                    wardrobePosition += new Vector3(0.7f,1f,0);
                     break;  
                 case Direction.East:
-                    wardrobePosition += new Vector3(0f,0.6f,0);
+                    wardrobePosition += new Vector3(0f,0.7f,0);
                     wardrobeTransform.rotation *= Quaternion.Euler(0, 0, 90); 
                     break;
                 case Direction.West:
-                    wardrobePosition += new Vector3(1f,0.6f,0);
+                    wardrobePosition += new Vector3(1f,0.7f,0);
                     wardrobeTransform.rotation *= Quaternion.Euler(0, 0, 90);
                     break;
             }
@@ -470,6 +448,12 @@ public class RoomMaze : RoomAbstract
                     Entrance.Add(tile);
                     exitHasToBeInDirectionChange = directionChange+2;
                     Transform doorTransform = Instantiate(doorPrefab).transform;
+                    if(_isPlayer2)
+                    {
+                        _doorExitTransform = doorTransform;
+                        Doors doorScript = doorTransform.GetComponent<Doors>();
+                        doorScript.CloseDoors();
+                    }
                     Vector3Int doorPosition;
                     if (directionChange == 0)
                     {
@@ -501,8 +485,12 @@ public class RoomMaze : RoomAbstract
                     TileList.Add(tile);
                     Exit.Add(tile);
                     Transform doorTransform = Instantiate(doorPrefab).transform;
-                    Doors doorScript = doorTransform.GetComponent<Doors>();
-                    doorScript.CloseDoors();
+                    if(!_isPlayer2)
+                    {
+                        _doorExitTransform = doorTransform;
+                        Doors doorScript = doorTransform.GetComponent<Doors>();
+                        doorScript.CloseDoors();
+                    }
                     Vector3Int doorPosition;
                     if (directionChange == 2)
                     {
@@ -582,7 +570,15 @@ public class RoomMaze : RoomAbstract
     public override void PlaceRoom(Tilemap tilemapFloor, Tilemap tilemapWall, Tilemap tilemapDecoration)
     {
         Transform buttonsCont = Instantiate(buttonPanel, _mazeTransform).transform;
-        
+        EntrancePanel entrancePanel = buttonsCont.GetComponent<EntrancePanel>();
+        buttonsCont.GetComponent<PolygonCollider2D>().isTrigger = true;
+        entrancePanel.ControlledDoors = _doorExitTransform.GetComponent<Doors>();
+
+        foreach (Image image in entrancePanel.GUIImages)
+        {
+            AddDiaryImage(image);    
+        }
+
         GenerateRegions(buttonsCont);
 
         foreach (var tile in TileList)
