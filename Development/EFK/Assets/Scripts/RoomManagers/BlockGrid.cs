@@ -78,14 +78,11 @@ public class BlockGrid : MonoBehaviour
 
         List<int> shortestPath = new List<int>();
         int backtrackNode = endCell;
-        Debug.Log(endCell);
         while (backtrackNode != startCell) {
             shortestPath.Insert(0, backtrackNode);
             backtrackNode = predecessors[backtrackNode];
-            Debug.Log(backtrackNode);
         }
         shortestPath.Insert(0, startCell);
-        Debug.Log(startCell);
         
         return shortestPath;
     }
