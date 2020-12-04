@@ -40,7 +40,8 @@ public class Doors : MonoBehaviour
 
     public void OpenDoors() {
         for (int i = 0; i < transform.childCount; i++) {
-            transform.GetChild(i).GetComponent<SingleDoor>().Open();
+            SingleDoor door = transform.GetChild(i).GetComponent<SingleDoor>();
+            if (door != null) door.Open();
         }
         transform.GetComponent<Collider2D>().isTrigger = true;
         gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
@@ -48,7 +49,8 @@ public class Doors : MonoBehaviour
 
     public void CloseDoors() {
         for (int i = 0; i < transform.childCount; i++) {
-            transform.GetChild(i).GetComponent<SingleDoor>().Close();
+            SingleDoor door = transform.GetChild(i).GetComponent<SingleDoor>();
+            if (door != null) door.Close();
         }
         transform.GetComponent<Collider2D>().isTrigger = false;
         gameObject.layer = LayerMask.NameToLayer("Default");

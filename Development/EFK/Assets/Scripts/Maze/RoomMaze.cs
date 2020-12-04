@@ -188,7 +188,7 @@ public class RoomMaze : RoomAbstract
         {
             foreach (Cell cell in room.GetCellsList())
             {
-                foreach (Direction direction in (Direction[]) Enum.GetValues(typeof(Direction)))
+                foreach (Direction direction in Enum.GetValues(typeof(Direction)).Cast<Direction>().Where(x => x != Direction.None))
                 {
                     Edge edge = cell.GetEdge(direction);
                     if(!(edge is null))
@@ -234,7 +234,7 @@ public class RoomMaze : RoomAbstract
         {
             Vector2Int position = new Vector2Int(cell.Position.x*2+1,cell.Position.y*2+1); 
             PositionTile(position,cell.Room.Color,Floor,assetsCollection.GetTileFromType(AssetType.Floor)[0]);
-            foreach (Direction direction in (Direction[]) Enum.GetValues(typeof(Direction)))
+            foreach (Direction direction in Enum.GetValues(typeof(Direction)).Cast<Direction>().Where(x => x != Direction.None))
             {
                 Cell otherCell = cell.GetEdge(direction).GetOther(cell);
                 if ((cell.GetEdge(direction).EdgeType==Edge.EdgeTypes.Passage || cell.GetEdge(direction).EdgeType==Edge.EdgeTypes.Door))
@@ -278,7 +278,7 @@ public class RoomMaze : RoomAbstract
         // //then the walls
         foreach (Cell cell in _cellMap.Values)
         {
-            foreach (Direction direction in (Direction[]) Enum.GetValues(typeof(Direction)))
+            foreach (Direction direction in Enum.GetValues(typeof(Direction)).Cast<Direction>().Where(x => x != Direction.None))
             {
                 Cell otherCell = cell.GetEdge(direction).GetOther(cell);
                 if ((cell.GetEdge(direction).EdgeType==Edge.EdgeTypes.Wall))
@@ -372,7 +372,7 @@ public class RoomMaze : RoomAbstract
 
     private void VisitNeighbor(Cell cell)
     {
-        foreach (Direction direction in (Direction[]) Enum.GetValues(typeof(Direction)))
+        foreach (Direction direction in Enum.GetValues(typeof(Direction)).Cast<Direction>().Where(x => x != Direction.None))
         {
             if (cell.GetEdge(direction) is null)
             {
