@@ -33,13 +33,12 @@ MonoBehaviour:
   RunInBackground: 1
   StartInOfflineMode: 0
   RpcList:
+  - AddHostReady
   - ClickRpc
-  - DestroyRpc
-  - GenerateSeed
-  - SetLevelMap
   - CreateMap
-  - SetSeed
+  - DestroyRpc
   - InstantiatePlayers
+  - SetSeed
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

@@ -20,6 +20,8 @@ public class LevelMap : MonoBehaviourPun
     public const int PaddingRoom = 3;
     private int _seed;
 
+    private volatile int readyHosts = 0;
+
     public int Seed
     {
         get => _seed;
@@ -46,8 +48,6 @@ public class LevelMap : MonoBehaviourPun
         RoomPlacement();
         RoomConnect();
         AddNavMesh();
-
-
     }
 
     private void AddNavMesh() 
@@ -73,7 +73,16 @@ public class LevelMap : MonoBehaviourPun
         GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         gameManager.SetPlayerInstance(_playerInstance);
         _playerInstance.SetGameManager(gameManager);
+
+        this.photonView.RPC("AddHostReady", RpcTarget.All);
     }
+
+    [PunRPC]
+    public void AddHostReady() {
+        readyHosts++;
+        if(readyHosts>=2) GameObject.Find("GameManager").GetComponent<GameManager>().SetRemotePlayer();
+    }
+
 
     [PunRPC]
     public void SetSeed(int seed) {

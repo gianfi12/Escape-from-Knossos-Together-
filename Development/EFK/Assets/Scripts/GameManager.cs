@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviourPun
             if (PhotonNetwork.IsMasterClient) {
                 _levelMap =  PhotonNetwork.Instantiate(levelPrefab.name, Vector3.zero, Quaternion.identity).GetComponent<LevelMap>();
                 _levelMap.CreateMapOverNetwork();
-                _levelMap.InstantiatePlayersOverNetwork();   
+                _levelMap.InstantiatePlayersOverNetwork();       
             }
         }
         else {
@@ -88,4 +88,5 @@ public class GameManager : MonoBehaviourPun
         EventManager.StartListening(EventType.FinishGame,new UnityAction(FinishGame));
     }
     
+
 }
