@@ -182,13 +182,12 @@ public class AgentController : MonoBehaviour
                 if (playerControllerMap.GetComponent<PhotonView>().IsMine)
                 {
                     playerControllerMap.SetPlayerIsDead();
-                    EventManager.TriggerEvent(EventType.FinishGame);
+                    
                 }
             }
             else
             {
-                playerControllerMap.SetPlayerIsDead(); 
-                EventManager.TriggerEvent(EventType.FinishGame);
+                playerControllerMap.SetPlayerIsDead();
             }
         }
     }
