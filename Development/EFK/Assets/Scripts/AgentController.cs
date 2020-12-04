@@ -183,4 +183,15 @@ public class AgentController : MonoBehaviour
             }
         }
     }
+
+    public void SetCheckpoints(List<GameObject> checkpoints)
+    {
+        this.checkpoints = new List<GameObject>(checkpoints);
+    }
+
+    public bool IsPatroller
+    {
+        get => isPatroller;
+        set => isPatroller = value;
+    }
 }

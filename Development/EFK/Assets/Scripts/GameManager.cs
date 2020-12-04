@@ -17,7 +17,6 @@ public class GameManager : MonoBehaviourPun
     private LevelMap _levelMap;
     [SerializeField] private GameObject playerPrefab;
     private PlayerControllerMap _playerInstanceLocal;
-    private PlayerControllerMap _playerInstanceRemote;
     [SerializeField] private CinemachineVirtualCamera mainCamera;
     private CinemachineVirtualCamera _cameraInstance;
 
@@ -26,31 +25,15 @@ public class GameManager : MonoBehaviourPun
     void Start()
     {
         BeginGame();
-        GameObject [] players = GameObject.FindGameObjectsWithTag("Player");
-        if (players[0] == _playerInstanceLocal.gameObject)
-        {
-            _playerInstanceRemote = players[1].GetComponent<PlayerControllerMap>();
-        }
-        else
-        {
-            _playerInstanceRemote = players[0].GetComponent<PlayerControllerMap>();
-        }
-        EventManager.StartListening(EventType.FinishGame,new UnityAction(FinishGame));
-        
     }
 
     void FinishGame()
     {
-        if (_playerInstanceLocal.IsDead && _playerInstanceRemote.IsDead)
+        if (_playerInstanceLocal.IsDead)
         {
-            //TODO end game
-        }else if (_playerInstanceLocal.IsDead)
-        {
-            _cameraInstance.m_Follow = _playerInstanceRemote.transform;
-            _playerInstanceLocal.gameObject.SetActive(false);
-            //check if online you can control the second player(it shouldn't be)
+            _cameraInstance.m_Follow = null;
+            _playerInstanceLocal.FinishGame();
         }
-        //the other case is not needed it will be change the camera on the remote side
     }
 
     private void BeginGame()
@@ -68,7 +51,6 @@ public class GameManager : MonoBehaviourPun
             _levelMap.CreateMap();
             navMesh.GetComponent<NavMeshSurface2d>().BuildNavMesh();
 
-            Instantiate(playerPrefab);
             _playerInstanceLocal = Instantiate(playerPrefab).GetComponent<PlayerControllerMap>();
             _cameraInstance = Instantiate(mainCamera);
             _cameraInstance.m_Follow = _playerInstanceLocal.transform;

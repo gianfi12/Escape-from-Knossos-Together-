@@ -18,6 +18,8 @@ public class PlayerControllerMap : MonoBehaviour
     [SerializeField] private Text diaryTextGUI;
     [SerializeField] private List<ItemSlot> slots;
     [SerializeField] private RuntimeAnimatorController[] runtimeanimators;
+    [SerializeField] private GameObject endGamePrefab;
+
 
     public RuntimeAnimatorController[] RuntimeAnimators => runtimeanimators;
 
@@ -108,6 +110,7 @@ public class PlayerControllerMap : MonoBehaviour
 
     public void FinishGame()
     {
-        
+        gameObject.SetActive(false);
+        Instantiate(endGamePrefab);
     }
 }
