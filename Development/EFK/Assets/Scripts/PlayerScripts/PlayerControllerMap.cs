@@ -62,7 +62,6 @@ public class PlayerControllerMap : MonoBehaviour
 
     public void SetRoom(RoomAbstract room)
     {
-        ResetInventory();
         ResetDiaryImages();
         myRoom = room;
         SetText(myRoom.DiaryText);
@@ -75,7 +74,7 @@ public class PlayerControllerMap : MonoBehaviour
         }
     }
 
-    private void ResetInventory()
+    public void ResetInventory()
     {
         for (int i = 0; i < inventoryPanel.transform.childCount; i++)
         {

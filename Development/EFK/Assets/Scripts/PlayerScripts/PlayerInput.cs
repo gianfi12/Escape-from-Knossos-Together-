@@ -107,6 +107,9 @@ public class PlayerInput : MonoBehaviourPun
                     diaryPanel.SetActive(false);
                     diaryImage.SetActive(true);
                 }
+                if (Input.GetButtonDown("Interact")) {
+                    _playerInteraction.InteractWithTarget(transform.gameObject);
+                }
             }
         }
         catch (NullReferenceException) {}
@@ -124,11 +127,12 @@ public class PlayerInput : MonoBehaviourPun
                 diaryPanel.SetActive(false);
                 diaryImage.SetActive(true);
             }
+            if (Input.GetButtonDown("Interact")) {
+                _playerInteraction.InteractWithTarget(transform.gameObject);
+            }
         }
 
-        if (Input.GetButtonDown("Interact")) {
-            _playerInteraction.InteractWithTarget(transform.gameObject);
-        }
+        
     }
 
     public bool CanMove

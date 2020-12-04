@@ -139,7 +139,7 @@ public class AlphabetRoomManager : MonoBehaviour
         ItemSlot[] slots = combinationPanel.Slots;
         for (int i = 0; i < slots.Length; i++)
         {
-            if (slots[i].SlotImage.MyCollectable.ID != selectedNumbers[i])
+            if (slots[i].SlotImage.Image.enabled == false || slots[i].SlotImage.MyCollectable.ID != selectedNumbers[i])
             {
                 StartCoroutine(ChangePanelColor(Color.red));
                 return;

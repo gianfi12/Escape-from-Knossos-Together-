@@ -22,6 +22,10 @@ public class RoomCollider : MonoBehaviour
                     player.SetRoom(room);
                     room.Player = player;
                 }
+                else
+                {
+                    other.GetComponent<PlayerControllerMap>().ResetInventory();
+                }
             }
             else {
                 player = other.GetComponent<PlayerControllerMap>();

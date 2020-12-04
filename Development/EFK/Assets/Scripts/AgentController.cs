@@ -35,6 +35,12 @@ public class AgentController : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
+
+        // HARDCODED FIX FOR AGENTS SOMETIMES GETTING ROTATED WHEN PLAYING ONLINE.
+        // find a better solution if possible
+        if (transform.rotation.x != 0) transform.rotation = Quaternion.identity;
+        
+
         agent.updateRotation = false;
         agent.updateUpAxis = false;
 
@@ -48,6 +54,9 @@ public class AgentController : MonoBehaviour
 
         lineOfSight = GetComponent<LineOfSight>();
         fovMaterial = GetComponentInChildren<MeshRenderer>().material;
+        fovMaterial = GetComponentInChildren<MeshRenderer>().material;
+
+        Random.InitState(transform.GetComponentInParent<ObjectsContainer>().Seed);
     }
 
     private void Seek(Vector3 location)
