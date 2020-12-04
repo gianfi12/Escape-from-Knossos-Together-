@@ -12,6 +12,7 @@ public class AlphabetRoomManager : MonoBehaviour
 {
     private List<int> selectedNumbers = new List<int>();
     private Mode mode;
+
     public struct Mode
     {
         public int a;
@@ -153,7 +154,9 @@ public class AlphabetRoomManager : MonoBehaviour
         Image backgroundImage = combinationPanel.Panel.GetComponent<Image>();
         Color originalColor = backgroundImage.color;
         backgroundImage.color = newColor;
+        //combinationPanel.Panel.GetComponent<Image>().material.SetColor("OutlineColor", newColor);
         yield return new WaitForSeconds(0.5f);
         backgroundImage.color = originalColor;
+        //combinationPanel.Panel.GetComponent<Image>().material.SetColor("OutlineColor", originalColor);
     }
 }

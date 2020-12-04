@@ -13005,7 +13005,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 78516adb7f2e33d4f9a866fa5f7dda13, type: 2}
   m_Color: {r: 0.6755073, g: 0.8111819, b: 0.8679245, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
@@ -13710,6 +13710,11 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1545052664625401099, guid: 04b08d86d2af1f94da53f87dc7ad1bba,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5b8015bea53ac894f8319957c0101e3c, type: 2}
     - target: {fileID: 3225674088536409916, guid: 04b08d86d2af1f94da53f87dc7ad1bba,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -13795,6 +13800,11 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1545052664625401099, guid: 04b08d86d2af1f94da53f87dc7ad1bba,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5b8015bea53ac894f8319957c0101e3c, type: 2}
     - target: {fileID: 3225674088536409916, guid: 04b08d86d2af1f94da53f87dc7ad1bba,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -14235,6 +14245,11 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1545052664625401099, guid: 04b08d86d2af1f94da53f87dc7ad1bba,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5b8015bea53ac894f8319957c0101e3c, type: 2}
     - target: {fileID: 3225674088536409916, guid: 04b08d86d2af1f94da53f87dc7ad1bba,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -14729,6 +14744,11 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1545052664625401099, guid: 04b08d86d2af1f94da53f87dc7ad1bba,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5b8015bea53ac894f8319957c0101e3c, type: 2}
     - target: {fileID: 3225674088536409916, guid: 04b08d86d2af1f94da53f87dc7ad1bba,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -14814,6 +14834,11 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1545052664625401099, guid: 04b08d86d2af1f94da53f87dc7ad1bba,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5b8015bea53ac894f8319957c0101e3c, type: 2}
     - target: {fileID: 3225674088536409916, guid: 04b08d86d2af1f94da53f87dc7ad1bba,
         type: 3}
       propertyPath: m_LocalPosition.x
