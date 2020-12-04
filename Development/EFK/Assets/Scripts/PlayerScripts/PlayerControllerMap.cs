@@ -18,6 +18,8 @@ public class PlayerControllerMap : MonoBehaviour
     [SerializeField] private Text diaryTextGUI;
     [SerializeField] private List<ItemSlot> slots;
     [SerializeField] private RuntimeAnimatorController[] runtimeanimators;
+    [SerializeField] private GameObject endGamePrefab;
+
 
     public RuntimeAnimatorController[] RuntimeAnimators => runtimeanimators;
 
@@ -60,7 +62,6 @@ public class PlayerControllerMap : MonoBehaviour
 
     public void SetRoom(RoomAbstract room)
     {
-        ResetInventory();
         ResetDiaryImages();
         myRoom = room;
         SetText(myRoom.DiaryText);
@@ -73,7 +74,7 @@ public class PlayerControllerMap : MonoBehaviour
         }
     }
 
-    private void ResetInventory()
+    public void ResetInventory()
     {
         for (int i = 0; i < inventoryPanel.transform.childCount; i++)
         {
@@ -103,11 +104,31 @@ public class PlayerControllerMap : MonoBehaviour
     public bool IsDead
     {
         get => _isDead;
-        set => _isDead = value;
+    }
+    
+    public void SetPlayerIsDead() {
+        if (PhotonNetwork.IsConnected)
+        {
+            GetComponent<PhotonView>().RPC("SetIsDead", RpcTarget.All);
+        }
+        else
+        {
+            _isDead = true;
+            EventManager.TriggerEvent(EventType.FinishGame);
+        }
+        
+    }
+    
+    [PunRPC]
+    public void SetIsDead()
+    {
+        _isDead = true;
+        EventManager.TriggerEvent(EventType.FinishGame);
     }
 
     public void FinishGame()
     {
-        
+        gameObject.SetActive(false);
+        Instantiate(endGamePrefab);
     }
 }

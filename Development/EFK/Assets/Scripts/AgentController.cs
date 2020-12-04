@@ -181,15 +181,25 @@ public class AgentController : MonoBehaviour
             {
                 if (playerControllerMap.GetComponent<PhotonView>().IsMine)
                 {
-                    playerControllerMap.IsDead = true; 
-                    EventManager.TriggerEvent(EventType.FinishGame);
+                    playerControllerMap.SetPlayerIsDead();
+                    
                 }
             }
             else
             {
-                playerControllerMap.IsDead = true; 
-                EventManager.TriggerEvent(EventType.FinishGame);
+                playerControllerMap.SetPlayerIsDead();
             }
         }
+    }
+
+    public void SetCheckpoints(List<GameObject> checkpoints)
+    {
+        this.checkpoints = new List<GameObject>(checkpoints);
+    }
+
+    public bool IsPatroller
+    {
+        get => isPatroller;
+        set => isPatroller = value;
     }
 }

@@ -26,20 +26,17 @@ public class GameManager : MonoBehaviourPun
     void Start()
     {
         BeginGame();
+        EventManager.StartListening(EventType.FinishGame,new UnityAction(FinishGame));
     }
 
     void FinishGame()
     {
-        if (_playerInstanceLocal.IsDead && _playerInstanceRemote.IsDead)
+        if (_playerInstanceLocal.IsDead || _playerInstanceRemote.IsDead)
         {
-            //TODO end game
-        }else if (_playerInstanceLocal.IsDead)
-        {
-            _cameraInstance.m_Follow = _playerInstanceRemote.transform;
-            _playerInstanceLocal.gameObject.SetActive(false);
-            //check if online you can control the second player(it shouldn't be)
+            _cameraInstance.m_Follow = null;
+            _playerInstanceLocal.FinishGame();
+
         }
-        //the other case is not needed it will be change the camera on the remote side
     }
 
     private void BeginGame()
@@ -48,7 +45,7 @@ public class GameManager : MonoBehaviourPun
             if (PhotonNetwork.IsMasterClient) {
                 _levelMap =  PhotonNetwork.Instantiate(levelPrefab.name, Vector3.zero, Quaternion.identity).GetComponent<LevelMap>();
                 _levelMap.CreateMapOverNetwork();
-                _levelMap.InstantiatePlayersOverNetwork();       
+                _levelMap.InstantiatePlayersOverNetwork();
             }
         }
         else {
@@ -57,12 +54,12 @@ public class GameManager : MonoBehaviourPun
             _levelMap.CreateMap();
             navMesh.GetComponent<NavMeshSurface2d>().BuildNavMesh();
 
-            Instantiate(playerPrefab);
             _playerInstanceLocal = Instantiate(playerPrefab).GetComponent<PlayerControllerMap>();
             _cameraInstance = Instantiate(mainCamera);
             _cameraInstance.m_Follow = _playerInstanceLocal.transform;
             _levelMap.PlacePlayer(_playerInstanceLocal, 1);
             _playerInstanceLocal.SetGameManager(this);
+            
         }
     }
 
@@ -70,7 +67,7 @@ public class GameManager : MonoBehaviourPun
         _playerInstanceLocal = playerInstance;
         _cameraInstance = Instantiate(mainCamera);
         _cameraInstance.m_Follow = _playerInstanceLocal.transform;
-        
+
         navMesh.GetComponent<NavMeshSurface2d>().BuildNavMesh();
     }
 
@@ -84,9 +81,8 @@ public class GameManager : MonoBehaviourPun
         else
         {
             _playerInstanceRemote = players[0].GetComponent<PlayerControllerMap>();
+            _playerInstanceRemote.GetComponent<Animator>().runtimeAnimatorController = _playerInstanceRemote.RuntimeAnimators[(_playerInstanceRemote.GetComponent<PhotonView>().ViewID / 1000) - 1];
         }
         EventManager.StartListening(EventType.FinishGame,new UnityAction(FinishGame));
     }
-    
-
 }

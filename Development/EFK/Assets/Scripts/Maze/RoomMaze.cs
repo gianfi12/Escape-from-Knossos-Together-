@@ -79,7 +79,16 @@ public class RoomMaze : RoomAbstract
         for (int i = 0; i < numberOfGuard; i++)
         {
             Tile floor = getRandomFloor();
+            
+            List<GameObject> listCheckpoints = new List<GameObject>();
+            listCheckpoints.Add(new GameObject());
+            listCheckpoints.Add(new GameObject());
+            SpawnObjectInRoom(getRandomFloor().Coordinates+new Vector3(0.5f,0.5f,0f),listCheckpoints[0].transform);
+            SpawnObjectInRoom(getRandomFloor().Coordinates+new Vector3(0.5f,0.5f,0f),listCheckpoints[1].transform);
             Transform agentTransform = Instantiate(guardPrefab).transform;
+            AgentController agentController = agentTransform.GetComponent<AgentController>();
+            agentController.SetCheckpoints(listCheckpoints);
+            agentController.IsPatroller = true;
             Vector3 agentPosition=floor.Coordinates+new Vector3(0.5f,0.5f,0f);
             SpawnObjectInRoom(agentPosition,agentTransform);
         }
@@ -110,17 +119,17 @@ public class RoomMaze : RoomAbstract
             switch (randomDirection)
             {
                 case Direction.North:
-                    wardrobePosition += new Vector3(0.7f,0,0);
+                    wardrobePosition += new Vector3(0.5f,-0.05f,0);
                     break;
                 case Direction.South:
-                    wardrobePosition += new Vector3(0.7f,1f,0);
+                    wardrobePosition += new Vector3(0.5f,1.05f,0);
                     break;  
                 case Direction.East:
-                    wardrobePosition += new Vector3(0f,0.7f,0);
+                    wardrobePosition += new Vector3(-0.05f,0.5f,0);
                     wardrobeTransform.rotation *= Quaternion.Euler(0, 0, 90); 
                     break;
                 case Direction.West:
-                    wardrobePosition += new Vector3(1f,0.7f,0);
+                    wardrobePosition += new Vector3(1.05f,0.5f,0);
                     wardrobeTransform.rotation *= Quaternion.Euler(0, 0, 90);
                     break;
             }
@@ -469,6 +478,7 @@ public class RoomMaze : RoomAbstract
                         doorTransform.GetComponent<Doors>().ClosingDirection=Direction.East;
                         _coordinatesNotEntrance = position + Direction.East.GetDirection();
                     }
+                    if(_isPlayer2) doorTransform.GetComponent<Doors>().ClosingDirection=doorTransform.GetComponent<Doors>().ClosingDirection.GetOpposite();
                     SpawnObjectInRoom(doorPosition,doorTransform);
                 }else
                 {
@@ -506,6 +516,7 @@ public class RoomMaze : RoomAbstract
                         doorTransform.GetComponent<Doors>().ClosingDirection=Direction.East;
                         _coordinatesNotExit = position + Direction.West.GetDirection();
                     }
+                    if(_isPlayer2) doorTransform.GetComponent<Doors>().ClosingDirection=doorTransform.GetComponent<Doors>().ClosingDirection.GetOpposite();
                     SpawnObjectInRoom(doorPosition,doorTransform);
                 }else
                 {
