@@ -31,8 +31,14 @@ public class GameManager : MonoBehaviourPun
     {
         if (_playerInstanceLocal.IsDead)
         {
+<<<<<<< HEAD
             _cameraInstance.m_Follow = null;
             _playerInstanceLocal.FinishGame();
+=======
+            //_cameraInstance.m_Follow = _playerInstanceRemote.transform;
+            //_playerInstanceLocal.gameObject.SetActive(false);
+            //check if online you can control the second player(it shouldn't be)
+>>>>>>> ce7a2a8a72ffd06f505c9eed36cb4941b91a53a1
         }
     }
 
@@ -42,7 +48,7 @@ public class GameManager : MonoBehaviourPun
             if (PhotonNetwork.IsMasterClient) {
                 _levelMap =  PhotonNetwork.Instantiate(levelPrefab.name, Vector3.zero, Quaternion.identity).GetComponent<LevelMap>();
                 _levelMap.CreateMapOverNetwork();
-                _levelMap.InstantiatePlayersOverNetwork();
+                _levelMap.InstantiatePlayersOverNetwork();       
             }
         }
         else {
@@ -66,5 +72,20 @@ public class GameManager : MonoBehaviourPun
         
         navMesh.GetComponent<NavMeshSurface2d>().BuildNavMesh();
     }
+
+    public void SetRemotePlayer()
+    {
+        GameObject [] players = GameObject.FindGameObjectsWithTag("Player");
+        if (players[0] == _playerInstanceLocal.gameObject)
+        {
+            _playerInstanceRemote = players[1].GetComponent<PlayerControllerMap>();
+        }
+        else
+        {
+            _playerInstanceRemote = players[0].GetComponent<PlayerControllerMap>();
+        }
+        EventManager.StartListening(EventType.FinishGame,new UnityAction(FinishGame));
+    }
     
+
 }
