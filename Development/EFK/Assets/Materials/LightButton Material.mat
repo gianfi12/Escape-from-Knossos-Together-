@@ -75,7 +75,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - OutlineThickness: 0.2
+    - OutlineThickness: 1
     - PixelSnap: 0
     - Vector1_12AE9E0: 1
     - Vector1_657B6A03: 0.719

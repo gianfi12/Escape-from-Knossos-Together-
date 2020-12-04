@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Checkpoint
   - Diary
+  - DiaryImage
+  - MainDoor
+  - PlayerFeet
   layers:
   - Default
   - TransparentFX
