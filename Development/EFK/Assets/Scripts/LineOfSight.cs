@@ -97,7 +97,8 @@ public class LineOfSight : MonoBehaviour
 
         if (isNPC && visibleTargets.Count != 0)
         {
-            npcController.SeekPlayer(visibleTargets.First().position);
+            if (visibleTargets.First().GetComponent<PlayerInput>()._canMove) 
+                npcController.SeekPlayer(visibleTargets.First().position);
         }
         else if(!isNPC){
             playerInteractionController.SelectInteractableTarget(visibleTargets);

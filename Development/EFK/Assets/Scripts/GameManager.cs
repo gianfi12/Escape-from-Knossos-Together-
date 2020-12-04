@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviourPun
         }else if (_playerInstanceLocal.IsDead)
         {
             _cameraInstance.m_Follow = _playerInstanceRemote.transform;
-            Destroy(_playerInstanceLocal);
+            _playerInstanceLocal.gameObject.SetActive(false);
             //check if online you can control the second player(it shouldn't be)
         }
         //the other case is not needed it will be change the camera on the remote side
