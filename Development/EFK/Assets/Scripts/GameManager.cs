@@ -33,13 +33,7 @@ public class GameManager : MonoBehaviourPun
         if (_playerInstanceLocal.IsDead && _playerInstanceRemote.IsDead)
         {
             //TODO end game
-        }else if (_playerInstanceLocal.IsDead)
-        {
-            //_cameraInstance.m_Follow = _playerInstanceRemote.transform;
-            //_playerInstanceLocal.gameObject.SetActive(false);
-            //check if online you can control the second player(it shouldn't be)
         }
-        //the other case is not needed it will be change the camera on the remote side
     }
 
     private void BeginGame()
@@ -84,9 +78,8 @@ public class GameManager : MonoBehaviourPun
         else
         {
             _playerInstanceRemote = players[0].GetComponent<PlayerControllerMap>();
+            _playerInstanceRemote.GetComponent<Animator>().runtimeAnimatorController = _playerInstanceRemote.RuntimeAnimators[(_playerInstanceRemote.GetComponent<PhotonView>().ViewID / 1000) - 1];
         }
         EventManager.StartListening(EventType.FinishGame,new UnityAction(FinishGame));
     }
-    
-
 }
