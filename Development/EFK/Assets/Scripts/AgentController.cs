@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
@@ -152,12 +153,34 @@ public class AgentController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Player")
+        if (isSeekingPlayer || isWanderingAfterSeeking)
         {
-            PlayerControllerMap playerControllerMap = other.GetComponent<PlayerControllerMap>();
-            playerControllerMap.IsDead = true;
-            EventManager.TriggerEvent(EventType.FinishGame);
+            PlayerControllerMap playerControllerMap;
+            if (other.CompareTag("PlayerFeet"))
+            { 
+                Debug.Log("HO PRESO I PIEDI");
+                playerControllerMap = other.GetComponentInParent<PlayerControllerMap>();
+            }
+            else if (other.CompareTag("Player"))
+            { 
+                Debug.Log("HO PRESO IL CORPO");
+                playerControllerMap = other.GetComponent<PlayerControllerMap>();
+            }
+            else return;
 
+            if (PhotonNetwork.IsConnected)
+            {
+                if (playerControllerMap.GetComponent<PhotonView>().IsMine)
+                {
+                    playerControllerMap.IsDead = true; 
+                    EventManager.TriggerEvent(EventType.FinishGame);
+                }
+            }
+            else
+            {
+                playerControllerMap.IsDead = true; 
+                EventManager.TriggerEvent(EventType.FinishGame);
+            }
         }
     }
 }

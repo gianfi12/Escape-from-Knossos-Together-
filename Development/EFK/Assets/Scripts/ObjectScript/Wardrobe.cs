@@ -21,7 +21,7 @@ public class Wardrobe : InteractableObject
             _playerInput = player.GetComponent<PlayerInput>();
             _playerInteraction = player.GetComponent<PlayerInteraction>();
             _playerRenderer = player.GetComponent<SpriteRenderer>();
-
+            
         }
 
         if(!_hasBeenActivated && _playerInput.CanMove)
