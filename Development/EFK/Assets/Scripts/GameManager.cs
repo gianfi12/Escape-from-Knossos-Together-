@@ -30,9 +30,11 @@ public class GameManager : MonoBehaviourPun
 
     void FinishGame()
     {
-        if (_playerInstanceLocal.IsDead && _playerInstanceRemote.IsDead)
+        if (_playerInstanceLocal.IsDead || _playerInstanceRemote.IsDead)
         {
-            //TODO end game
+            _cameraInstance.m_Follow = null;
+            _playerInstanceLocal.FinishGame();
+
         }
     }
 
@@ -42,7 +44,7 @@ public class GameManager : MonoBehaviourPun
             if (PhotonNetwork.IsMasterClient) {
                 _levelMap =  PhotonNetwork.Instantiate(levelPrefab.name, Vector3.zero, Quaternion.identity).GetComponent<LevelMap>();
                 _levelMap.CreateMapOverNetwork();
-                _levelMap.InstantiatePlayersOverNetwork();       
+                _levelMap.InstantiatePlayersOverNetwork();
             }
         }
         else {
@@ -51,7 +53,6 @@ public class GameManager : MonoBehaviourPun
             _levelMap.CreateMap();
             navMesh.GetComponent<NavMeshSurface2d>().BuildNavMesh();
 
-            Instantiate(playerPrefab);
             _playerInstanceLocal = Instantiate(playerPrefab).GetComponent<PlayerControllerMap>();
             _cameraInstance = Instantiate(mainCamera);
             _cameraInstance.m_Follow = _playerInstanceLocal.transform;
@@ -64,7 +65,7 @@ public class GameManager : MonoBehaviourPun
         _playerInstanceLocal = playerInstance;
         _cameraInstance = Instantiate(mainCamera);
         _cameraInstance.m_Follow = _playerInstanceLocal.transform;
-        
+
         navMesh.GetComponent<NavMeshSurface2d>().BuildNavMesh();
     }
 
