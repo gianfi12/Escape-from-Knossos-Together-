@@ -26,17 +26,7 @@ public class GameManager : MonoBehaviourPun
     void Start()
     {
         BeginGame();
-        GameObject [] players = GameObject.FindGameObjectsWithTag("Player");
-        if (players[0] == _playerInstanceLocal.gameObject)
-        {
-            _playerInstanceRemote = players[1].GetComponent<PlayerControllerMap>();
-        }
-        else
-        {
-            _playerInstanceRemote = players[0].GetComponent<PlayerControllerMap>();
-        }
-        EventManager.StartListening(EventType.FinishGame,new UnityAction(FinishGame));
-        
+
     }
 
     void FinishGame()
@@ -74,6 +64,7 @@ public class GameManager : MonoBehaviourPun
             _cameraInstance.m_Follow = _playerInstanceLocal.transform;
             _levelMap.PlacePlayer(_playerInstanceLocal, 1);
             _playerInstanceLocal.SetGameManager(this);
+            SetRemotePlayer();
         }
     }
 
@@ -83,6 +74,22 @@ public class GameManager : MonoBehaviourPun
         _cameraInstance.m_Follow = _playerInstanceLocal.transform;
         
         navMesh.GetComponent<NavMeshSurface2d>().BuildNavMesh();
+        
+        SetRemotePlayer();
+    }
+
+    public void SetRemotePlayer()
+    {
+        GameObject [] players = GameObject.FindGameObjectsWithTag("Player");
+        if (players[0] == _playerInstanceLocal.gameObject)
+        {
+            _playerInstanceRemote = players[1].GetComponent<PlayerControllerMap>();
+        }
+        else
+        {
+            _playerInstanceRemote = players[0].GetComponent<PlayerControllerMap>();
+        }
+        EventManager.StartListening(EventType.FinishGame,new UnityAction(FinishGame));
     }
     
 }

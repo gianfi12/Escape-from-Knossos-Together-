@@ -72,6 +72,7 @@ public class LevelMap : MonoBehaviourPun
         PlacePlayer(_playerInstance, viewID/1000);
         GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         gameManager.SetPlayerInstance(_playerInstance);
+        gameManager.SetRemotePlayer();
         _playerInstance.SetGameManager(gameManager);
     }
 
