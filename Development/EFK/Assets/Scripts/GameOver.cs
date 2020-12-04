@@ -6,6 +6,13 @@ public class GameOver:MonoBehaviour
 {
     public void ReloadStartingScene()
     {
-        PhotonNetwork.LoadLevel("Main");
+        if (PhotonNetwork.IsConnected)
+        {
+            PhotonNetwork.LoadLevel("MainMenu");
+        }
+        else
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
     }
 }

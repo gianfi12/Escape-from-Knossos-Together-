@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviourPun
     void Start()
     {
         BeginGame();
+        EventManager.StartListening(EventType.FinishGame,new UnityAction(FinishGame));
     }
 
     void FinishGame()
@@ -58,6 +59,7 @@ public class GameManager : MonoBehaviourPun
             _cameraInstance.m_Follow = _playerInstanceLocal.transform;
             _levelMap.PlacePlayer(_playerInstanceLocal, 1);
             _playerInstanceLocal.SetGameManager(this);
+            
         }
     }
 
