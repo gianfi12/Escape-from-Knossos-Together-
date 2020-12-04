@@ -55,6 +55,8 @@ public class AgentController : MonoBehaviour
         lineOfSight = GetComponent<LineOfSight>();
         fovMaterial = GetComponentInChildren<MeshRenderer>().material;
         fovMaterial = GetComponentInChildren<MeshRenderer>().material;
+
+        Random.InitState(transform.GetComponentInParent<ObjectsContainer>().Seed);
     }
 
     private void Seek(Vector3 location)
