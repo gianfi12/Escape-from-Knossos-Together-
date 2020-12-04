@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviourPun
     private LevelMap _levelMap;
     [SerializeField] private GameObject playerPrefab;
     private PlayerControllerMap _playerInstanceLocal;
+    private PlayerControllerMap _playerInstanceRemote;
     [SerializeField] private CinemachineVirtualCamera mainCamera;
     private CinemachineVirtualCamera _cameraInstance;
 
@@ -29,16 +30,11 @@ public class GameManager : MonoBehaviourPun
 
     void FinishGame()
     {
-        if (_playerInstanceLocal.IsDead)
+        if (_playerInstanceLocal.IsDead || _playerInstanceRemote.IsDead)
         {
-<<<<<<< HEAD
             _cameraInstance.m_Follow = null;
             _playerInstanceLocal.FinishGame();
-=======
-            //_cameraInstance.m_Follow = _playerInstanceRemote.transform;
-            //_playerInstanceLocal.gameObject.SetActive(false);
-            //check if online you can control the second player(it shouldn't be)
->>>>>>> ce7a2a8a72ffd06f505c9eed36cb4941b91a53a1
+
         }
     }
 
