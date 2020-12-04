@@ -26,7 +26,6 @@ public class GameManager : MonoBehaviourPun
     void Start()
     {
         BeginGame();
-
     }
 
     void FinishGame()
@@ -49,7 +48,7 @@ public class GameManager : MonoBehaviourPun
             if (PhotonNetwork.IsMasterClient) {
                 _levelMap =  PhotonNetwork.Instantiate(levelPrefab.name, Vector3.zero, Quaternion.identity).GetComponent<LevelMap>();
                 _levelMap.CreateMapOverNetwork();
-                _levelMap.InstantiatePlayersOverNetwork();
+                _levelMap.InstantiatePlayersOverNetwork();   
             }
         }
         else {
@@ -64,7 +63,6 @@ public class GameManager : MonoBehaviourPun
             _cameraInstance.m_Follow = _playerInstanceLocal.transform;
             _levelMap.PlacePlayer(_playerInstanceLocal, 1);
             _playerInstanceLocal.SetGameManager(this);
-            SetRemotePlayer();
         }
     }
 
@@ -74,8 +72,6 @@ public class GameManager : MonoBehaviourPun
         _cameraInstance.m_Follow = _playerInstanceLocal.transform;
         
         navMesh.GetComponent<NavMeshSurface2d>().BuildNavMesh();
-        
-        SetRemotePlayer();
     }
 
     public void SetRemotePlayer()
