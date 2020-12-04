@@ -601,6 +601,9 @@ MonoBehaviour:
   - {fileID: 7785195425417711901}
   - {fileID: 2489681405701225360}
   - {fileID: 5807063614225247379}
+  runtimeanimators:
+  - {fileID: 9100000, guid: 823c00e3ff854d54688c5cadd5a9defa, type: 2}
+  - {fileID: 9100000, guid: 0c22a428883248b44ac96ecbd1c5eec3, type: 2}
 --- !u!114 &3311339839380459383
 MonoBehaviour:
   m_ObjectHideFlags: 0

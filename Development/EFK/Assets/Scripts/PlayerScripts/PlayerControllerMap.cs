@@ -17,6 +17,10 @@ public class PlayerControllerMap : MonoBehaviour
     private GameObject inventoryPanel;
     [SerializeField] private Text diaryTextGUI;
     [SerializeField] private List<ItemSlot> slots;
+    [SerializeField] private RuntimeAnimatorController[] runtimeanimators;
+
+    public RuntimeAnimatorController[] RuntimeAnimators => runtimeanimators;
+
     private RoomAbstract myRoom;
 
     private bool networkMine;

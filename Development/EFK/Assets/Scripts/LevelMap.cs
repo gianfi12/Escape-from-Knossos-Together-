@@ -68,6 +68,7 @@ public class LevelMap : MonoBehaviourPun
     public void InstantiatePlayers() {
         PlayerControllerMap _playerInstance = PhotonNetwork.Instantiate(playerPrefab.name, Vector3.zero, Quaternion.identity).GetComponent<PlayerControllerMap>();
         int viewID = _playerInstance.GetComponent<PhotonView>().ViewID;
+        _playerInstance.GetComponent<Animator>().runtimeAnimatorController = _playerInstance.RuntimeAnimators[(viewID / 1000) - 1];
         PlacePlayer(_playerInstance, viewID/1000);
         GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         gameManager.SetPlayerInstance(_playerInstance);
