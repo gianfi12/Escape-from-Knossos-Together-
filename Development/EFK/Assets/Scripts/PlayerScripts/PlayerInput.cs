@@ -23,7 +23,9 @@ public class PlayerInput : MonoBehaviourPun
     [SerializeField] private GameObject _playerUI;
     [SerializeField] private GameObject diaryPanel;
     [SerializeField] private GameObject diaryImage;
-    private bool isDiaryActive;
+    private bool isReading;
+    private float normalSpeed;
+    private float readingSpeed = 2f;
 
     public bool CanMove {
         get => _canMove;
@@ -41,6 +43,7 @@ public class PlayerInput : MonoBehaviourPun
         }
         
         if (!PhotonNetwork.IsConnected) _playerUI.SetActive(true);
+        normalSpeed = GetComponent<PlayerControllerMap>().Speed;
     }
 
 
@@ -86,11 +89,7 @@ public class PlayerInput : MonoBehaviourPun
             _movement.x = 0f;
             _movement.y = 0f;
         }
-
-        _animator.SetFloat("Speed", _movement.SqrMagnitude());
-        _animator.SetFloat("Horizontal", _movement.x);
-        //_animator.SetFloat("Vertical", _movement.y);
-        //_animator.SetFloat("Direction", _lastDir);
+        
 
         try {
             if (photonView.IsMine) {
@@ -105,12 +104,16 @@ public class PlayerInput : MonoBehaviourPun
                 {
                     diaryPanel.SetActive(true);
                     diaryImage.SetActive(false);
+                    isReading = true;
+                    _playerController.Speed = readingSpeed;
                 }
     
                 else if (Input.GetButtonUp("Map"))
                 {
                     diaryPanel.SetActive(false);
                     diaryImage.SetActive(true);
+                    isReading = false;
+                    _playerController.Speed = normalSpeed;
                 }
                 if (Input.GetButtonDown("Interact")) {
                     _playerInteraction.InteractWithTarget(transform.gameObject);
@@ -125,19 +128,27 @@ public class PlayerInput : MonoBehaviourPun
             {
                 diaryPanel.SetActive(true);
                 diaryImage.SetActive(false);
+                isReading = true;
+                _playerController.Speed = readingSpeed;
             }
     
             else if (Input.GetButtonUp("Map"))
             {
                 diaryPanel.SetActive(false);
                 diaryImage.SetActive(true);
+                isReading = false;
+                _playerController.Speed = normalSpeed;
             }
             if (Input.GetButtonDown("Interact")) {
                 _playerInteraction.InteractWithTarget(transform.gameObject);
             }
         }
 
-        
+        _animator.SetFloat("Speed", _movement.SqrMagnitude());
+        _animator.SetFloat("Horizontal", _movement.x);
+        _animator.SetBool("IsReading",isReading);
+        //_animator.SetFloat("Vertical", _movement.y);
+        //_animator.SetFloat("Direction", _lastDir);
     }
 
 

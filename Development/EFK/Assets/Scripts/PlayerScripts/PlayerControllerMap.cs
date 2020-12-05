@@ -26,6 +26,12 @@ public class PlayerControllerMap : MonoBehaviour
     private RoomAbstract myRoom;
 
     private bool networkMine;
+    
+    public float Speed
+    {
+        get => _speed;
+        set => _speed = value;
+    }
 
     public void Awake() {
         diaryPanel = transform.Find("Canvas").Find("Diary-Panel").gameObject;
