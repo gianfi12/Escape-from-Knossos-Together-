@@ -21,7 +21,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 187fe61f5078f8e48a35aca4854b1552, type: 2}
   - AssetType: 2
     tileBases:
-    - {fileID: 11400000, guid: 8fb0401d5f3ee624d87b18a792433c9c, type: 2}
+    - {fileID: 11400000, guid: c695c2e282407b74b875f291617c0435, type: 2}
   - AssetType: 3
     tileBases:
     - {fileID: 11400000, guid: 2b2f02b063c1d19409141fce2d2dcae9, type: 2}
@@ -30,4 +30,4 @@ MonoBehaviour:
     - {fileID: 11400000, guid: faff6ae120aa8c847af962f5034d6985, type: 2}
   - AssetType: 5
     tileBases:
-    - {fileID: 11400000, guid: faff6ae120aa8c847af962f5034d6985, type: 2}
+    - {fileID: 11400000, guid: 8fb0401d5f3ee624d87b18a792433c9c, type: 2}

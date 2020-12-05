@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviourPun
         _cameraInstance.m_Follow = _playerInstanceLocal.transform;
 
         navMesh.GetComponent<NavMeshSurface2d>().BuildNavMesh();
-    }
+    } 
 
     public void SetRemotePlayer()
     {
