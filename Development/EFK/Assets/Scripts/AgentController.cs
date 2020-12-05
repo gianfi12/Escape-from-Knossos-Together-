@@ -182,11 +182,19 @@ public class AgentController : MonoBehaviour
                 if (playerControllerMap.GetComponent<PhotonView>().IsMine)
                 {
                     playerControllerMap.SetPlayerIsDead();
+<<<<<<< HEAD
+=======
+                    
+>>>>>>> e72a4d1320e1a46619c1c04c97c9b373beaf4b8b
                 }
             }
             else
             {
+<<<<<<< HEAD
                 playerControllerMap.SetPlayerIsDead(); 
+=======
+                playerControllerMap.SetPlayerIsDead();
+>>>>>>> e72a4d1320e1a46619c1c04c97c9b373beaf4b8b
             }
         }
     }
