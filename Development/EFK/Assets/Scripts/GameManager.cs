@@ -77,6 +77,7 @@ public class GameManager : MonoBehaviourPun
         if (players[0] == _playerInstanceLocal.gameObject)
         {
             _playerInstanceRemote = players[1].GetComponent<PlayerControllerMap>();
+            _playerInstanceRemote.GetComponent<Animator>().runtimeAnimatorController = _playerInstanceRemote.RuntimeAnimators[(_playerInstanceRemote.GetComponent<PhotonView>().ViewID / 1000) - 1];
         }
         else
         {
