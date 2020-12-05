@@ -29,6 +29,7 @@ public class AgentController : MonoBehaviour
 
     private Vector3 currentMovement;
     private float lastDir;
+    private Vector3 _previousPosition;
 
     // Start is called before the first frame update
     void Start()
@@ -39,6 +40,7 @@ public class AgentController : MonoBehaviour
         // HARDCODED FIX FOR AGENTS SOMETIMES GETTING ROTATED WHEN PLAYING ONLINE.
         // find a better solution if possible
         if (transform.rotation.x != 0) transform.rotation = Quaternion.identity;
+        _previousPosition = transform.position;
         
 
         agent.updateRotation = false;
@@ -121,10 +123,18 @@ public class AgentController : MonoBehaviour
             isWanderingAfterSeeking = false;
         }
         else if (isPatroller && agent.pathStatus == NavMeshPathStatus.PathComplete && agent.remainingDistance ==0) {
-            fovMaterial.SetColor("_Color", standardFovColor);
-            lineOfSight.viewAngle = 50;
-            agent.speed = 1.5f;
-            Patrol();
+            //This method implements the great "Spintarella" method
+            if (Math.Abs(Vector3.Distance(transform.position,_previousPosition))<0.0001)
+            {
+                transform.position+= new Vector3(0.1f,0.1f,0f);
+            }
+            else
+            {
+                fovMaterial.SetColor("_Color", standardFovColor);
+                lineOfSight.viewAngle = 50;
+                agent.speed = 1.5f;
+                Patrol();
+            }
         }
 
         if (!isPatroller && agent.pathStatus == NavMeshPathStatus.PathComplete && agent.remainingDistance == 0)
@@ -167,12 +177,10 @@ public class AgentController : MonoBehaviour
             PlayerControllerMap playerControllerMap;
             if (other.CompareTag("PlayerFeet"))
             { 
-                Debug.Log("HO PRESO I PIEDI");
                 playerControllerMap = other.GetComponentInParent<PlayerControllerMap>();
             }
             else if (other.CompareTag("Player"))
             { 
-                Debug.Log("HO PRESO IL CORPO");
                 playerControllerMap = other.GetComponent<PlayerControllerMap>();
             }
             else return;
@@ -186,7 +194,7 @@ public class AgentController : MonoBehaviour
             }
             else
             {
-                playerControllerMap.SetPlayerIsDead(); 
+                playerControllerMap.SetPlayerIsDead();
                 playerControllerMap.SetPlayerIsDead();
             }
         }
