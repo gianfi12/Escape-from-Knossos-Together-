@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 //A cell has a dimension of 2x2 tile
@@ -53,7 +54,7 @@ public class Cell
 
     public void ReshapeCell(Room mergedRoom)
     {
-        foreach (Direction direction in (Direction[]) Enum.GetValues(typeof(Direction)))
+        foreach (Direction direction in Enum.GetValues(typeof(Direction)).Cast<Direction>().Where(x => x != Direction.None))
         {
             Edge edge = this.GetEdge(direction);
             if (edge.GetOther(this)!=null && mergedRoom.GetCellsList().Contains(edge.GetOther(this)))

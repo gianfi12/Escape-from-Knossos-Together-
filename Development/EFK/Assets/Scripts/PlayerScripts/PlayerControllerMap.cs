@@ -116,6 +116,7 @@ public class PlayerControllerMap : MonoBehaviour
             _isDead = true;
             EventManager.TriggerEvent(EventType.FinishGame);
         }
+        
     }
     
     [PunRPC]

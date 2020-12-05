@@ -10,7 +10,8 @@ public enum Direction
     North,
     South,
     West,
-    East
+    East,
+    None
 }
 
 public static class DirectionExtensions
@@ -23,14 +24,16 @@ public static class DirectionExtensions
         new Vector3Int(0, 1, 0),
         new Vector3Int(0, -1, 0),
         new Vector3Int(-1, 0, 0),
-        new Vector3Int(1,0,0)
+        new Vector3Int(1,0,0),
+        new Vector3Int(0,0,0),
     };
     private static Direction[] _opposite =
     {
         Direction.South,
         Direction.North,
         Direction.East,
-        Direction.West
+        Direction.West,
+        Direction.None
     };
 
     public static Vector3Int GetDirection(this Direction direction)
@@ -74,6 +77,6 @@ public static class DirectionExtensions
 
     public static Direction getRandomDirection()
     {
-        return (Direction) directionList.GetValue(Random.Range(0, directionList.Length ));
+        return (Direction) directionList.GetValue(Random.Range(1, directionList.Length ));
     }
 }
