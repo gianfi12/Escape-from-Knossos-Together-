@@ -64,13 +64,19 @@ MonoBehaviour:
   - {fileID: 3509557944252893647}
   - {fileID: 2672658688535770108}
   - {fileID: 5274865317035935114}
+  - {fileID: 3509557944252893647}
+  - {fileID: 2672658688535770108}
+  - {fileID: 5274865317035935114}
+  - {fileID: 3509557944252893647}
+  - {fileID: 2672658688535770108}
+  - {fileID: 5274865317035935114}
   maxSpace: 50
-  minRoomSize: 5
+  minRoomSize: 10
   doorPrefab: {fileID: 611721949337760788, guid: c775da782f978084b93226ee5a8033ee,
     type: 3}
   wardrobePrefab: {fileID: 8932908033788877102, guid: f76ddd8479156834482b1489728c0c3c,
     type: 3}
-  numberOfWardrobe: 10
+  numberOfWardrobe: 20
   guardPrefab: {fileID: 2483861399637240493, guid: a51cf60735870584dac2932ab62ed88f,
     type: 3}
   numberOfGuard: 3
@@ -134,15 +140,15 @@ MonoBehaviour:
   - {fileID: 2672658688535770108}
   - {fileID: 5274865317035935114}
   buttonColors:
-  - {r: 0.9960785, g: 0.20784315, b: 0.20784315, a: 1}
-  - {r: 0.9960785, g: 0.8196079, b: 0, a: 1}
-  - {r: 0, g: 0.10486943, b: 0.2924528, a: 1}
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 0.5234003, g: 0, b: 1, a: 1}
+  - {r: 0.080322154, g: 0.28326255, b: 0.8962264, a: 1}
   - {r: 0.09222734, g: 0.8867924, b: 0, a: 1}
-  - {r: 0.86993754, g: 0, b: 0.9056604, a: 1}
-  - {r: 1, g: 0.5857023, b: 0, a: 1}
-  - {r: 0.10196076, g: 0.73018366, b: 0.8784314, a: 1}
-  - {r: 0, g: 0.4433962, b: 0.37213606, a: 1}
-  - {r: 0.4339623, g: 0, b: 0.09603736, a: 1}
+  - {r: 0.6132076, g: 0, b: 0.19268148, a: 1}
+  - {r: 1, g: 0.58982205, b: 0, a: 1}
+  - {r: 0.49056602, g: 0.2866574, b: 0.20594516, a: 1}
+  - {r: 0.9433962, g: 0.52954787, b: 0.9335358, a: 1}
+  - {r: 0.17052187, g: 0.2735849, b: 0.089044146, a: 1}
   numberOfActiveButtons: 3
 --- !u!60 &2189717249306560740
 PolygonCollider2D:
@@ -725,7 +731,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.5857023, b: 0, a: 1}
+  m_Color: {r: 0.6132076, g: 0, b: 0.19268148, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -799,7 +805,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.40643737, g: 0.10196076, b: 0.8784314, a: 1}
+  m_Color: {r: 0.9433962, g: 0.52954787, b: 0.9335358, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1442,7 +1448,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.6603774, b: 0.55244863, a: 1}
+  m_Color: {r: 0.49056602, g: 0.2866574, b: 0.20594516, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:

@@ -88,7 +88,7 @@ public class AgentController : MonoBehaviour
     private void Patrol()
     {
         if (checkpoints.Count == 0) return;
-        
+        if(gameObject.name=="AgentMaze0")Debug.Log(checkpoints[currentCheckpoint].transform.position);
         Seek(checkpoints[currentCheckpoint].transform.position);
         currentCheckpoint = (currentCheckpoint + 1) % checkpoints.Count;
     }
@@ -120,7 +120,7 @@ public class AgentController : MonoBehaviour
             StartCoroutine("StopAgent", 2.5f);
             isWanderingAfterSeeking = false;
         }
-        else if (isPatroller && agent.pathStatus == NavMeshPathStatus.PathComplete && agent.remainingDistance == 0) {
+        else if (isPatroller && agent.pathStatus == NavMeshPathStatus.PathComplete && agent.remainingDistance ==0) {
             fovMaterial.SetColor("_Color", standardFovColor);
             lineOfSight.viewAngle = 50;
             agent.speed = 1.5f;
@@ -182,13 +182,11 @@ public class AgentController : MonoBehaviour
                 if (playerControllerMap.GetComponent<PhotonView>().IsMine)
                 {
                     playerControllerMap.SetPlayerIsDead();
-                    EventManager.TriggerEvent(EventType.FinishGame);
                 }
             }
             else
             {
                 playerControllerMap.SetPlayerIsDead(); 
-                EventManager.TriggerEvent(EventType.FinishGame);
             }
         }
     }

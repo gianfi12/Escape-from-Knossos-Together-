@@ -109,11 +109,12 @@ public class PlayerControllerMap : MonoBehaviour
     public void SetPlayerIsDead() {
         if (PhotonNetwork.IsConnected)
         {
-            GetComponent<PhotonView>().RPC("InstantiatePlayers", RpcTarget.All);
+            GetComponent<PhotonView>().RPC("SetIsDead", RpcTarget.All);
         }
         else
         {
             _isDead = true;
+            EventManager.TriggerEvent(EventType.FinishGame);
         }
     }
     
@@ -121,6 +122,7 @@ public class PlayerControllerMap : MonoBehaviour
     public void SetIsDead()
     {
         _isDead = true;
+        EventManager.TriggerEvent(EventType.FinishGame);
     }
 
     public void FinishGame()
