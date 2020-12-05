@@ -61,3 +61,5 @@ crashlytics-build.properties
 
 Development/EFK/Temp/UnityLockfile/
 Development/EFK/.idea/
+Development/EFK/Build/
+Development/EFK/BuildLinux/
