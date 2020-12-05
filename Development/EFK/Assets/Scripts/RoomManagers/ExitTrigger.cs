@@ -2,6 +2,7 @@
 using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ExitTrigger : MonoBehaviour {
@@ -15,11 +16,13 @@ public class ExitTrigger : MonoBehaviour {
     private List<GameObject> players = new List<GameObject>();
 
     private bool movingPlayers;
-    private bool checkpointReached;
+    private bool[] checkpointReached;
 
     private void Start() {
         if (PhotonNetwork.IsConnected) playersNumber = 2;
         else playersNumber = 1;
+
+        checkpointReached = new bool[playersNumber];
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
@@ -37,27 +40,35 @@ public class ExitTrigger : MonoBehaviour {
 
     private void Update() {
         if (movingPlayers) {
-            for (int i = 0; i < playersNumber; i++) {
-                
-                Vector3 directionToCheckpoint = (positionCheckpoints[i].transform.position - players[i].transform.position).normalized;
-                Vector2 direction2D;
+            bool prevCheckpointReached = checkpointReached.All(x => x);
+            Vector2 direction2D;
+            Animator animator;
 
-                if (Vector3.Distance(players[i].transform.position, positionCheckpoints[i].transform.position) > 0.1f && !checkpointReached) {
+            for (int i = 0; i < playersNumber; i++) {
+                if (Vector3.Distance(players[i].transform.position, positionCheckpoints[i].transform.position) > 0.1f && !checkpointReached[i]) {
+                    Vector3 directionToCheckpoint = (positionCheckpoints[i].transform.position - players[i].transform.position).normalized;
+
                     direction2D = new Vector2(directionToCheckpoint.x, directionToCheckpoint.y);
                     players[i].GetComponent<PlayerControllerMap>().Move(directionToCheckpoint);
-                }
-                else {
-                    if(!checkpointReached) endgameVCAM.gameObject.SetActive(true);
-                    checkpointReached = true;
-                    direction2D = Vector2.up;
-                    players[i].GetComponent<PlayerControllerMap>().Move(Vector3.up);
-      
-                }
 
-                Animator animator = players[i].GetComponent<Animator>();
-                animator.SetFloat("Speed", direction2D.SqrMagnitude());
-                animator.SetFloat("Horizontal", direction2D.x);
+                    animator = players[i].GetComponent<Animator>();
+                    animator.SetFloat("Speed", direction2D.SqrMagnitude());
+                    animator.SetFloat("Horizontal", direction2D.x);
+                }
+                else checkpointReached[i] = true;       
             }
-        }  
+
+            if (checkpointReached.All(x => x)) {
+                if(!prevCheckpointReached) endgameVCAM.gameObject.SetActive(true); // activate VCAM only the first time
+
+                direction2D = Vector2.up;
+                foreach (GameObject player in players) {
+                    player.GetComponent<PlayerControllerMap>().Move(Vector3.up);
+                    animator = player.GetComponent<Animator>();
+                    animator.SetFloat("Speed", direction2D.SqrMagnitude());
+                    animator.SetFloat("Horizontal", direction2D.x);
+                }
+            }
+        }
     }
 }
