@@ -36,6 +36,7 @@ public class GameOver : MonoBehaviourPunCallbacks
 
     public void QuitGame()
     {
-        Application.Quit();
+        SceneManager.LoadScene("FeedbackEnd");
+        //Application.Quit();
     }
 }
