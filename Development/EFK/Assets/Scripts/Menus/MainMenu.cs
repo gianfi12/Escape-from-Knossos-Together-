@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = System.Random;
 
 public class MainMenu : MonoBehaviourPunCallbacks
 {
@@ -13,6 +15,7 @@ public class MainMenu : MonoBehaviourPunCallbacks
     [SerializeField] private Text _waitingStatusRoom = null;
     [SerializeField] private Text _createRoomName = null;
     [SerializeField] private Text _selectedRoomName = null;
+    private List<RoomInfo> roomList;
     
     private const string Gameversion = "0.1";
     private const int MaxPlayerPerRoom = 2;
@@ -56,6 +59,8 @@ public class MainMenu : MonoBehaviourPunCallbacks
 
     public override void OnCreateRoomFailed(short returnCode, string message)
     {
+        _waitingStatusPanel.SetActive(false);
+        _findGamePanel.SetActive(true);
         Debug.Log("Room creation failed "+message);
     }
 
@@ -87,9 +92,25 @@ public class MainMenu : MonoBehaviourPunCallbacks
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
         Debug.Log("No clients are waiting, creating a new room...");
+        //_waitingStatusPanel.SetActive(false);
+        //_findGamePanel.SetActive(true);
 
         //DA AGGIUNGERE NOME CASUALE
-        PhotonNetwork.CreateRoom( "000", new RoomOptions {MaxPlayers = MaxPlayerPerRoom});
+        int roomName;
+        do
+        {
+            System.Random rnd = new System.Random();
+            roomName = rnd.Next(0, 100);
+        } while (roomList.Where(x => x.Name.Equals(roomName.ToString())).ToList().Count != 0);
+        
+        PhotonNetwork.CreateRoom( roomName.ToString(), new RoomOptions {MaxPlayers = MaxPlayerPerRoom});
+    }
+
+    public override void OnRoomListUpdate(List<RoomInfo> roomList)
+    {
+        base.OnRoomListUpdate(roomList);
+        this.roomList = new List<RoomInfo>(roomList);
+        
     }
 
     public override void OnJoinedRoom()

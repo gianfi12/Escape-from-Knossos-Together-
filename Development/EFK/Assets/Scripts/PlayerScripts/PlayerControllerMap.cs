@@ -18,7 +18,9 @@ public class PlayerControllerMap : MonoBehaviour
     [SerializeField] private Text diaryTextGUI;
     [SerializeField] private List<ItemSlot> slots;
     [SerializeField] private RuntimeAnimatorController[] runtimeanimators;
-    [SerializeField] private GameObject endGamePrefab;
+
+    [SerializeField] private GameObject lostGamePrefab;
+    [SerializeField] private GameObject wonGamePrefab;
 
 
     public RuntimeAnimatorController[] RuntimeAnimators => runtimeanimators;
@@ -26,6 +28,12 @@ public class PlayerControllerMap : MonoBehaviour
     private RoomAbstract myRoom;
 
     private bool networkMine;
+    
+    public float Speed
+    {
+        get => _speed;
+        set => _speed = value;
+    }
 
     public void Awake() {
         diaryPanel = transform.Find("Canvas").Find("Diary-Panel").gameObject;
@@ -126,9 +134,14 @@ public class PlayerControllerMap : MonoBehaviour
         EventManager.TriggerEvent(EventType.FinishGame);
     }
 
-    public void FinishGame()
+    public void FinishGame(bool victory)
     {
-        gameObject.SetActive(false);
-        Instantiate(endGamePrefab);
+        if (victory) {
+            Instantiate(wonGamePrefab);
+        }
+        else {
+            gameObject.SetActive(false);
+            Instantiate(lostGamePrefab);
+        }
     }
 }
