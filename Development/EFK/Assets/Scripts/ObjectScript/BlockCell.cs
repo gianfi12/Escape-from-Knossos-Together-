@@ -12,7 +12,10 @@ public class BlockCell : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("PlayerFeet")) {
-            Debug.Log("ENTERED CELL, WALKABLE: " + isWalkable);
+            if (isWalkable) GetComponent<SpriteRenderer>().enabled = true;
+            else {
+                other.GetComponent<PlayerControllerMap>().Explode();
+            }
         } 
     }
 }

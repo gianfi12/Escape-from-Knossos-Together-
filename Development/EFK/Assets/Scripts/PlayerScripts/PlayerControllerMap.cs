@@ -144,4 +144,8 @@ public class PlayerControllerMap : MonoBehaviour
             Instantiate(lostGamePrefab);
         }
     }
+
+    public void Explode() {
+
+    }
 }
