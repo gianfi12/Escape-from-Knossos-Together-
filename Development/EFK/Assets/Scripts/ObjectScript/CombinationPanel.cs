@@ -9,6 +9,7 @@ public class CombinationPanel : InteractableObject
     private GameObject panel;
     private Canvas canvasToReturn;
     private ItemSlot[] slots;
+    private PlayerControllerMap playerController;
 
     public GameObject Panel => panel;
 
@@ -28,6 +29,8 @@ public class CombinationPanel : InteractableObject
 
     public override void Interact(GameObject player)
     {
+        if (playerController == null) playerController = player.GetComponent<PlayerControllerMap>();
+
         if (!_hasBeenActivated)
         {
             _hasBeenActivated = true;
@@ -55,4 +58,7 @@ public class CombinationPanel : InteractableObject
         }
     }
     
+    public void TriggerWrongCombination() {
+        if(playerController != null) playerController.TriggerHalveTimePenalization();
+    }
 }

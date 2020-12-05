@@ -16,6 +16,7 @@ public class PlayerControllerMap : MonoBehaviour
     private GameObject diaryPanel;
     private GameObject inventoryPanel;
     [SerializeField] private Text diaryTextGUI;
+    [SerializeField] private TimerText timerGUI;
     [SerializeField] private List<ItemSlot> slots;
     [SerializeField] private RuntimeAnimatorController[] runtimeanimators;
 
@@ -149,5 +150,13 @@ public class PlayerControllerMap : MonoBehaviour
         Animator animator = GetComponent<Animator>();
         GetComponent<PlayerInput>().CanMove = false;
         animator.SetBool("Exploding", true);
+    }
+
+    public void SetTimer(int time, bool trigger = true) {
+        timerGUI.SetTime(time, trigger);
+    }
+
+    public void TriggerHalveTimePenalization() {
+        timerGUI.HalveTime();
     }
 }

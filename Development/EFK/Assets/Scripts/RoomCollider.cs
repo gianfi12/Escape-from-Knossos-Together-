@@ -24,13 +24,16 @@ public class RoomCollider : MonoBehaviour
                 }
                 else
                 {
-                    other.GetComponent<PlayerControllerMap>().ResetInventory();
+                    player = other.GetComponent<PlayerControllerMap>();
+                    player.ResetInventory();
+                    player.SetTimer(room.MaxTimeInSeconds, room.TimeoutTriggersLoss);
                 }
             }
             else {
                 player = other.GetComponent<PlayerControllerMap>();
                 player.SetRoom(room);
                 room.Player = player;
+                player.SetTimer(room.MaxTimeInSeconds, room.TimeoutTriggersLoss);
             }
         }
     }
@@ -38,6 +41,9 @@ public class RoomCollider : MonoBehaviour
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Player")) {
+            if (!PhotonNetwork.IsConnected || other.GetComponent<PhotonView>().IsMine) {
+                other.GetComponent<PlayerControllerMap>().SetTimer(0, false);
+            }
             room.Player = null;
         }
     }

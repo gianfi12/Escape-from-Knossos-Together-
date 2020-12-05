@@ -70,6 +70,8 @@ MonoBehaviour:
   - {fileID: 3509557944252893647}
   - {fileID: 2672658688535770108}
   - {fileID: 5274865317035935114}
+  maxTimeInSeconds: 300
+  timeoutTriggersLoss: 1
   maxSpace: 50
   minRoomSize: 10
   doorPrefab: {fileID: 611721949337760788, guid: c775da782f978084b93226ee5a8033ee,

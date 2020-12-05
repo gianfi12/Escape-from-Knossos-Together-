@@ -231,6 +231,7 @@ public class RoomMaze : RoomAbstract
                 Room removedRoom = _roomList[i];
                 _roomList.Remove(removedRoom);
                 int index = Random.Range(0, removedRoom.GetNeighbor().Count-1);
+                if (index < 0) continue;
                 Room mergedRoom = removedRoom.GetNeighbor()[index];
                 mergedRoom.RemoveNeighbor(removedRoom);
                 foreach (Cell cell in removedRoom.GetCellsList())

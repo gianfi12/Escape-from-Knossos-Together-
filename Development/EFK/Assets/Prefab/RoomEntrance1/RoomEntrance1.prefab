@@ -2702,6 +2702,8 @@ MonoBehaviour:
   - {fileID: 4305442046556995394}
   - {fileID: 4825197589566949968}
   - {fileID: 5561241060268139843}
+  maxTimeInSeconds: 999
+  timeoutTriggersLoss: 0
   tilemapFloor: {fileID: 6300615789690446129}
   tilemapExit: {fileID: 1883046730043625201}
   tilemapEntrance: {fileID: 8591640340263104053}

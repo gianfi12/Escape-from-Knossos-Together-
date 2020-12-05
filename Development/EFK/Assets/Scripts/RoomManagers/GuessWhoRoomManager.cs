@@ -44,6 +44,7 @@ public class GuessWhoRoomManager : MonoBehaviour
         {
             combinationPanel.Slots[0].RemoveImage();
             StartCoroutine(ChangePanelColor(Color.red));
+            combinationPanel.TriggerWrongCombination();
             return;
         }
         

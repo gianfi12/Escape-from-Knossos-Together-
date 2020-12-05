@@ -142,6 +142,7 @@ public class AlphabetRoomManager : MonoBehaviour
             if (slots[i].SlotImage.Image.enabled == false || slots[i].SlotImage.MyCollectable.ID != selectedNumbers[i])
             {
                 StartCoroutine(ChangePanelColor(Color.red));
+                combinationPanel.TriggerWrongCombination();
                 return;
             }
         }

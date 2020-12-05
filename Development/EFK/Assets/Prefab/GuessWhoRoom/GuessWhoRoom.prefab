@@ -5429,6 +5429,8 @@ MonoBehaviour:
     type: 3}
   diaryImageList:
   - {fileID: 4740508106053496915}
+  maxTimeInSeconds: 120
+  timeoutTriggersLoss: 1
   tilemapFloor: {fileID: 7248099197467420990}
   tilemapExit: {fileID: 4208143889992133422}
   tilemapEntrance: {fileID: 1386733343969742758}

@@ -59,6 +59,8 @@ public class AgentController : MonoBehaviour
         fovMaterial = GetComponentInChildren<MeshRenderer>().material;
 
         Random.InitState(transform.GetComponentInParent<ObjectsContainer>().Seed);
+
+        if(!isPatroller) StartCoroutine("ResetTargetWithDelay", 1f);
     }
 
     private void Seek(Vector3 location)
@@ -90,7 +92,6 @@ public class AgentController : MonoBehaviour
     private void Patrol()
     {
         if (checkpoints.Count == 0) return;
-        if(gameObject.name=="AgentMaze0")Debug.Log(checkpoints[currentCheckpoint].transform.position);
         Seek(checkpoints[currentCheckpoint].transform.position);
         currentCheckpoint = (currentCheckpoint + 1) % checkpoints.Count;
     }
@@ -112,7 +113,6 @@ public class AgentController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (agent.remainingDistance < 0.5 && agent.remainingDistance > 0.4) lastDir = SetDirection();
         if (isSeekingPlayer && agent.pathStatus == NavMeshPathStatus.PathComplete && agent.remainingDistance == 0) {
             isSeekingPlayer = false;
             isWanderingAfterSeeking = true;
@@ -123,18 +123,10 @@ public class AgentController : MonoBehaviour
             isWanderingAfterSeeking = false;
         }
         else if (isPatroller && agent.pathStatus == NavMeshPathStatus.PathComplete && agent.remainingDistance ==0) {
-            //This method implements the great "Spintarella" method
-            if (Math.Abs(Vector3.Distance(transform.position,_previousPosition))<0.0001)
-            {
-                transform.position+= new Vector3(0.1f,0.1f,0f);
-            }
-            else
-            {
-                fovMaterial.SetColor("_Color", standardFovColor);
-                lineOfSight.viewAngle = 50;
-                agent.speed = 1.5f;
-                Patrol();
-            }
+            fovMaterial.SetColor("_Color", standardFovColor);
+            lineOfSight.viewAngle = 50;
+            agent.speed = 1.5f;
+            Patrol();
         }
 
         if (!isPatroller && agent.pathStatus == NavMeshPathStatus.PathComplete && agent.remainingDistance == 0)
@@ -142,14 +134,14 @@ public class AgentController : MonoBehaviour
             fovMaterial.SetColor("_Color", standardFovColor);
             lineOfSight.viewAngle = 50;
             agent.speed = 1.5f;
-            Wander();
+            Wander();  
         }
-        
+
         currentMovement = agent.velocity.normalized;
         animator.SetFloat("Horizontal", currentMovement.x);
         //animator.SetFloat("Vertical", currentMovement.y);
         //animator.SetFloat("Speed", currentMovement.sqrMagnitude);
-        //animator.SetFloat("Direction", lastDir);
+        //animator.SetFloat("Direction", lastDir);  
     }
 
     public float GetDirectionAngle() {
@@ -209,5 +201,20 @@ public class AgentController : MonoBehaviour
     {
         get => isPatroller;
         set => isPatroller = value;
+    }
+
+    IEnumerator ResetTargetWithDelay(float delay) {
+        while (true) {
+            yield return new WaitForSeconds(delay);
+            ResetTarget();
+        }
+    }
+
+    private void ResetTarget() {
+        if (Math.Abs(Vector3.Distance(transform.position, _previousPosition)) < 0.5) {
+            Wander();
+        }
+
+        _previousPosition = transform.position;
     }
 }
