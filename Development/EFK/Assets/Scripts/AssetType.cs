@@ -4,5 +4,6 @@
     WallBottomRight,
     Floor,
     Entrace,
-    Exit
+    Exit,
+    Corridor
 }

@@ -38,8 +38,8 @@ MonoBehaviour:
   - CreateMap
   - DestroyRpc
   - InstantiatePlayers
-  - SetSeed
   - SetIsDead
+  - SetSeed
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

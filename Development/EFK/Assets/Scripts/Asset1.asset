@@ -22,3 +22,6 @@ MonoBehaviour:
   - AssetType: 2
     tileBases:
     - {fileID: 11400000, guid: 8fb0401d5f3ee624d87b18a792433c9c, type: 2}
+  - AssetType: 5
+    tileBases:
+    - {fileID: 11400000, guid: 8fb0401d5f3ee624d87b18a792433c9c, type: 2}

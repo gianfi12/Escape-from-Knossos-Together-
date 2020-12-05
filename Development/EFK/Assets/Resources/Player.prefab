@@ -664,7 +664,9 @@ MonoBehaviour:
   runtimeanimators:
   - {fileID: 0}
   - {fileID: 9100000, guid: 0c22a428883248b44ac96ecbd1c5eec3, type: 2}
-  endGamePrefab: {fileID: 678791857875372120, guid: 998f2635129456747ae0ccbfc2cc391e,
+  lostGamePrefab: {fileID: 678791857875372120, guid: 2944c54c69b6dab4eadda8c1ac5f00df,
+    type: 3}
+  wonGamePrefab: {fileID: 2135672815451956766, guid: 80ed0b2dce1ab5e49ada5257f72c9700,
     type: 3}
 --- !u!114 &3311339839380459383
 MonoBehaviour:

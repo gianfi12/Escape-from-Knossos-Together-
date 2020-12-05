@@ -9,7 +9,7 @@ using Random = UnityEngine.Random;
 
 public class RoomMaze : RoomAbstract
 {
-    private const int _minSetSpace=21;//has to be odd
+    private const int _minSetSpace=51;//has to be odd
     private const int _maxSetSpace=100;
 
     [SerializeField][Range(_minSetSpace,_maxSetSpace)] private int maxSpace;
@@ -30,7 +30,10 @@ public class RoomMaze : RoomAbstract
     private Transform _mazeTransform;
     private Transform _doorExitTransform;
     private bool _isPlayer2;
+    private List<List<GameObject>> _listCheckpoints = new List<List<GameObject>>();
+    private List<AgentController> _listAgent;
 
+    
     private Vector3Int _coordinatesNotEntrance;
     private Vector3Int _coordinatesNotExit;
     public override void Generate(int seed, bool isPlayer2)
@@ -48,6 +51,7 @@ public class RoomMaze : RoomAbstract
         
         GenerateInternal();
         FindRoomNeighbor();
+        ReshapeRooms();
         ReshapeRooms();
         ConnectNeighbor();
         GenerateTile();
@@ -76,19 +80,26 @@ public class RoomMaze : RoomAbstract
 
     private void SpawnAgent()
     {
+        _listAgent = new List<AgentController>();
         for (int i = 0; i < numberOfGuard; i++)
         {
             Tile floor = getRandomFloor();
             
-            List<GameObject> listCheckpoints = new List<GameObject>();
-            listCheckpoints.Add(new GameObject());
-            listCheckpoints.Add(new GameObject());
-            SpawnObjectInRoom(getRandomFloor().Coordinates+new Vector3(0.5f,0.5f,0f),listCheckpoints[0].transform);
-            SpawnObjectInRoom(getRandomFloor().Coordinates+new Vector3(0.5f,0.5f,0f),listCheckpoints[1].transform);
+            List<GameObject> localListCheckpoints = new List<GameObject>();
+            GameObject go1 = new GameObject();
+            go1.name = "Checkpoint1AgentMaze" + i;
+            GameObject go2 = new GameObject();
+            go2.name = "Checkpoint2AgentMaze" + i;
+            localListCheckpoints.Add(go1);
+            localListCheckpoints.Add(go2);
+            _listCheckpoints.Add(localListCheckpoints);
+            SpawnObjectInRoom(getRandomFloor().Coordinates+new Vector3(0.55f,0.5f,0f),go1.transform);
+            SpawnObjectInRoom(getRandomFloor().Coordinates+new Vector3(0.55f,0.5f,0f),go2.transform);
             Transform agentTransform = Instantiate(guardPrefab).transform;
+            agentTransform.name = "AgentMaze"+i;
             AgentController agentController = agentTransform.GetComponent<AgentController>();
-            agentController.SetCheckpoints(listCheckpoints);
-            agentController.IsPatroller = true;
+            _listAgent.Add(agentController);
+            agentController.IsPatroller = false;
             Vector3 agentPosition=floor.Coordinates+new Vector3(0.5f,0.5f,0f);
             SpawnObjectInRoom(agentPosition,agentTransform);
         }
@@ -246,7 +257,7 @@ public class RoomMaze : RoomAbstract
             foreach (Direction direction in Enum.GetValues(typeof(Direction)).Cast<Direction>().Where(x => x != Direction.None))
             {
                 Cell otherCell = cell.GetEdge(direction).GetOther(cell);
-                if ((cell.GetEdge(direction).EdgeType==Edge.EdgeTypes.Passage || cell.GetEdge(direction).EdgeType==Edge.EdgeTypes.Door))
+                if ((cell.GetEdge(direction).EdgeType==Edge.EdgeTypes.Passage || cell.GetEdge(direction).EdgeType==Edge.EdgeTypes.Door || otherCell.Room==cell.Room))
                 {
                     Vector2Int startingPosition;
                     Direction movementDirection;
@@ -290,7 +301,7 @@ public class RoomMaze : RoomAbstract
             foreach (Direction direction in Enum.GetValues(typeof(Direction)).Cast<Direction>().Where(x => x != Direction.None))
             {
                 Cell otherCell = cell.GetEdge(direction).GetOther(cell);
-                if ((cell.GetEdge(direction).EdgeType==Edge.EdgeTypes.Wall))
+                if ((cell.GetEdge(direction).EdgeType==Edge.EdgeTypes.Wall) && otherCell.Room!=cell.Room)
                 {
                     Vector2Int startingPosition;
                     Direction movementDirection;
@@ -405,7 +416,7 @@ public class RoomMaze : RoomAbstract
                     }
 
                     Edge edge = SetConnection(direction, cell, otherCell);
-                    if (otherCell.Room is null && Random.Range(1, 100) > 40)
+                    if (otherCell.Room is null && Random.Range(1, 100) > 60 && cell.Room.GetCellsList().Count<30)
                     {
                         edge.EdgeType = Edge.EdgeTypes.Passage;
                         cell.Room.AddCell(otherCell);
@@ -575,6 +586,12 @@ public class RoomMaze : RoomAbstract
                 
         _mazeTransform.position = coordinates+ new Vector3Int(1,1,0);
         AddCollider();
+        int i = 0;
+        foreach (AgentController agentController in _listAgent)
+        {
+            agentController.SetCheckpoints(_listCheckpoints[i]);
+            i++;
+        }
     }
     
     
@@ -602,7 +619,9 @@ public class RoomMaze : RoomAbstract
             else
             {
                 tilemapFloor.SetTile(tile.Coordinates, tile.TileBase);
-                tilemapFloor.SetColor(tile.Coordinates,ColorFromCoordinates(normalizedCoordinates).color);
+                Color color = ColorFromCoordinates(normalizedCoordinates).color;
+                color =  new Color(color.r,color.g,color.b,0.5f);
+                tilemapFloor.SetColor(tile.Coordinates,color);
             }
         }
         
@@ -691,6 +710,7 @@ public class RoomMaze : RoomAbstract
         foreach (Tile tile in removableWall)
         {
             Wall.Remove(tile);
+            Floor.Add(new Tile(assetsCollection.GetTileFromType(AssetType.Floor)[0],tile.Coordinates));
         }
         foreach (Tile wall in Wall)
         { 
