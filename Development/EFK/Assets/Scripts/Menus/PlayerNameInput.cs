@@ -35,7 +35,7 @@ public class PlayerNameInput : MonoBehaviour
     public void SavePlayerName()
     {
         string playerName = _nameInputField.text;
-        PhotonNetwork.NickName = playerName;
+        //PhotonNetwork.NickName = playerName;
         PlayerPrefs.SetString(PlayerprefsNameKey, playerName);
     }
 }

@@ -12,15 +12,19 @@ public class GameOver : MonoBehaviourPunCallbacks
     {
         if (PhotonNetwork.IsConnected)
         {
+<<<<<<< HEAD
+            PhotonNetwork.LoadLevel("FeedbackEnd");
+=======
             PhotonNetwork.LeaveRoom();
             Destroy(FindObjectOfType<PhotonVoiceNetwork>().gameObject);
             //PhotonNetwork.LoadLevel("MainMenu");
             
 
+>>>>>>> 48765572a7e0652b17f0c8a161bba93d54aff156
         }
         else
         {
-            SceneManager.LoadScene("MainMenu");
+            SceneManager.LoadScene("FeedbackEnd");
         }
     }
 

@@ -173,6 +173,7 @@ public class AgentController : MonoBehaviour
             }
             else if (other.CompareTag("Player"))
             { 
+
                 playerControllerMap = other.GetComponent<PlayerControllerMap>();
             }
             else return;
