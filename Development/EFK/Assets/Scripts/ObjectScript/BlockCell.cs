@@ -14,7 +14,7 @@ public class BlockCell : MonoBehaviour
         if (other.CompareTag("PlayerFeet")) {
             if (isWalkable) GetComponent<SpriteRenderer>().enabled = true;
             else {
-                other.GetComponent<PlayerControllerMap>().Explode();
+                other.gameObject.GetComponentInParent<PlayerControllerMap>().Explode();
             }
         } 
     }

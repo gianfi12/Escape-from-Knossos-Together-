@@ -146,6 +146,8 @@ public class PlayerControllerMap : MonoBehaviour
     }
 
     public void Explode() {
-
+        Animator animator = GetComponent<Animator>();
+        GetComponent<PlayerInput>().CanMove = false;
+        animator.SetBool("Exploding", true);
     }
 }
