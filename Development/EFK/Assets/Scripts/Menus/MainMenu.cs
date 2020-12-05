@@ -20,13 +20,13 @@ public class MainMenu : MonoBehaviourPunCallbacks
     private const string Gameversion = "0.1";
     private const int MaxPlayerPerRoom = 2;
 
-    private void Awake()
+    private void Start()
     {
         //Set that anytime I switch a scene I do it for all the players
         PhotonNetwork.AutomaticallySyncScene = true;  
         
         PhotonNetwork.GameVersion = Gameversion;
-        PhotonNetwork.ConnectUsingSettings();
+        VerifyMasterConnection();
     }
 
     private void VerifyMasterConnection()
@@ -74,6 +74,7 @@ public class MainMenu : MonoBehaviourPunCallbacks
         
         PhotonNetwork.JoinRandomRoom();
     }
+    
 
     public override void OnConnectedToMaster()
     {
@@ -92,8 +93,6 @@ public class MainMenu : MonoBehaviourPunCallbacks
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
         Debug.Log("No clients are waiting, creating a new room...");
-        //_waitingStatusPanel.SetActive(false);
-        //_findGamePanel.SetActive(true);
 
         //DA AGGIUNGERE NOME CASUALE
         int roomName;

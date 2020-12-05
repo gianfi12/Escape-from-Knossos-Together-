@@ -6,8 +6,8 @@ using UnityEngine;
 
 public class BlockGrid : MonoBehaviour
 {
-    private const int CostRange = 50;
-    private const float ActiveCellProbability = 0.2f;
+    private const int CostRange = 100;
+    private const float ActiveCellProbability = 0.3f;
 
     private System.Random rnd;
     private bool[] walkableGrid;
