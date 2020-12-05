@@ -25,6 +25,11 @@ public class PlayerInput : MonoBehaviourPun
     [SerializeField] private GameObject diaryImage;
     private bool isDiaryActive;
 
+    public bool CanMove {
+        get => _canMove;
+        set => _canMove = value;
+    }
+
     // Start is called before the first frame update
     void Start() {
         try {
@@ -135,11 +140,6 @@ public class PlayerInput : MonoBehaviourPun
         
     }
 
-    public bool CanMove
-    {
-        get => _canMove;
-        set => _canMove = value;
-    }
 
     private float SetDirection()
     {
