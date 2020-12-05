@@ -662,7 +662,7 @@ MonoBehaviour:
   - {fileID: 2489681405701225360}
   - {fileID: 5807063614225247379}
   runtimeanimators:
-  - {fileID: 0}
+  - {fileID: 9100000, guid: 4a1c9d535c7f96044a29ee52318bd90b, type: 2}
   - {fileID: 9100000, guid: 0c22a428883248b44ac96ecbd1c5eec3, type: 2}
   lostGamePrefab: {fileID: 678791857875372120, guid: 2944c54c69b6dab4eadda8c1ac5f00df,
     type: 3}
