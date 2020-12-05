@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviourPun
         if (_playerInstanceLocal.IsDead || _playerInstanceRemote.IsDead)
         {
             _cameraInstance.m_Follow = null;
-            _playerInstanceLocal.FinishGame();
+            _playerInstanceLocal.FinishGame(false);
 
         }
     }

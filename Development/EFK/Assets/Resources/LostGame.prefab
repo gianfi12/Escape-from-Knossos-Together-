@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2134576591418723048}
   - component: {fileID: 4011813221524629844}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Lost Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,7 +77,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'GAME OVER '
+  m_Text: YOU WERE CAUGHT
 --- !u!1 &678791857875372120
 GameObject:
   m_ObjectHideFlags: 0
@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 5819029014067762135}
   - component: {fileID: 1696190956491153154}
   m_Layer: 5
-  m_Name: EndGame
+  m_Name: LostGame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -233,7 +233,7 @@ GameObject:
   - component: {fileID: 5582904958217461024}
   - component: {fileID: 2053124017935328524}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Return Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -337,7 +337,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -4.000017, y: -6.000004}
+  m_AnchoredPosition: {x: 0, y: -6.000004}
   m_SizeDelta: {x: 142.05255, y: 118.072205}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7320043870670382879
