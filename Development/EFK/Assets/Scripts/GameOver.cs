@@ -8,11 +8,11 @@ public class GameOver:MonoBehaviour
     {
         if (PhotonNetwork.IsConnected)
         {
-            PhotonNetwork.LoadLevel("MainMenu");
+            PhotonNetwork.LoadLevel("FeedbackEnd");
         }
         else
         {
-            SceneManager.LoadScene("MainMenu");
+            SceneManager.LoadScene("FeedbackEnd");
         }
     }
 }

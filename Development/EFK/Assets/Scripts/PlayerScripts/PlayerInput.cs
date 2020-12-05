@@ -23,6 +23,8 @@ public class PlayerInput : MonoBehaviourPun
     [SerializeField] private GameObject _playerUI;
     [SerializeField] private GameObject diaryPanel;
     [SerializeField] private GameObject diaryImage;
+    [SerializeField] private GameObject exitGamePrefab;
+    private GameObject _exitGamePrefabInstance;
     private bool isReading;
     private float normalSpeed;
     private float readingSpeed = 2f;
@@ -149,6 +151,12 @@ public class PlayerInput : MonoBehaviourPun
         _animator.SetBool("IsReading",isReading);
         //_animator.SetFloat("Vertical", _movement.y);
         //_animator.SetFloat("Direction", _lastDir);
+        
+        if (Input.GetButtonDown("Cancel"))
+        {
+            if(_exitGamePrefabInstance==null)
+                _exitGamePrefabInstance = Instantiate(exitGamePrefab);
+        }
     }
 
 

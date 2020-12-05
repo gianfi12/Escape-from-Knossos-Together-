@@ -627,6 +627,8 @@ MonoBehaviour:
   _playerUI: {fileID: 6139589961878084805}
   diaryPanel: {fileID: 3690557783144270758}
   diaryImage: {fileID: 311690724240254438}
+  exitGamePrefab: {fileID: 1529960533853111208, guid: b3be731274499414cbd7bffdd2712337,
+    type: 3}
 --- !u!114 &7638091133529024383
 MonoBehaviour:
   m_ObjectHideFlags: 0
