@@ -32,8 +32,8 @@ public class RoomMaze : RoomAbstract
     private bool _isPlayer2;
     private List<List<GameObject>> _listCheckpoints = new List<List<GameObject>>();
     private List<AgentController> _listAgent;
+    private System.Random rnd;
 
-    
     private Vector3Int _coordinatesNotEntrance;
     private Vector3Int _coordinatesNotExit;
     public override void Generate(int seed, bool isPlayer2)
@@ -43,6 +43,7 @@ public class RoomMaze : RoomAbstract
         ObjectsContainer objectsContainer = _mazeTransform.gameObject.AddComponent<ObjectsContainer>();
         objectsContainer.Seed = seed;
         Random.InitState(seed);
+        rnd = new System.Random(seed);
         int random;
         while ((random = Random.Range(_minSetSpace, maxSpace)) % 2 == 0);
         _sizeX = random;
@@ -655,7 +656,6 @@ public class RoomMaze : RoomAbstract
             SpriteRenderer renderer = buttonsCont.GetChild(i).GetComponent<SpriteRenderer>();
             _regions.Add(new Region(renderer.color,buttonsCont.GetChild(i)));
         }
-        System.Random rnd = new System.Random();
         _regions = _regions.OrderBy(x => rnd.Next()).ToList();
     }
 
