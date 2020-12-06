@@ -28,9 +28,9 @@ public class AlphabetRoomManager : MonoBehaviour
     }
     private Mode[] modes =
     {
-        new Mode(0,0, "Normal row, left-right"),new Mode(0,4,"Normal raw, right-left"),new Mode(4,0,  "Inverse row, left-right"),
-        new Mode(4,4, "Inverse row, right-left"),new Mode(0,0, "Normal column, top-down"),new Mode(0,4,  "Normal column, down-top"),
-        new Mode(4,0, "Inverse column, top-down"),new Mode(4,4,"Inverse column, down-top")
+        new Mode(0,0, "Row top->down from left to right"),new Mode(0,4,"Row top->down from right to left"),new Mode(4,0,  "Row down->top from left to right"),
+        new Mode(4,4, "Row down->top from right to left"),new Mode(0,0, "Column left->right from top to down"),new Mode(0,4,  "Column left->right from down to top"),
+        new Mode(4,0, "Column right->left from top to down"),new Mode(4,4,"Column right->left from down to top")
     };
     
     private int[,] matrix = new int[5, 5] {
