@@ -67,7 +67,7 @@ public class SendToGoogle : MonoBehaviour {
     
     public void SendFeedback()
     {
-        string feedback = Feedback.text;
+        string feedback = Feedback.transform.GetComponentInParent<InputField>().text;
         StartCoroutine(PostFeedback(_videogames_names[(int) Videogame],feedback));
         InputField.text = "";
     }

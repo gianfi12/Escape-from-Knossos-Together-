@@ -56,6 +56,9 @@ sysinfo.txt
 *.apk
 *.unitypackage
 
+# Zip
+*.zip
+
 # Crashlytics generated file
 crashlytics-build.properties
 
@@ -63,3 +66,6 @@ Development/EFK/Temp/UnityLockfile/
 Development/EFK/.idea/
 Development/EFK/Build/
 Development/EFK/BuildLinux/
+Development/EFK/EFKMac.app/
+Development/EFK/EFKLinux/
+
