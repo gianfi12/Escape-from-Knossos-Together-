@@ -75,7 +75,7 @@ public class RoomMaze : RoomAbstract
         roomCollider.Room = this;
         collider.transform.position = new Vector3(_sizeX/2+_displacementX+1.5f,_sizeY/2+_displacementY+1.5f,0f);
         boxCollider2D.isTrigger = true;
-        boxCollider2D.size = new Vector2(_sizeX+1,_sizeY+1);
+        boxCollider2D.size = new Vector2(_sizeX+2f,_sizeY+2f);
         
     }
 
