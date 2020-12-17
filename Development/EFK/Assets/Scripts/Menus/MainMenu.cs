@@ -93,8 +93,7 @@ public class MainMenu : MonoBehaviourPunCallbacks
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
         Debug.Log("No clients are waiting, creating a new room...");
-
-        //DA AGGIUNGERE NOME CASUALE
+        
         int roomName;
         do
         {

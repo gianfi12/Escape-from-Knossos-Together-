@@ -4,23 +4,19 @@ using Photon.Pun;
 using Photon.Realtime;
 using Photon.Voice.PUN;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 
 public class GameOver : MonoBehaviourPunCallbacks
 {
-    /*public void ReloadStartingScene()
+    public void ReloadStartingScene()
     {
         if (PhotonNetwork.IsConnected)
         {
-<<<<<<< HEAD
-            PhotonNetwork.LoadLevel("FeedbackEnd");
-=======
+            //PhotonNetwork.LoadLevel("FeedbackEnd");
             PhotonNetwork.LeaveRoom();
-            Destroy(FindObjectOfType<PhotonVoiceNetwork>().gameObject);
+            //Destroy(FindObjectOfType<PhotonVoiceNetwork>().gameObject);
             //PhotonNetwork.LoadLevel("MainMenu");
-            
-
->>>>>>> 48765572a7e0652b17f0c8a161bba93d54aff156
         }
         else
         {
@@ -31,8 +27,10 @@ public class GameOver : MonoBehaviourPunCallbacks
     public override void OnLeftRoom()
     {
         base.OnLeftRoom();
+        Destroy(FindObjectOfType<PhotonVoiceNetwork>().gameObject);
+        Destroy(FindObjectOfType<NavMeshSurface2d>().gameObject);
         SceneManager.LoadScene("MainMenu");
-    }*/
+    }
 
     public void QuitGame()
     {
