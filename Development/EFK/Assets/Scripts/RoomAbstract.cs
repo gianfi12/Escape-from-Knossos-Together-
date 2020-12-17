@@ -17,10 +17,10 @@ public abstract class RoomAbstract : MonoBehaviour
 
     public List<Tile> Entrance = new List<Tile>();
     public List<Tile> Exit = new List<Tile>();
-    public readonly List<Tile> Wall = new List<Tile>();
-    public readonly List<Tile> Floor = new List<Tile>();
-    public readonly List<Tile> Spawn = new List<Tile>();
-    public readonly List<Tile> Decoration = new List<Tile>();
+    public  List<Tile> Wall = new List<Tile>();
+    public  List<Tile> Floor = new List<Tile>();
+    public  List<Tile> Spawn = new List<Tile>();
+    public  List<Tile> Decoration = new List<Tile>();
     
     public readonly List<Tile> TileList = new List<Tile>();
     

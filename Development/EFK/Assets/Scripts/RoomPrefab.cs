@@ -18,6 +18,10 @@ public class RoomPrefab : RoomAbstract
     
     public override void Generate(int seed,bool isPlayer2)
     {
+        Wall = new List<Tile>();
+        Floor = new List<Tile>();
+        Spawn = new List<Tile>();
+        Decoration = new List<Tile>();
         this.seed = seed;
         flipDoors = isPlayer2 && !useSameEntrance;
         IterateTilemap(tilemapFloor,Floor);

@@ -20,6 +20,7 @@ public class VoiceController : MonoBehaviourPun
         //Set the recorder
         _photonVoiceView = GetComponent<PhotonVoiceView>();
         _photonVoiceView.UsePrimaryRecorder = true;
+        PhotonVoiceNetwork.Instance.AutoLeaveAndDisconnect = true;
         StartCoroutine(SetUpRecorder());
     }
 

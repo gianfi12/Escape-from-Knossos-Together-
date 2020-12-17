@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using Photon.Pun;
 using UnityEngine;
 using UnityEngine.AI;
@@ -9,10 +10,10 @@ using Random = UnityEngine.Random;
 
 public class LevelMap : MonoBehaviourPun
 {
-    private Tilemap _tilemapFloor;
-    private Tilemap _tilemapCorridorFloor;
-    private Tilemap _tilemapWall;
-    private Tilemap _tilemapDecoration;
+    private Tilemap _tilemapFloor = null;
+    private Tilemap _tilemapCorridorFloor = null;
+    private Tilemap _tilemapWall = null;
+    private Tilemap _tilemapDecoration = null;
     private Grid _grid;
     [SerializeField] private RoomCollection roomCollection;
     [SerializeField] private int numberOfRoom;
@@ -46,7 +47,7 @@ public class LevelMap : MonoBehaviourPun
 
         RoomGeneration();
         RoomPlacement();
-        RoomConnect();
+        //RoomConnect();
         AddNavMesh();
     }
 
@@ -91,6 +92,11 @@ public class LevelMap : MonoBehaviourPun
 
     private void InstantiateMapElements()
     {
+        _tilemapFloor = new Tilemap();
+        _tilemapWall = new Tilemap();
+        _tilemapDecoration = new Tilemap();
+        _tilemapCorridorFloor = new Tilemap();
+        
         var gridObject = new GameObject("Grid");
         _grid = gridObject.AddComponent<Grid>();
 
@@ -142,7 +148,9 @@ public class LevelMap : MonoBehaviourPun
         {
             foreach (Tile tileExitTwo in exitRoom.Exit)
             {
-                if(tileExitOne!=tileExitTwo && tileExitOne.Coordinates.x!=tileExitTwo.Coordinates.x && tileExitOne.Coordinates.y!=tileExitTwo.Coordinates.y)
+
+                if (tileExitOne != tileExitTwo && tileExitOne.Coordinates.x != tileExitTwo.Coordinates.x &&
+                    tileExitOne.Coordinates.y != tileExitTwo.Coordinates.y)
                     throw new InvalidDataException("The entrance/exit tile are not linearly disposed.");
             }
         }
