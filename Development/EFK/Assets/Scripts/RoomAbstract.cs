@@ -22,7 +22,7 @@ public abstract class RoomAbstract : MonoBehaviour
     public  List<Tile> Spawn = new List<Tile>();
     public  List<Tile> Decoration = new List<Tile>();
     
-    public readonly List<Tile> TileList = new List<Tile>();
+    public List<Tile> TileList = new List<Tile>();
     
     protected int _requiredWidthSpace;
     protected int _displacementX, _displacementY;

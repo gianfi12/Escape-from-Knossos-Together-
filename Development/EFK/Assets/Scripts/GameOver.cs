@@ -6,6 +6,7 @@ using Photon.Voice.PUN;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Tilemaps;
 
 public class GameOver : MonoBehaviourPunCallbacks
 {
@@ -28,7 +29,6 @@ public class GameOver : MonoBehaviourPunCallbacks
     {
         base.OnLeftRoom();
         Destroy(FindObjectOfType<PhotonVoiceNetwork>().gameObject);
-        Destroy(FindObjectOfType<NavMeshSurface2d>().gameObject);
         SceneManager.LoadScene("MainMenu");
     }
 
