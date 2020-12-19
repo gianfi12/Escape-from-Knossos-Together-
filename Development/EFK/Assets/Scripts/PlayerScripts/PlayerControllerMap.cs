@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Voice.PUN;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,6 +13,7 @@ public class PlayerControllerMap : MonoBehaviour
     private bool _hasChange = false;
     private bool _isDead = false;
 
+    private Animator animator;
     private GameManager gameManager;
     private GameObject diaryPanel;
     private GameObject inventoryPanel;
@@ -125,7 +127,6 @@ public class PlayerControllerMap : MonoBehaviour
             _isDead = true;
             EventManager.TriggerEvent(EventType.FinishGame);
         }
-        
     }
     
     [PunRPC]
@@ -147,9 +148,9 @@ public class PlayerControllerMap : MonoBehaviour
     }
 
     public void Explode() {
-        Animator animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
         GetComponent<PlayerInput>().CanMove = false;
-        animator.SetBool("Exploding", true);
+        animator.SetTrigger("Exploding");
     }
 
     public void SetTimer(int time, bool trigger = true) {
@@ -158,5 +159,12 @@ public class PlayerControllerMap : MonoBehaviour
 
     public void TriggerHalveTimePenalization() {
         timerGUI.HalveTime();
+    }
+    
+    [PunRPC]
+    public void ReloadMain()
+    {
+        Destroy(FindObjectOfType<PhotonVoiceNetwork>().gameObject);
+        PhotonNetwork.LoadLevel("Loading");
     }
 }

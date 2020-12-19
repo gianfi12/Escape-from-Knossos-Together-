@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
 using Photon.Realtime;
@@ -7,21 +8,34 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
+using UnityEngine.UI;
 
 public class GameOver : MonoBehaviourPunCallbacks
 {
-    public void ReloadStartingScene()
+    [SerializeField] private Text lostText;
+
+    public void ReloadMainMenu()
     {
         if (PhotonNetwork.IsConnected)
         {
-            //PhotonNetwork.LoadLevel("FeedbackEnd");
             PhotonNetwork.LeaveRoom();
-            //Destroy(FindObjectOfType<PhotonVoiceNetwork>().gameObject);
-            //PhotonNetwork.LoadLevel("MainMenu");
         }
         else
         {
             SceneManager.LoadScene("FeedbackEnd");
+        }
+    }
+
+    public void PlayAgain()
+    {
+        if (PhotonNetwork.IsMasterClient)
+        {
+            GameManager gameManager = FindObjectOfType<GameManager>();
+            gameManager.RestartGame();
+        }
+        else
+        {
+            lostText.text = "Waiting for the Host...";
         }
     }
 

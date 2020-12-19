@@ -38,6 +38,7 @@ MonoBehaviour:
   - CreateMap
   - DestroyRpc
   - InstantiatePlayers
+  - ReloadMain
   - SetIsDead
   - SetSeed
   DisableAutoOpenWizard: 1
