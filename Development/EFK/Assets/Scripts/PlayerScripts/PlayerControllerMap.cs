@@ -151,6 +151,7 @@ public class PlayerControllerMap : MonoBehaviour
         animator = GetComponent<Animator>();
         GetComponent<PlayerInput>().CanMove = false;
         animator.SetTrigger("Exploding");
+        FindObjectOfType<AudioManager>().Play("Explosion");
     }
 
     public void SetTimer(int time, bool trigger = true) {
