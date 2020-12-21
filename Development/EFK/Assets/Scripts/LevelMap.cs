@@ -47,7 +47,7 @@ public class LevelMap : MonoBehaviourPun
 
         RoomGeneration();
         RoomPlacement();
-        //RoomConnect();
+        RoomConnect();
         AddNavMesh();
     }
 
@@ -96,7 +96,7 @@ public class LevelMap : MonoBehaviourPun
         _tilemapWall = new Tilemap();
         _tilemapDecoration = new Tilemap();
         _tilemapCorridorFloor = new Tilemap();
-        
+
         var gridObject = new GameObject("Grid");
         _grid = gridObject.AddComponent<Grid>();
 

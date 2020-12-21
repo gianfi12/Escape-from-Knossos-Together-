@@ -39,6 +39,11 @@ public class GameManager : MonoBehaviourPun
         }
     }
 
+    public void RestartGame()
+    {
+        _playerInstanceLocal.GetComponent<PhotonView>().RPC("ReloadMain", RpcTarget.All);
+    }
+
     private void BeginGame()
     {
         if (PhotonNetwork.IsConnected) {
@@ -86,4 +91,5 @@ public class GameManager : MonoBehaviourPun
         }
         EventManager.StartListening(EventType.FinishGame,new UnityAction(FinishGame));
     }
+    
 }

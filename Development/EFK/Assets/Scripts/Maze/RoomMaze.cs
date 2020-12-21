@@ -38,6 +38,19 @@ public class RoomMaze : RoomAbstract
     private Vector3Int _coordinatesNotExit;
     public override void Generate(int seed, bool isPlayer2)
     {
+        _regions = new List<Region>();
+        TileList = new List<Tile>();
+        Wall = new List<Tile>();
+        Floor = new List<Tile>();
+        Spawn = new List<Tile>();
+        Decoration = new List<Tile>();
+        Entrance = new List<Tile>();
+        Exit = new List<Tile>();
+        _otherRoomCellsStack = new Stack<Cell>();
+        _actualRoomCellsStack = new Stack<Cell>();
+        _cellMap = new Dictionary<int, Cell>();
+        _listCheckpoints = new List<List<GameObject>>();
+        _roomList = new List<Room>();
         _isPlayer2 = isPlayer2;
         _mazeTransform = new GameObject("RoomMaze").transform;
         ObjectsContainer objectsContainer = _mazeTransform.gameObject.AddComponent<ObjectsContainer>();
