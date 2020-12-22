@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviourPun
     private PlayerControllerMap _playerInstanceRemote;
     [SerializeField] private CinemachineVirtualCamera mainCamera;
     private CinemachineVirtualCamera _cameraInstance;
+    [SerializeField] private bool isDebug;
+    [SerializeField] private int seed;
 
     [SerializeField] private GameObject navMesh;
 
@@ -55,7 +57,16 @@ public class GameManager : MonoBehaviourPun
         }
         else {
             _levelMap = Instantiate(levelPrefab);
-            _levelMap.Seed = UnityEngine.Random.Range(0, 10000);
+            if (isDebug)
+            {
+                if(seed==0) seed = UnityEngine.Random.Range(0, 10000);
+                Debug.Log("The seed is "+seed+"\n");
+            }
+            else
+            {
+                seed = UnityEngine.Random.Range(0, 10000);
+            }
+            _levelMap.Seed = seed;
             _levelMap.CreateMap();
             navMesh.GetComponent<NavMeshSurface2d>().BuildNavMesh();
 
