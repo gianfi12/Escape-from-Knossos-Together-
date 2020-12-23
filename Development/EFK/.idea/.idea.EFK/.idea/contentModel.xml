@@ -1,18 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\andre\AppData\Local\JetBrains\Rider2020.2\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\andre\AppData\Local\JetBrains\Rider2020.2\resharper-host\Local\Transient\Rider\v202\SolutionCaches\_EFK.1648442839.00" t="ExcludeRecursive" />
-    <e p="C:\Users\andre\OneDrive\Desktop\UNI\Escape-from-Knossos-Togheter-\Development\EFK" t="IncludeRecursive">
+    <e p="C:\Users\Gianf\AppData\Local\JetBrains\Rider2020.2\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Gianf\AppData\Local\JetBrains\Rider2020.2\resharper-host\Local\Transient\Rider\v202\SolutionCaches\_EFK.-1410486714.00" t="ExcludeRecursive" />
+    <e p="C:\Users\Gianf\Documents\VDP\EFK\Escape-from-Knossos-Together-\Development\EFK" t="IncludeRecursive">
       <e p="Assembly-CSharp-Editor-firstpass.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
-        <e p="BayatGames" t="Include">
-          <e p="Free Platform Game Assets" t="Include">
-            <e p="readme.txt" t="Include" />
-          </e>
-        </e>
         <e p="Editor" t="Include">
           <e p="LineOfSightEditor.cs" t="Include" />
         </e>
@@ -360,10 +355,17 @@
           <e p="AgentController.cs" t="Include" />
           <e p="AssetsCollection.cs" t="Include" />
           <e p="AssetType.cs" t="Include" />
+          <e p="AudioManager.cs" t="Include" />
           <e p="CameraController.cs" t="Include" />
           <e p="CheckpointManager.cs" t="Include" />
+          <e p="CustomTileBase.cs" t="Include" />
           <e p="Direction.cs" t="Include" />
+          <e p="EventManager.cs" t="Include" />
+          <e p="EventType.cs" t="Include" />
+          <e p="ExitScript.cs" t="Include" />
           <e p="GameManager.cs" t="Include" />
+          <e p="GameOver.cs" t="Include" />
+          <e p="InputMenuManagerScript.cs" t="Include" />
           <e p="LevelMap.cs" t="Include" />
           <e p="LineOfSight.cs" t="Include" />
           <e p="Maze" t="Include">
@@ -375,14 +377,17 @@
           <e p="Menus" t="Include">
             <e p="DraggableUI.cs" t="Include" />
             <e p="ItemSlot.cs" t="Include" />
+            <e p="Loading.cs" t="Include" />
             <e p="MainMenu.cs" t="Include" />
             <e p="PlayerNameInput.cs" t="Include" />
           </e>
           <e p="ObjectScript" t="Include">
+            <e p="BlockCell.cs" t="Include" />
             <e p="ChestScript.cs" t="Include" />
             <e p="Collectable.cs" t="Include" />
             <e p="CombinationPanel.cs" t="Include" />
             <e p="Doors.cs" t="Include" />
+            <e p="DoorSensor.cs" t="Include" />
             <e p="EntranceButton.cs" t="Include" />
             <e p="EntrancePanel.cs" t="Include" />
             <e p="InteractableObject.cs" t="Include" />
@@ -390,6 +395,7 @@
             <e p="PlayerOutline.cs" t="Include" />
             <e p="SingleDoor.cs" t="Include" />
             <e p="Wardrobe.cs" t="Include" />
+            <e p="WonGameTrigger.cs" t="Include" />
           </e>
           <e p="PlayerScripts" t="Include">
             <e p="PlayerControllerMap.cs" t="Include" />
@@ -397,7 +403,6 @@
             <e p="PlayerInteraction.cs" t="Include" />
             <e p="VoiceController.cs" t="Include" />
           </e>
-          <e p="PlayerSpawner.cs" t="Include" />
           <e p="Render" t="Include">
             <e p="ObjectInRoom.cs" t="Include" />
           </e>
@@ -407,11 +412,16 @@
           <e p="RoomManagers" t="Include">
             <e p="AlphabetRoomManager.cs" t="Include" />
             <e p="BlockGrid.cs" t="Include" />
+            <e p="ExitTrigger.cs" t="Include" />
             <e p="GuessWhoRoomManager.cs" t="Include" />
             <e p="ObjectsContainer.cs" t="Include" />
           </e>
           <e p="RoomPrefab.cs" t="Include" />
+          <e p="SendToGoogle.cs" t="Include" />
+          <e p="Sound.cs" t="Include" />
+          <e p="TextFadeIn.cs" t="Include" />
           <e p="Tile.cs" t="Include" />
+          <e p="TimerText.cs" t="Include" />
         </e>
         <e p="Shaders" t="Include">
           <e p="ObscurityShader.shader" t="Include" />
@@ -426,6 +436,13 @@
             </e>
             <e p="Font2" t="Include">
               <e p="LICENSE.txt" t="Include" />
+              <e p="readme.txt" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Sprites" t="Include">
+          <e p="Tile" t="Include">
+            <e p="TileWall" t="Include">
               <e p="readme.txt" t="Include" />
             </e>
           </e>
