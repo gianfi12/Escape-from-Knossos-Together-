@@ -180,7 +180,5 @@ public class PlayerControllerMap : MonoBehaviour
     public void Footsep()
     {
         footstep.Play();
-        Debug.Log(footstep.name);
-        Debug.Log("FOOTSEP");
     }
 }
