@@ -243,16 +243,13 @@ public class RoomMaze : RoomAbstract
             {
                 Room removedRoom = _roomList[i];
                 _roomList.Remove(removedRoom);
-                int index = Random.Range(0, removedRoom.GetNeighbor().Count-1);
-                if (index >= 0)
-                {
-                    Debug.Log(index);
+                if (removedRoom.GetNeighbor().Count > 0) {
+                    int index = Random.Range(0, removedRoom.GetNeighbor().Count - 1);
                     Room mergedRoom = removedRoom.GetNeighbor()[index];
                     mergedRoom.RemoveNeighbor(removedRoom);
-                    foreach (Cell cell in removedRoom.GetCellsList())
-                    {
-                        mergedRoom.AddCell(cell);
-                        cell.ReshapeCell(mergedRoom);
+                    foreach (Cell cell in removedRoom.GetCellsList()) {
+                         mergedRoom.AddCell(cell);
+                         cell.ReshapeCell(mergedRoom);
                     }
                 }
             }

@@ -29,6 +29,8 @@ public class ExitTrigger : MonoBehaviour {
         if (other.CompareTag("Player")) {
             playersArrived++;
             players.Add(other.gameObject);
+
+            foreach (GameObject player in players) player.GetComponent<PlayerControllerMap>().SetTimer(0, false);
         }
 
         if (playersArrived >= playersNumber) {

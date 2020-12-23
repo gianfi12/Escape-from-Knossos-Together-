@@ -26,26 +26,30 @@ public class RoomCollider : MonoBehaviour
                 {
                     player = other.GetComponent<PlayerControllerMap>();
                     player.ResetInventory();
-                    player.SetTimer(room.MaxTimeInSeconds, room.TimeoutTriggersLoss);
+                    // player.SetTimer(room.MaxTimeInSeconds, room.TimeoutTriggersLoss);
+                    player.IncrementTimer(room.TimeIncrementInSeconds);
                 }
             }
             else {
                 player = other.GetComponent<PlayerControllerMap>();
                 player.SetRoom(room);
                 room.Player = player;
-                player.SetTimer(room.MaxTimeInSeconds, room.TimeoutTriggersLoss);
+                // player.SetTimer(room.MaxTimeInSeconds, room.TimeoutTriggersLoss);
+                player.IncrementTimer(room.TimeIncrementInSeconds);
             }
         }
     }
     
     private void OnTriggerExit2D(Collider2D other)
     {
+        /* SET OFF TIMER WHEN EXITING ROOM 
+         
         if (other.CompareTag("Player")) {
             if (!PhotonNetwork.IsConnected || other.GetComponent<PhotonView>().IsMine) {
                 other.GetComponent<PlayerControllerMap>().SetTimer(0, false);
             }
             room.Player = null;
-        }
+        }*/
     }
 
     public RoomAbstract Room

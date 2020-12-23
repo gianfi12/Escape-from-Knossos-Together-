@@ -24,7 +24,8 @@ public class TimerText : MonoBehaviour
     void Update()
     {
         timerText.text = time.ToString();
-        if (time <= 0 && timeTrigger) playerController.Explode();
+        if (time <= 0 && timeTrigger)   
+            playerController.Explode();
     }
 
     public void SetTime(int time, bool trigger=true) {
@@ -50,6 +51,7 @@ public class TimerText : MonoBehaviour
 
     // call increment time with negative value to decrement it
     public void IncrementTime(int value) {
-        time += value;
+        if (time <= 0) SetTime(value, true);
+        else time += value;
     }
 }

@@ -32,12 +32,12 @@ public abstract class RoomAbstract : MonoBehaviour
     protected PlayerControllerMap player;
     [SerializeField] private Text diaryText;
     [SerializeField] private List<Image> diaryImageList = new List<Image>();
-    [SerializeField] private int maxTimeInSeconds;
+    [SerializeField] private int timeIncrementInSeconds;
     [SerializeField] private bool timeoutTriggersLoss;
 
     public Text DiaryText => diaryText;
 
-    public int MaxTimeInSeconds => maxTimeInSeconds;
+    public int TimeIncrementInSeconds => timeIncrementInSeconds;
 
     public bool TimeoutTriggersLoss => timeoutTriggersLoss;
 
