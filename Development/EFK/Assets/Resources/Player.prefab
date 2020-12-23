@@ -91,7 +91,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98dd33228aa44b04787862562ac60f5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  safeColor: {r: 0.8962264, g: 0.88354397, b: 0.88354397, a: 1}
+  safeColor: {r: 0.29369885, g: 0.8301887, b: 0.30271682, a: 1}
   triggerColor: {r: 1, g: 0.2216981, b: 0.2216981, a: 1}
   playerController: {fileID: -8006620042201099220}
 --- !u!1 &311690724240254438
