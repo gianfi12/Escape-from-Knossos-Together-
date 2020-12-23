@@ -15,10 +15,10 @@ MonoBehaviour:
   Assets:
   - AssetType: 0
     tileBases:
-    - {fileID: 11400000, guid: 6f147c893e185824c81596b4e8d72f98, type: 2}
+    - {fileID: 11400000, guid: 62a6f072569cd9c4290ae09348c29a2b, type: 2}
   - AssetType: 1
     tileBases:
-    - {fileID: 11400000, guid: 187fe61f5078f8e48a35aca4854b1552, type: 2}
+    - {fileID: 11400000, guid: 7cfa7d636c59a3e4ebe2ddfbf67a13b4, type: 2}
   - AssetType: 2
     tileBases:
     - {fileID: 11400000, guid: c695c2e282407b74b875f291617c0435, type: 2}
@@ -31,3 +31,6 @@ MonoBehaviour:
   - AssetType: 5
     tileBases:
     - {fileID: 11400000, guid: 8fb0401d5f3ee624d87b18a792433c9c, type: 2}
+  - AssetType: 6
+    tileBases:
+    - {fileID: 11400000, guid: 1574947638f545e4482ca5b0e6be77ce, type: 2}

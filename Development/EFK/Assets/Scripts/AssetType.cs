@@ -5,5 +5,6 @@
     Floor,
     Entrace,
     Exit,
-    Corridor
+    Corridor,
+    InternalWall
 }

@@ -9,8 +9,8 @@ using Random = UnityEngine.Random;
 
 public class RoomMaze : RoomAbstract
 {
-    private const int _minSetSpace=51;//has to be odd
-    private const int _maxSetSpace=100;
+    private const int _minSetSpace=21;//has to be odd
+    private const int _maxSetSpace=70;
 
     [SerializeField][Range(_minSetSpace,_maxSetSpace)] private int maxSpace;
     [SerializeField] private int minRoomSize;
@@ -244,13 +244,16 @@ public class RoomMaze : RoomAbstract
                 Room removedRoom = _roomList[i];
                 _roomList.Remove(removedRoom);
                 int index = Random.Range(0, removedRoom.GetNeighbor().Count-1);
-                if (index < 0) continue;
-                Room mergedRoom = removedRoom.GetNeighbor()[index];
-                mergedRoom.RemoveNeighbor(removedRoom);
-                foreach (Cell cell in removedRoom.GetCellsList())
+                if (index >= 0)
                 {
-                    mergedRoom.AddCell(cell);
-                    cell.ReshapeCell(mergedRoom);
+                    Debug.Log(index);
+                    Room mergedRoom = removedRoom.GetNeighbor()[index];
+                    mergedRoom.RemoveNeighbor(removedRoom);
+                    foreach (Cell cell in removedRoom.GetCellsList())
+                    {
+                        mergedRoom.AddCell(cell);
+                        cell.ReshapeCell(mergedRoom);
+                    }
                 }
             }
         }
@@ -346,11 +349,12 @@ public class RoomMaze : RoomAbstract
                         }
                     }
                     TileBase tileBase;
-                    if (direction == Direction.West || direction == Direction.North)
-                    {
-                        tileBase = assetsCollection.GetTileFromType(AssetType.WallTopLeft)[0];
-                    }
-                    else tileBase = assetsCollection.GetTileFromType(AssetType.WallBottomRight)[0];
+                    // if (direction == Direction.West || direction == Direction.North)
+                    // {
+                    //     tileBase = assetsCollection.GetTileFromType(AssetType.WallTopLeft)[0];
+                    // }
+                    // else tileBase = assetsCollection.GetTileFromType(AssetType.WallBottomRight)[0];
+                    tileBase = assetsCollection.GetTileFromType(AssetType.InternalWall)[0];
                     for (int i = 0; i < 3; i++)
                     {
                         PositionTile(startingPosition,cell.Room.Color,Wall,tileBase);
