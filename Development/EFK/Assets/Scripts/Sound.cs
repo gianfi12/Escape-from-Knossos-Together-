@@ -12,6 +12,8 @@ public class Sound
     [Range(.1f,3f)]
     [SerializeField] private float pitch = 1;
     [SerializeField] private bool loop;
+    [Range(0f,1f)]
+    [SerializeField] private float spatialBlend;
     private AudioSource source;
     public string Name => name;
     public void SetUpSound(AudioSource audioSource)
@@ -21,6 +23,7 @@ public class Sound
         source.volume = volume;
         source.pitch = pitch;
         source.loop = loop;
+        source.spatialBlend = spatialBlend;
     }
 
     public void Play()

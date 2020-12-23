@@ -14,6 +14,7 @@ public class PlayerControllerMap : MonoBehaviour
     private bool _isDead = false;
 
     private AudioManager audioManager;
+    private AudioSource footstep;
     private Animator animator;
     private GameManager gameManager;
     private GameObject diaryPanel;
@@ -44,6 +45,7 @@ public class PlayerControllerMap : MonoBehaviour
         diaryPanel.SetActive(false);
         inventoryPanel = transform.Find("Canvas").GetComponentInChildren<GridLayoutGroup>().gameObject;
         audioManager = FindObjectOfType<AudioManager>();
+        footstep = GetComponent<AudioSource>();
     }
 
     public void SetLocation(Vector3 position)
@@ -177,6 +179,8 @@ public class PlayerControllerMap : MonoBehaviour
 
     public void Footsep()
     {
-        audioManager.Play("Footstep");
+        footstep.Play();
+        Debug.Log(footstep.name);
+        Debug.Log("FOOTSEP");
     }
 }
