@@ -346,11 +346,6 @@ public class RoomMaze : RoomAbstract
                         }
                     }
                     TileBase tileBase;
-                    // if (direction == Direction.West || direction == Direction.North)
-                    // {
-                    //     tileBase = assetsCollection.GetTileFromType(AssetType.WallTopLeft)[0];
-                    // }
-                    // else tileBase = assetsCollection.GetTileFromType(AssetType.WallBottomRight)[0];
                     tileBase = assetsCollection.GetTileFromType(AssetType.InternalWall)[0];
                     for (int i = 0; i < 3; i++)
                     {
@@ -432,7 +427,7 @@ public class RoomMaze : RoomAbstract
                     }
 
                     Edge edge = SetConnection(direction, cell, otherCell);
-                    if (otherCell.Room is null && Random.Range(1, 100) > 60 && cell.Room.GetCellsList().Count<30)
+                    if (otherCell.Room is null && Random.Range(1, 100) > 65 && cell.Room.GetCellsList().Count<10) // Change value here if you want to increase the complexity
                     {
                         edge.EdgeType = Edge.EdgeTypes.Passage;
                         cell.Room.AddCell(otherCell);
@@ -507,6 +502,12 @@ public class RoomMaze : RoomAbstract
                     }
                     if(_isPlayer2) doorTransform.GetComponent<Doors>().ClosingDirection=doorTransform.GetComponent<Doors>().ClosingDirection.GetOpposite();
                     SpawnObjectInRoom(doorPosition,doorTransform);
+                    if(directionChange!=0)
+                    {
+                        index--;
+                        position += directions[directionChange].GetDirection();
+                        PutWall(3, position);
+                    }
                 }else
                 {
                     PutWall(directionChange,position);
@@ -545,6 +546,12 @@ public class RoomMaze : RoomAbstract
                     }
                     if(_isPlayer2) doorTransform.GetComponent<Doors>().ClosingDirection=doorTransform.GetComponent<Doors>().ClosingDirection.GetOpposite();
                     SpawnObjectInRoom(doorPosition,doorTransform);
+                    if(directionChange!=2)
+                    {
+                        index--;
+                        position += directions[directionChange].GetDirection();
+                        PutWall(0, position);
+                    }
                 }else
                 {
                     PutWall(directionChange,position);
@@ -571,6 +578,7 @@ public class RoomMaze : RoomAbstract
                 startingIndex = index;
             }
         }
+        PutWall(0,new Vector3Int(_sizeX,_sizeY,0));
     }
 
     private Cell AddCell(Room room, Vector2Int position)
@@ -635,15 +643,20 @@ public class RoomMaze : RoomAbstract
             else
             {
                 tilemapFloor.SetTile(tile.Coordinates, tile.TileBase);
-                Color color = ColorFromCoordinates(normalizedCoordinates).color;
-                color =  new Color(color.r,color.g,color.b,0.5f);
-                tilemapFloor.SetColor(tile.Coordinates,color);
+                Region region = ColorFromCoordinates(normalizedCoordinates);
+                if(region!=null)
+                {
+                    Color color = region.color;
+                    color = new Color(color.r, color.g, color.b, 0.5f);
+                    tilemapFloor.SetColor(tile.Coordinates, color);
+                }
             }
         }
         
         foreach (Region region in _regions)
         {
             Tile floor;
+            
             while (ColorFromCoordinates((floor = getRandomFloor()).NormalizedCoordinates) != region) ;
             region.button.position = floor.Coordinates+new Vector3(0.5f,0.5f,0f);
         }
@@ -677,37 +690,39 @@ public class RoomMaze : RoomAbstract
 
     private Region ColorFromCoordinates(Vector3Int tileCoordinates)
     {
+        if (tileCoordinates.x < 1 || tileCoordinates.x > _sizeX || tileCoordinates.y < 1 || tileCoordinates.y > _sizeY)
+            return null;
         int offsetX = _sizeX / 3;
         int offsetY = _sizeY / 3;
-        if (tileCoordinates.x < offsetX)
+        if (tileCoordinates.x <= offsetX)
         {
-            if (tileCoordinates.y < offsetY)
+            if (tileCoordinates.y <= offsetY)
             {
                 return _regions[0];
             }
-            if (tileCoordinates.y < offsetY * 2)
+            if (tileCoordinates.y <= offsetY * 2)
             {
                 return _regions[1];
             }
             return _regions[2];
         }
-        if (tileCoordinates.x < offsetX * 2)
+        if (tileCoordinates.x <= offsetX * 2)
         {
-            if (tileCoordinates.y < offsetY)
+            if (tileCoordinates.y <= offsetY)
             {
                 return _regions[3];
-            }if (tileCoordinates.y < offsetY * 2)
+            }if (tileCoordinates.y <= offsetY * 2)
             {
                 return _regions[4];
             }
             return _regions[5];
         }
 
-        if (tileCoordinates.y < offsetY)
+        if (tileCoordinates.y <= offsetY)
         {
             return _regions[6];
         }
-        if (tileCoordinates.y < offsetY * 2)
+        if (tileCoordinates.y <= offsetY * 2)
         {
             return _regions[7];
         }
@@ -717,6 +732,7 @@ public class RoomMaze : RoomAbstract
 
     private void removeOverlappingWallsAndFloor()
     {
+        
         List<Tile> removableWall=new List<Tile>();
         foreach (Tile tile in Wall)
         {
@@ -725,6 +741,7 @@ public class RoomMaze : RoomAbstract
         foreach (Tile tile in removableWall)
         {
             Wall.Remove(tile);
+            TileList.Remove(tile);
             Floor.Add(new Tile(assetsCollection.GetTileFromType(AssetType.Floor)[0],tile.Coordinates));
         }
         foreach (Tile wall in Wall)
