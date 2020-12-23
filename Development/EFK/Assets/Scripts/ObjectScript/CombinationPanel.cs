@@ -10,6 +10,7 @@ public class CombinationPanel : InteractableObject
     private Canvas canvasToReturn;
     private ItemSlot[] slots;
     private PlayerControllerMap playerController;
+    private bool hasBeenSetted;
 
     public GameObject Panel => panel;
 
@@ -29,7 +30,11 @@ public class CombinationPanel : InteractableObject
 
     public override void Interact(GameObject player)
     {
-        if (playerController == null) playerController = player.GetComponent<PlayerControllerMap>();
+        if (!hasBeenSetted)
+        {
+            hasBeenSetted = true;
+            playerController = player.GetComponent<PlayerControllerMap>();
+        }
 
         if (!_hasBeenActivated)
         {
@@ -47,17 +52,28 @@ public class CombinationPanel : InteractableObject
         }
         else
         {
-            _hasBeenActivated = false;
-            player.GetComponent<PlayerInput>()._canMove = true;
-            panel.transform.SetParent(canvasToReturn.transform);
-            foreach (var slot in slots)
-            {
-                slot.SlotImage.Canvas = canvasToReturn;
-            }
-            panel.gameObject.SetActive(false);
+            ClosePanel(0);
         }
     }
-    
+
+    public void ClosePanel(float time)
+    {
+        StartCoroutine(WaitBeforeClosing(time));
+    }
+
+    IEnumerator WaitBeforeClosing(float time)
+    {
+        if (time > 0) yield return new WaitForSeconds(time);
+        _hasBeenActivated = false;
+        playerController.GetComponent<PlayerInput>()._canMove = true;
+        panel.transform.SetParent(canvasToReturn.transform);
+        foreach (var slot in slots)
+        {
+            slot.SlotImage.Canvas = canvasToReturn;
+        }
+        panel.gameObject.SetActive(false);
+    }
+
     public void TriggerWrongCombination() {
         if(playerController != null) playerController.TriggerHalveTimePenalization();
     }

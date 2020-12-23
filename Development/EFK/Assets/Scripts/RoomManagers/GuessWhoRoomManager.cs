@@ -50,6 +50,7 @@ public class GuessWhoRoomManager : MonoBehaviour
         
         StartCoroutine(ChangePanelColor(Color.green));
         exitDoor.OpenDoors();
+        combinationPanel.ClosePanel(0.5f);
     }
     
     IEnumerator ChangePanelColor(Color newColor)
