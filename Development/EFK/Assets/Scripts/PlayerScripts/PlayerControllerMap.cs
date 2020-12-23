@@ -13,6 +13,7 @@ public class PlayerControllerMap : MonoBehaviour
     private bool _hasChange = false;
     private bool _isDead = false;
 
+    private AudioManager audioManager;
     private Animator animator;
     private GameManager gameManager;
     private GameObject diaryPanel;
@@ -42,6 +43,7 @@ public class PlayerControllerMap : MonoBehaviour
         diaryPanel = transform.Find("Canvas").Find("Diary-Panel").gameObject;
         diaryPanel.SetActive(false);
         inventoryPanel = transform.Find("Canvas").GetComponentInChildren<GridLayoutGroup>().gameObject;
+        audioManager = FindObjectOfType<AudioManager>();
     }
 
     public void SetLocation(Vector3 position)
@@ -151,7 +153,7 @@ public class PlayerControllerMap : MonoBehaviour
         animator = GetComponent<Animator>();
         GetComponent<PlayerInput>().CanMove = false;
         animator.SetTrigger("Exploding");
-        FindObjectOfType<AudioManager>().Play("Explosion");
+        audioManager.Play("Explosion");
     }
 
     public void SetTimer(int time, bool trigger = true) {
@@ -171,5 +173,10 @@ public class PlayerControllerMap : MonoBehaviour
     {
         Destroy(FindObjectOfType<PhotonVoiceNetwork>().gameObject);
         PhotonNetwork.LoadLevel("Loading");
+    }
+
+    public void Footsep()
+    {
+        audioManager.Play("Footstep");
     }
 }
