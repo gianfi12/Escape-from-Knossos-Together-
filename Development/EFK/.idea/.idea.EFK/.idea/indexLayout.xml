@@ -43,6 +43,9 @@
     <explicitExcludes>
       <Path>.idea</Path>
       <Path>Builds</Path>
+      <Path>EFKLinux</Path>
+      <Path>EFKMac.app</Path>
+      <Path>EFKWindows</Path>
       <Path>Library</Path>
       <Path>Logs</Path>
       <Path>Temp</Path>
