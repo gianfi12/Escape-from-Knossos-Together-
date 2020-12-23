@@ -1039,7 +1039,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30512f5c0d2b47e4b4172ab37f372b06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionDistance: 1.1
+  interactionDistance: 2
   interactionAngle: 90
   textBubble: {fileID: 369923057134520842, guid: 605d7cb29de3b0d4590a4a08b1b053b9,
     type: 3}

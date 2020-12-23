@@ -161,6 +161,10 @@ public class PlayerControllerMap : MonoBehaviour
     public void TriggerHalveTimePenalization() {
         timerGUI.HalveTime();
     }
+
+    public void IncrementTimer(int value) {
+        timerGUI.IncrementTime(value);
+    }
     
     [PunRPC]
     public void ReloadMain()
