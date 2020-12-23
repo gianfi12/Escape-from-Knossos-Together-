@@ -347,6 +347,11 @@ MonoBehaviour:
     volume: 0
     pitch: 0.5
     loop: 1
+  - name: Footstep
+    clip: {fileID: 8300000, guid: fb8ae3bcebb8e6e48a5a39fd3ca8020f, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
 --- !u!4 &97944987
 Transform:
   m_ObjectHideFlags: 0
