@@ -681,7 +681,7 @@ public class RoomMaze : RoomAbstract
         {
             Tile floor;
             
-            while (ColorFromCoordinates((floor = getRandomFloor()).NormalizedCoordinates) != region) ;
+            while (ColorFromCoordinates((floor = getRandomFloor()).NormalizedCoordinates) != region && !_occupiedTile.Contains(floor)) ;
             region.button.position = floor.Coordinates+new Vector3(0.5f,0.5f,0f);
         }
 
