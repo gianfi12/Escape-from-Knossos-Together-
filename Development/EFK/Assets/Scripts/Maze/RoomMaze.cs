@@ -20,6 +20,7 @@ public class RoomMaze : RoomAbstract
     [SerializeField] private GameObject guardPrefab;
     [SerializeField] private int numberOfGuard;
     [SerializeField] private GameObject buttonPanel;
+    [SerializeField] private GameObject resetLever;
 
     private int _sizeX, _sizeY;
 
@@ -33,6 +34,8 @@ public class RoomMaze : RoomAbstract
     private List<List<GameObject>> _listCheckpoints = new List<List<GameObject>>();
     private List<AgentController> _listAgent;
     private System.Random rnd;
+    private List<Tile> _occupiedTile;
+    private GameObject _resetLeverInstance;
 
     private Vector3Int _coordinatesNotEntrance;
     private Vector3Int _coordinatesNotExit;
@@ -46,6 +49,7 @@ public class RoomMaze : RoomAbstract
         Decoration = new List<Tile>();
         Entrance = new List<Tile>();
         Exit = new List<Tile>();
+        _occupiedTile = new List<Tile>();
         _otherRoomCellsStack = new Stack<Cell>();
         _actualRoomCellsStack = new Stack<Cell>();
         _cellMap = new Dictionary<int, Cell>();
@@ -72,12 +76,27 @@ public class RoomMaze : RoomAbstract
         GenerateWall();
         InsertWardrobe();
         SpawnAgent();
+        SpawnResetLever();
         removeOverlappingWallsAndFloor();
 
         _lowestX = -1;//these are due to the presence of the wall
         _lowestY = -1;
     }
-    
+
+    private void SpawnResetLever()
+    {
+        int offsetX = _sizeX / 3;
+        int offsetY = _sizeY / 3;
+        Tile tile;
+        do
+        {
+            tile = getRandomFloor();
+        } while (_occupiedTile.Contains(tile) || tile.Coordinates.x<=offsetX || tile.Coordinates.x>offsetX*2 || tile.Coordinates.y<=offsetY || tile.Coordinates.y>offsetY*2);
+
+        _resetLeverInstance = Instantiate(resetLever);
+        SpawnObjectInRoom(tile,tile.Coordinates,_resetLeverInstance.transform);
+    }
+
     private void AddCollider()
     {
         GameObject collider = new GameObject("Collider");
@@ -107,22 +126,26 @@ public class RoomMaze : RoomAbstract
             localListCheckpoints.Add(go1);
             localListCheckpoints.Add(go2);
             _listCheckpoints.Add(localListCheckpoints);
-            SpawnObjectInRoom(getRandomFloor().Coordinates+new Vector3(0.55f,0.5f,0f),go1.transform);
-            SpawnObjectInRoom(getRandomFloor().Coordinates+new Vector3(0.55f,0.5f,0f),go2.transform);
+            Tile tile = getRandomFloor();
+            SpawnObjectInRoom(tile ,tile.Coordinates+new Vector3(0.55f,0.5f,0f),go1.transform);
+            tile = getRandomFloor();
+            SpawnObjectInRoom(tile,tile.Coordinates+new Vector3(0.55f,0.5f,0f),go2.transform);
             Transform agentTransform = Instantiate(guardPrefab).transform;
             agentTransform.name = "AgentMaze"+i;
             AgentController agentController = agentTransform.GetComponent<AgentController>();
             _listAgent.Add(agentController);
             agentController.IsPatroller = false;
             Vector3 agentPosition=floor.Coordinates+new Vector3(0.5f,0.5f,0f);
-            SpawnObjectInRoom(agentPosition,agentTransform);
+            SpawnObjectInRoom(null,agentPosition,agentTransform);
         }
     }
 
-    private void SpawnObjectInRoom(Vector3 position,Transform objectTrasform)
+    private void SpawnObjectInRoom(Tile tile, Vector3 position,Transform objectTrasform)
     {
         objectTrasform.SetParent(_mazeTransform);
         objectTrasform.position = position;
+        if(tile!=null)
+            _occupiedTile.Add(tile);
     }
 
     private void InsertWardrobe()
@@ -159,7 +182,7 @@ public class RoomMaze : RoomAbstract
                     break;
             }
             
-            SpawnObjectInRoom(wardrobePosition,wardrobeTransform);
+            SpawnObjectInRoom(null,wardrobePosition,wardrobeTransform);
         }
     }
 
@@ -501,7 +524,7 @@ public class RoomMaze : RoomAbstract
                         _coordinatesNotEntrance = position + Direction.East.GetDirection();
                     }
                     if(_isPlayer2) doorTransform.GetComponent<Doors>().ClosingDirection=doorTransform.GetComponent<Doors>().ClosingDirection.GetOpposite();
-                    SpawnObjectInRoom(doorPosition,doorTransform);
+                    SpawnObjectInRoom(null,doorPosition,doorTransform);
                     if(directionChange!=0)
                     {
                         index--;
@@ -545,7 +568,7 @@ public class RoomMaze : RoomAbstract
                         _coordinatesNotExit = position + Direction.West.GetDirection();
                     }
                     if(_isPlayer2) doorTransform.GetComponent<Doors>().ClosingDirection=doorTransform.GetComponent<Doors>().ClosingDirection.GetOpposite();
-                    SpawnObjectInRoom(doorPosition,doorTransform);
+                    SpawnObjectInRoom(null ,doorPosition,doorTransform);
                     if(directionChange!=2)
                     {
                         index--;
@@ -623,6 +646,7 @@ public class RoomMaze : RoomAbstract
     {
         Transform buttonsCont = Instantiate(buttonPanel, _mazeTransform).transform;
         EntrancePanel entrancePanel = buttonsCont.GetComponent<EntrancePanel>();
+        _resetLeverInstance.GetComponent<ResetLever>().EntrancePanel = entrancePanel;
         buttonsCont.GetComponent<PolygonCollider2D>().isTrigger = true;
         entrancePanel.ControlledDoors = _doorExitTransform.GetComponent<Doors>();
 
@@ -736,7 +760,13 @@ public class RoomMaze : RoomAbstract
         List<Tile> removableWall=new List<Tile>();
         foreach (Tile tile in Wall)
         {
-            if(tile.Coordinates==_coordinatesNotEntrance || tile.Coordinates==_coordinatesNotExit) removableWall.Add(tile);
+            if(tile.Coordinates==_coordinatesNotEntrance ||
+               tile.Coordinates== (_coordinatesNotEntrance+Direction.North.GetDirection()) ||
+               tile.Coordinates== (_coordinatesNotEntrance+Direction.South.GetDirection()) ||
+               tile.Coordinates==_coordinatesNotExit ||
+               tile.Coordinates== (_coordinatesNotExit+Direction.North.GetDirection()) ||
+               tile.Coordinates== (_coordinatesNotExit+Direction.South.GetDirection())) 
+                removableWall.Add(tile);
         }
         foreach (Tile tile in removableWall)
         {

@@ -83,6 +83,8 @@ MonoBehaviour:
     type: 3}
   numberOfGuard: 3
   buttonPanel: {fileID: 3507841497656833930}
+  resetLever: {fileID: 518155010006081195, guid: 56af70b9710d2e94e908279708662c2c,
+    type: 3}
 --- !u!1 &3507841497656833930
 GameObject:
   m_ObjectHideFlags: 0
