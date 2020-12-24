@@ -16,7 +16,7 @@ public class RoomMaze : RoomAbstract
     [SerializeField] private int minRoomSize;
     [SerializeField] private GameObject doorPrefab;
     [SerializeField] private GameObject wardrobePrefab;
-    [SerializeField] private int numberOfWardrobe;
+    // [SerializeField] private int numberOfWardrobe;
     [SerializeField] private GameObject guardPrefab;
     [SerializeField] private int numberOfGuard;
     [SerializeField] private GameObject buttonPanel;
@@ -74,7 +74,7 @@ public class RoomMaze : RoomAbstract
         ConnectNeighbor();
         GenerateTile();
         GenerateWall();
-        InsertWardrobe();
+        // InsertWardrobe();
         SpawnAgent();
         SpawnResetLever();
         removeOverlappingWallsAndFloor();
@@ -94,7 +94,7 @@ public class RoomMaze : RoomAbstract
         } while (_occupiedTile.Contains(tile) || tile.Coordinates.x<=offsetX || tile.Coordinates.x>offsetX*2 || tile.Coordinates.y<=offsetY || tile.Coordinates.y>offsetY*2);
 
         _resetLeverInstance = Instantiate(resetLever);
-        SpawnObjectInRoom(tile,tile.Coordinates,_resetLeverInstance.transform);
+        SpawnObjectInRoom(tile,tile.Coordinates+new Vector3(0.5f,0.5f,0f),_resetLeverInstance.transform);
     }
 
     private void AddCollider()
@@ -148,42 +148,43 @@ public class RoomMaze : RoomAbstract
             _occupiedTile.Add(tile);
     }
 
-    private void InsertWardrobe()
+    private void InsertWardrobe(Tile tile,Vector3 wardrobePosition)
     {
-        for (int i = 0; i < numberOfWardrobe; i++)
-        {
-            Tile randomFloorTile = getRandomFloor();
-            Direction randomDirection;
-            Vector3Int checkPosition;
-            while (!thereIsAWall((randomDirection = DirectionExtensions.getRandomDirection()),
-                (checkPosition = randomFloorTile.Coordinates + randomDirection.GetDirection())))
-            {
-                randomFloorTile = getRandomFloor();
-            }
-            
-
-            Transform wardrobeTransform = Instantiate(wardrobePrefab).transform;
-            Vector3 wardrobePosition=checkPosition;
-            switch (randomDirection)
-            {
-                case Direction.North:
-                    wardrobePosition += new Vector3(0.5f,-0.05f,0);
-                    break;
-                case Direction.South:
-                    wardrobePosition += new Vector3(0.5f,1.05f,0);
-                    break;  
-                case Direction.East:
-                    wardrobePosition += new Vector3(-0.05f,0.5f,0);
-                    wardrobeTransform.rotation *= Quaternion.Euler(0, 0, 90); 
-                    break;
-                case Direction.West:
-                    wardrobePosition += new Vector3(1.05f,0.5f,0);
-                    wardrobeTransform.rotation *= Quaternion.Euler(0, 0, 90);
-                    break;
-            }
-            
-            SpawnObjectInRoom(null,wardrobePosition,wardrobeTransform);
-        }
+        // for (int i = 0; i < numberOfWardrobe; i++)
+        // {
+        //     Tile randomFloorTile = getRandomFloor();
+        //     Direction randomDirection;
+        //     Vector3Int checkPosition;
+        //     while (!thereIsAWall((randomDirection = DirectionExtensions.getRandomDirection()),
+        //         (checkPosition = randomFloorTile.Coordinates + randomDirection.GetDirection())))
+        //     {
+        //         randomFloorTile = getRandomFloor();
+        //     }
+        //     
+        //
+        //     Transform wardrobeTransform = Instantiate(wardrobePrefab).transform;
+        //     Vector3 wardrobePosition=checkPosition;
+        //     switch (randomDirection)
+        //     {
+        //         case Direction.North:
+        //             wardrobePosition += new Vector3(0.5f,-0.05f,0);
+        //             break;
+        //         case Direction.South:
+        //             wardrobePosition += new Vector3(0.5f,1.05f,0);
+        //             break;  
+        //         case Direction.East:
+        //             wardrobePosition += new Vector3(-0.05f,0.5f,0);
+        //             wardrobeTransform.rotation *= Quaternion.Euler(0, 0, 90); 
+        //             break;
+        //         case Direction.West:
+        //             wardrobePosition += new Vector3(1.05f,0.5f,0);
+        //             wardrobeTransform.rotation *= Quaternion.Euler(0, 0, 90);
+        //             break;
+        //     }
+        
+        Transform wardrobeTransform = Instantiate(wardrobePrefab).transform;
+        SpawnObjectInRoom(tile,wardrobePosition,wardrobeTransform);
+        // }
     }
 
     Tile getRandomFloor()
@@ -683,6 +684,12 @@ public class RoomMaze : RoomAbstract
             
             while (ColorFromCoordinates((floor = getRandomFloor()).NormalizedCoordinates) != region && !_occupiedTile.Contains(floor)) ;
             region.button.position = floor.Coordinates+new Vector3(0.5f,0.5f,0f);
+            
+            while (ColorFromCoordinates((floor = getRandomFloor()).NormalizedCoordinates) != region && !_occupiedTile.Contains(floor)) ;
+            InsertWardrobe(floor,floor.Coordinates+new Vector3(0.5f,0.5f,0f));
+            
+            while (ColorFromCoordinates((floor = getRandomFloor()).NormalizedCoordinates) != region && !_occupiedTile.Contains(floor)) ;
+            InsertWardrobe(floor,floor.Coordinates+new Vector3(0.5f,0.5f,0f));
         }
 
     }
