@@ -14,9 +14,10 @@ public class RoomMaze : RoomAbstract
 
     [SerializeField][Range(_minSetSpace,_maxSetSpace)] private int maxSpace;
     [SerializeField] private int minRoomSize;
-    [SerializeField] private GameObject doorPrefab;
+    [SerializeField] private GameObject doorUpPrefab;
+    [SerializeField] private GameObject doorLatePrefab;
     [SerializeField] private GameObject wardrobePrefab;
-    // [SerializeField] private int numberOfWardrobe;
+    [SerializeField] private int numberOfWardrobePerRegion; //TODO use this field
     [SerializeField] private GameObject guardPrefab;
     [SerializeField] private int numberOfGuard;
     [SerializeField] private GameObject buttonPanel;
@@ -74,7 +75,6 @@ public class RoomMaze : RoomAbstract
         ConnectNeighbor();
         GenerateTile();
         GenerateWall();
-        // InsertWardrobe();
         SpawnAgent();
         SpawnResetLever();
         removeOverlappingWallsAndFloor();
@@ -150,41 +150,8 @@ public class RoomMaze : RoomAbstract
 
     private void InsertWardrobe(Tile tile,Vector3 wardrobePosition)
     {
-        // for (int i = 0; i < numberOfWardrobe; i++)
-        // {
-        //     Tile randomFloorTile = getRandomFloor();
-        //     Direction randomDirection;
-        //     Vector3Int checkPosition;
-        //     while (!thereIsAWall((randomDirection = DirectionExtensions.getRandomDirection()),
-        //         (checkPosition = randomFloorTile.Coordinates + randomDirection.GetDirection())))
-        //     {
-        //         randomFloorTile = getRandomFloor();
-        //     }
-        //     
-        //
-        //     Transform wardrobeTransform = Instantiate(wardrobePrefab).transform;
-        //     Vector3 wardrobePosition=checkPosition;
-        //     switch (randomDirection)
-        //     {
-        //         case Direction.North:
-        //             wardrobePosition += new Vector3(0.5f,-0.05f,0);
-        //             break;
-        //         case Direction.South:
-        //             wardrobePosition += new Vector3(0.5f,1.05f,0);
-        //             break;  
-        //         case Direction.East:
-        //             wardrobePosition += new Vector3(-0.05f,0.5f,0);
-        //             wardrobeTransform.rotation *= Quaternion.Euler(0, 0, 90); 
-        //             break;
-        //         case Direction.West:
-        //             wardrobePosition += new Vector3(1.05f,0.5f,0);
-        //             wardrobeTransform.rotation *= Quaternion.Euler(0, 0, 90);
-        //             break;
-        //     }
-        
         Transform wardrobeTransform = Instantiate(wardrobePrefab).transform;
         SpawnObjectInRoom(tile,wardrobePosition,wardrobeTransform);
-        // }
     }
 
     Tile getRandomFloor()
@@ -502,25 +469,27 @@ public class RoomMaze : RoomAbstract
                     TileList.Add(tile);
                     Entrance.Add(tile);
                     exitHasToBeInDirectionChange = directionChange+2;
-                    Transform doorTransform = Instantiate(doorPrefab).transform;
+                    GameObject selectedGO = directionChange == 0 ? doorUpPrefab : doorLatePrefab;
+                    Transform doorTransform = Instantiate(selectedGO).transform;
+                    Doors doorScript = doorTransform.GetComponent<Doors>();
                     if(_isPlayer2)
                     {
                         _doorExitTransform = doorTransform;
-                        Doors doorScript = doorTransform.GetComponent<Doors>();
-                        doorScript.CloseDoors();
                     }
-                    Vector3Int doorPosition;
+                    else
+                        doorScript.OpenDoors();
+                    Vector3 doorPosition;
                     if (directionChange == 0)
                     {
-                        doorTransform.rotation *= Quaternion.Euler(0, 0, 90);
-                        doorPosition = position + new Vector3Int(1, 0, 0);
+                        // doorTransform.rotation *= Quaternion.Euler(0, 0, 90);
+                        doorPosition = position + new Vector3(0.5f, 0.5f, 0);
                         doorTransform.GetComponent<Doors>().ClosingDirection=Direction.South;
                         _coordinatesNotEntrance = position + Direction.South.GetDirection();
                     }
                     else
                     {
-                        doorTransform.rotation *= Quaternion.Euler(0, 0, 180);
-                        doorPosition = position + new Vector3Int(0, 1, 0);
+                        // doorTransform.rotation *= Quaternion.Euler(0, 0, 180);
+                        doorPosition = position + new Vector3(0, 0.5f, 0);
                         doorTransform.GetComponent<Doors>().ClosingDirection=Direction.East;
                         _coordinatesNotEntrance = position + Direction.East.GetDirection();
                     }
@@ -546,25 +515,26 @@ public class RoomMaze : RoomAbstract
                         position);
                     TileList.Add(tile);
                     Exit.Add(tile);
-                    Transform doorTransform = Instantiate(doorPrefab).transform;
+                    GameObject selectedGO = directionChange == 2 ? doorUpPrefab : doorLatePrefab;
+                    Transform doorTransform = Instantiate(selectedGO).transform;
+                    Doors doorScript = doorTransform.GetComponent<Doors>();
                     if(!_isPlayer2)
                     {
                         _doorExitTransform = doorTransform;
-                        Doors doorScript = doorTransform.GetComponent<Doors>();
-                        doorScript.CloseDoors();
-                    }
-                    Vector3Int doorPosition;
+                    }else
+                        doorScript.OpenDoors();
+                    Vector3 doorPosition;
                     if (directionChange == 2)
                     {
-                        doorTransform.rotation *= Quaternion.Euler(0, 0, 90);
-                        doorPosition = position + new Vector3Int(1, 0, 0);
+                        // doorTransform.rotation *= Quaternion.Euler(0, 0, 90);
+                        doorPosition = position + new Vector3(0.5f, 0.5f, 0);
                         doorTransform.GetComponent<Doors>().ClosingDirection=Direction.South;
                         _coordinatesNotExit = position + Direction.North.GetDirection();
                     }
                     else
                     {
-                        doorTransform.rotation *= Quaternion.Euler(0, 0, 180);
-                        doorPosition = position + new Vector3Int(0, 1, 0);
+                        // doorTransform.rotation *= Quaternion.Euler(0, 0, 180);
+                        doorPosition = position + new Vector3(1, 0.5f, 0);
                         doorTransform.GetComponent<Doors>().ClosingDirection=Direction.East;
                         _coordinatesNotExit = position + Direction.West.GetDirection();
                     }
@@ -685,11 +655,12 @@ public class RoomMaze : RoomAbstract
             while (ColorFromCoordinates((floor = getRandomFloor()).NormalizedCoordinates) != region && !_occupiedTile.Contains(floor)) ;
             region.button.position = floor.Coordinates+new Vector3(0.5f,0.5f,0f);
             
-            while (ColorFromCoordinates((floor = getRandomFloor()).NormalizedCoordinates) != region && !_occupiedTile.Contains(floor)) ;
-            InsertWardrobe(floor,floor.Coordinates+new Vector3(0.5f,0.5f,0f));
-            
-            while (ColorFromCoordinates((floor = getRandomFloor()).NormalizedCoordinates) != region && !_occupiedTile.Contains(floor)) ;
-            InsertWardrobe(floor,floor.Coordinates+new Vector3(0.5f,0.5f,0f));
+            for(int i=0;i<numberOfWardrobePerRegion;i++)
+            {
+                while (ColorFromCoordinates((floor = getRandomFloor()).NormalizedCoordinates) != region &&
+                       !_occupiedTile.Contains(floor)) ;
+                InsertWardrobe(floor, floor.Coordinates + new Vector3(0.5f, 0.5f, 0f));
+            }
         }
 
     }
@@ -795,8 +766,6 @@ public class RoomMaze : RoomAbstract
                 TileList.Remove(floorTile);
             }
         }
-
-        
     }
 
 }

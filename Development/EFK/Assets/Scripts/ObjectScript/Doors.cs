@@ -6,14 +6,23 @@ public class Doors : MonoBehaviour
     // Is the direction in which the player has to traverse the door in order for it to become closed
     [SerializeField] private Direction closingDirection;
     [SerializeField] private bool IsOpenOnStart;
+    
+    private Animator _animator;
+    private PolygonCollider2D _polygonCollider2D;
+    private SpriteRenderer _spriteRenderer;
 
     public Direction ClosingDirection {
         get => closingDirection;
         set => closingDirection = value;
     }
     private void Awake() {
-        if (IsOpenOnStart) OpenDoors();
-        else CloseDoors();
+        _animator = gameObject.GetComponent<Animator>();
+        _polygonCollider2D = gameObject.GetComponent<PolygonCollider2D>();
+        _spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        if (IsOpenOnStart) 
+            _animator.Play("Open");
+        else
+            _animator.Play("Closed");
     }
 
     private void OnTriggerExit2D(Collider2D other) {
@@ -39,24 +48,28 @@ public class Doors : MonoBehaviour
     }
 
     public void OpenDoors() {
-        for (int i = 0; i < transform.childCount; i++) {
-            SingleDoor door = transform.GetChild(i).GetComponent<SingleDoor>();
-            if (door != null) door.Open();
-        }
-        transform.GetComponent<Collider2D>().isTrigger = true;
-        gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
+        _animator.SetBool("isOpen",true);
     }
 
     public void CloseDoors() {
-        for (int i = 0; i < transform.childCount; i++) {
-            SingleDoor door = transform.GetChild(i).GetComponent<SingleDoor>();
-            if (door != null) door.Close();
-        }
-        transform.GetComponent<Collider2D>().isTrigger = false;
-        gameObject.layer = LayerMask.NameToLayer("Default");
+        _animator.SetBool("isOpen",false);
     }
 
     public void FlipClosingDirection() {
         closingDirection = closingDirection.GetOpposite();
+    }
+    
+    public void changeColliderShape()
+    {
+        bool isTrigger = _polygonCollider2D.isTrigger;
+        Destroy(_polygonCollider2D);
+        _polygonCollider2D = gameObject.AddComponent<PolygonCollider2D>();
+        _polygonCollider2D.isTrigger = isTrigger;
+    }
+
+    public void setTrigger()
+    {
+        _polygonCollider2D.isTrigger = _polygonCollider2D.isTrigger ? false : true;
+        gameObject.layer = _polygonCollider2D.isTrigger ? LayerMask.NameToLayer("Ignore Raycast") : LayerMask.NameToLayer("Default");
     }
 }
