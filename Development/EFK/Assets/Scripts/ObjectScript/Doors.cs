@@ -20,9 +20,9 @@ public class Doors : MonoBehaviour
         _polygonCollider2D = gameObject.GetComponent<PolygonCollider2D>();
         _spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         if (IsOpenOnStart) 
-            _animator.Play("Open");
+            OpenDoors();
         else
-            _animator.Play("Closed");
+            CloseDoors();
     }
 
     private void OnTriggerExit2D(Collider2D other) {

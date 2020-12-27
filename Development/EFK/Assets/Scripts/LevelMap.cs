@@ -233,7 +233,7 @@ public class LevelMap : MonoBehaviourPun
                 for (int i = 0; (i < moovingCoordinatesFromRight.Count); i++)
                 {
                     _tilemapWall.SetTile(new Vector3Int(moovingCoordinatesFromLeft[0].x-i,moovingCoordinatesFromLeft.Min(x=>x.y)-1,0),asset.GetTileFromType(AssetType.WallBottomRight)[0]);
-                    _tilemapWall.SetTile(new Vector3Int(moovingCoordinatesFromRight[0].x+i,moovingCoordinatesFromLeft.Max(x=>x.y)+1,0),asset.GetTileFromType(AssetType.WallTopLeft)[0]);
+                    // _tilemapWall.SetTile(new Vector3Int(moovingCoordinatesFromRight[0].x+i,moovingCoordinatesFromLeft.Max(x=>x.y)+1,0),asset.GetTileFromType(AssetType.WallTopLeft)[0]);
                     if(moovingCoordinatesFromRight[i].y>moovingCoordinatesFromLeft.Max(pos=>pos.y))_tilemapWall.SetTile(new Vector3Int(moovingCoordinatesFromRight[0].x-1,moovingCoordinatesFromRight[i].y,0),asset.GetTileFromType(AssetType.WallTopLeft)[0]);
                 }
             }

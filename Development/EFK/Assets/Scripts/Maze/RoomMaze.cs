@@ -566,7 +566,7 @@ public class RoomMaze : RoomAbstract
                         index = _sizeX + 1;
                         break;
                     case 3:
-                        index = _sizeY + 2;
+                        index = _sizeY + 1;
                         break;
                 }
                 startingIndex = index;
@@ -654,6 +654,7 @@ public class RoomMaze : RoomAbstract
             
             while (ColorFromCoordinates((floor = getRandomFloor()).NormalizedCoordinates) != region && !_occupiedTile.Contains(floor)) ;
             region.button.position = floor.Coordinates+new Vector3(0.5f,0.5f,0f);
+            _occupiedTile.Add(floor);
             
             for(int i=0;i<numberOfWardrobePerRegion;i++)
             {
