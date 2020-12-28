@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 578123251867535181}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.265166, y: 6.5748353, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4983068598672542695}
@@ -70,15 +70,119 @@ MonoBehaviour:
   - {fileID: 3509557944252893647}
   - {fileID: 2672658688535770108}
   - {fileID: 5274865317035935114}
+  - {fileID: 3509557944252893647}
+  - {fileID: 2672658688535770108}
+  - {fileID: 5274865317035935114}
+  - {fileID: 3509557944252893647}
+  - {fileID: 2672658688535770108}
+  - {fileID: 5274865317035935114}
+  - {fileID: 3509557944252893647}
+  - {fileID: 2672658688535770108}
+  - {fileID: 5274865317035935114}
+  - {fileID: 3509557944252893647}
+  - {fileID: 2672658688535770108}
+  - {fileID: 5274865317035935114}
+  - {fileID: 3509557944252893647}
+  - {fileID: 2672658688535770108}
+  - {fileID: 5274865317035935114}
+  - {fileID: 3509557944252893647}
+  - {fileID: 2672658688535770108}
+  - {fileID: 5274865317035935114}
+  - {fileID: 3509557944252893647}
+  - {fileID: 2672658688535770108}
+  - {fileID: 5274865317035935114}
+  - {fileID: 3509557944252893647}
+  - {fileID: 2672658688535770108}
+  - {fileID: 5274865317035935114}
+  - {fileID: 3509557944252893647}
+  - {fileID: 2672658688535770108}
+  - {fileID: 5274865317035935114}
+  - {fileID: 3509557944252893647}
+  - {fileID: 2672658688535770108}
+  - {fileID: 5274865317035935114}
+  - {fileID: 3509557944252893647}
+  - {fileID: 2672658688535770108}
+  - {fileID: 5274865317035935114}
+  - {fileID: 3509557944252893647}
+  - {fileID: 2672658688535770108}
+  - {fileID: 5274865317035935114}
+  - {fileID: 3509557944252893647}
+  - {fileID: 2672658688535770108}
+  - {fileID: 5274865317035935114}
+  - {fileID: 3509557944252893647}
+  - {fileID: 2672658688535770108}
+  - {fileID: 5274865317035935114}
+  - {fileID: 3509557944252893647}
+  - {fileID: 2672658688535770108}
+  - {fileID: 5274865317035935114}
+  - {fileID: 3509557944252893647}
+  - {fileID: 2672658688535770108}
+  - {fileID: 5274865317035935114}
+  - {fileID: 3509557944252893647}
+  - {fileID: 2672658688535770108}
+  - {fileID: 5274865317035935114}
+  - {fileID: 3509557944252893647}
+  - {fileID: 2672658688535770108}
+  - {fileID: 5274865317035935114}
+  - {fileID: 3509557944252893647}
+  - {fileID: 2672658688535770108}
+  - {fileID: 5274865317035935114}
+  - {fileID: 3509557944252893647}
+  - {fileID: 2672658688535770108}
+  - {fileID: 5274865317035935114}
+  - {fileID: 3509557944252893647}
+  - {fileID: 2672658688535770108}
+  - {fileID: 5274865317035935114}
+  - {fileID: 3509557944252893647}
+  - {fileID: 2672658688535770108}
+  - {fileID: 5274865317035935114}
+  - {fileID: 3509557944252893647}
+  - {fileID: 2672658688535770108}
+  - {fileID: 5274865317035935114}
+  - {fileID: 3509557944252893647}
+  - {fileID: 2672658688535770108}
+  - {fileID: 5274865317035935114}
+  - {fileID: 3509557944252893647}
+  - {fileID: 2672658688535770108}
+  - {fileID: 5274865317035935114}
+  - {fileID: 3509557944252893647}
+  - {fileID: 2672658688535770108}
+  - {fileID: 5274865317035935114}
+  - {fileID: 3509557944252893647}
+  - {fileID: 2672658688535770108}
+  - {fileID: 5274865317035935114}
+  - {fileID: 3509557944252893647}
+  - {fileID: 2672658688535770108}
+  - {fileID: 5274865317035935114}
+  - {fileID: 3509557944252893647}
+  - {fileID: 2672658688535770108}
+  - {fileID: 5274865317035935114}
+  - {fileID: 3509557944252893647}
+  - {fileID: 2672658688535770108}
+  - {fileID: 5274865317035935114}
+  - {fileID: 3509557944252893647}
+  - {fileID: 2672658688535770108}
+  - {fileID: 5274865317035935114}
+  - {fileID: 3509557944252893647}
+  - {fileID: 2672658688535770108}
+  - {fileID: 5274865317035935114}
+  - {fileID: 3509557944252893647}
+  - {fileID: 2672658688535770108}
+  - {fileID: 5274865317035935114}
+  - {fileID: 3509557944252893647}
+  - {fileID: 2672658688535770108}
+  - {fileID: 5274865317035935114}
   timeIncrementInSeconds: 180
   timeoutTriggersLoss: 1
   maxSpace: 50
   minRoomSize: 10
-  doorPrefab: {fileID: 611721949337760788, guid: c775da782f978084b93226ee5a8033ee,
+  doorUpPrefab: {fileID: 335289165766956583, guid: 112e6d5a9f32e364faa2abbe47245835,
+    type: 3}
+  doorLatePrefab: {fileID: 6990602343991118201, guid: c5dd82c34fae1a742b4e59895007eb8b,
     type: 3}
   wardrobePrefab: {fileID: 8932908033788877102, guid: f76ddd8479156834482b1489728c0c3c,
     type: 3}
-  numberOfWardrobe: 20
+  numberOfWardrobePerRegion: 2
   guardPrefab: {fileID: 2483861399637240493, guid: a51cf60735870584dac2932ab62ed88f,
     type: 3}
   numberOfGuard: 3
@@ -735,7 +839,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6132076, g: 0, b: 0.19268148, a: 1}
+  m_Color: {r: 1, g: 0.4764151, b: 0.84940124, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -809,7 +913,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9433962, g: 0.52954787, b: 0.9335358, a: 1}
+  m_Color: {r: 0.07914513, g: 0.745283, b: 0, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1452,7 +1556,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.49056602, g: 0.2866574, b: 0.20594516, a: 1}
+  m_Color: {r: 1, g: 0.94218117, b: 0, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:

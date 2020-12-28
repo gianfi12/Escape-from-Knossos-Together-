@@ -93,7 +93,7 @@ TextureImporter:
       - {x: 500, y: -500}
       - {x: 500, y: 500}
       - {x: -394, y: 500}
-      - {x: -391, y: 424}
+      - {x: -500, y: 500}
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
