@@ -31,7 +31,7 @@ public abstract class RoomAbstract : MonoBehaviour
     
     protected PlayerControllerMap player;
     [SerializeField] private Text diaryText;
-    [SerializeField] private List<Image> diaryImageList = new List<Image>();
+    [SerializeField] public List<Image> diaryImageList = new List<Image>();
     [SerializeField] private int timeIncrementInSeconds;
     [SerializeField] private bool timeoutTriggersLoss;
 
