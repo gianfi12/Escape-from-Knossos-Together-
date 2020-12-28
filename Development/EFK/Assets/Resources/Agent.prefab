@@ -218,7 +218,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isNPC: 1
-  viewRadius: 5
+  viewRadius: 4.2
   viewAngle: 50
   senseRadius: 2
   targetMask:

@@ -7,24 +7,28 @@ using UnityEngine;
 public class Locker : InteractableObject
 {
     [SerializeField] private Collectable idCard;
-    [SerializeField] private Sprite openSprite;
-    private Sprite closedSprite;
+    [SerializeField] private Sprite activeSprite;
+    [SerializeField] private Sprite employeePhoto;
+    private Sprite inactiveSprite;
     private SpriteRenderer spriteRenderer;
-    private SpriteRenderer employeePhoto;
-    
+
     public Collectable IDCard
     {
         get => idCard;
         set => idCard = value;
     }
-    public SpriteRenderer EmployeePhoto => employeePhoto;
     
+    public Sprite EmployeePhoto => employeePhoto;
+    public Sprite ActiveSprite
+    {
+        get => activeSprite;
+        set => activeSprite = value;
+    }
+
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        closedSprite = GetComponent<SpriteRenderer>().sprite;
-        employeePhoto = transform.Find("EmployeePhoto").GetComponent<SpriteRenderer>();
-        employeePhoto.gameObject.SetActive(false);
+        inactiveSprite = GetComponent<SpriteRenderer>().sprite;
     }
 
     public override void Interact(GameObject player)
@@ -32,10 +36,9 @@ public class Locker : InteractableObject
         if (!_hasBeenActivated)
         {
             _hasBeenActivated = true;
-            spriteRenderer.sprite = openSprite;
-            employeePhoto.gameObject.SetActive(true);
+            spriteRenderer.sprite = activeSprite;
             gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
-            if (!idCard.HasBeenActivated) idCard.gameObject.SetActive(true);
+            if (!idCard.HasBeenActivated) idCard.gameObject.layer = LayerMask.NameToLayer("Interactable");
             StartCoroutine(CloseLocker(2.0f));
         }
     }
@@ -44,9 +47,8 @@ public class Locker : InteractableObject
     {
         yield return new WaitForSeconds(closeTime);
         _hasBeenActivated = false;
-        spriteRenderer.sprite = closedSprite;
-        employeePhoto.gameObject.SetActive(false);
-        idCard.gameObject.SetActive(false);
+        spriteRenderer.sprite = inactiveSprite;
+        idCard.gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
         gameObject.layer = LayerMask.NameToLayer("Interactable");
     }
 }

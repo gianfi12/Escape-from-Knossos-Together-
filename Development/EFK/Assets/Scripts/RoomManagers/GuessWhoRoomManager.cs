@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class GuessWhoRoomManager : MonoBehaviour
 {
     private GameObject lockersContainer;
-    private Sprite[] employeePhotos = new Sprite[20];
+    private Sprite[] employeePhotos = new Sprite[16];
     private int winnerLockerIndex;
     [SerializeField] private Doors exitDoor;
     [SerializeField] private CombinationPanel combinationPanel;
@@ -20,22 +20,21 @@ public class GuessWhoRoomManager : MonoBehaviour
         lockersContainer = transform.Find("Lockers").gameObject;
         for (int i = 0; i < lockersContainer.transform.childCount; i++)
         {
-            employeePhotos[i] = lockersContainer.transform.GetChild(i).GetComponent<Locker>().EmployeePhoto.sprite;
+            employeePhotos[i] = lockersContainer.transform.GetChild(i).GetComponent<Locker>().ActiveSprite;
         }
         
         employeePhotos = employeePhotos.OrderBy(x => rnd.Next()).ToArray();
         
         List<int> selectedNumbers = new List<int>();
         int number;
+        winnerLockerIndex = rnd.Next(0,lockersContainer.transform.childCount);
         for (int i = 0; i < lockersContainer.transform.childCount; i++)
         {
             Locker locker = lockersContainer.transform.GetChild(i).GetComponent<Locker>();
-            locker.EmployeePhoto.sprite = employeePhotos[i];
+            locker.ActiveSprite = employeePhotos[i];
             locker.IDCard.ID = i;
+            if (i == winnerLockerIndex) guiImage.sprite = locker.EmployeePhoto;
         }
-
-        winnerLockerIndex = rnd.Next(0,lockersContainer.transform.childCount);
-        guiImage.sprite = employeePhotos[winnerLockerIndex];
     }
 
     public void VerifyCombination()
