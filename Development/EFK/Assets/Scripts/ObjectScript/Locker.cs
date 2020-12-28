@@ -38,7 +38,11 @@ public class Locker : InteractableObject
             _hasBeenActivated = true;
             spriteRenderer.sprite = activeSprite;
             gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
-            if (!idCard.HasBeenActivated) idCard.gameObject.layer = LayerMask.NameToLayer("Interactable");
+            if (!idCard.HasBeenActivated)
+            {
+                idCard.gameObject.SetActive(true);
+                idCard.gameObject.layer = LayerMask.NameToLayer("Interactable");
+            }
             StartCoroutine(CloseLocker(2.0f));
         }
     }
@@ -48,6 +52,7 @@ public class Locker : InteractableObject
         yield return new WaitForSeconds(closeTime);
         _hasBeenActivated = false;
         spriteRenderer.sprite = inactiveSprite;
+        idCard.gameObject.SetActive(false);
         idCard.gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
         gameObject.layer = LayerMask.NameToLayer("Interactable");
     }

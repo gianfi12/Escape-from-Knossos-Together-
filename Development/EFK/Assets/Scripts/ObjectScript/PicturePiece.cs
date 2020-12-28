@@ -6,9 +6,11 @@ using UnityEngine;
 public class PicturePiece : MonoBehaviour
 {
     private bool active;
-    void Start()
+
+    public bool Active
     {
-        
+        get => active;
+        set => active = value;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
