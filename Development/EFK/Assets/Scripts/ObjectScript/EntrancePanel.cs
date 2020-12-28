@@ -40,7 +40,7 @@ public class EntrancePanel : MonoBehaviour
         }
 
         // Set colors to gui images in order only for active buttons
-        for (int i=0; i< orderedButtons.Count(); i++) {
+        for (int i=0; i< numberOfActiveButtons; i++) {
             guiImages[i].color = buttonColors[orderedButtons[i]];
         }
 
