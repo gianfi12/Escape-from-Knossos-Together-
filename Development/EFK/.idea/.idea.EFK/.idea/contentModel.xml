@@ -386,6 +386,7 @@
             <e p="ChestScript.cs" t="Include" />
             <e p="Collectable.cs" t="Include" />
             <e p="CombinationPanel.cs" t="Include" />
+            <e p="ConfirmButton.cs" t="Include" />
             <e p="Doors.cs" t="Include" />
             <e p="DoorSensor.cs" t="Include" />
             <e p="EntranceButton.cs" t="Include" />
