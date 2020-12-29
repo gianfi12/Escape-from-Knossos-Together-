@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EntranceButton : InteractableObject {
+public class ColorButton : InteractableObject {
 
-    private EntrancePanel panel;
+    private ColorButtonPanel panel;
     private Material materialCopy;
     private Color buttonColor;
     [SerializeField] private int lightIntensity;
@@ -12,7 +12,7 @@ public class EntranceButton : InteractableObject {
     // Start is called before the first frame update
     void Start()
     {
-        panel = GetComponentInParent<EntrancePanel>();
+        panel = GetComponentInParent<ColorButtonPanel>();
 
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
         materialCopy = new Material(spriteRenderer.material);

@@ -5,17 +5,19 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EntrancePanel : MonoBehaviour
-{
+public class ColorButtonPanel : MonoBehaviour {
     [SerializeField] private Doors controlledDoors;
     [SerializeField] private Image[] guiImages;
     [SerializeField] private Color[] buttonColors;
     [SerializeField] private int numberOfActiveButtons;
+
     private int[] orderedButtons;
     List<int> pressed = new List<int>();
 
+    private bool disabled = false;
 
-    private bool disabled=false;
+    private PressedButtons pressedButtonsGUI;
+
 
     void Awake()
     {
@@ -36,7 +38,7 @@ public class EntrancePanel : MonoBehaviour
         
         // Set colors to all buttons
         for (int i = 0; i < buttonColors.Count(); i++) {
-            transform.GetChild(i).GetComponent<EntranceButton>().SetButtonColor(buttonColors[i]);
+            transform.GetChild(i).GetComponent<ColorButton>().SetButtonColor(buttonColors[i]);
         }
 
         // Set colors to gui images in order only for active buttons
@@ -50,6 +52,7 @@ public class EntrancePanel : MonoBehaviour
     public void ButtonPressed(int index) {
         if (!disabled) {
             pressed.Add(index);
+            if(pressedButtonsGUI != null) pressedButtonsGUI.UpdatePressedColors(buttonColors[index]);
 
             if (pressed.Count() >= numberOfActiveButtons) {
                 if (orderedButtons.SequenceEqual(pressed)) {
@@ -66,7 +69,8 @@ public class EntrancePanel : MonoBehaviour
 
     public void ResetButtons()
     {
-        foreach (EntranceButton button in GetComponentsInChildren<EntranceButton>()) button.ResetLight();
+        foreach (ColorButton button in GetComponentsInChildren<ColorButton>()) button.ResetLight();
+        if (pressedButtonsGUI != null) pressedButtonsGUI.ResetPressedColors();
         pressed.Clear();
     }
     
@@ -80,5 +84,11 @@ public class EntrancePanel : MonoBehaviour
     {
         get => guiImages;
         set => guiImages = value;
+    }
+
+    public PressedButtons PressedButtonsGUI 
+    {
+        get => pressedButtonsGUI; 
+        set => pressedButtonsGUI = value; 
     }
 }

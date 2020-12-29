@@ -1296,6 +1296,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   room: {fileID: 3134405057706924811}
+  activatableObjects: []
 --- !u!1 &5641725155069509686
 GameObject:
   m_ObjectHideFlags: 0
@@ -1464,7 +1465,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5731944769620066222}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 517fffcc1adeb394a828c19cd9fe41b7, type: 3}
+  m_Script: {fileID: 11500000, guid: 335d7d84b16067b4e861bb355fc668af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   controlledDoors: {fileID: 4316318132718160250}
@@ -1473,9 +1474,9 @@ MonoBehaviour:
   - {fileID: 4825197589566949968}
   - {fileID: 5561241060268139843}
   buttonColors:
-  - {r: 0.9960785, g: 0.20784315, b: 0.20784315, a: 1}
-  - {r: 0.9960785, g: 0.8196079, b: 0, a: 1}
-  - {r: 0.10196079, g: 0.3803922, b: 0.87843144, a: 1}
+  - {r: 1, g: 0.20784314, b: 0.20784314, a: 1}
+  - {r: 1, g: 0.81960785, b: 0, a: 1}
+  - {r: 0.101960786, g: 0.38039216, b: 0.8784314, a: 1}
   numberOfActiveButtons: 3
 --- !u!212 &583754188737352195
 SpriteRenderer:

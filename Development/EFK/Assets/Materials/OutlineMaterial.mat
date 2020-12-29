@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: OutlineMaterial
   m_Shader: {fileID: 4800000, guid: 62505ee61d20098489c6f861ed25cce1, type: 3}
-  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA _OUTLINEENABLED_ON _OUTLINEMODE_SOLID _OUTLINEPOSITION_INSIDE_UNDER_SPRITE
+  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA _OUTLINEENABLED_ON _OUTLINEMODE_SOLID _OUTLINEPOSITION_OUTSIDE
     _OUTLINESHAPE_CONTOUR _TILEMODE_STRETCH
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -34,7 +34,7 @@ Material:
     - _ConnectedAlpha: 0
     - _OutlineEnabled: 1
     - _OutlineMode: 0
-    - _OutlinePosition: 0
+    - _OutlinePosition: 2
     - _OutlineShape: 0
     - _Thickness: 0
     - _TileMode: 0

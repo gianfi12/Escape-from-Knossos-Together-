@@ -22,6 +22,7 @@ public class RoomMaze : RoomAbstract
     [SerializeField] private int numberOfGuard;
     [SerializeField] private GameObject buttonPanel;
     [SerializeField] private GameObject resetLever;
+    [SerializeField] private GameObject pressedButtonsGUI;
 
     private int _sizeX, _sizeY;
 
@@ -617,10 +618,16 @@ public class RoomMaze : RoomAbstract
     public override void PlaceRoom(Tilemap tilemapFloor, Tilemap tilemapWall, Tilemap tilemapDecoration)
     {
         Transform buttonsCont = Instantiate(buttonPanel, _mazeTransform).transform;
-        EntrancePanel entrancePanel = buttonsCont.GetComponent<EntrancePanel>();
+        ColorButtonPanel entrancePanel = buttonsCont.GetComponent<ColorButtonPanel>();
         _resetLeverInstance.GetComponent<ResetLever>().EntrancePanel = entrancePanel;
         buttonsCont.GetComponent<PolygonCollider2D>().isTrigger = true;
         entrancePanel.ControlledDoors = _doorExitTransform.GetComponent<Doors>();
+
+        GameObject pressedButtonsGUIInstance = Instantiate(pressedButtonsGUI, _mazeTransform);
+        PressedButtons pressedButtonsGUIScript = pressedButtonsGUIInstance.GetComponentInChildren<PressedButtons>();
+        entrancePanel.PressedButtonsGUI = pressedButtonsGUIScript;
+        pressedButtonsGUIScript.gameObject.SetActive(false);
+        _mazeTransform.GetComponentInChildren<RoomCollider>().AddActivatableObject(pressedButtonsGUIScript);
 
         foreach (Image image in entrancePanel.GUIImages)
         {

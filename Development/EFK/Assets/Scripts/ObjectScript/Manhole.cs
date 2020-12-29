@@ -3,7 +3,7 @@ using System;
 using System.Data.SqlTypes;
 using UnityEngine;
 
-public class Wardrobe : InteractableObject
+public class Manhole : InteractableObject
 {
     private SpriteRenderer _playerRenderer;
     private bool _hasBeenSetted;
