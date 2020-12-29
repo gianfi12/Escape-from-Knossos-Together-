@@ -8,6 +8,7 @@ public class Locker : InteractableObject
 {
     [SerializeField] private Collectable idCard;
     [SerializeField] private Sprite activeSprite;
+    [SerializeField] private Sprite emptySprite;
     [SerializeField] private Sprite employeePhoto;
     private Sprite inactiveSprite;
     private SpriteRenderer spriteRenderer;
