@@ -18,6 +18,7 @@ MonoBehaviour:
   - {fileID: -3825283294541799158, guid: f0464f6580d7f894d86d080f2a4e5c11, type: 3}
   - {fileID: 6727362201517843673, guid: 63cb0281fde116642a673c05c4432d29, type: 3}
   - {fileID: 8300501424004825377, guid: f608d284ab9e75149b5de9d76a5cc69a, type: 3}
+  - {fileID: 3309938047690290599, guid: dd149f61344768a4996354abb05c1f1c, type: 3}
   startingRoomPlayer1: {fileID: 3134405057706924811, guid: d1f382e6fcda230449058478cd59c831,
     type: 3}
   startingRoomPlayer2: {fileID: 8367161880732279808, guid: b792ea4120406f4489a70dfba853190b,
