@@ -9,7 +9,7 @@ public class MemoryRoomManager : MonoBehaviour
 
     [SerializeField] private SpriteRenderer picture;
     [SerializeField] private SpriteRenderer[] pieces;
-    [SerializeField] private GameObject diaryPicture;
+    [SerializeField] private GameObject[] diaryPictures;
     private Sprite[] slicedSprites = new Sprite[9];
     private List<int> shuffleOrder = new List<int> {0,1,2,3,4,5,6,7,8};
     private List<int> winnerIndex = new List<int>();
@@ -27,7 +27,7 @@ public class MemoryRoomManager : MonoBehaviour
             }
         }
         shuffleOrder = shuffleOrder.OrderBy(x => rnd.Next()).ToList();
-        //slicedSprites = slicedSprites.OrderBy(x => rnd.Next()).ToArray();
+        
         for (int i = 0; i < 9; i++)
         {
             pieces[i].sprite = slicedSprites[shuffleOrder[i]];
@@ -46,9 +46,12 @@ public class MemoryRoomManager : MonoBehaviour
 
         for (int i = 0; i < 9; i++)
         {
-            if (winnerIndex.Contains(i)) diaryPicture.transform.GetChild(i).gameObject.SetActive(true);
-            else diaryPicture.transform.GetChild(i).gameObject.SetActive(false);
-            Debug.Log("VINCITORE: "+i);
+            foreach (GameObject diaryPicture in diaryPictures)
+            {
+                if (winnerIndex.Contains(i)) diaryPicture.transform.GetChild(i).gameObject.SetActive(true);
+                else diaryPicture.transform.GetChild(i).gameObject.SetActive(false);
+                Debug.Log("VINCITORE: "+i);
+            }
         }
     }
 
