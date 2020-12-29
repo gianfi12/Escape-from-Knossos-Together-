@@ -648,12 +648,14 @@ public class RoomMaze : RoomAbstract
                 }
             }
         }
-        
+
+        int index = 0;
         foreach (Region region in _regions)
         {
             Tile floor;
             
-            while (ColorFromCoordinates((floor = getRandomFloor()).NormalizedCoordinates) != region && !_occupiedTile.Contains(floor)) ;
+            while (ColorFromCoordinates((floor = getRandomFloor()).NormalizedCoordinates) != region ||
+                   (ColorFromCoordinates(floor.NormalizedCoordinates) == region && _occupiedTile.Contains(floor))) ;
             region.button.position = floor.Coordinates+new Vector3(0.5f,0.5f,0f);
             _occupiedTile.Add(floor);
             
@@ -663,8 +665,10 @@ public class RoomMaze : RoomAbstract
                        !_occupiedTile.Contains(floor)) ;
                 InsertWardrobe(floor, floor.Coordinates + new Vector3(0.5f, 0.5f, 0f));
             }
-        }
 
+            index++;
+        }
+        
     }
     
     protected class Region
