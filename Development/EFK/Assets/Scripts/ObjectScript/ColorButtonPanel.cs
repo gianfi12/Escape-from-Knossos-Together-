@@ -38,7 +38,7 @@ public class ColorButtonPanel : MonoBehaviour {
         
         // Set colors to all buttons
         for (int i = 0; i < buttonColors.Count(); i++) {
-            transform.GetChild(i).GetComponent<ColorButton>().SetButtonColor(buttonColors[i]);
+            transform.GetChild(i).GetComponentInChildren<ColorButton>().SetButtonColor(buttonColors[i]);
         }
 
         // Set colors to gui images in order only for active buttons

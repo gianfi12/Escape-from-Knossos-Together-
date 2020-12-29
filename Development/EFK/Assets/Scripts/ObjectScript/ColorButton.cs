@@ -5,31 +5,30 @@ using UnityEngine;
 public class ColorButton : InteractableObject {
 
     private ColorButtonPanel panel;
+    private SpriteRenderer lightRenderer;
     private Material materialCopy;
     private Color buttonColor;
-    [SerializeField] private int lightIntensity;
+
 
     // Start is called before the first frame update
     void Start()
     {
         panel = GetComponentInParent<ColorButtonPanel>();
 
-        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-        materialCopy = new Material(spriteRenderer.material);
-        materialCopy.SetColor("OutlineColor", Color.black);
-        materialCopy.SetTexture("SampledTexture", spriteRenderer.sprite.texture);
-        materialCopy.SetFloat("OutlineThickness", 1);
-        spriteRenderer.material = materialCopy;
+        lightRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
+        materialCopy = new Material(lightRenderer.material);
+        materialCopy.SetColor("GlowColor", new Color(0,0,0,0.5f));
+        lightRenderer.material = materialCopy;
     }
 
     public void SetButtonColor(Color color) {
         buttonColor = color;
-        GetComponent<SpriteRenderer>().color = color;
+        transform.GetChild(0).GetComponent<SpriteRenderer>().color = color;
     }
 
     public override void Interact(GameObject player) {
         gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
-        GetComponent<SpriteRenderer>().material.SetColor("OutlineColor", buttonColor);
+        lightRenderer.material.SetColor("GlowColor", buttonColor * 1.2f);
         panel.ButtonPressed(transform.GetSiblingIndex());
     }
 
@@ -40,7 +39,7 @@ public class ColorButton : InteractableObject {
 
     IEnumerator ResetLightWithDelay(float delay) {
         yield return new WaitForSeconds(delay);
-        GetComponent<SpriteRenderer>().material.SetColor("OutlineColor", Color.black);
+        lightRenderer.material.SetColor("GlowColor", new Color(0, 0, 0, 0.5f));
         gameObject.layer = LayerMask.NameToLayer("Interactable");
     }
 }
