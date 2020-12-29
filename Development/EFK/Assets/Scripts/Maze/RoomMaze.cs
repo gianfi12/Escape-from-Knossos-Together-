@@ -22,6 +22,7 @@ public class RoomMaze : RoomAbstract
     [SerializeField] private int numberOfGuard;
     [SerializeField] private GameObject buttonPanel;
     [SerializeField] private GameObject resetLever;
+    [SerializeField] private GameObject pressedButtonsGUI;
 
     private int _sizeX, _sizeY;
 
@@ -50,6 +51,7 @@ public class RoomMaze : RoomAbstract
         Decoration = new List<Tile>();
         Entrance = new List<Tile>();
         Exit = new List<Tile>();
+        diaryImageList = new List<Image>();
         _occupiedTile = new List<Tile>();
         _otherRoomCellsStack = new Stack<Cell>();
         _actualRoomCellsStack = new Stack<Cell>();
@@ -616,10 +618,16 @@ public class RoomMaze : RoomAbstract
     public override void PlaceRoom(Tilemap tilemapFloor, Tilemap tilemapWall, Tilemap tilemapDecoration)
     {
         Transform buttonsCont = Instantiate(buttonPanel, _mazeTransform).transform;
-        EntrancePanel entrancePanel = buttonsCont.GetComponent<EntrancePanel>();
+        ColorButtonPanel entrancePanel = buttonsCont.GetComponent<ColorButtonPanel>();
         _resetLeverInstance.GetComponent<ResetLever>().EntrancePanel = entrancePanel;
         buttonsCont.GetComponent<PolygonCollider2D>().isTrigger = true;
         entrancePanel.ControlledDoors = _doorExitTransform.GetComponent<Doors>();
+
+        GameObject pressedButtonsGUIInstance = Instantiate(pressedButtonsGUI, _mazeTransform);
+        PressedButtons pressedButtonsGUIScript = pressedButtonsGUIInstance.GetComponentInChildren<PressedButtons>();
+        entrancePanel.PressedButtonsGUI = pressedButtonsGUIScript;
+        pressedButtonsGUIScript.gameObject.SetActive(false);
+        _mazeTransform.GetComponentInChildren<RoomCollider>().AddActivatableObject(pressedButtonsGUIScript);
 
         foreach (Image image in entrancePanel.GUIImages)
         {
@@ -647,12 +655,14 @@ public class RoomMaze : RoomAbstract
                 }
             }
         }
-        
+
+        int index = 0;
         foreach (Region region in _regions)
         {
             Tile floor;
             
-            while (ColorFromCoordinates((floor = getRandomFloor()).NormalizedCoordinates) != region && !_occupiedTile.Contains(floor)) ;
+            while (ColorFromCoordinates((floor = getRandomFloor()).NormalizedCoordinates) != region ||
+                   (ColorFromCoordinates(floor.NormalizedCoordinates) == region && _occupiedTile.Contains(floor))) ;
             region.button.position = floor.Coordinates+new Vector3(0.5f,0.5f,0f);
             _occupiedTile.Add(floor);
             
@@ -662,8 +672,10 @@ public class RoomMaze : RoomAbstract
                        !_occupiedTile.Contains(floor)) ;
                 InsertWardrobe(floor, floor.Coordinates + new Vector3(0.5f, 0.5f, 0f));
             }
-        }
 
+            index++;
+        }
+        
     }
     
     protected class Region

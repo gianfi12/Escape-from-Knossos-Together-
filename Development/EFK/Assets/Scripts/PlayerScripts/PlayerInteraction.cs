@@ -49,7 +49,7 @@ public class PlayerInteraction : MonoBehaviour
                 }
 
                 material = selectableTarget.GetComponent<SpriteRenderer>().material;
-                material.SetFloat("_Thickness", 5f);
+                material.SetFloat("_Thickness", 20f);
 
                 _instantiatedText.transform.position = interactableObject.GetTextPosition() + textBubbleOffset;
                 _instantiatedText.GetComponentInChildren<TMPro.TextMeshPro>().text = interactableObject.InteractiveText;

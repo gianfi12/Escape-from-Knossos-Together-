@@ -8,6 +8,7 @@ using UnityEngine;
 public class RoomCollider : MonoBehaviour
 {
     [SerializeField] private RoomAbstract room;
+    [SerializeField] private List<ActivatableObject> activatableObjects = new List<ActivatableObject>(); 
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -28,6 +29,8 @@ public class RoomCollider : MonoBehaviour
                     player.ResetInventory();
                     // player.SetTimer(room.MaxTimeInSeconds, room.TimeoutTriggersLoss);
                     player.IncrementTimer(room.TimeIncrementInSeconds);
+
+                    foreach(ActivatableObject o in activatableObjects) o.ActivateObject();
                 }
             }
             else {
@@ -36,6 +39,8 @@ public class RoomCollider : MonoBehaviour
                 room.Player = player;
                 // player.SetTimer(room.MaxTimeInSeconds, room.TimeoutTriggersLoss);
                 player.IncrementTimer(room.TimeIncrementInSeconds);
+
+                foreach (ActivatableObject o in activatableObjects) o.ActivateObject();
             }
         }
     }
@@ -50,11 +55,31 @@ public class RoomCollider : MonoBehaviour
             }
             room.Player = null;
         }*/
+
+        if (other.CompareTag("Player")) {
+            PlayerControllerMap player;
+
+            if (PhotonNetwork.IsConnected) {
+                if (!other.GetComponent<PhotonView>().IsMine) {
+                }
+                else {
+                    foreach (ActivatableObject o in activatableObjects) o.DeactivateObject();
+                }
+            }
+            else {
+                foreach (ActivatableObject o in activatableObjects) o.DeactivateObject();
+            }
+        }
+
     }
 
     public RoomAbstract Room
     {
         get => room;
         set => room = value;
+    }
+
+    public void AddActivatableObject(ActivatableObject o) {
+        activatableObjects.Add(o);
     }
 }
