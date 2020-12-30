@@ -261,8 +261,10 @@ GameObject:
   m_Component:
   - component: {fileID: 8029104802905154101}
   - component: {fileID: 6049772649795168062}
-  m_Layer: 0
-  m_Name: Pillar 8
+  - component: {fileID: 6256312940379611495}
+  - component: {fileID: 5826125584415550147}
+  m_Layer: 8
+  m_Name: Pillar 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -280,7 +282,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7201025210070388565}
-  m_RootOrder: 8
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6049772649795168062
 SpriteRenderer:
@@ -332,6 +334,35 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6256312940379611495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1746909871987943187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99233c5dc2b492b42b274da604e78964, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactiveText: Activate
+--- !u!58 &5826125584415550147
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1746909871987943187}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.1
 --- !u!1 &2121094393782074708
 GameObject:
   m_ObjectHideFlags: 0
@@ -416,7 +447,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6257390602079009280}
   - component: {fileID: 3364230078138217089}
-  m_Layer: 0
+  - component: {fileID: 7066013389940596873}
+  - component: {fileID: 851323411639210252}
+  m_Layer: 8
   m_Name: Pillar 7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -487,6 +520,35 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7066013389940596873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3146711666698468747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99233c5dc2b492b42b274da604e78964, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactiveText: Activate
+--- !u!58 &851323411639210252
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3146711666698468747}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.1
 --- !u!1 &3365602798943784394
 GameObject:
   m_ObjectHideFlags: 0
@@ -497,8 +559,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7983062125596186260}
   - component: {fileID: 1015098502307745858}
-  m_Layer: 0
-  m_Name: Pillar 1
+  - component: {fileID: 8453619853593007907}
+  - component: {fileID: 7441354958133055409}
+  m_Layer: 8
+  m_Name: Pillar 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -516,7 +580,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7201025210070388565}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1015098502307745858
 SpriteRenderer:
@@ -568,6 +632,35 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8453619853593007907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3365602798943784394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99233c5dc2b492b42b274da604e78964, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactiveText: Activate
+--- !u!58 &7441354958133055409
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3365602798943784394}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.1
 --- !u!1 &3386742522609870608
 GameObject:
   m_ObjectHideFlags: 0
@@ -2445,8 +2538,10 @@ GameObject:
   m_Component:
   - component: {fileID: 9113163997530876254}
   - component: {fileID: 8862573087832119512}
-  m_Layer: 0
-  m_Name: Pillar 9
+  - component: {fileID: 6877278456172581325}
+  - component: {fileID: 7864432216387369620}
+  m_Layer: 8
+  m_Name: Pillar 8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2464,7 +2559,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7201025210070388565}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8862573087832119512
 SpriteRenderer:
@@ -2516,6 +2611,163 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6877278456172581325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3648349691506990908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99233c5dc2b492b42b274da604e78964, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactiveText: Activate
+--- !u!58 &7864432216387369620
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3648349691506990908}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.1
+--- !u!1 &4082825265285383470
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5456713066271097831}
+  - component: {fileID: 2362152509931307127}
+  m_Layer: 11
+  m_Name: LightRay Renderer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5456713066271097831
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4082825265285383470}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4349925276837273312}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!120 &2362152509931307127
+LineRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4082825265285383470}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 0
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: dacefe31c9400d74d8b5b93a87d197d1, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Positions:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  m_Parameters:
+    serializedVersion: 3
+    widthMultiplier: 1
+    widthCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0.02463913
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorGradient:
+      serializedVersion: 2
+      key0: {r: 0.6933962, g: 1, b: 0.9408309, a: 1}
+      key1: {r: 0.5322179, g: 0.9811321, b: 0.8953183, a: 1}
+      key2: {r: 0, g: 0, b: 0, a: 0}
+      key3: {r: 0, g: 0, b: 0, a: 0}
+      key4: {r: 0, g: 0, b: 0, a: 0}
+      key5: {r: 0, g: 0, b: 0, a: 0}
+      key6: {r: 0, g: 0, b: 0, a: 0}
+      key7: {r: 0, g: 0, b: 0, a: 0}
+      ctime0: 0
+      ctime1: 65535
+      ctime2: 0
+      ctime3: 0
+      ctime4: 0
+      ctime5: 0
+      ctime6: 0
+      ctime7: 0
+      atime0: 0
+      atime1: 65535
+      atime2: 0
+      atime3: 0
+      atime4: 0
+      atime5: 0
+      atime6: 0
+      atime7: 0
+      m_Mode: 0
+      m_NumColorKeys: 2
+      m_NumAlphaKeys: 2
+    numCornerVertices: 2
+    numCapVertices: 0
+    alignment: 0
+    textureMode: 0
+    shadowBias: 0.5
+    generateLightingData: 0
+  m_UseWorldSpace: 1
+  m_Loop: 0
 --- !u!1 &4374662156662104113
 GameObject:
   m_ObjectHideFlags: 0
@@ -2526,7 +2778,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5135770462170903126}
   - component: {fileID: 6919097499112722622}
-  m_Layer: 0
+  - component: {fileID: 689064159196329639}
+  - component: {fileID: 5594781940846289546}
+  m_Layer: 8
   m_Name: Pillar 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2597,6 +2851,35 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &689064159196329639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4374662156662104113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99233c5dc2b492b42b274da604e78964, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactiveText: Activate
+--- !u!58 &5594781940846289546
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4374662156662104113}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.1
 --- !u!1 &4752216091601737929
 GameObject:
   m_ObjectHideFlags: 0
@@ -2607,8 +2890,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7755035035567239481}
   - component: {fileID: 4036315497736670998}
-  m_Layer: 0
-  m_Name: Pillar 6
+  - component: {fileID: 4073851014075171092}
+  - component: {fileID: 344699336690546775}
+  m_Layer: 8
+  m_Name: Pillar 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2626,7 +2911,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7201025210070388565}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4036315497736670998
 SpriteRenderer:
@@ -2678,6 +2963,35 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4073851014075171092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4752216091601737929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99233c5dc2b492b42b274da604e78964, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactiveText: Activate
+--- !u!58 &344699336690546775
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4752216091601737929}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.1
 --- !u!1 &4956994286232454514
 GameObject:
   m_ObjectHideFlags: 0
@@ -2688,7 +3002,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4349925276837273312}
   - component: {fileID: 1869558260439608315}
-  - component: {fileID: 6711118603909456258}
+  - component: {fileID: 8182655862337114185}
   m_Layer: 0
   m_Name: PillarsRoomObjects
   m_TagString: Untagged
@@ -2709,6 +3023,7 @@ Transform:
   m_Children:
   - {fileID: 1617412859020929215}
   - {fileID: 8489159373817993696}
+  - {fileID: 5456713066271097831}
   - {fileID: 7201025210070388565}
   m_Father: {fileID: 7290543175208414313}
   m_RootOrder: 1
@@ -2726,7 +3041,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Seed: 9480
---- !u!114 &6711118603909456258
+--- !u!114 &8182655862337114185
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2735,12 +3050,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 4956994286232454514}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4dee731c005550d46aaeb98909e29486, type: 3}
+  m_Script: {fileID: 11500000, guid: ea61e8bbde0653a4cadb50c2dd0313bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  exitDoor: {fileID: 0}
-  combinationPanel: {fileID: 0}
-  guiImage: {fileID: 4681834464423621741}
+  controlledDoors: {fileID: 8701372787770890487}
+  solutionLength: 6
+  pillars:
+  - {fileID: 3210322541848528745}
+  - {fileID: 6256312940379611495}
+  - {fileID: 689064159196329639}
+  - {fileID: 8453619853593007907}
+  - {fileID: 4531083532318327170}
+  - {fileID: 4073851014075171092}
+  - {fileID: 8223862387820245074}
+  - {fileID: 7066013389940596873}
+  - {fileID: 6877278456172581325}
+  - {fileID: 1666700396956070187}
+  lightRayRenderer: {fileID: 2362152509931307127}
 --- !u!1 &5070738693841546193
 GameObject:
   m_ObjectHideFlags: 0
@@ -2751,8 +3077,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6826494518790311375}
   - component: {fileID: 294817430096998820}
-  m_Layer: 0
-  m_Name: Pillar 3
+  - component: {fileID: 8223862387820245074}
+  - component: {fileID: 3216791260986211378}
+  m_Layer: 8
+  m_Name: Pillar 6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2770,7 +3098,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7201025210070388565}
-  m_RootOrder: 3
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &294817430096998820
 SpriteRenderer:
@@ -2822,6 +3150,35 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8223862387820245074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5070738693841546193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99233c5dc2b492b42b274da604e78964, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactiveText: Activate
+--- !u!58 &3216791260986211378
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5070738693841546193}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.1
 --- !u!1 &5136557599733894573
 GameObject:
   m_ObjectHideFlags: 0
@@ -2874,7 +3231,7 @@ MonoBehaviour:
   doorExit: {fileID: 0}
   doorEntrance: {fileID: 0}
   objectsParent: {fileID: 4956994286232454514}
-  useSameEntrance: 1
+  useSameEntrance: 0
   diaryText: {fileID: 433011433481261697, guid: 4a52956efebb9ed45b6f3e00209979b6,
     type: 3}
   diaryImageList:
@@ -3055,7 +3412,7 @@ Tilemap:
   m_GameObject: {fileID: 7100149278445893795}
   m_Enabled: 1
   m_Tiles:
-  - first: {x: 5, y: 0, z: 0}
+  - first: {x: 4, y: -1, z: 0}
     second:
       serializedVersion: 2
       m_TileIndex: 1
@@ -3064,7 +3421,7 @@ Tilemap:
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
       m_AllTileFlags: 1073741825
-  - first: {x: 5, y: 1, z: 0}
+  - first: {x: 5, y: -1, z: 0}
     second:
       serializedVersion: 2
       m_TileIndex: 1
@@ -3073,7 +3430,7 @@ Tilemap:
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
       m_AllTileFlags: 1073741825
-  - first: {x: 6, y: 1, z: 0}
+  - first: {x: 7, y: 2, z: 0}
     second:
       serializedVersion: 2
       m_TileIndex: 1
@@ -3082,7 +3439,7 @@ Tilemap:
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
       m_AllTileFlags: 1073741825
-  - first: {x: 6, y: 2, z: 0}
+  - first: {x: 7, y: 3, z: 0}
     second:
       serializedVersion: 2
       m_TileIndex: 1
@@ -3388,7 +3745,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4998013178355948035}
   - component: {fileID: 5688192878538355521}
-  m_Layer: 0
+  - component: {fileID: 3210322541848528745}
+  - component: {fileID: 2229305672798011398}
+  m_Layer: 8
   m_Name: Pillar 0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3459,6 +3818,35 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &3210322541848528745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7479241599332056338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99233c5dc2b492b42b274da604e78964, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactiveText: Activate
+--- !u!58 &2229305672798011398
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7479241599332056338}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.1
 --- !u!1 &8003167462285535182
 GameObject:
   m_ObjectHideFlags: 0
@@ -3469,8 +3857,10 @@ GameObject:
   m_Component:
   - component: {fileID: 8694255101270100598}
   - component: {fileID: 5646197551893616151}
-  m_Layer: 0
-  m_Name: Pillar 4
+  - component: {fileID: 1666700396956070187}
+  - component: {fileID: 7360689400338166587}
+  m_Layer: 8
+  m_Name: Pillar 9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3488,7 +3878,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7201025210070388565}
-  m_RootOrder: 4
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5646197551893616151
 SpriteRenderer:
@@ -3540,6 +3930,35 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1666700396956070187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8003167462285535182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99233c5dc2b492b42b274da604e78964, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactiveText: Activate
+--- !u!58 &7360689400338166587
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8003167462285535182}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.1
 --- !u!1 &8899138562429756640
 GameObject:
   m_ObjectHideFlags: 0
@@ -3725,21 +4144,21 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8955996296169440410}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4998013178355948035}
-  - {fileID: 7983062125596186260}
+  - {fileID: 8029104802905154101}
   - {fileID: 5135770462170903126}
-  - {fileID: 6826494518790311375}
-  - {fileID: 8694255101270100598}
+  - {fileID: 7983062125596186260}
   - {fileID: 1051479080027820773}
   - {fileID: 7755035035567239481}
+  - {fileID: 6826494518790311375}
   - {fileID: 6257390602079009280}
-  - {fileID: 8029104802905154101}
   - {fileID: 9113163997530876254}
+  - {fileID: 8694255101270100598}
   m_Father: {fileID: 4349925276837273312}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9161810104130590201
 GameObject:
@@ -3751,8 +4170,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1051479080027820773}
   - component: {fileID: 852295495197506995}
-  m_Layer: 0
-  m_Name: Pillar 5
+  - component: {fileID: 4531083532318327170}
+  - component: {fileID: 7427797196948739560}
+  m_Layer: 8
+  m_Name: Pillar 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3770,7 +4191,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7201025210070388565}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &852295495197506995
 SpriteRenderer:
@@ -3822,6 +4243,35 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4531083532318327170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9161810104130590201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99233c5dc2b492b42b274da604e78964, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactiveText: Activate
+--- !u!58 &7427797196948739560
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9161810104130590201}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.1
 --- !u!1001 &3137780946004865865
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3837,7 +4287,7 @@ PrefabInstance:
     - target: {fileID: 3528401273294445281, guid: 112e6d5a9f32e364faa2abbe47245835,
         type: 3}
       propertyPath: IsOpenOnStart
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4465766842225171446, guid: 112e6d5a9f32e364faa2abbe47245835,
         type: 3}
@@ -3917,7 +4367,7 @@ PrefabInstance:
     - target: {fileID: 3528401273294445281, guid: 112e6d5a9f32e364faa2abbe47245835,
         type: 3}
       propertyPath: IsOpenOnStart
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4465766842225171446, guid: 112e6d5a9f32e364faa2abbe47245835,
         type: 3}
@@ -3976,6 +4426,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 112e6d5a9f32e364faa2abbe47245835, type: 3}
+--- !u!114 &8701372787770890487 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3528401273294445281, guid: 112e6d5a9f32e364faa2abbe47245835,
+    type: 3}
+  m_PrefabInstance: {fileID: 5203375218815779350}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f770ef1ddda041bc9e36f64fabee6ded, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &8489159373817993696 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4465766842225171446, guid: 112e6d5a9f32e364faa2abbe47245835,

@@ -33,8 +33,7 @@ public class ColorButton : InteractableObject {
     }
 
     public void ResetLight() {
-        StartCoroutine("ResetLightWithDelay", 0.3f);
-   
+        StartCoroutine("ResetLightWithDelay", 0.3f); 
     }
 
     IEnumerator ResetLightWithDelay(float delay) {
