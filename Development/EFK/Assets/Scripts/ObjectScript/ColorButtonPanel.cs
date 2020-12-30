@@ -91,4 +91,6 @@ public class ColorButtonPanel : MonoBehaviour {
         get => pressedButtonsGUI; 
         set => pressedButtonsGUI = value; 
     }
+
+    public Color[] ButtonColors => buttonColors;
 }

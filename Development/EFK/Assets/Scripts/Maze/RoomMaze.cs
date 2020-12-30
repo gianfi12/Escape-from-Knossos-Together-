@@ -43,6 +43,7 @@ public class RoomMaze : RoomAbstract
     private Vector3Int _coordinatesNotExit;
     public override void Generate(int seed, bool isPlayer2)
     {
+        rnd = new System.Random(seed);
         _regions = new List<Region>();
         TileList = new List<Tile>();
         Wall = new List<Tile>();
@@ -78,8 +79,8 @@ public class RoomMaze : RoomAbstract
         GenerateTile();
         GenerateWall();
         SpawnAgent();
-        SpawnResetLever();
         removeOverlappingWallsAndFloor();
+        SpawnResetLever();
 
         _lowestX = -1;//these are due to the presence of the wall
         _lowestY = -1;
@@ -90,13 +91,25 @@ public class RoomMaze : RoomAbstract
         int offsetX = _sizeX / 3;
         int offsetY = _sizeY / 3;
         Tile tile;
+        bool found;
         do
         {
-            tile = getRandomFloor();
-        } while (_occupiedTile.Contains(tile) || tile.Coordinates.x<=offsetX || tile.Coordinates.x>offsetX*2 || tile.Coordinates.y<=offsetY || tile.Coordinates.y>offsetY*2);
+            found = false;
+            int index = rnd.Next(0, Wall.Count);
+            tile = Wall[index];
+            Vector3Int searchCoordinates = tile.Coordinates + Direction.South.GetDirection();
+            foreach (Tile wall in Wall)
+            {
+                if (wall.Coordinates == searchCoordinates)
+                {
+                    found = true;
+                    break;
+                }
+            }
+        } while (found || tile.Coordinates.x<=offsetX || tile.Coordinates.x>offsetX*2 || tile.Coordinates.y<=offsetY || tile.Coordinates.y>offsetY*2);
 
         _resetLeverInstance = Instantiate(resetLever);
-        SpawnObjectInRoom(tile,tile.Coordinates+new Vector3(0.5f,0.5f,0f),_resetLeverInstance.transform);
+        SpawnObjectInRoom(tile,tile.Coordinates+new Vector3(0.5f,0.25f,0f),_resetLeverInstance.transform);
     }
 
     private void AddCollider()
@@ -694,10 +707,11 @@ public class RoomMaze : RoomAbstract
 
     private void GenerateRegions(Transform buttonsCont)
     {
+        ColorButtonPanel colorButtonPanel = buttonsCont.GetComponent<ColorButtonPanel>();
+        Color[] colors = colorButtonPanel.ButtonColors;
         for (int i = 0; i < buttonsCont.childCount; i++)
         {
-            SpriteRenderer renderer = buttonsCont.GetChild(i).GetComponent<SpriteRenderer>();
-            _regions.Add(new Region(renderer.color,buttonsCont.GetChild(i)));
+            _regions.Add(new Region(colors[i],buttonsCont.GetChild(i)));
         }
         _regions = _regions.OrderBy(x => rnd.Next()).ToList();
     }

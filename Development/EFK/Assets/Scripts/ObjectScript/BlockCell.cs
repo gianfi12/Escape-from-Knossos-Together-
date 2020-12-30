@@ -14,7 +14,10 @@ public class BlockCell : MonoBehaviour
 
     public void setWalkable(bool walkable) { 
         isWalkable = walkable;
-        GetComponent<SpriteRenderer>().color = walkable ? walkableColor : notWalkableColor;
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        Color currColor = walkable ? walkableColor : notWalkableColor;
+        spriteRenderer.color = currColor;
+        spriteRenderer.material.SetColor("GlowColor", currColor);
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
