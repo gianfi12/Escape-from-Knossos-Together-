@@ -1018,7 +1018,7 @@ MonoBehaviour:
   senseRadius: 0
   targetMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 2304
   obstacleMask:
     serializedVersion: 2
     m_Bits: 1
