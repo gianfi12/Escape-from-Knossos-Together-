@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = System.Random;
 
 public class OperationalRoomManager : MonoBehaviour
@@ -10,6 +11,10 @@ public class OperationalRoomManager : MonoBehaviour
     [SerializeField] private int timePenalityInSeconds;
     [SerializeField] private Doors doors;
     [SerializeField] private GameObject circlePrefab;
+    [SerializeField] private RoomPrefab operationalRoomPrefab;
+    [SerializeField] private Sprite plusSprite;
+    [SerializeField] private Sprite minusSprite;
+    [SerializeField] private List<Image> guiImage;
 
     private List<ButtonConsole> _buttonConsoles;
     private ResultConsoleScript _resultConsole;
@@ -43,10 +48,19 @@ public class OperationalRoomManager : MonoBehaviour
         _combinationValues = new List<int>();
         _combinationValues = new List<int>();
         _buttonValues = new int[_buttonConsoles.Count];
-        _spriteRenderers = new List<SpriteRenderer>();
+        _spriteRenderers = new List<SpriteRenderer>();    
         createValues();
         placeValues();
         placeCounterForUser();
+        GameObject temp = new GameObject("OpText");
+        Text text = temp.AddComponent<Text>();
+        text.text = "Final Result: " + _finalValue;
+        operationalRoomPrefab.SetDiaryText(text);
+        for (int i = 0; i < _buttonValues.Length; i++)
+        {
+            guiImage[i].sprite = _buttonValues[i] < 0 ? minusSprite : plusSprite ; 
+            operationalRoomPrefab.AddDiaryImage(guiImage[i]);
+        }
     }
 
     private void placeCounterForUser()
@@ -61,6 +75,8 @@ public class OperationalRoomManager : MonoBehaviour
     
     private void placeValues()
     {
+        List<int> selectedValues = new List<int>();
+        selectedValues.AddRange(_combinationValues);
         for (int i = 0; i < numberOfSteps; i++)
         {
             int buttonIndex;
@@ -70,13 +86,15 @@ public class OperationalRoomManager : MonoBehaviour
         }
 
         int index = 0;
+        int value;
         foreach (ButtonConsole buttonConsole in _buttonConsoles)
         {
             if(!buttonConsole.isSet)
             {
-                int value = _rnd.Next(-9, 10);
+                while((value = _rnd.Next(-9, 10))==0 || (value!=0 && selectedValues.Contains(value)));
                 buttonConsole.updateValue(value);
                 _buttonValues[index] = value;
+                selectedValues.Add(value);
             }
             index++;
         }
@@ -84,14 +102,13 @@ public class OperationalRoomManager : MonoBehaviour
     }
     private void createValues()
     {
-        Random rnd = new Random();
-
-        _startingValue = rnd.Next(-9, 10);
+        _startingValue = _rnd.Next(-9, 10);
 
         int sum = 0;
+        int value;
         for (int i = 0; i < numberOfSteps; i++)
         {
-            int value = rnd.Next(-9, 10);
+            while((value = _rnd.Next(-9, 10))==0 && _combinationValues.Contains(value));
             _combinationValues.Add(value);
             sum += value;
         }
@@ -103,7 +120,7 @@ public class OperationalRoomManager : MonoBehaviour
     {
         _numberOfIteration++;
         _resultConsole.updateValue(value);
-        if (_numberOfIteration == numberOfSteps && _resultConsole.Result==_finalValue)
+        if (_resultConsole.Result==_finalValue)
         {
             doors.OpenDoors();
             resetCounterForUser();
@@ -129,6 +146,8 @@ public class OperationalRoomManager : MonoBehaviour
         foreach (SpriteRenderer spriteRenderer in _spriteRenderers)
         {
             spriteRenderer.color = Color.white;
-        }   
+        }
+        
+        _numberOfIteration = 0;
     }
 }
