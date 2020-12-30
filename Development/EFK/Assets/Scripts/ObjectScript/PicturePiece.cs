@@ -30,9 +30,14 @@ public class PicturePiece : MonoBehaviour
             }
             else
             {
-                active = false;
-                GetComponent<SpriteRenderer>().color = Color.white;
+                ResetPiece();
             }
         } 
+    }
+
+    public void ResetPiece()
+    {
+        active = false;
+        GetComponent<SpriteRenderer>().color = Color.white;
     }
 }

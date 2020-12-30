@@ -51,8 +51,9 @@ public class AlphabetRoomManager : MonoBehaviour
         Random.InitState(GetComponent<ObjectsContainer>().Seed);
         int remaining = 5;
         int chosen;
+        selectedNumbers = new List<int>();
         List<int> numbers = new List<int>();
-        
+
 
         int countA = 5;
         int modeID = Random.Range(0,8);
