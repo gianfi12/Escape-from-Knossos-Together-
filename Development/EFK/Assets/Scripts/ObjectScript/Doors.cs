@@ -5,8 +5,10 @@ public class Doors : MonoBehaviour
 {
     // Is the direction in which the player has to traverse the door in order for it to become closed
     [SerializeField] private Direction closingDirection;
-    [SerializeField] private bool IsOpenOnStart;
-    
+    [SerializeField] private bool isOpenOnStart;
+
+    public bool IsOpenOnStart { get => isOpenOnStart; }
+
     private Animator _animator;
     private PolygonCollider2D _polygonCollider2D;
     private SpriteRenderer _spriteRenderer;
@@ -15,11 +17,12 @@ public class Doors : MonoBehaviour
         get => closingDirection;
         set => closingDirection = value;
     }
+    
     private void Awake() {
         _animator = gameObject.GetComponent<Animator>();
         _polygonCollider2D = gameObject.GetComponent<PolygonCollider2D>();
         _spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-        if (IsOpenOnStart) 
+        if (isOpenOnStart) 
             OpenDoors();
         else
             CloseDoors();
@@ -58,7 +61,6 @@ public class Doors : MonoBehaviour
     public void FlipClosingDirection() {
         closingDirection = closingDirection.GetOpposite();
     }
-    
     public void changeColliderShape()
     {
         bool isTrigger = _polygonCollider2D.isTrigger;

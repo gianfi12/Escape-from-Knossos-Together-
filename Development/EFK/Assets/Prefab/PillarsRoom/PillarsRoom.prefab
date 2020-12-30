@@ -4284,9 +4284,19 @@ PrefabInstance:
       propertyPath: m_Name
       value: DoorUp
       objectReference: {fileID: 0}
+    - target: {fileID: 335289165766956583, guid: 112e6d5a9f32e364faa2abbe47245835,
+        type: 3}
+      propertyPath: m_TagString
+      value: MainDoor
+      objectReference: {fileID: 0}
     - target: {fileID: 3528401273294445281, guid: 112e6d5a9f32e364faa2abbe47245835,
         type: 3}
       propertyPath: IsOpenOnStart
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3528401273294445281, guid: 112e6d5a9f32e364faa2abbe47245835,
+        type: 3}
+      propertyPath: isOpenOnStart
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4465766842225171446, guid: 112e6d5a9f32e364faa2abbe47245835,
@@ -4363,6 +4373,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: 'DoorUp '
+      objectReference: {fileID: 0}
+    - target: {fileID: 335289165766956583, guid: 112e6d5a9f32e364faa2abbe47245835,
+        type: 3}
+      propertyPath: m_TagString
+      value: MainDoor
       objectReference: {fileID: 0}
     - target: {fileID: 3528401273294445281, guid: 112e6d5a9f32e364faa2abbe47245835,
         type: 3}
