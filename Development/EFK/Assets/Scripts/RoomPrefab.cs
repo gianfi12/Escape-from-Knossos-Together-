@@ -91,7 +91,12 @@ public class RoomPrefab : RoomAbstract
 
         if (flipDoors) {
             foreach (Transform child in room) {
-                if (child.CompareTag("MainDoor")) child.GetComponent<Doors>().FlipClosingDirection();
+                if (child.CompareTag("MainDoor")) {
+                    Doors doorsScript = child.GetComponent<Doors>();
+                    doorsScript.FlipClosingDirection();
+                    if (doorsScript.IsOpenOnStart) doorsScript.CloseDoors();
+                    else doorsScript.OpenDoors();
+                }
             }
         }
 

@@ -14,12 +14,13 @@ public class ResultConsoleScript : MonoBehaviour
 
     public void updateValue(int addingValue)
     {
-        text.text = addingValue.ToString();
+        text.text = (result+addingValue).ToString();
         result += addingValue;
     }
 
     public void reset(int startingValue)
     {
+        text.text = startingValue.ToString();
         result = startingValue;
     }
 }
