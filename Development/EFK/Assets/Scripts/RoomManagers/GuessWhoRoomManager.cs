@@ -8,7 +8,10 @@ using UnityEngine.UI;
 public class GuessWhoRoomManager : MonoBehaviour
 {
     private GameObject lockersContainer;
-    private Sprite[] employeePhotos = new Sprite[16];
+    private List<Sprite> activeWithCardSprites;
+    private List<Sprite> activeWithoutCardSprites;
+    private List<Sprite> guiPhotos;
+    private List<int> allIndexes;
     private int winnerLockerIndex;
     [SerializeField] private Doors exitDoor;
     [SerializeField] private CombinationPanel combinationPanel;
@@ -17,23 +20,32 @@ public class GuessWhoRoomManager : MonoBehaviour
     void Start()
     {
         System.Random rnd = new System.Random(GetComponent<ObjectsContainer>().Seed);
+        allIndexes = new List<int>();
+        activeWithCardSprites = new List<Sprite>();
+        activeWithoutCardSprites = new List<Sprite>();
+        guiPhotos = new List<Sprite>();
         lockersContainer = transform.Find("Lockers").gameObject;
         for (int i = 0; i < lockersContainer.transform.childCount; i++)
         {
-            employeePhotos[i] = lockersContainer.transform.GetChild(i).GetComponent<Locker>().ActiveSprite;
+            allIndexes.Add(i);
+            activeWithCardSprites.Add(lockersContainer.transform.GetChild(i).GetComponent<Locker>().ActiveWithCard);
+            activeWithoutCardSprites.Add(lockersContainer.transform.GetChild(i).GetComponent<Locker>().ActiveWithoutCard);
+            guiPhotos.Add(lockersContainer.transform.GetChild(i).GetComponent<Locker>().EmployeePhoto);
         }
         
-        employeePhotos = employeePhotos.OrderBy(x => rnd.Next()).ToArray();
+        allIndexes = allIndexes.OrderBy(x => rnd.Next()).ToList();
         
         List<int> selectedNumbers = new List<int>();
         int number;
         winnerLockerIndex = rnd.Next(0,lockersContainer.transform.childCount);
+        Debug.Log(winnerLockerIndex);
         for (int i = 0; i < lockersContainer.transform.childCount; i++)
         {
             Locker locker = lockersContainer.transform.GetChild(i).GetComponent<Locker>();
-            locker.ActiveSprite = employeePhotos[i];
+            locker.ActiveWithCard = activeWithCardSprites[allIndexes[i]];
+            locker.ActiveWithoutCard = activeWithoutCardSprites[allIndexes[i]];
             locker.IDCard.ID = i;
-            if (i == winnerLockerIndex) guiImage.sprite = locker.EmployeePhoto;
+            if (i == winnerLockerIndex) guiImage.sprite = guiPhotos[allIndexes[i]];
         }
     }
 
@@ -44,11 +56,13 @@ public class GuessWhoRoomManager : MonoBehaviour
             combinationPanel.Slots[0].RemoveImage();
             StartCoroutine(ChangePanelColor(Color.red));
             combinationPanel.TriggerWrongCombination();
+            FindObjectOfType<AudioManager>().Play("PuzzleWrong");
             return;
         }
         
         StartCoroutine(ChangePanelColor(Color.green));
         exitDoor.OpenDoors();
+        FindObjectOfType<AudioManager>().Play("PuzzleRight");
         combinationPanel.ClosePanel(0.5f);
     }
     

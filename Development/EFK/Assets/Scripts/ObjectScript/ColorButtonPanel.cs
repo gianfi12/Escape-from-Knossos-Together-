@@ -58,9 +58,11 @@ public class ColorButtonPanel : MonoBehaviour {
                 if (orderedButtons.SequenceEqual(pressed)) {
                     controlledDoors.OpenDoors();
                     disabled = true;
+                    FindObjectOfType<AudioManager>().Play("PuzzleRight");
                 }
                 else {
                     ResetButtons();
+                    FindObjectOfType<AudioManager>().Play("PuzzleWrong");
                 }
 
             }

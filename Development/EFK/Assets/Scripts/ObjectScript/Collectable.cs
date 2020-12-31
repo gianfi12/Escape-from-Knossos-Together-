@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class Collectable : InteractableObject
 {
     private int id;
+    [SerializeField] private bool hasParent;
 
     public int ID
     {
@@ -21,5 +22,9 @@ public class Collectable : InteractableObject
         slot.AddObject(this);
         gameObject.SetActive(false);
         _hasBeenActivated = true;
+        if (hasParent)
+        {
+            GetComponentInParent<Locker>().TakenCard();
+        }
     }
 }

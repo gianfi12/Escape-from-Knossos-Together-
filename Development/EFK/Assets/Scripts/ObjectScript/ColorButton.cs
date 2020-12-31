@@ -30,6 +30,7 @@ public class ColorButton : InteractableObject {
         gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
         lightRenderer.material.SetColor("GlowColor", buttonColor * 1.2f);
         panel.ButtonPressed(transform.GetSiblingIndex());
+        FindObjectOfType<AudioManager>().Play("HologramOn");
     }
 
     public void ResetLight() {
