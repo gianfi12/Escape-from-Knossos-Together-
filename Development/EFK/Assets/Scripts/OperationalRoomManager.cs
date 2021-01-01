@@ -25,6 +25,7 @@ public class OperationalRoomManager : MonoBehaviour
     private int[] _buttonValues;
     private Random _rnd;
     private List<SpriteRenderer> _spriteRenderers;
+    private bool hasFinished;
     
     private void Awake()
     {
@@ -118,17 +119,18 @@ public class OperationalRoomManager : MonoBehaviour
     
     public void updateResultConsole(int value,PlayerControllerMap playerControllerMap)
     {
+        if (hasFinished) return;
         _numberOfIteration++;
         _resultConsole.updateValue(value);
         if (_resultConsole.Result==_finalValue)
         {
             doors.OpenDoors();
-            resetCounterForUser();
+            confirmCounterForUser();
         }else if (_numberOfIteration == numberOfSteps)
         {
             playerControllerMap.IncrementTimer(-timePenalityInSeconds);
             _resultConsole.reset(_startingValue);
-            resetCounterForUser();
+            StartCoroutine(resetCounterForUser());
         }
         else
         {
@@ -141,13 +143,23 @@ public class OperationalRoomManager : MonoBehaviour
         _spriteRenderers[value].color = Color.red;
     }
 
-    private void resetCounterForUser()
+    private IEnumerator resetCounterForUser()
     {
+        updateCounterForUser(_numberOfIteration-1);
+        yield return new WaitForSeconds(1);
         foreach (SpriteRenderer spriteRenderer in _spriteRenderers)
         {
             spriteRenderer.color = Color.white;
         }
         
         _numberOfIteration = 0;
+    }
+
+    private void confirmCounterForUser()
+    {
+        foreach (SpriteRenderer spriteRenderer in _spriteRenderers)
+        {
+            spriteRenderer.color = Color.green;
+        }
     }
 }
