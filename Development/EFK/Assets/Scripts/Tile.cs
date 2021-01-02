@@ -16,6 +16,7 @@ public class Tile
     {
         _tileBase = tileBase;
         _coordinates = coordinates;
+        _normalizedCoordinates = coordinates;
     }
 
     public Vector3Int NormalizedCoordinates

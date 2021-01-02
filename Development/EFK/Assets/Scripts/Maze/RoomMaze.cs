@@ -36,7 +36,7 @@ public class RoomMaze : RoomAbstract
     private List<List<GameObject>> _listCheckpoints = new List<List<GameObject>>();
     private List<AgentController> _listAgent;
     private System.Random rnd;
-    private List<Tile> _occupiedTile;
+    private List<Vector3Int> _occupiedTile;
     private GameObject _resetLeverInstance;
 
     private Vector3Int _coordinatesNotEntrance;
@@ -53,7 +53,7 @@ public class RoomMaze : RoomAbstract
         Entrance = new List<Tile>();
         Exit = new List<Tile>();
         diaryImageList = new List<Image>();
-        _occupiedTile = new List<Tile>();
+        _occupiedTile = new List<Vector3Int>();
         _otherRoomCellsStack = new Stack<Cell>();
         _actualRoomCellsStack = new Stack<Cell>();
         _cellMap = new Dictionary<int, Cell>();
@@ -142,8 +142,10 @@ public class RoomMaze : RoomAbstract
             localListCheckpoints.Add(go2);
             _listCheckpoints.Add(localListCheckpoints);
             Tile tile = getRandomFloor();
+            while (checkOccupiedTile(tile.NormalizedCoordinates))tile = getRandomFloor();
             SpawnObjectInRoom(tile ,tile.Coordinates+new Vector3(0.55f,0.5f,0f),go1.transform);
             tile = getRandomFloor();
+            while (checkOccupiedTile(tile.NormalizedCoordinates))tile = getRandomFloor();
             SpawnObjectInRoom(tile,tile.Coordinates+new Vector3(0.55f,0.5f,0f),go2.transform);
             Transform agentTransform = Instantiate(guardPrefab).transform;
             agentTransform.name = "AgentMaze"+i;
@@ -160,7 +162,7 @@ public class RoomMaze : RoomAbstract
         objectTrasform.SetParent(_mazeTransform);
         objectTrasform.position = position;
         if(tile!=null)
-            _occupiedTile.Add(tile);
+            _occupiedTile.Add(tile.NormalizedCoordinates);
     }
 
     private void InsertWardrobe(Tile tile,Vector3 wardrobePosition)
@@ -672,17 +674,18 @@ public class RoomMaze : RoomAbstract
         int index = 0;
         foreach (Region region in _regions)
         {
-            Tile floor;
+            Tile floor=getRandomFloor();
             
-            while (ColorFromCoordinates((floor = getRandomFloor()).NormalizedCoordinates) != region ||
-                   (ColorFromCoordinates(floor.NormalizedCoordinates) == region && _occupiedTile.Contains(floor))) ;
+            while (ColorFromCoordinates(floor.NormalizedCoordinates) != region ||
+                   (ColorFromCoordinates(floor.NormalizedCoordinates) == region && checkOccupiedTile(floor.NormalizedCoordinates))) floor=getRandomFloor();
             region.button.position = floor.Coordinates+new Vector3(0.5f,0.5f,0f);
-            _occupiedTile.Add(floor);
+            _occupiedTile.Add(floor.NormalizedCoordinates);
             
             for(int i=0;i<numberOfWardrobePerRegion;i++)
             {
-                while (ColorFromCoordinates((floor = getRandomFloor()).NormalizedCoordinates) != region ||
-                       (ColorFromCoordinates(floor.NormalizedCoordinates) == region && _occupiedTile.Contains(floor))) ;
+                floor = getRandomFloor();
+                while (ColorFromCoordinates(floor.NormalizedCoordinates) != region ||
+                       (ColorFromCoordinates(floor.NormalizedCoordinates) == region && checkOccupiedTile(floor.NormalizedCoordinates)))floor = getRandomFloor();
                 InsertWardrobe(floor, floor.Coordinates + new Vector3(0.5f, 0.5f, 0f));
             }
 
@@ -793,6 +796,17 @@ public class RoomMaze : RoomAbstract
                 TileList.Remove(floorTile);
             }
         }
+    }
+
+    bool checkOccupiedTile(Vector3Int coordinatesToCheck)
+    {
+        foreach (Vector3Int coordinates in _occupiedTile)
+        {
+            if (coordinates == coordinatesToCheck)
+                return true;
+        }
+
+        return false;
     }
 
 }
