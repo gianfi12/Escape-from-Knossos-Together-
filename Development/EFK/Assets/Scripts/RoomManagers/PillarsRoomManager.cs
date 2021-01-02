@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PillarsRoomManager : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class PillarsRoomManager : MonoBehaviour
     [SerializeField] private int solutionLength;
     [SerializeField] List<Pillar> pillars;
     [SerializeField] LineRenderer lightRayRenderer;
+    [SerializeField] List<Image> PathGUIImages;
     private System.Random rnd;
 
     private List<int>[] connections = new List<int>[] {
@@ -34,10 +36,13 @@ public class PillarsRoomManager : MonoBehaviour
         rnd = new System.Random(GetComponentInParent<ObjectsContainer>().Seed);
         foreach (Pillar p in pillars) p.SetPillarsRoomManager(this);
         
-        generateSolution();
+        GenerateSolution();
+        GenerateGUIPaths();
     }
 
-    private void generateSolution() {
+
+
+    private void GenerateSolution() {
         solution = new Tuple<int, int>[Mathf.Clamp(solutionLength, 0, connections.Length)];
 
         int sourceNode = rnd.Next(0, connections.Length);
@@ -119,5 +124,8 @@ public class PillarsRoomManager : MonoBehaviour
     IEnumerator GenerateLightRayWithDelay(float delay) {
         yield return new WaitForSeconds(delay);
         GenerateLightRay();
+    }
+
+    private void GenerateGUIPaths() {
     }
 }
