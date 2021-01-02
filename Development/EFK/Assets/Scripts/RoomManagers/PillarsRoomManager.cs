@@ -11,7 +11,9 @@ public class PillarsRoomManager : MonoBehaviour
     [SerializeField] private int solutionLength;
     [SerializeField] List<Pillar> pillars;
     [SerializeField] LineRenderer lightRayRenderer;
-    [SerializeField] List<Image> PathGUIImages;
+    [SerializeField] Color baseColor;
+    [SerializeField] Color solvedColor;
+    [SerializeField] List<Image> pathGUIImages;
     private System.Random rnd;
 
     private List<int>[] connections = new List<int>[] {
@@ -69,10 +71,11 @@ public class PillarsRoomManager : MonoBehaviour
         if (lastActivatedPillar != -1) {
             if (connections[lastActivatedPillar].Contains(pillarIndex)) {               
                 pillars[pillarIndex].DisableInteraction();
+                pillars[pillarIndex].LightUp();
                 pillars[lastActivatedPillar].EnableInteraction();
 
                 activated.Add(new Tuple<int, int>(lastActivatedPillar, pillarIndex));
-                GenerateLightRay();
+                GenerateLightRay(false);
 
                 lastActivatedPillar = pillarIndex;
 
@@ -81,6 +84,7 @@ public class PillarsRoomManager : MonoBehaviour
         }
         else {
             pillars[pillarIndex].DisableInteraction();
+            pillars[pillarIndex].LightUp();
             lastActivatedPillar = pillarIndex;
         }     
     }
@@ -91,6 +95,7 @@ public class PillarsRoomManager : MonoBehaviour
 
         if (check) {
             controlledDoors.OpenDoors();
+            GenerateLightRay(true);
         }
         else ResetActivatedPillars();
     }
@@ -102,8 +107,12 @@ public class PillarsRoomManager : MonoBehaviour
         lastActivatedPillar = -1;
     }
 
-    private void GenerateLightRay() {
+    private void GenerateLightRay(bool solved) {
+        Color color = solved ? solvedColor : baseColor;
+
         lightRayRenderer.positionCount = activated.Count() + 1;
+        lightRayRenderer.startColor = color;
+        lightRayRenderer.endColor = color;
 
         for (int i=0; i < activated.Count(); i++) {
             if (i == 0) {
@@ -123,9 +132,30 @@ public class PillarsRoomManager : MonoBehaviour
 
     IEnumerator GenerateLightRayWithDelay(float delay) {
         yield return new WaitForSeconds(delay);
-        GenerateLightRay();
+        GenerateLightRay(false);
     }
 
+    /* some hardcoded stuff here */
     private void GenerateGUIPaths() {
+        // width and height of a cell in the diary
+        const int w = 22;
+        const int h = 25;
+        // row (0-4) of each pillar in the scheme
+        int[] y_lookup = new int[] { 1, 3, 0, 2, 4, 0, 1, 4, 1, 3 };
+
+        Vector2 offset = new Vector2(-99, -50);
+
+        for (int i = 0; i < solution.Length; i++) {
+            Tuple<int, int> path = solution[i];
+            RectTransform guiPathTrans = pathGUIImages[i].GetComponent<RectTransform>();
+
+            Vector2 pos1 = new Vector2(path.Item1 * w, y_lookup[path.Item1] * h) + offset;
+            Vector2 pos2 = new Vector2(path.Item2 * w, y_lookup[path.Item2] * h) + offset;
+
+            guiPathTrans.localPosition = (pos1 + pos2) / 2;
+            Vector3 dif = pos1 - pos2;
+            guiPathTrans.sizeDelta = new Vector3(dif.magnitude, 5);
+            guiPathTrans.rotation = Quaternion.Euler(new Vector3(0, 0, 180 * Mathf.Atan(dif.y / dif.x) / Mathf.PI));
+        }
     }
 }
