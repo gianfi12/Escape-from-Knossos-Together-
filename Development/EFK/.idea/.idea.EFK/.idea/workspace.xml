@@ -20,18 +20,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42b741fa-8516-4a76-ad90-f64f2f44ef01" name="Default Changelist" comment="Updated tile rule">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.EFK/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.EFK/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.EFK/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.EFK/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/AlphabetRoom/AlphabetRoom.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/AlphabetRoom/AlphabetRoom.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefab/BlocksRoom/BlocksRoom.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/BlocksRoom/BlocksRoom.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Locker.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Locker.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/GuessWhoRoom/GuessWhoRoom.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/GuessWhoRoom/GuessWhoRoom.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Manhole.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Manhole.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefab/MemoryRoom/MemoryRoom.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/MemoryRoom/MemoryRoom.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ObjectScript/ConfirmButton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ObjectScript/ConfirmButton.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ObjectScript/Locker.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ObjectScript/Locker.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ObjectScript/PicturePiece.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ObjectScript/PicturePiece.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Render/RenderPiepline_Renderer.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Render/RenderPiepline_Renderer.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/RoomManagers/MemoryRoomManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RoomManagers/MemoryRoomManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Employees/alieno 2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Employees/alieno 2.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/Assembly-CSharp.csprojAssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/Assembly-CSharp.csprojAssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/PillarsRoom/PillarsRoom.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/PillarsRoom/PillarsRoom.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/RoomCollection1.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RoomCollection1.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,6 +56,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Maze/Room.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/RoomAbstract.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/AgentController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Menus/FadeText.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/8691AD70-05ED-4755-A182-8378FF0B52B1/0c/285729e7/SpriteRenderer.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/ObjectScript/ConfirmButton.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -111,6 +109,7 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/ObjectScript/PicturePiece.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ObjectScript/EntrancePanel.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/RoomManagers/MemoryRoomManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Menus/FadeText.cs" />
       </list>
     </option>
   </component>
@@ -200,6 +199,7 @@
       <workItem from="1609068743821" duration="13761000" />
       <workItem from="1609160937380" duration="7829000" />
       <workItem from="1609249375403" duration="3340000" />
+      <workItem from="1609597504813" duration="2856000" />
     </task>
     <task id="LOCAL-00001" summary="Update map generation and Object interaction">
       <created>1604498027969</created>
@@ -389,10 +389,10 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="598" y="301" key="MultipleFileMergeDialog/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1604427418639" />
-    <state x="611" y="163" key="RiderGenerateDialog" timestamp="1609249676735">
+    <state x="611" y="163" key="RiderGenerateDialog" timestamp="1609603053427">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="611" y="163" key="RiderGenerateDialog/0.0.1536.824@0.0.1536.824" timestamp="1609249676735" />
+    <state x="611" y="163" key="RiderGenerateDialog/0.0.1536.824@0.0.1536.824" timestamp="1609603053427" />
     <state x="764" y="214" key="RiderGenerateDialog/0.0.1920.1080/1920.0.1366.768@0.0.1920.1080" timestamp="1604396123109" />
     <state x="764" y="214" key="RiderGenerateDialog/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1604870120005" />
     <state x="764" y="214" key="RiderGenerateDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1605688198272" />
@@ -431,10 +431,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1609170857306" />
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1609253441312">
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1609602798889">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1609253441312" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1609602798889" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
