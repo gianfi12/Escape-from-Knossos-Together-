@@ -68,9 +68,9 @@ public class OperationalRoomManager : MonoBehaviour
     {
         for (int i = 0; i < numberOfSteps; i++)
         {
-            Transform newTransform = Instantiate(circlePrefab, transform).transform;
+            Transform newTransform = Instantiate(circlePrefab,_resultConsole.transform).transform;
             _spriteRenderers.Add(newTransform.GetComponent<SpriteRenderer>());
-            newTransform.position -= new Vector3(0f, 0.15f * i,0f);
+            newTransform.position -= new Vector3(3.85f, 3f+0.15f * i,0f);
         }
     }
     
