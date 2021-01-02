@@ -14,5 +14,6 @@ public class ConfirmButton : InteractableObject
     public override void Interact(GameObject player)
     {
         memoryRoomManager.VerifyCombination();
+        GetComponent<Animator>().SetTrigger("Pressed");
     }
 }
