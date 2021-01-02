@@ -66,7 +66,7 @@ public class RoomMaze : RoomAbstract
         Random.InitState(seed);
         rnd = new System.Random(seed);
         int random;
-        while ((random = Random.Range(_minSetSpace, maxSpace)) % 2 == 0);
+        while ((random = Random.Range(_minSetSpace, maxSpace)) % 3 != 0);
         _sizeX = random;
         _sizeY = random;
         _requiredWidthSpace = _sizeX+2;//due to the walls
@@ -472,7 +472,7 @@ public class RoomMaze : RoomAbstract
         int exitHasToBeInDirectionChange=-1;
         int index = _sizeX;//starts from the upper left side and we go in an anti clockwise round
         int startingIndex = index;
-        Vector3Int position = new Vector3Int(_sizeX-1,_sizeY,0);
+        Vector3Int position = new Vector3Int(_sizeX-1,_sizeY-1,0);
         while (directionChange < 4)
         {
             if ((directionChange == 1 || directionChange == 0))
@@ -575,10 +575,10 @@ public class RoomMaze : RoomAbstract
                 switch (directionChange)
                 {
                     case 1:
-                        index = _sizeY + 1;
+                        index = _sizeY ;
                         break;
                     case 2:
-                        index = _sizeX + 1;
+                        index = _sizeX;
                         break;
                     case 3:
                         index = _sizeY + 1;
@@ -587,7 +587,7 @@ public class RoomMaze : RoomAbstract
                 startingIndex = index;
             }
         }
-        PutWall(0,new Vector3Int(_sizeX,_sizeY,0));
+        PutWall(0,new Vector3Int(_sizeX-1,_sizeY-1,0));
     }
 
     private Cell AddCell(Room room, Vector2Int position)
@@ -681,8 +681,8 @@ public class RoomMaze : RoomAbstract
             
             for(int i=0;i<numberOfWardrobePerRegion;i++)
             {
-                while (ColorFromCoordinates((floor = getRandomFloor()).NormalizedCoordinates) != region &&
-                       !_occupiedTile.Contains(floor)) ;
+                while (ColorFromCoordinates((floor = getRandomFloor()).NormalizedCoordinates) != region ||
+                       (ColorFromCoordinates(floor.NormalizedCoordinates) == region && _occupiedTile.Contains(floor))) ;
                 InsertWardrobe(floor, floor.Coordinates + new Vector3(0.5f, 0.5f, 0f));
             }
 
