@@ -9051,7 +9051,7 @@ PrefabInstance:
     - target: {fileID: 3953535858828959327, guid: 2f346d0975554fa41aaf9b7cfb2102e4,
         type: 3}
       propertyPath: m_Text
-      value: Obtain the correct number
+      value: Press the buttons to obtain the final result
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f346d0975554fa41aaf9b7cfb2102e4, type: 3}

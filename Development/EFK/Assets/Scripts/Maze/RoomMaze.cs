@@ -23,6 +23,7 @@ public class RoomMaze : RoomAbstract
     [SerializeField] private GameObject buttonPanel;
     [SerializeField] private GameObject resetLever;
     [SerializeField] private GameObject pressedButtonsGUI;
+    [SerializeField] private GameObject fadeText;
 
     private int _sizeX, _sizeY;
 
@@ -123,7 +124,10 @@ public class RoomMaze : RoomAbstract
         collider.transform.position = new Vector3(_sizeX/2+_displacementX+1.5f,_sizeY/2+_displacementY+1.5f,0f);
         boxCollider2D.isTrigger = true;
         boxCollider2D.size = new Vector2(_sizeX+2f,_sizeY+2f);
-        
+        GameObject textObj = Instantiate(fadeText, _mazeTransform);
+        FadeText text = textObj.GetComponentInChildren<FadeText>();
+        text.gameObject.SetActive(false);
+        roomCollider.AddActivatableObject(text);
     }
 
     private void SpawnAgent()

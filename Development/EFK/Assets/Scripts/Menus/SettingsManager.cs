@@ -20,10 +20,18 @@ namespace Menus
             volumeSlider.onValueChanged.AddListener(delegate { OnVolumeChange(); });
 
             resolutions = Screen.resolutions;
-            foreach (Resolution resolution in resolutions)
+            int currentResolution = 0;
+
+            for (int i = 0; i < resolutions.Length; i++)
             {
-                resolutionDropdown.options.Add(new Dropdown.OptionData(resolution.ToString()));
+                resolutionDropdown.options.Add(new Dropdown.OptionData(resolutions[i].width + "x" + resolutions[i].height));
+
+                if (resolutions[i].width == Screen.currentResolution.width &&
+                    resolutions[i].height == Screen.currentResolution.height) currentResolution = i;
             }
+
+            resolutionDropdown.value = currentResolution;
+            resolutionDropdown.RefreshShownValue();
         }
 
         public void OnFullscreenToggle()
