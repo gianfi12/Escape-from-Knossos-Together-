@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Pillar : InteractableObject {
     private PillarsRoomManager controller;
+    private Animator animator;
+
+    private void Start() {
+        animator = GetComponent<Animator>();
+    }
 
     public override void Interact(GameObject player) {     
         controller.PillarActivated(transform.GetSiblingIndex());
@@ -15,6 +20,7 @@ public class Pillar : InteractableObject {
 
     public void ResetPillar() {
         gameObject.layer = LayerMask.NameToLayer("Interactable");
+        animator.SetBool("Lit", false);
     }
 
     public void DisableInteraction() {
@@ -22,5 +28,9 @@ public class Pillar : InteractableObject {
     }
     public void EnableInteraction() {
         gameObject.layer = LayerMask.NameToLayer("Interactable");
+    }
+
+    public void LightUp() {
+        animator.SetBool("Lit", true);
     }
 }
