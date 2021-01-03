@@ -178,17 +178,20 @@ public class AgentController : MonoBehaviour
             }
             else return;
 
-            if (PhotonNetwork.IsConnected)
+            if (playerControllerMap.gameObject.GetComponent<PlayerInput>()._canMove)
             {
-                if (playerControllerMap.GetComponent<PhotonView>().IsMine)
+                if (PhotonNetwork.IsConnected)
+                {
+                    if (playerControllerMap.GetComponent<PhotonView>().IsMine)
+                    {
+                        playerControllerMap.SetPlayerIsDead();
+                    }
+                }
+                else
                 {
                     playerControllerMap.SetPlayerIsDead();
+                    playerControllerMap.SetPlayerIsDead();
                 }
-            }
-            else
-            {
-                playerControllerMap.SetPlayerIsDead();
-                playerControllerMap.SetPlayerIsDead();
             }
         }
     }

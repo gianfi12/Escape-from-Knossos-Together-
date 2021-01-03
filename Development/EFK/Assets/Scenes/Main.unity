@@ -436,7 +436,7 @@ MonoBehaviour:
   mainCamera: {fileID: 6250305113863554164, guid: a5a681f67dd600b4e9c39ff8637c9cd0,
     type: 3}
   isDebug: 1
-  seed: 0
+  seed: 2479
   navMesh: {fileID: 1220600352}
 --- !u!58 &569640896
 CircleCollider2D:

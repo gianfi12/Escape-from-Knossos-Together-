@@ -24,8 +24,12 @@ public class TimerText : MonoBehaviour
     void Update()
     {
         timerText.text = time.ToString();
-        if (time <= 0 && timeTrigger)   
+        if (time == 0 && timeTrigger)
+        {
+            timeTrigger = false;
             playerController.Explode();
+        }   
+            
     }
 
     public void SetTime(int time, bool trigger=true) {
