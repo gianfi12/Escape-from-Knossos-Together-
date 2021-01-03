@@ -16,13 +16,19 @@ public class AgentController : MonoBehaviour
     [SerializeField] private float wanderRadius = 5;
     [SerializeField] private bool isPatroller;
     [SerializeField] private List<GameObject> checkpoints;
-    
+   
     private int currentCheckpoint = 0;
-
+    
+    [SerializeField] private GameObject eyeObject;
+    private SpriteRenderer eyeSpriteRenderer;
     private LineOfSight lineOfSight;
     private Material fovMaterial;
+
     [SerializeField] private Color standardFovColor;
     [SerializeField] private Color seekingFovColor;
+    [SerializeField] private Color standardEyeColor;
+    [SerializeField] private Color seekingEyeColor;
+
 
     private bool isSeekingPlayer;
     private bool isWanderingAfterSeeking;
@@ -56,7 +62,8 @@ public class AgentController : MonoBehaviour
 
         lineOfSight = GetComponent<LineOfSight>();
         fovMaterial = GetComponentInChildren<MeshRenderer>().material;
-        fovMaterial = GetComponentInChildren<MeshRenderer>().material;
+
+        eyeSpriteRenderer = eyeObject.GetComponent<SpriteRenderer>();
 
         Random.InitState(transform.GetComponentInParent<ObjectsContainer>().Seed);
 
@@ -72,6 +79,8 @@ public class AgentController : MonoBehaviour
         isSeekingPlayer = true;
         fovMaterial.SetColor("_Color", seekingFovColor);
         lineOfSight.viewAngle = 110;
+        eyeSpriteRenderer.color = seekingEyeColor;
+        //eyeSpriteRenderer.material.SetColor("GlowColor", seekingEyeColor*16);
         agent.speed = 2.5f;
         agent.SetDestination(location);
     }
@@ -125,6 +134,8 @@ public class AgentController : MonoBehaviour
         else if (isPatroller && agent.pathStatus == NavMeshPathStatus.PathComplete && agent.remainingDistance ==0) {
             fovMaterial.SetColor("_Color", standardFovColor);
             lineOfSight.viewAngle = 50;
+            eyeSpriteRenderer.color = standardEyeColor;
+           // eyeSpriteRenderer.material.SetColor("GlowColor", seekingEyeColor * 16);
             agent.speed = 1.5f;
             Patrol();
         }
@@ -133,6 +144,8 @@ public class AgentController : MonoBehaviour
         {
             fovMaterial.SetColor("_Color", standardFovColor);
             lineOfSight.viewAngle = 50;
+            eyeSpriteRenderer.color = standardEyeColor;
+            //eyeSpriteRenderer.material.SetColor("GlowColor", seekingEyeColor * 16);
             agent.speed = 1.5f;
             Wander();  
         }

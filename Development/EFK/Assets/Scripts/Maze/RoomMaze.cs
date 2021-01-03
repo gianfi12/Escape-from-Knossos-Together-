@@ -690,7 +690,7 @@ public class RoomMaze : RoomAbstract
                 floor = getRandomFloor();
                 while (ColorFromCoordinates(floor.NormalizedCoordinates) != region ||
                        (ColorFromCoordinates(floor.NormalizedCoordinates) == region && checkOccupiedTile(floor.NormalizedCoordinates)))floor = getRandomFloor();
-                InsertWardrobe(floor, floor.Coordinates + new Vector3(0.5f, 0.5f, 0f));
+                InsertWardrobe(floor, floor.Coordinates + new Vector3(0.5f, 0.5f, -0.1f));
             }
 
             index++;

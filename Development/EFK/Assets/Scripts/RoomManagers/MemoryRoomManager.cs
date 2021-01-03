@@ -10,7 +10,7 @@ public class MemoryRoomManager : MonoBehaviour
     [SerializeField] private SpriteRenderer picture;
     [SerializeField] private SpriteRenderer[] pieces;
     [SerializeField] private GameObject[] diaryPictures;
-    [SerializeField] private RoomAbstract myRoom;
+    private ObjectsContainer myRoom;
     private Sprite[] slicedSprites = new Sprite[9];
     private List<int> shuffleOrder;
     private List<int> firstWinnerIndexes;
@@ -21,7 +21,8 @@ public class MemoryRoomManager : MonoBehaviour
     
     void Start()
     {
-        rnd = new System.Random(GetComponent<ObjectsContainer>().Seed);
+        myRoom = GetComponent<ObjectsContainer>();
+        rnd = new System.Random(myRoom.Seed);
         shuffleOrder = new List<int> {0,1,2,3,4,5,6,7,8};
         firstWinnerIndexes = new List<int>();
         secondWinnerIndexes = new List<int>();
@@ -160,10 +161,8 @@ public class MemoryRoomManager : MonoBehaviour
             }
             if (winCount == 3)
             {
-                myRoom.DoorExit.OpenDoors();
-                Debug.Log("HAI VINTO");
+                myRoom.ExitDoor.OpenDoors();        
             }
-            else Debug.Log("HAI PERSO");
         }
     }
 }
