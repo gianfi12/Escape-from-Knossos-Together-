@@ -70,7 +70,7 @@ public class OperationalRoomManager : MonoBehaviour
         {
             Transform newTransform = Instantiate(circlePrefab,_resultConsole.transform).transform;
             _spriteRenderers.Add(newTransform.GetComponent<SpriteRenderer>());
-            newTransform.position -= new Vector3(3.85f, 3f+0.15f * i,0f);
+            newTransform.position -= new Vector3(4.25f, 2.3f+0.15f * i,1f);
         }
     }
     

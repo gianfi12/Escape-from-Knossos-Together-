@@ -593,7 +593,7 @@ public class RoomMaze : RoomAbstract
                 startingIndex = index;
             }
         }
-        PutWall(0,new Vector3Int(_sizeX-1,_sizeY-1,0));
+        // PutWall(0,new Vector3Int(_sizeX-1,_sizeY-1,0));
     }
 
     private Cell AddCell(Room room, Vector2Int position)
@@ -772,12 +772,14 @@ public class RoomMaze : RoomAbstract
         List<Tile> removableWall=new List<Tile>();
         foreach (Tile tile in Wall)
         {
+            // if(tile.Coordinates==_coordinatesNotEntrance ||
+            //    tile.Coordinates== (_coordinatesNotEntrance+Direction.North.GetDirection()) ||
+            //    tile.Coordinates== (_coordinatesNotEntrance+Direction.South.GetDirection()) ||
+            //    tile.Coordinates==_coordinatesNotExit ||
+            //    tile.Coordinates== (_coordinatesNotExit+Direction.North.GetDirection()) ||
+            //    tile.Coordinates== (_coordinatesNotExit+Direction.South.GetDirection())) 
             if(tile.Coordinates==_coordinatesNotEntrance ||
-               tile.Coordinates== (_coordinatesNotEntrance+Direction.North.GetDirection()) ||
-               tile.Coordinates== (_coordinatesNotEntrance+Direction.South.GetDirection()) ||
-               tile.Coordinates==_coordinatesNotExit ||
-               tile.Coordinates== (_coordinatesNotExit+Direction.North.GetDirection()) ||
-               tile.Coordinates== (_coordinatesNotExit+Direction.South.GetDirection())) 
+               tile.Coordinates==_coordinatesNotExit) 
                 removableWall.Add(tile);
         }
         foreach (Tile tile in removableWall)
