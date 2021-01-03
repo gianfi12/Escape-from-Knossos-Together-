@@ -120,6 +120,11 @@ public class PlayerInput : MonoBehaviourPun
                 if (Input.GetButtonDown("Interact")) {
                     _playerInteraction.InteractWithTarget(transform.gameObject);
                 }
+                if (Input.GetButtonDown("Cancel"))
+                {
+                    if(_exitGamePrefabInstance==null)
+                        _exitGamePrefabInstance = Instantiate(exitGamePrefab);
+                }
             }
         }
         catch (NullReferenceException) {}
@@ -151,12 +156,6 @@ public class PlayerInput : MonoBehaviourPun
         _animator.SetBool("IsReading",isReading);
         //_animator.SetFloat("Vertical", _movement.y);
         //_animator.SetFloat("Direction", _lastDir);
-        
-        if (Input.GetButtonDown("Cancel"))
-        {
-            if(_exitGamePrefabInstance==null)
-                _exitGamePrefabInstance = Instantiate(exitGamePrefab);
-        }
     }
 
 
