@@ -10,8 +10,8 @@ public abstract class RoomAbstract : MonoBehaviour
     [SerializeField] protected AssetsCollection assetsCollection;
     [SerializeField] private bool hasTwin;
     [SerializeField] private RoomAbstract twinRoom;
-    [SerializeField] private GameObject doorExit;
-    [SerializeField] private GameObject doorEntrance;
+    [SerializeField] private Doors doorExit;
+    [SerializeField] private Doors doorEntrance;
     [SerializeField] protected GameObject objectsParent;
     [SerializeField] protected bool useSameEntrance;
 
@@ -35,6 +35,18 @@ public abstract class RoomAbstract : MonoBehaviour
     [SerializeField] private int timeIncrementInSeconds;
     [SerializeField] private bool timeoutTriggersLoss;
 
+    
+    public Doors DoorExit
+    {
+        get => doorExit;
+        set => doorExit = value;
+    }
+
+    public Doors DoorEntrance
+    {
+        get => doorEntrance;
+        set => doorEntrance = value;
+    }
     public Text DiaryText => diaryText;
 
     public int TimeIncrementInSeconds => timeIncrementInSeconds;

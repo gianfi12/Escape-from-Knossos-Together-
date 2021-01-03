@@ -51,7 +51,7 @@ public class Doors : MonoBehaviour
     }
 
     public void OpenDoors() {
-        _animator.SetBool("isOpen",true);
+        GetComponent<Animator>().SetBool("isOpen",true);
     }
 
     public void CloseDoors() {
