@@ -6,6 +6,8 @@ using UnityEngine;
 public class Manhole : InteractableObject
 {
     private SpriteRenderer _playerRenderer;
+    private CapsuleCollider2D _playerCollider;
+    private BoxCollider2D _playerFeetCollider;
     private bool _hasBeenSetted;
     private PlayerInput _playerInput;
     private PlayerInteraction _playerInteraction;
@@ -27,6 +29,8 @@ public class Manhole : InteractableObject
             _playerInput = player.GetComponent<PlayerInput>();
             _playerInteraction = player.GetComponent<PlayerInteraction>();
             _playerRenderer = player.GetComponent<SpriteRenderer>();
+            _playerCollider = player.GetComponent<CapsuleCollider2D>();
+            _playerFeetCollider = player.GetComponentInChildren<BoxCollider2D>();
         }
 
         if(!_hasBeenActivated && _playerInput.CanMove)
@@ -36,6 +40,8 @@ public class Manhole : InteractableObject
             _playerInput.CanMove = false;
             _playerInteraction.canChangeLastInteractableObejct = false;
             _playerRenderer.enabled = false;
+            _playerCollider.enabled = false;
+            _playerFeetCollider.enabled = false;
             _timeOfActivation = Time.time;
         }
         else if(_hasBeenActivated && (Time.time - _timeOfActivation) > minTimeInWardrobe) {
@@ -44,6 +50,8 @@ public class Manhole : InteractableObject
             _playerInput.CanMove = true;
             _playerInteraction.canChangeLastInteractableObejct = true;
             _playerRenderer.enabled = true;
+            _playerCollider.enabled = true;
+            _playerFeetCollider.enabled = true;
         }
     }
 }

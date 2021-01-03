@@ -89,13 +89,22 @@ public class RoomPrefab : RoomAbstract
         objectsParent.GetComponent<ObjectsContainer>().Seed = seed;
         Transform room = Instantiate(objectsParent).transform;
 
-        if (flipDoors) {
+        if (flipDoors)
+        {
             foreach (Transform child in room) {
                 if (child.CompareTag("MainDoor")) {
                     Doors doorsScript = child.GetComponent<Doors>();
                     doorsScript.FlipClosingDirection();
-                    if (doorsScript.IsOpenOnStart) doorsScript.CloseDoors();
-                    else doorsScript.OpenDoors();
+                    if (doorsScript.IsOpenOnStart)
+                    {
+                        DoorExit = doorsScript;
+                        doorsScript.CloseDoors();
+                    }
+                    else
+                    {
+                        DoorEntrance = doorsScript;
+                        doorsScript.OpenDoors();
+                    }
                 }
             }
         }

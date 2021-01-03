@@ -10,6 +10,7 @@ public class MemoryRoomManager : MonoBehaviour
     [SerializeField] private SpriteRenderer picture;
     [SerializeField] private SpriteRenderer[] pieces;
     [SerializeField] private GameObject[] diaryPictures;
+    [SerializeField] private RoomAbstract myRoom;
     private Sprite[] slicedSprites = new Sprite[9];
     private List<int> shuffleOrder;
     private List<int> firstWinnerIndexes;
@@ -159,7 +160,7 @@ public class MemoryRoomManager : MonoBehaviour
             }
             if (winCount == 3)
             {
-                //APRI PORTA
+                myRoom.DoorExit.OpenDoors();
                 Debug.Log("HAI VINTO");
             }
             else Debug.Log("HAI PERSO");
