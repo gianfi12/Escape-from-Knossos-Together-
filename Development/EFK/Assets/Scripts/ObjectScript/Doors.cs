@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Doors : MonoBehaviour
@@ -52,10 +54,21 @@ public class Doors : MonoBehaviour
 
     public void OpenDoors() {
         GetComponent<Animator>().SetBool("isOpen",true);
+        StartCoroutine("OnFinishAnimation");
+    }
+    
+    IEnumerator OnFinishAnimation()
+    {
+        while(_animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f)
+            yield return null;
+
+        changeColliderShape();
+        setTrigger();
     }
 
     public void CloseDoors() {
         _animator.SetBool("isOpen",false);
+        StartCoroutine("OnFinishAnimation");
     }
 
     public void FlipClosingDirection() {
