@@ -44,6 +44,8 @@ public class AlphabetRoomManager : MonoBehaviour
     private Collectable[] runes;
     [SerializeField] private CombinationPanel combinationPanel;
     [SerializeField] private Doors exitDoor;
+    [SerializeField] private GameObject positionsContainer;
+    private List<Transform> runePositions;
 
     private void SelectNumbers()
     {
@@ -59,6 +61,7 @@ public class AlphabetRoomManager : MonoBehaviour
         mode = modes[modeID];
         int a = mode.a;
         int b = mode.b;
+        Debug.Log(modes[modeID].name);
         while (countA != 0)
         {
             int countB = 5;
@@ -68,23 +71,35 @@ public class AlphabetRoomManager : MonoBehaviour
                 if (modeID <= 1) numbers.Add(matrix[a,b]);
                 //se mode colonna
                 else numbers.Add(matrix[b,a]);
-                b = UpdateAandB(1, modeID % 4, a, b);
+                b = UpdateAandB(1, modeID % 2, a, b);
                 countB--;
             }
 
-            a = UpdateAandB(0, modeID % 4, a, b);
+            a = UpdateAandB(0, modeID % 2, a, b);
             b = mode.b;
             countA--;
         }
         
         
         int start = 0;
+        List<int> selectedIndexes = new List<int>();
         while (remaining != 0)
         {
-            chosen = Random.Range(start, 26 - remaining);
+            /*chosen = Random.Range(start, 26 - remaining);
             selectedNumbers.Add(numbers[chosen]);
             start = chosen + 1;
+            remaining--;*/
+            do
+            {
+                chosen = Random.Range(0, 26);
+            } while (selectedIndexes.Contains(chosen));
+            selectedIndexes.Add(chosen);
             remaining--;
+        }
+        selectedIndexes.Sort();
+        foreach (var index in selectedIndexes)
+        {
+            selectedNumbers.Add(numbers[index]);
         }
     }
 
@@ -92,20 +107,16 @@ public class AlphabetRoomManager : MonoBehaviour
     {
         int x = a;
         int y = b;
-        switch (mode)
+        
+        if (mode == 0)
         {
-            case 0:
-                x++;
-                y++;
-                break;
-            case 1:
-                x--;
-                y++;
-                break;
-            default:
-                x++;
-                y++;
-                break;
+            x++;
+            y++;
+        }
+        else
+        {
+            x--;
+            y++;
         }
 
         if (choice == 0) return x;
@@ -114,6 +125,7 @@ public class AlphabetRoomManager : MonoBehaviour
     
     private void Start()
     {
+        runePositions = new List<Transform>(positionsContainer.transform.GetComponentsInChildren<Transform>());
         runes = GetComponentsInChildren<Collectable>();
         SelectNumbers();
         //combinationPanel.transform.parent.GetComponentInChildren<Canvas>().GetComponentInChildren<Image>().transform.Find("Order").GetComponent<Text>().text += mode.name;
@@ -123,6 +135,9 @@ public class AlphabetRoomManager : MonoBehaviour
         {
             runes[i].GetComponent<SpriteRenderer>().sprite = runeSprites[randomIndex[i]];
             runes[i].ID = randomIndex[i];
+            int randomPos = rnd.Next(0, runePositions.Count);
+            runes[i].transform.position = runePositions[randomPos].position;
+            runePositions.RemoveAt(randomPos);
         }
     }
 
