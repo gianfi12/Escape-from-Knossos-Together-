@@ -247,6 +247,7 @@ Transform:
   - {fileID: 2290574912057149925}
   - {fileID: 5801342690754461773}
   - {fileID: 312938965883661566}
+  - {fileID: 7713426471839752628}
   m_Father: {fileID: 1445744963723494004}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -263,6 +264,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Seed: 0
+  entranceDoor: {fileID: 0}
+  exitDoor: {fileID: 0}
 --- !u!1 &1614863691169085273
 GameObject:
   m_ObjectHideFlags: 0
@@ -1656,7 +1659,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 2.0091965, y: 3.9619236}
+  m_Offset: {x: 2.0178576, y: 4.1005125}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1667,7 +1670,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 7.9073234, y: 5.5653954}
+  m_Size: {x: 8.721533, y: 5.842573}
   m_EdgeRadius: 0
 --- !u!114 &9093535354510423353
 MonoBehaviour:
@@ -1947,8 +1950,6 @@ MonoBehaviour:
   assetsCollection: {fileID: 11400000, guid: 55d586d2096a3454bbdfe9f671b4eb18, type: 2}
   hasTwin: 0
   twinRoom: {fileID: 0}
-  doorExit: {fileID: 0}
-  doorEntrance: {fileID: 0}
   objectsParent: {fileID: 1434125500694514438}
   useSameEntrance: 0
   diaryText: {fileID: 7650924158631520853, guid: 7a64b67efa31d154e8d6eded7fe69b89,
@@ -1962,6 +1963,76 @@ MonoBehaviour:
   tilemapWall: {fileID: 4717259973382526260}
   tilemapSpawn: {fileID: 389126262511612857}
   tilemapDecoration: {fileID: 6249444363282643557}
+--- !u!1 &7459401216074225021
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7713426471839752628}
+  - component: {fileID: 8999904305605272795}
+  - component: {fileID: 527767400644698154}
+  m_Layer: 2
+  m_Name: WonGame Trigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7713426471839752628
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7459401216074225021}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2, y: 8, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 195664770994205891}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8999904305605272795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7459401216074225021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c1ff4d0f1992df459e956010551d31b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!61 &527767400644698154
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7459401216074225021}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.00000035762787, y: 0.005625725}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.225776, y: 0.98874855}
+  m_EdgeRadius: 0
 --- !u!1 &7773624714139995506
 GameObject:
   m_ObjectHideFlags: 0
@@ -3264,6 +3335,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5a681f67dd600b4e9c39ff8637c9cd0, type: 3}
+--- !u!4 &5801342690754461773 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6250305113863554165, guid: a5a681f67dd600b4e9c39ff8637c9cd0,
+    type: 3}
+  m_PrefabInstance: {fileID: 450088460928123960}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &5801342690754461772 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6250305113863554164, guid: a5a681f67dd600b4e9c39ff8637c9cd0,
@@ -3276,12 +3353,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &5801342690754461773 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6250305113863554165, guid: a5a681f67dd600b4e9c39ff8637c9cd0,
-    type: 3}
-  m_PrefabInstance: {fileID: 450088460928123960}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6963498248310598913
 PrefabInstance:
   m_ObjectHideFlags: 0

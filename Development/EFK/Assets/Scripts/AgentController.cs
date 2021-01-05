@@ -65,9 +65,12 @@ public class AgentController : ActivatableObject
 
         eyeSpriteRenderer = eyeObject.GetComponent<SpriteRenderer>();
 
-        Random.InitState(transform.GetComponentInParent<ObjectsContainer>().Seed);
-
         if(!isPatroller) StartCoroutine("ResetTargetWithDelay", 1f);
+    }
+
+    private void Start()
+    {
+        Random.InitState(transform.GetComponentInParent<ObjectsContainer>().Seed);
     }
 
     private void Seek(Vector3 location)
