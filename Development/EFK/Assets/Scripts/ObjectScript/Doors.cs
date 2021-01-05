@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Doors : MonoBehaviour
@@ -12,6 +14,7 @@ public class Doors : MonoBehaviour
     private Animator _animator;
     private PolygonCollider2D _polygonCollider2D;
     private SpriteRenderer _spriteRenderer;
+    private bool _isOpen;
 
     public Direction ClosingDirection {
         get => closingDirection;
@@ -50,12 +53,27 @@ public class Doors : MonoBehaviour
         }
     }
 
-    public void OpenDoors() {
+    public void OpenDoors()
+    {
+        _isOpen = true;
         GetComponent<Animator>().SetBool("isOpen",true);
+        StartCoroutine("OnFinishAnimation");
+    }
+    
+    IEnumerator OnFinishAnimation()
+    {
+        while(_animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f)
+            yield return null;
+
+        changeColliderShape();
+        setTrigger();
     }
 
-    public void CloseDoors() {
+    public void CloseDoors()
+    {
+        _isOpen = false;
         _animator.SetBool("isOpen",false);
+        StartCoroutine("OnFinishAnimation");
     }
 
     public void FlipClosingDirection() {
@@ -71,7 +89,8 @@ public class Doors : MonoBehaviour
 
     public void setTrigger()
     {
-        _polygonCollider2D.isTrigger = _polygonCollider2D.isTrigger ? false : true;
-        gameObject.layer = _polygonCollider2D.isTrigger ? LayerMask.NameToLayer("Ignore Raycast") : LayerMask.NameToLayer("Default");
+        _polygonCollider2D.isTrigger = !_isOpen ? false : true;
+        gameObject.layer = 
+            _isOpen ? LayerMask.NameToLayer("Ignore Raycast") : LayerMask.NameToLayer("Default");
     }
 }

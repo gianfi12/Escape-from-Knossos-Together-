@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5571481265987211072}
   m_Layer: 5
   m_Name: Wall2
-  m_TagString: Untagged
+  m_TagString: DiaryImage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -262,7 +262,7 @@ GameObject:
   - component: {fileID: 7302409180602163279}
   m_Layer: 5
   m_Name: P (7)
-  m_TagString: Untagged
+  m_TagString: DiaryImage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -336,7 +336,7 @@ GameObject:
   - component: {fileID: 7015573166645270638}
   m_Layer: 5
   m_Name: P (5)
-  m_TagString: Untagged
+  m_TagString: DiaryImage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2457,7 +2457,7 @@ GameObject:
   - component: {fileID: 7985322991090921321}
   m_Layer: 5
   m_Name: Path (2)
-  m_TagString: Untagged
+  m_TagString: DiaryImage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2469,7 +2469,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3779638899144138814}
-  m_LocalRotation: {x: -0, y: -0, z: 0.5464711, w: 0.8374779}
+  m_LocalRotation: {x: -0, y: -0, z: 0.41192967, w: 0.91121566}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.8865957, y: 0.8865957, z: 0.8865957}
   m_Children: []
@@ -2478,8 +2478,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 88, y: 0}
-  m_SizeDelta: {x: 54.626, y: 5}
+  m_AnchoredPosition: {x: 22, y: -37.5}
+  m_SizeDelta: {x: 33.30165, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8253778521445186666
 CanvasRenderer:
@@ -2531,7 +2531,7 @@ GameObject:
   - component: {fileID: 430249503461316292}
   m_Layer: 5
   m_Name: P (1)
-  m_TagString: Untagged
+  m_TagString: DiaryImage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2605,7 +2605,7 @@ GameObject:
   - component: {fileID: 8271744638943671495}
   m_Layer: 5
   m_Name: P (2)
-  m_TagString: Untagged
+  m_TagString: DiaryImage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2807,7 +2807,7 @@ GameObject:
   - component: {fileID: 1834088757256565097}
   m_Layer: 5
   m_Name: P (6)
-  m_TagString: Untagged
+  m_TagString: DiaryImage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2881,7 +2881,7 @@ GameObject:
   - component: {fileID: 5885500549743644154}
   m_Layer: 5
   m_Name: Path (5)
-  m_TagString: Untagged
+  m_TagString: DiaryImage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2893,7 +2893,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4813457993444946907}
-  m_LocalRotation: {x: -0, y: -0, z: 0.12336192, w: 0.9923618}
+  m_LocalRotation: {x: -0, y: -0, z: 0.18005632, w: 0.98365635}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.8865957, y: 0.8865957, z: 0.8865957}
   m_Children: []
@@ -2902,8 +2902,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 204.21558, y: 5}
+  m_AnchoredPosition: {x: -44, y: 37.5}
+  m_SizeDelta: {x: 70.5762, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5989570698291054915
 CanvasRenderer:
@@ -2993,7 +2993,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 996d1c91e2c6e4f46ab7d47f38d6f161, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Seed: 9236
+  Seed: 3101
   entranceDoor: {fileID: 4910327137804251973}
   exitDoor: {fileID: 555887671524786133}
 --- !u!114 &8182655862337114185
@@ -3123,7 +3123,7 @@ GameObject:
   - component: {fileID: 6168528114651481287}
   m_Layer: 5
   m_Name: P (8)
-  m_TagString: Untagged
+  m_TagString: DiaryImage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3197,7 +3197,7 @@ GameObject:
   - component: {fileID: 302047277838888333}
   m_Layer: 5
   m_Name: Wall1
-  m_TagString: Untagged
+  m_TagString: DiaryImage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3271,7 +3271,7 @@ GameObject:
   - component: {fileID: 5441533777105566139}
   m_Layer: 5
   m_Name: P (4)
-  m_TagString: Untagged
+  m_TagString: DiaryImage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3345,7 +3345,7 @@ GameObject:
   - component: {fileID: 8443153966789457597}
   m_Layer: 5
   m_Name: Path (4)
-  m_TagString: Untagged
+  m_TagString: DiaryImage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3366,7 +3366,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -88, y: 0}
+  m_AnchoredPosition: {x: -22, y: 25}
   m_SizeDelta: {x: 54.626, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1630582370094459171
@@ -3468,7 +3468,7 @@ GameObject:
   - component: {fileID: 6052262850196339642}
   m_Layer: 5
   m_Name: P (9)
-  m_TagString: Untagged
+  m_TagString: DiaryImage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3542,7 +3542,7 @@ GameObject:
   - component: {fileID: 8947825122691591650}
   m_Layer: 5
   m_Name: P (0)
-  m_TagString: Untagged
+  m_TagString: DiaryImage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4070,7 +4070,7 @@ GameObject:
   - component: {fileID: 7683132006392806082}
   m_Layer: 5
   m_Name: P (3)
-  m_TagString: Untagged
+  m_TagString: DiaryImage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4236,7 +4236,7 @@ GameObject:
   - component: {fileID: 3388685150762852384}
   m_Layer: 5
   m_Name: Path (0)
-  m_TagString: Untagged
+  m_TagString: DiaryImage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4248,7 +4248,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8853754560535454574}
-  m_LocalRotation: {x: -0, y: -0, z: -0.5993857, w: 0.8004604}
+  m_LocalRotation: {x: -0, y: -0, z: -0.2554833, w: 0.96681345}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.8865957, y: 0.8865957, z: 0.8865957}
   m_Children: []
@@ -4257,8 +4257,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 66, y: 12.5}
-  m_SizeDelta: {x: 78.160095, y: 5}
+  m_AnchoredPosition: {x: 77, y: 37.5}
+  m_SizeDelta: {x: 50.606323, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3521535463171799614
 CanvasRenderer:
@@ -4511,7 +4511,7 @@ GameObject:
   - component: {fileID: 8808421372705742957}
   m_Layer: 5
   m_Name: Path (3)
-  m_TagString: Untagged
+  m_TagString: DiaryImage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4523,7 +4523,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9032224293990132546}
-  m_LocalRotation: {x: -0, y: -0, z: -0.1563253, w: 0.98770565}
+  m_LocalRotation: {x: -0, y: -0, z: -0.18005632, w: 0.98365635}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.8865957, y: 0.8865957, z: 0.8865957}
   m_Children: []
@@ -4532,8 +4532,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 161.91356, y: 5}
+  m_AnchoredPosition: {x: 0, y: -12.5}
+  m_SizeDelta: {x: 70.5762, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3456234241930025340
 CanvasRenderer:
@@ -4585,7 +4585,7 @@ GameObject:
   - component: {fileID: 8265266989467394860}
   m_Layer: 5
   m_Name: Path (1)
-  m_TagString: Untagged
+  m_TagString: DiaryImage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4597,7 +4597,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9112358737437954267}
-  m_LocalRotation: {x: -0, y: -0, z: -0.2554833, w: 0.96681345}
+  m_LocalRotation: {x: -0, y: -0, z: 0.34562618, w: 0.9383723}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.8865957, y: 0.8865957, z: 0.8865957}
   m_Children: []
@@ -4606,8 +4606,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 77, y: 37.5}
-  m_SizeDelta: {x: 50.606323, y: 5}
+  m_AnchoredPosition: {x: 55, y: -12.5}
+  m_SizeDelta: {x: 115.62439, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2440081692358007286
 CanvasRenderer:
