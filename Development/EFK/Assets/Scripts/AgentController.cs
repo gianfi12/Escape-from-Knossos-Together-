@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
-public class AgentController : MonoBehaviour
+public class AgentController : ActivatableObject
 {
 
     private Transform target;
@@ -233,5 +233,15 @@ public class AgentController : MonoBehaviour
         }
 
         _previousPosition = transform.position;
+    }
+
+    public override void ActivateObject()
+    {
+        gameObject.SetActive(true);
+    }
+
+    public override void DeactivateObject()
+    {
+        gameObject.SetActive(false);
     }
 }

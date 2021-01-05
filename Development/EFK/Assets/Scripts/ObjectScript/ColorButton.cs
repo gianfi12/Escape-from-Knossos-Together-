@@ -41,5 +41,6 @@ public class ColorButton : InteractableObject {
         yield return new WaitForSeconds(delay);
         lightRenderer.material.SetColor("GlowColor", new Color(0, 0, 0, 0.5f));
         gameObject.layer = LayerMask.NameToLayer("Interactable");
+        FindObjectOfType<AudioManager>().Play("PuzzleWrong");
     }
 }
