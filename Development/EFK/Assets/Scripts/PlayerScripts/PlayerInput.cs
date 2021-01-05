@@ -17,6 +17,7 @@ public class PlayerInput : MonoBehaviourPun
     //indicates if the player can move, so if it is in the scene or it is disable, if false it is also not visible and so
     //it shouldn't been seen from the agent moving in the map
     public bool _canMove = true;
+    public bool _isHidden;
     private float _lastDir;
     private PlayerInteraction _playerInteraction;
 

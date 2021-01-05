@@ -173,7 +173,15 @@ public class PlayerControllerMap : MonoBehaviour
     [PunRPC]
     public void ReloadMain()
     {
-        Destroy(FindObjectOfType<PhotonVoiceNetwork>().gameObject);
+        try
+        {
+            Destroy(FindObjectOfType<PhotonVoiceNetwork>().gameObject);
+        }
+        catch (Exception e)
+        {
+            Debug.Log(e.Message);
+        }
+        
         PhotonNetwork.LoadLevel("Loading");
     }
 
