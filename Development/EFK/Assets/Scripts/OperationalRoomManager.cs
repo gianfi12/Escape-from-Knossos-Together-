@@ -152,7 +152,7 @@ public class OperationalRoomManager : MonoBehaviour
             _combinationValues.Clear();
             for (int i = 0; i < numberOfSteps; i++)
             {
-                while ((value = _rnd.Next(-9, 10)) == 0 && _combinationValues.Contains(value)) ;
+                while ((value = _rnd.Next(-9, 10)) == 0 || (value!=0 && _combinationValues.Contains(value))) ;
                 _combinationValues.Add(value);
                 sum += value;
             }
@@ -211,7 +211,7 @@ public class OperationalRoomManager : MonoBehaviour
         if (hasFinished) return;
         _numberOfIteration++;
         _resultConsole.updateValue(value);
-        if (_resultConsole.Result==_finalValue)
+        if (_resultConsole.Result==_finalValue && numberOfSteps==_numberOfIteration)
         {
             doors.OpenDoors();
             confirmCounterForUser();
