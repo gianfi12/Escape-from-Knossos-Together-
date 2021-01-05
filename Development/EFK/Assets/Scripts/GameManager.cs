@@ -7,12 +7,14 @@ using System.Linq;
 using System.Collections.Generic;
 using System;
 using UnityEngine.AI;
+using UnityEngine.Audio;
 using UnityEngine.Events;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviourPun
 {
+    [SerializeField] private AudioMixer audioMixer;
     [SerializeField] private LevelMap levelPrefab;
     private LevelMap _levelMap;
     [SerializeField] private GameObject playerPrefab;
@@ -76,6 +78,27 @@ public class GameManager : MonoBehaviourPun
             _levelMap.PlacePlayer(_playerInstanceLocal, 1);
             _playerInstanceLocal.SetGameManager(this);
             
+        }
+        
+        if (PlayerPrefs.HasKey("MasterVolume"))
+        {
+            float masterVolume = PlayerPrefs.GetFloat("MasterVolume");
+            audioMixer.SetFloat("volume", Mathf.Log10(masterVolume) * 20);
+        }
+        if (PlayerPrefs.HasKey("MusicVolume"))
+        {
+            float musicVolume = PlayerPrefs.GetFloat("MusicVolume");
+            audioMixer.SetFloat("Music", Mathf.Log10(musicVolume) * 20);
+        }
+        if (PlayerPrefs.HasKey("SFXVolume"))
+        {
+            float sfxVolume = PlayerPrefs.GetFloat("SFXVolume");
+            audioMixer.SetFloat("SFX", Mathf.Log10(sfxVolume) * 20);
+        }
+        if (PlayerPrefs.HasKey("VoiceVolume"))
+        {
+            float voiceVolume = PlayerPrefs.GetFloat("VoiceVolume");
+            audioMixer.SetFloat("Voice", Mathf.Log10(voiceVolume) * 20);
         }
     }
 
