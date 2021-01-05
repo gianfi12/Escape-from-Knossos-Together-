@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class WonGameTrigger : MonoBehaviour
 {
-    [SerializeField] CinemachineVirtualCamera endgameVCAM;
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("Player")) {
