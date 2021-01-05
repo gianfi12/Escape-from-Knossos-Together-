@@ -63,7 +63,6 @@ public class PillarsRoomManager : MonoBehaviour
             } while(solution.Contains(path) || solution.Contains(inversePath));
 
             solution[i] = path;
-            Debug.Log(solution[i]);
             sourceNode = destNode;
         }
     }
@@ -92,7 +91,7 @@ public class PillarsRoomManager : MonoBehaviour
 
     private void VerifySolution() {
         bool check = activated.All(path => solution.Contains(path) || solution.Contains(new Tuple<int, int>(path.Item2, path.Item1)));
-        Debug.Log(check);
+        check &= solution.All(path => activated.Contains(path) || activated.Contains(new Tuple<int, int>(path.Item2, path.Item1)));
 
         if (check) {
             myRoom.ExitDoor.OpenDoors();
