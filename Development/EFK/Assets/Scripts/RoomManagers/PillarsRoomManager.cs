@@ -7,7 +7,6 @@ using UnityEngine.UI;
 
 public class PillarsRoomManager : MonoBehaviour
 {
-    [SerializeField] private Doors controlledDoors;
     [SerializeField] private int solutionLength;
     [SerializeField] List<Pillar> pillars;
     [SerializeField] LineRenderer lightRayRenderer;
@@ -15,6 +14,7 @@ public class PillarsRoomManager : MonoBehaviour
     [SerializeField] Color solvedColor;
     [SerializeField] List<Image> pathGUIImages;
     private System.Random rnd;
+    private ObjectsContainer myRoom;
 
     private List<int>[] connections = new List<int>[] {
         new List<int>{1,2,3,4,6,9},
@@ -35,7 +35,8 @@ public class PillarsRoomManager : MonoBehaviour
 
     void Start()
     {
-        rnd = new System.Random(GetComponentInParent<ObjectsContainer>().Seed);
+        myRoom = GetComponentInParent<ObjectsContainer>();
+        rnd = new System.Random(myRoom.Seed);
         foreach (Pillar p in pillars) p.SetPillarsRoomManager(this);
         
         GenerateSolution();
@@ -62,7 +63,6 @@ public class PillarsRoomManager : MonoBehaviour
             } while(solution.Contains(path) || solution.Contains(inversePath));
 
             solution[i] = path;
-            Debug.Log(solution[i]);
             sourceNode = destNode;
         }
     }
@@ -91,10 +91,10 @@ public class PillarsRoomManager : MonoBehaviour
 
     private void VerifySolution() {
         bool check = activated.All(path => solution.Contains(path) || solution.Contains(new Tuple<int, int>(path.Item2, path.Item1)));
-        Debug.Log(check);
+        check &= solution.All(path => activated.Contains(path) || activated.Contains(new Tuple<int, int>(path.Item2, path.Item1)));
 
         if (check) {
-            controlledDoors.OpenDoors();
+            myRoom.ExitDoor.OpenDoors();
             GenerateLightRay(true);
         }
         else ResetActivatedPillars();

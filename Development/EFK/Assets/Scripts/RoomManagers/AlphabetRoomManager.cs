@@ -28,9 +28,8 @@ public class AlphabetRoomManager : MonoBehaviour
     }
     private Mode[] modes =
     {
-        new Mode(0,0, "Row top->down from left to right"),new Mode(0,4,"Row top->down from right to left"),new Mode(4,0,  "Row down->top from left to right"),
-        new Mode(4,4, "Row down->top from right to left"),new Mode(0,0, "Column left->right from top to down"),new Mode(0,4,  "Column left->right from down to top"),
-        new Mode(4,0, "Column right->left from top to down"),new Mode(4,4,"Column right->left from down to top")
+        new Mode(0,0, "Row top->down from left to right"),new Mode(4,0,  "Row down->top from left to right"),
+        new Mode(0,0, "Column left->right from top to down"), new Mode(4,0, "Column right->left from top to down")
     };
     
     private int[,] matrix = new int[5, 5] {
@@ -45,6 +44,8 @@ public class AlphabetRoomManager : MonoBehaviour
     private Collectable[] runes;
     [SerializeField] private CombinationPanel combinationPanel;
     [SerializeField] private Doors exitDoor;
+    [SerializeField] private GameObject positionsContainer;
+    private List<Transform> runePositions;
 
     private void SelectNumbers()
     {
@@ -56,36 +57,49 @@ public class AlphabetRoomManager : MonoBehaviour
 
 
         int countA = 5;
-        int modeID = Random.Range(0,8);
+        int modeID = Random.Range(0,4);
         mode = modes[modeID];
         int a = mode.a;
         int b = mode.b;
+        Debug.Log(modes[modeID].name);
         while (countA != 0)
         {
             int countB = 5;
             while (countB != 0)
             {
                 //se mode riga
-                if (modeID <= 3) numbers.Add(matrix[a,b]);
+                if (modeID <= 1) numbers.Add(matrix[a,b]);
                 //se mode colonna
                 else numbers.Add(matrix[b,a]);
-                b = UpdateAandB(1, modeID % 4, a, b);
+                b = UpdateAandB(1, modeID % 2, a, b);
                 countB--;
             }
 
-            a = UpdateAandB(0, modeID % 4, a, b);
+            a = UpdateAandB(0, modeID % 2, a, b);
             b = mode.b;
             countA--;
         }
         
         
         int start = 0;
+        List<int> selectedIndexes = new List<int>();
         while (remaining != 0)
         {
-            chosen = Random.Range(start, 26 - remaining);
+            /*chosen = Random.Range(start, 26 - remaining);
             selectedNumbers.Add(numbers[chosen]);
             start = chosen + 1;
+            remaining--;*/
+            do
+            {
+                chosen = Random.Range(0, 26);
+            } while (selectedIndexes.Contains(chosen));
+            selectedIndexes.Add(chosen);
             remaining--;
+        }
+        selectedIndexes.Sort();
+        foreach (var index in selectedIndexes)
+        {
+            selectedNumbers.Add(numbers[index]);
         }
     }
 
@@ -93,28 +107,16 @@ public class AlphabetRoomManager : MonoBehaviour
     {
         int x = a;
         int y = b;
-        switch (mode)
+        
+        if (mode == 0)
         {
-            case 0:
-                x++;
-                y++;
-                break;
-            case 1:
-                x++;
-                y--;
-                break;
-            case 2:
-                x--;
-                y++;
-                break;
-            case 3:
-                x--;
-                y--;
-                break;
-            default:
-                x++;
-                y++;
-                break;
+            x++;
+            y++;
+        }
+        else
+        {
+            x--;
+            y++;
         }
 
         if (choice == 0) return x;
@@ -123,15 +125,19 @@ public class AlphabetRoomManager : MonoBehaviour
     
     private void Start()
     {
+        runePositions = new List<Transform>(positionsContainer.transform.GetComponentsInChildren<Transform>());
         runes = GetComponentsInChildren<Collectable>();
         SelectNumbers();
-        combinationPanel.transform.parent.GetComponentInChildren<Canvas>().GetComponentInChildren<Image>().transform.Find("Order").GetComponent<Text>().text += mode.name;
+        //combinationPanel.transform.parent.GetComponentInChildren<Canvas>().GetComponentInChildren<Image>().transform.Find("Order").GetComponent<Text>().text += mode.name;
         System.Random rnd = new System.Random(GetComponent<ObjectsContainer>().Seed);
         int [] randomIndex = selectedNumbers.OrderBy(x => rnd.Next()).ToArray();
         for (int i = 0; i < runes.Length; i++)
         {
             runes[i].GetComponent<SpriteRenderer>().sprite = runeSprites[randomIndex[i]];
             runes[i].ID = randomIndex[i];
+            int randomPos = rnd.Next(0, runePositions.Count);
+            runes[i].transform.position = runePositions[randomPos].position;
+            runePositions.RemoveAt(randomPos);
         }
     }
 

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 [System.Serializable]
 public class Sound
@@ -14,6 +15,7 @@ public class Sound
     [SerializeField] private bool loop;
     [Range(0f,1f)]
     [SerializeField] private float spatialBlend;
+    [SerializeField] private AudioMixerGroup audioMixer;
     private AudioSource source;
     public string Name => name;
     public void SetUpSound(AudioSource audioSource)
@@ -24,6 +26,7 @@ public class Sound
         source.pitch = pitch;
         source.loop = loop;
         source.spatialBlend = spatialBlend;
+        source.outputAudioMixerGroup = audioMixer;
     }
 
     public void Play()

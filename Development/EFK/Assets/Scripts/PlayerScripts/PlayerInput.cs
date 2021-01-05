@@ -149,6 +149,11 @@ public class PlayerInput : MonoBehaviourPun
             if (Input.GetButtonDown("Interact")) {
                 _playerInteraction.InteractWithTarget(transform.gameObject);
             }
+            if (Input.GetButtonDown("Cancel"))
+            {
+                if(_exitGamePrefabInstance==null)
+                    _exitGamePrefabInstance = Instantiate(exitGamePrefab);
+            }
         }
 
         _animator.SetFloat("Speed", _movement.SqrMagnitude());
