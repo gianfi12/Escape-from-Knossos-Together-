@@ -8,7 +8,9 @@ using UnityEngine;
 public class RoomCollider : MonoBehaviour
 {
     [SerializeField] private RoomAbstract room;
-    [SerializeField] private List<ActivatableObject> activatableObjects = new List<ActivatableObject>(); 
+    [SerializeField] private List<ActivatableObject> activatableObjects = new List<ActivatableObject>();
+
+    private bool _hasAlreadyBeenActivated = false;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -38,8 +40,11 @@ public class RoomCollider : MonoBehaviour
                 player.SetRoom(room);
                 room.Player = player;
                 // player.SetTimer(room.MaxTimeInSeconds, room.TimeoutTriggersLoss);
-                player.IncrementTimer(room.TimeIncrementInSeconds);
-
+                if(!_hasAlreadyBeenActivated)
+                {
+                    player.IncrementTimer(room.TimeIncrementInSeconds);
+                    _hasAlreadyBeenActivated = true;
+                }
                 foreach (ActivatableObject o in activatableObjects) o.ActivateObject();
             }
         }

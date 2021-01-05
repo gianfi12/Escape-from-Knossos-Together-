@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -58,14 +59,21 @@ public class LineOfSight : MonoBehaviour
         viewMeshFilter.mesh = viewMesh;
 
         if (isNPC) npcController = GetComponent<AgentController>();
-        else playerInteractionController = GetComponent<PlayerInteraction>();
-
-        StartCoroutine("FindTargetsWithDelay", 0.1f);
+        else
+        {
+            playerInteractionController = GetComponent<PlayerInteraction>();
+            StartCoroutine("FindTargetsWithDelay", 0.1f);
+        }
     }
 
     private void LateUpdate() {
         if (isNPC) movementAngleOffset = npcController.GetDirectionAngle();
         DrawLineOfSight();    
+    }
+
+    public void NpcStartFindTarget()
+    {
+        StartCoroutine("FindTargetsWithDelay", 0.1f);
     }
 
     IEnumerator FindTargetsWithDelay(float delay) {
@@ -94,7 +102,7 @@ public class LineOfSight : MonoBehaviour
                 }
             }
         }
-
+        
         if (isNPC && visibleTargets.Count != 0)
         {
             if (visibleTargets.First().GetComponent<PlayerInput>()._canMove) 

@@ -62,7 +62,7 @@ public class ColorButtonPanel : MonoBehaviour {
                 }
                 else {
                     ResetButtons();
-                    FindObjectOfType<AudioManager>().Play("PuzzleWrong");
+                    
                 }
 
             }

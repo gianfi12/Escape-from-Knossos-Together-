@@ -83,7 +83,7 @@ public class GameManager : MonoBehaviourPun
         if (PlayerPrefs.HasKey("MasterVolume"))
         {
             float masterVolume = PlayerPrefs.GetFloat("MasterVolume");
-            audioMixer.SetFloat("volume", Mathf.Log10(masterVolume) * 20);
+            audioMixer.SetFloat("Master", Mathf.Log10(masterVolume) * 20);
         }
         if (PlayerPrefs.HasKey("MusicVolume"))
         {

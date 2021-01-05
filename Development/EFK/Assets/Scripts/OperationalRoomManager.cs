@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = System.Random;
@@ -51,7 +53,6 @@ public class OperationalRoomManager : MonoBehaviour
         _buttonValues = new int[_buttonConsoles.Count];
         _spriteRenderers = new List<SpriteRenderer>();    
         createValues();
-        placeValues();
         placeCounterForUser();
         GameObject temp = new GameObject("OpText");
         Text text = temp.AddComponent<Text>();
@@ -73,9 +74,95 @@ public class OperationalRoomManager : MonoBehaviour
             newTransform.position -= new Vector3(4.25f, 2.3f+0.15f * i,1f);
         }
     }
-    
-    private void placeValues()
+
+    private List<List<int>> computeAllCombination(List<int> inputValues)
     {
+        List<List<int>> combinationList = new List<List<int>>();
+        Stack<List<int>> stack = new Stack<List<int>>();
+        foreach (int inputValue in inputValues)
+        {
+            List<int> temp = new List<int>();
+            temp.Add(inputValue);
+            stack.Push(new List<int>(temp));
+        }
+
+        while (stack.Count!=0)
+        {
+            List<int> listOfInt = stack.Pop();
+            combinationList.Add(new List<int>(listOfInt));
+            if (listOfInt.Count == numberOfSteps) continue;
+            for(int i=inputValues.IndexOf(listOfInt[listOfInt.Count-1]);i<inputValues.Count;i++)
+            {
+                List<int> temp = new List<int>(listOfInt);
+                temp.Add(inputValues[i]);
+                stack.Push(temp);
+            }
+        }
+
+        return combinationList;
+    }
+
+    private Dictionary<int,int> aggregateAllCombination(List<List<int>> combinationList)
+    {
+        Dictionary<int,int> returnedAggregate = new Dictionary<int, int>();
+        foreach (List<int> list in combinationList)
+        {
+            int sum = 0;
+            foreach (int value in list)
+            {
+                sum += value;
+            }
+            returnedAggregate[sum]=returnedAggregate.ContainsKey(sum)?returnedAggregate[sum++]++:1;
+        }
+
+        return returnedAggregate;
+    }
+
+    private List<List<int>> computeAllCombinationWithAvalue(List<List<int>> combinationsList, int value)
+    {
+        List<List<int>> returnedList = new List<List<int>>();
+        Stack<List<int>> stack = new Stack<List<int>>();
+        foreach (List<int> inputValue in combinationsList)
+        {
+            if(inputValue.Count<numberOfSteps) stack.Push(inputValue);
+        }
+
+        while (stack.Count!=0)
+        {
+            List<int> listOfInt = stack.Pop();
+            List<int> temp = new List<int>(listOfInt);
+            temp.Add(value);
+            returnedList.Add(temp);
+            listOfInt.Add(value);
+            if (listOfInt.Count == numberOfSteps) continue;
+            stack.Push(listOfInt);
+        }
+
+        return returnedList;
+    }
+    
+    private void createValues()
+    {
+        int sum = 0;
+        int value;
+        // Dictionary<int, int> aggregatedResults;
+        do
+        {
+            sum = 0;
+            _combinationValues.Clear();
+            for (int i = 0; i < numberOfSteps; i++)
+            {
+                while ((value = _rnd.Next(-9, 10)) == 0 || (value!=0 && _combinationValues.Contains(value))) ;
+                _combinationValues.Add(value);
+                sum += value;
+            }
+
+            _finalValue = sum;
+            // aggregatedResults = aggregateAllCombination(computeAllCombination(_combinationValues));
+
+        } while (_finalValue >= 9 || _finalValue <= -9 || aggregateAllCombination(computeAllCombination(_combinationValues))[_finalValue]>1);
+        
+        
         List<int> selectedValues = new List<int>();
         selectedValues.AddRange(_combinationValues);
         for (int i = 0; i < numberOfSteps; i++)
@@ -85,36 +172,38 @@ public class OperationalRoomManager : MonoBehaviour
             _buttonConsoles[buttonIndex].updateValue(_combinationValues[i]);
             _buttonValues[buttonIndex] = _combinationValues[i];
         }
-
+        
         int index = 0;
-        int value;
         foreach (ButtonConsole buttonConsole in _buttonConsoles)
         {
             if(!buttonConsole.isSet)
             {
-                while((value = _rnd.Next(-9, 10))==0 || (value!=0 && selectedValues.Contains(value)));
+                List<List<int>> combinationsList = computeAllCombination(selectedValues);
+                List<List<int>> tempCombinationList=new List<List<int>>();
+                do
+                {
+                    while((value= _rnd.Next(-9, 10))==0 || (value!=0 && selectedValues.Contains(value)));
+                    
+                    tempCombinationList = computeAllCombinationWithAvalue(new List<List<int>>(combinationsList),value);
+
+                } while (aggregateAllCombination(tempCombinationList).ContainsKey(_finalValue));
                 buttonConsole.updateValue(value);
                 _buttonValues[index] = value;
                 selectedValues.Add(value);
             }
             index++;
         }
-        _resultConsole.updateValue(_startingValue);
-    }
-    private void createValues()
-    {
+        
         _startingValue = _rnd.Next(-9, 10);
+        _finalValue += _startingValue;
 
-        int sum = 0;
-        int value;
-        for (int i = 0; i < numberOfSteps; i++)
+        String solution = "OperationalRoom solution: ";
+        foreach (int selectedValue in _combinationValues)
         {
-            while((value = _rnd.Next(-9, 10))==0 && _combinationValues.Contains(value));
-            _combinationValues.Add(value);
-            sum += value;
+            solution += " " + selectedValue + " ";
         }
-
-        _finalValue = sum + _startingValue;
+        Debug.Log(solution);
+        _resultConsole.updateValue(_startingValue);
     }
     
     public void updateResultConsole(int value,PlayerControllerMap playerControllerMap)
@@ -122,7 +211,7 @@ public class OperationalRoomManager : MonoBehaviour
         if (hasFinished) return;
         _numberOfIteration++;
         _resultConsole.updateValue(value);
-        if (_resultConsole.Result==_finalValue)
+        if (_resultConsole.Result==_finalValue && numberOfSteps==_numberOfIteration)
         {
             doors.OpenDoors();
             confirmCounterForUser();

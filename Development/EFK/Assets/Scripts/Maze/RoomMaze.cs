@@ -24,6 +24,7 @@ public class RoomMaze : RoomAbstract
     [SerializeField] private GameObject resetLever;
     [SerializeField] private GameObject pressedButtonsGUI;
     [SerializeField] private GameObject fadeText;
+    private RoomCollider roomCollider;
 
     private int _sizeX, _sizeY;
 
@@ -119,11 +120,11 @@ public class RoomMaze : RoomAbstract
         collider.layer = LayerMask.NameToLayer("Ignore Raycast");
         collider.transform.SetParent(_mazeTransform);
         BoxCollider2D boxCollider2D = collider.AddComponent<BoxCollider2D>();
-        RoomCollider roomCollider = collider.AddComponent<RoomCollider>();
+        roomCollider = collider.AddComponent<RoomCollider>();
         roomCollider.Room = this;
-        collider.transform.position = new Vector3(_sizeX/2+_displacementX+1.5f,_sizeY/2+_displacementY+1.5f,0f);
+        collider.transform.position = new Vector3(_sizeX/2+_displacementX+1f,_sizeY/2+_displacementY+1f,0f);
         boxCollider2D.isTrigger = true;
-        boxCollider2D.size = new Vector2(_sizeX+2f,_sizeY+2f);
+        boxCollider2D.size = new Vector2(_sizeX+1f,_sizeY+1f);
         GameObject textObj = Instantiate(fadeText, _mazeTransform);
         FadeText text = textObj.GetComponentInChildren<FadeText>();
         text.gameObject.SetActive(false);
@@ -629,6 +630,8 @@ public class RoomMaze : RoomAbstract
         foreach (AgentController agentController in _listAgent)
         {
             agentController.SetCheckpoints(_listCheckpoints[i]);
+            agentController.gameObject.SetActive(false);
+            roomCollider.AddActivatableObject(agentController);
             i++;
         }
     }
