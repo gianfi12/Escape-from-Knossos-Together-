@@ -161,10 +161,7 @@ public class OperationalRoomManager : MonoBehaviour
             // aggregatedResults = aggregateAllCombination(computeAllCombination(_combinationValues));
 
         } while (_finalValue >= 9 || _finalValue <= -9 || aggregateAllCombination(computeAllCombination(_combinationValues))[_finalValue]>1);
-
-
-        _startingValue = _rnd.Next(-9, 10);
-        _finalValue += _startingValue;
+        
         
         List<int> selectedValues = new List<int>();
         selectedValues.AddRange(_combinationValues);
@@ -196,6 +193,9 @@ public class OperationalRoomManager : MonoBehaviour
             }
             index++;
         }
+        
+        _startingValue = _rnd.Next(-9, 10);
+        _finalValue += _startingValue;
 
         String solution = "OperationalRoom solution: ";
         foreach (int selectedValue in _combinationValues)
