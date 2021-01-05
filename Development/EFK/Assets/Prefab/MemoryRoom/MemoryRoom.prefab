@@ -365,7 +365,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3950064053999652538
 RectTransform:
   m_ObjectHideFlags: 0
@@ -439,7 +439,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3949759918410992686
 RectTransform:
   m_ObjectHideFlags: 0
@@ -513,7 +513,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &4207142071131644330
 RectTransform:
   m_ObjectHideFlags: 0
@@ -661,7 +661,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5246534580247651062
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2079,7 +2079,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5010704414169428338
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2820,7 +2820,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &4995791428909634964
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3190,7 +3190,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2955166309392761481
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3486,7 +3486,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4613914914810213834
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3791,7 +3791,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1971948825752816395
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4155,7 +4155,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8291142006341513212
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4278,7 +4278,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4476852051322178296
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4352,7 +4352,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &9124109195983478542
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4609,7 +4609,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3196793585090385476
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4988,7 +4988,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &4289002577999138696
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5290,7 +5290,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4904193018723946634
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5438,7 +5438,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3663919401384742846
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5595,7 +5595,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8751220512578554197
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5978,7 +5978,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5020174424318717343
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6135,7 +6135,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1459225192414398461
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6546,8 +6546,8 @@ Tilemap:
   - first: {x: -5, y: 4, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 7
-      m_TileSpriteIndex: 2
+      m_TileIndex: 17
+      m_TileSpriteIndex: 17
       m_TileMatrixIndex: 2
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -6555,8 +6555,8 @@ Tilemap:
   - first: {x: 6, y: 4, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 12
-      m_TileSpriteIndex: 12
+      m_TileIndex: 18
+      m_TileSpriteIndex: 18
       m_TileMatrixIndex: 2
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -6865,7 +6865,7 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: f9b71d4eea1bc7a47805e2d71e0e24fc, type: 2}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: 91378c11bfccf0f4e809052931735a34, type: 2}
-  - m_RefCount: 8
+  - m_RefCount: 7
     m_Data: {fileID: 11400000, guid: 29130ec600f50cf4689141f0c9c6c4e7, type: 2}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: fab1f70a714809b409db63cea572761a, type: 2}
@@ -6875,7 +6875,7 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: 0f6008482af719040beb4ee44ccda6eb, type: 2}
   - m_RefCount: 2
     m_Data: {fileID: 11400000, guid: 985b28762e120a945bc6f0beb49632d0, type: 2}
-  - m_RefCount: 8
+  - m_RefCount: 7
     m_Data: {fileID: 11400000, guid: af507c6a9afc55a45b7351c68800710a, type: 2}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: e88a2a9fc7b10db46a2ef9d2757f19ef, type: 2}
@@ -6885,12 +6885,16 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: 7f363f04a13e12d4f95d86734eb832ad, type: 2}
   - m_RefCount: 2
     m_Data: {fileID: 11400000, guid: a536fe2d343b62f4889b04d8c7519dc5, type: 2}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: edcb3bdf457a6c343b5f26e8a536ec0e, type: 2}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: 291e616751e19b74ca464f0986146c64, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 1
     m_Data: {fileID: 21300000, guid: 43e2645025b27b64c82c38b90836b52a, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 21300000, guid: 689cd4ab00b652b4d85dcac80866c2c4, type: 3}
-  - m_RefCount: 8
+  - m_RefCount: 7
     m_Data: {fileID: 21300000, guid: 1289316cabfde4b40be636f5c00080ed, type: 3}
   - m_RefCount: 10
     m_Data: {fileID: 21300000, guid: 2170a3a6af16c384cbac8cd38dd6ece4, type: 3}
@@ -6913,7 +6917,7 @@ Tilemap:
     m_Data: {fileID: 21300368, guid: 95d22684aba5646d79a26b3287a692b6, type: 3}
   - m_RefCount: 2
     m_Data: {fileID: 21300156, guid: 95d22684aba5646d79a26b3287a692b6, type: 3}
-  - m_RefCount: 8
+  - m_RefCount: 7
     m_Data: {fileID: 21300000, guid: ffead6d4857babf4598e1796687de043, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 21300000, guid: e83de3957d5d63d4d84451fada73e99c, type: 3}
@@ -6924,6 +6928,10 @@ Tilemap:
       type: 3}
   - m_RefCount: 2
     m_Data: {fileID: 21300000, guid: 6c4800464dbc32e48aa40edcbcbbe59f, type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: 21300000, guid: beed779bf8d6b7143a6919a7e02fff1b, type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: 21300000, guid: f53da1695d3cf0746a7056666b5872b1, type: 3}
   m_TileMatrixArray:
   - m_RefCount: 0
     m_Data:
@@ -7148,7 +7156,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3509986201696470554
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7338,7 +7346,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 996d1c91e2c6e4f46ab7d47f38d6f161, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Seed: 323
+  Seed: 3928
   entranceDoor: {fileID: 1056497246535612222}
   exitDoor: {fileID: 7210110209504311154}
 --- !u!114 &4169217186920396857
@@ -7388,7 +7396,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3851177263294404532
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7536,7 +7544,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1841870178934557537
 RectTransform:
   m_ObjectHideFlags: 0

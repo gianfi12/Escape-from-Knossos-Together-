@@ -342,6 +342,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Seed: 0
+  entranceDoor: {fileID: 0}
+  exitDoor: {fileID: 0}
 --- !u!1 &3456967895326596400
 GameObject:
   m_ObjectHideFlags: 0
@@ -1433,8 +1435,8 @@ Tilemap:
   - first: {x: 7, y: 5, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 4
-      m_TileSpriteIndex: 4
+      m_TileIndex: 3
+      m_TileSpriteIndex: 3
       m_TileMatrixIndex: 2
       m_TileColorIndex: 5
       m_TileObjectToInstantiateIndex: 65535
@@ -1645,9 +1647,9 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 5
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: 291e616751e19b74ca464f0986146c64, type: 2}
+  - m_RefCount: 4
     m_Data: {fileID: 11400000, guid: af507c6a9afc55a45b7351c68800710a, type: 2}
   - m_RefCount: 7
     m_Data: {fileID: 11400000, guid: 29130ec600f50cf4689141f0c9c6c4e7, type: 2}
@@ -1684,9 +1686,9 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 5
+  - m_RefCount: 1
+    m_Data: {fileID: 21300000, guid: f53da1695d3cf0746a7056666b5872b1, type: 3}
+  - m_RefCount: 4
     m_Data: {fileID: 21300000, guid: ffead6d4857babf4598e1796687de043, type: 3}
   - m_RefCount: 7
     m_Data: {fileID: 21300000, guid: 1289316cabfde4b40be636f5c00080ed, type: 3}
@@ -2326,8 +2328,6 @@ MonoBehaviour:
   assetsCollection: {fileID: 11400000, guid: 55d586d2096a3454bbdfe9f671b4eb18, type: 2}
   hasTwin: 0
   twinRoom: {fileID: 0}
-  doorExit: {fileID: 0}
-  doorEntrance: {fileID: 0}
   objectsParent: {fileID: 2932249447508190123}
   useSameEntrance: 0
   diaryText: {fileID: 4387373995546391234, guid: 037f20e031d3cc044872a48b2a904c27,
