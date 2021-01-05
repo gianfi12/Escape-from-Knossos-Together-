@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
-public class AgentController : MonoBehaviour
+public class AgentController : ActivatableObject
 {
 
     private Transform target;
@@ -38,7 +38,7 @@ public class AgentController : MonoBehaviour
     private Vector3 _previousPosition;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
@@ -191,7 +191,7 @@ public class AgentController : MonoBehaviour
             }
             else return;
 
-            if (playerControllerMap.gameObject.GetComponent<PlayerInput>()._canMove)
+            if (!playerControllerMap.gameObject.GetComponent<PlayerInput>()._isHidden)
             {
                 if (PhotonNetwork.IsConnected)
                 {
@@ -233,5 +233,16 @@ public class AgentController : MonoBehaviour
         }
 
         _previousPosition = transform.position;
+    }
+
+    public override void ActivateObject()
+    {
+        gameObject.SetActive(true);
+        lineOfSight.NpcStartFindTarget();
+    }
+
+    public override void DeactivateObject()
+    {
+        gameObject.SetActive(false);
     }
 }

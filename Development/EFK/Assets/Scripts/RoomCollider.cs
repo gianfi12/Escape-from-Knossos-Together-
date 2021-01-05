@@ -44,8 +44,8 @@ public class RoomCollider : MonoBehaviour
                 {
                     player.IncrementTimer(room.TimeIncrementInSeconds);
                     _hasAlreadyBeenActivated = true;
-                    foreach (ActivatableObject o in activatableObjects) o.ActivateObject();
                 }
+                foreach (ActivatableObject o in activatableObjects) o.ActivateObject();
             }
         }
     }

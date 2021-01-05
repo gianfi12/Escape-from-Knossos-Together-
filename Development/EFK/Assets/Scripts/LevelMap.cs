@@ -62,7 +62,6 @@ public class LevelMap : MonoBehaviourPun
         NavMeshModifier navMeshModifierDecoration = _tilemapDecoration.gameObject.AddComponent<NavMeshModifier>();
         navMeshModifierDecoration.overrideArea = true;
         navMeshModifierDecoration.area = 1; //1 means not walkable
-        
     }
 
     [PunRPC]

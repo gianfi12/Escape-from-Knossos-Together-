@@ -34,6 +34,7 @@ public class Manhole : InteractableObject
             _hasBeenActivated = true;
             _animator.SetBool("isEmpty",false);
             _playerInput.CanMove = false;
+            _playerInput._isHidden = true;
             _playerInteraction.canChangeLastInteractableObejct = false;
             _playerRenderer.enabled = false;
             _timeOfActivation = Time.time;
@@ -42,6 +43,7 @@ public class Manhole : InteractableObject
             _hasBeenActivated = false;
             _animator.SetBool("isEmpty",true);
             _playerInput.CanMove = true;
+            _playerInput._isHidden = false;
             _playerInteraction.canChangeLastInteractableObejct = true;
             _playerRenderer.enabled = true;
         }
