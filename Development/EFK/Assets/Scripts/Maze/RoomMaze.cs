@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Permissions;
@@ -9,8 +9,8 @@ using Random = UnityEngine.Random;
 
 public class RoomMaze : RoomAbstract
 {
-    private const int _minSetSpace=21;//has to be odd
-    private const int _maxSetSpace=70;
+    private const int _minSetSpace=31;//has to be odd
+    private const int _maxSetSpace=31;
 
     [SerializeField][Range(_minSetSpace,_maxSetSpace)] private int maxSpace;
     [SerializeField] private int minRoomSize;
@@ -40,6 +40,7 @@ public class RoomMaze : RoomAbstract
     private System.Random rnd;
     private List<Vector3Int> _occupiedTile;
     private GameObject _resetLeverInstance;
+    private bool _isVerical;
 
     private Vector3Int _coordinatesNotEntrance;
     private Vector3Int _coordinatesNotExit;
@@ -124,7 +125,18 @@ public class RoomMaze : RoomAbstract
         roomCollider.Room = this;
         collider.transform.position = new Vector3(_sizeX/2+_displacementX+1f,_sizeY/2+_displacementY+1f,0f);
         boxCollider2D.isTrigger = true;
-        boxCollider2D.size = new Vector2(_sizeX+1f,_sizeY+1f);
+        if(_isVerical)
+        {
+            collider.transform.position =
+                new Vector3(_sizeX / 2 + _displacementX +1f, _sizeY / 2 + _displacementY+1f, 0f);
+            boxCollider2D.size = new Vector2(_sizeX , _sizeY );
+        }
+        else
+        {
+            collider.transform.position =
+                new Vector3(_sizeX / 2 + _displacementX + 1f, _sizeY / 2 + _displacementY + 1f, 0f);
+            boxCollider2D.size = new Vector2(_sizeX + 1f, _sizeY + 1f);
+        }
         GameObject textObj = Instantiate(fadeText, _mazeTransform);
         FadeText text = textObj.GetComponentInChildren<FadeText>();
         text.gameObject.SetActive(false);
@@ -503,6 +515,7 @@ public class RoomMaze : RoomAbstract
                     Vector3 doorPosition;
                     if (directionChange == 0)
                     {
+                        _isVerical = true;
                         // doorTransform.rotation *= Quaternion.Euler(0, 0, 90);
                         doorPosition = position + new Vector3(0.5f, 0.5f, 0);
                         doorTransform.GetComponent<Doors>().ClosingDirection=Direction.South;
@@ -510,6 +523,7 @@ public class RoomMaze : RoomAbstract
                     }
                     else
                     {
+                        _isVerical = false;
                         // doorTransform.rotation *= Quaternion.Euler(0, 0, 180);
                         doorPosition = position + new Vector3(0, 0.5f, 0);
                         doorTransform.GetComponent<Doors>().ClosingDirection=Direction.East;
@@ -594,7 +608,7 @@ public class RoomMaze : RoomAbstract
                 startingIndex = index;
             }
         }
-        // PutWall(0,new Vector3Int(_sizeX-1,_sizeY-1,0));
+        PutWall(0,new Vector3Int(_sizeX-1,_sizeY-1,0));
     }
 
     private Cell AddCell(Room room, Vector2Int position)
