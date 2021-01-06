@@ -18,5 +18,11 @@ public class Button:InteractableObject
     {
         _animator.SetTrigger("Pressed");
         _buttonConsole.updateResult(player.GetComponent<PlayerControllerMap>());
+        gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
+    }
+
+    public void resetPressedStatus()
+    {
+        gameObject.layer = LayerMask.NameToLayer("Interactable");
     }
 }

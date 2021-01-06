@@ -236,6 +236,14 @@ public class OperationalRoomManager : MonoBehaviour
         {
             playerControllerMap.IncrementTimer(-timePenalityInSeconds);
             _resultConsole.reset(_startingValue);
+            foreach (ButtonConsole buttonConsole in _buttonConsoles)
+            {
+                Button[] buttons = GetComponentsInChildren<Button>();
+                foreach (Button button in buttons)
+                {
+                    button.resetPressedStatus();
+                }
+            }
             StartCoroutine(resetCounterForUser());
         }
         else
