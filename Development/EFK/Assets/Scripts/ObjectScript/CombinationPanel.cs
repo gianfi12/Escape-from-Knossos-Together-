@@ -75,6 +75,6 @@ public class CombinationPanel : InteractableObject
     }
 
     public void TriggerWrongCombination() {
-        if(playerController != null) playerController.TriggerHalveTimePenalization();
+        if(playerController != null) playerController.IncrementTimer(-20);
     }
 }

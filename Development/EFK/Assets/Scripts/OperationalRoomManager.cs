@@ -124,7 +124,7 @@ public class OperationalRoomManager : MonoBehaviour
         Stack<List<int>> stack = new Stack<List<int>>();
         foreach (List<int> inputValue in combinationsList)
         {
-            if(inputValue.Count<numberOfSteps) stack.Push(inputValue);
+            if(inputValue.Count<numberOfSteps) stack.Push(new List<int>(inputValue));
         }
 
         while (stack.Count!=0)
@@ -133,9 +133,10 @@ public class OperationalRoomManager : MonoBehaviour
             List<int> temp = new List<int>(listOfInt);
             temp.Add(value);
             returnedList.Add(temp);
-            listOfInt.Add(value);
-            if (listOfInt.Count == numberOfSteps) continue;
-            stack.Push(listOfInt);
+            temp = new List<int>(listOfInt);
+            temp.Add(value);
+            if (temp.Count == numberOfSteps) continue;
+            stack.Push(temp);
         }
 
         return returnedList;
