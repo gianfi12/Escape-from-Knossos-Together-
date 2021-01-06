@@ -12,7 +12,6 @@ public class Doors : MonoBehaviour
     public bool IsOpenOnStart { get => isOpenOnStart; }
 
     private Animator _animator;
-    private PolygonCollider2D _polygonCollider2D;
     private SpriteRenderer _spriteRenderer;
     private bool _isOpen;
 
@@ -23,7 +22,6 @@ public class Doors : MonoBehaviour
     
     private void Awake() {
         _animator = gameObject.GetComponent<Animator>();
-        _polygonCollider2D = gameObject.GetComponent<PolygonCollider2D>();
         _spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         if (isOpenOnStart) 
             OpenDoors();
@@ -49,17 +47,20 @@ public class Doors : MonoBehaviour
         }
 
         if (other.CompareTag("Player") && valueCondition) {
+            
             CloseDoors();
+            
         }
     }
 
     public void OpenDoors()
     {
+        GetComponent<Collider2D>().isTrigger = true;
         _isOpen = true;
         GetComponent<Animator>().SetBool("isOpen",true);
-        StartCoroutine("OnFinishAnimation");
+       // StartCoroutine("OnFinishAnimation");
     }
-    
+    /*
     IEnumerator OnFinishAnimation()
     {
         while(_animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f)
@@ -67,18 +68,20 @@ public class Doors : MonoBehaviour
 
         changeColliderShape();
         setTrigger();
-    }
+    }*/
 
     public void CloseDoors()
     {
+        GetComponent<Collider2D>().isTrigger = false;
         _isOpen = false;
         _animator.SetBool("isOpen",false);
-        StartCoroutine("OnFinishAnimation");
+        //StartCoroutine("OnFinishAnimation");
     }
 
     public void FlipClosingDirection() {
         closingDirection = closingDirection.GetOpposite();
     }
+    /*
     public void changeColliderShape()
     {
         bool isTrigger = _polygonCollider2D.isTrigger;
@@ -92,5 +95,5 @@ public class Doors : MonoBehaviour
         _polygonCollider2D.isTrigger = !_isOpen ? false : true;
         gameObject.layer = 
             _isOpen ? LayerMask.NameToLayer("Ignore Raycast") : LayerMask.NameToLayer("Default");
-    }
+    }*/
 }

@@ -124,8 +124,6 @@ MonoBehaviour:
   assetsCollection: {fileID: 11400000, guid: faf00a2f1fb745748ad852f25f064f70, type: 2}
   hasTwin: 0
   twinRoom: {fileID: 0}
-  doorExit: {fileID: 0}
-  doorEntrance: {fileID: 0}
   objectsParent: {fileID: 0}
   useSameEntrance: 0
   diaryText: {fileID: 143847020809086236, guid: 39a53d8505c82dc4fabe6167824b3ebc,
@@ -138,9 +136,9 @@ MonoBehaviour:
   timeoutTriggersLoss: 1
   maxSpace: 50
   minRoomSize: 10
-  doorUpPrefab: {fileID: 335289165766956583, guid: 112e6d5a9f32e364faa2abbe47245835,
+  doorUpPrefab: {fileID: 4893326279767166184, guid: ff0197915cf29904ea2bd19455046877,
     type: 3}
-  doorLatePrefab: {fileID: 6990602343991118201, guid: c5dd82c34fae1a742b4e59895007eb8b,
+  doorLatePrefab: {fileID: 5727249077753273787, guid: 82688a7f239cad54eaf5a89f0cf818c0,
     type: 3}
   wardrobePrefab: {fileID: 8932908033788877102, guid: a1df1118d55ed2e46b2d66dbfde9d2c7,
     type: 3}
