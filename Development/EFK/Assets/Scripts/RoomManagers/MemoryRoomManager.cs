@@ -134,7 +134,7 @@ public class MemoryRoomManager : MonoBehaviour
         
     }
 
-    public void VerifyCombination()
+    public void VerifyCombination(PlayerControllerMap player)
     {
         int winCount = 0;
         if (currentPicture == 0)
@@ -148,9 +148,8 @@ public class MemoryRoomManager : MonoBehaviour
             {
                 currentPicture++;
                 SetUpRoom();
-                Debug.Log("HAI VINTO LA PRIMA PROVA");
             }
-            else Debug.Log("HAI PERSO");
+            else player.IncrementTimer(-20);
         }
         else if (currentPicture == 1)
         {
@@ -163,6 +162,7 @@ public class MemoryRoomManager : MonoBehaviour
             {
                 myRoom.ExitDoor.OpenDoors();        
             }
+            else player.IncrementTimer(-20);
         }
     }
 }
