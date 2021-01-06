@@ -953,6 +953,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _canMove: 1
+  _isHidden: 0
   _playerUI: {fileID: 6139589961878084805}
   diaryPanel: {fileID: 3690557783144270758}
   diaryImage: {fileID: 311690724240254438}
