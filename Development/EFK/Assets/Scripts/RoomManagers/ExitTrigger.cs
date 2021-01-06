@@ -47,17 +47,20 @@ public class ExitTrigger : MonoBehaviour {
             Animator animator;
 
             for (int i = 0; i < playersNumber; i++) {
-                if (Vector3.Distance(players[i].transform.position, positionCheckpoints[i].transform.position) > 0.1f && !checkpointReached[i]) {
-                    Vector3 directionToCheckpoint = (positionCheckpoints[i].transform.position - players[i].transform.position).normalized;
+                if (players[i] != null)
+                {
+                    if (Vector3.Distance(players[i].transform.position, positionCheckpoints[i].transform.position) > 0.1f && !checkpointReached[i]) {
+                        Vector3 directionToCheckpoint = (positionCheckpoints[i].transform.position - players[i].transform.position).normalized;
 
-                    direction2D = new Vector2(directionToCheckpoint.x, directionToCheckpoint.y);
-                    players[i].GetComponent<PlayerControllerMap>().Move(directionToCheckpoint);
+                        direction2D = new Vector2(directionToCheckpoint.x, directionToCheckpoint.y);
+                        players[i].GetComponent<PlayerControllerMap>().Move(directionToCheckpoint);
 
-                    animator = players[i].GetComponent<Animator>();
-                    animator.SetFloat("Speed", direction2D.SqrMagnitude());
-                    animator.SetFloat("Horizontal", direction2D.x);
+                        animator = players[i].GetComponent<Animator>();
+                        animator.SetFloat("Speed", direction2D.SqrMagnitude());
+                        animator.SetFloat("Horizontal", direction2D.x);
+                    }
+                    else checkpointReached[i] = true;    
                 }
-                else checkpointReached[i] = true;       
             }
 
             if (checkpointReached.All(x => x)) {
@@ -65,10 +68,13 @@ public class ExitTrigger : MonoBehaviour {
 
                 direction2D = Vector2.up;
                 foreach (GameObject player in players) {
-                    player.GetComponent<PlayerControllerMap>().Move(Vector3.up);
-                    animator = player.GetComponent<Animator>();
-                    animator.SetFloat("Speed", direction2D.SqrMagnitude());
-                    animator.SetFloat("Horizontal", direction2D.x);
+                    if (player != null)
+                    {
+                        player.GetComponent<PlayerControllerMap>().Move(Vector3.up);
+                        animator = player.GetComponent<Animator>();
+                        animator.SetFloat("Speed", direction2D.SqrMagnitude());
+                        animator.SetFloat("Horizontal", direction2D.x);
+                    }
                 }
             }
         }

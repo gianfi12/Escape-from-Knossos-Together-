@@ -16,6 +16,7 @@ public class Sound
     [Range(0f,1f)]
     [SerializeField] private float spatialBlend;
     [SerializeField] private AudioMixerGroup audioMixer;
+    [SerializeField] private float maxDistance;
     private AudioSource source;
     public string Name => name;
     public void SetUpSound(AudioSource audioSource)
@@ -27,6 +28,7 @@ public class Sound
         source.loop = loop;
         source.spatialBlend = spatialBlend;
         source.outputAudioMixerGroup = audioMixer;
+        source.maxDistance = maxDistance;
     }
 
     public void Play()

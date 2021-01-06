@@ -650,7 +650,6 @@ public class RoomMaze : RoomAbstract
         foreach (AgentController agentController in _listAgent)
         {
             agentController.SetCheckpoints(_listCheckpoints[i]);
-            agentController.gameObject.SetActive(false);
             roomCollider.AddActivatableObject(agentController);
             i++;
         }

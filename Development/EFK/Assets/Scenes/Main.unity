@@ -345,6 +345,7 @@ MonoBehaviour:
     spatialBlend: 0
     audioMixer: {fileID: 7642651166835970932, guid: 8dcae844e122de740b31b047f29dfea1,
       type: 2}
+    maxDistance: 0
   - name: Theme
     clip: {fileID: 8300000, guid: 25b73ff12b0b1e145983b9e44791c313, type: 3}
     volume: 0.34
@@ -353,38 +354,43 @@ MonoBehaviour:
     spatialBlend: 0
     audioMixer: {fileID: -5474162659854218699, guid: 8dcae844e122de740b31b047f29dfea1,
       type: 2}
-  - name: HologramOn
-    clip: {fileID: 8300000, guid: 6a8c60075137cfd4399c724d469adb9f, type: 3}
-    volume: 0.29
-    pitch: 0.5
+    maxDistance: 0
+  - name: ManholeOpen
+    clip: {fileID: 8300000, guid: 111df745ab2f5b84a980fcfacec87f2b, type: 3}
+    volume: 1
+    pitch: 1
     loop: 0
     spatialBlend: 0
     audioMixer: {fileID: 7642651166835970932, guid: 8dcae844e122de740b31b047f29dfea1,
       type: 2}
-  - name: HologramOff
-    clip: {fileID: 8300000, guid: 16f6ba62752f6f340a663ecd14475490, type: 3}
-    volume: 0.24
-    pitch: 0.5
+    maxDistance: 0
+  - name: ManholeClose
+    clip: {fileID: 8300000, guid: c721577571c1b1d40b820fdc191a91dc, type: 3}
+    volume: 1
+    pitch: 1
     loop: 0
     spatialBlend: 0
     audioMixer: {fileID: 7642651166835970932, guid: 8dcae844e122de740b31b047f29dfea1,
       type: 2}
-  - name: PuzzleRight
-    clip: {fileID: 8300000, guid: 89db9a30e91a9a947ab40be759f43f99, type: 3}
-    volume: 0.24
-    pitch: 0.5
-    loop: 0
+    maxDistance: 0
+  - name: AlarmStart
+    clip: {fileID: 8300000, guid: 62631f86ca7ae0c4eaf5bbb334ce62ce, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    spatialBlend: 1
+    audioMixer: {fileID: 7642651166835970932, guid: 8dcae844e122de740b31b047f29dfea1,
+      type: 2}
+    maxDistance: 2
+  - name: Ambient
+    clip: {fileID: 8300000, guid: 43981783555ba4841b15853da2a0e44b, type: 3}
+    volume: 0.2
+    pitch: 1
+    loop: 1
     spatialBlend: 0
     audioMixer: {fileID: 7642651166835970932, guid: 8dcae844e122de740b31b047f29dfea1,
       type: 2}
-  - name: PuzzleWrong
-    clip: {fileID: 8300000, guid: 7e8fa89919521d84b8180dc811d7c545, type: 3}
-    volume: 0.24
-    pitch: 0.5
-    loop: 0
-    spatialBlend: 0
-    audioMixer: {fileID: 7642651166835970932, guid: 8dcae844e122de740b31b047f29dfea1,
-      type: 2}
+    maxDistance: 0
   - name: MonitorOn
     clip: {fileID: 8300000, guid: 3297b8e010ccde2469b5fcd29d3dd4b2, type: 3}
     volume: 0.24
@@ -393,6 +399,7 @@ MonoBehaviour:
     spatialBlend: 0
     audioMixer: {fileID: 7642651166835970932, guid: 8dcae844e122de740b31b047f29dfea1,
       type: 2}
+    maxDistance: 0
   - name: MonitorOff
     clip: {fileID: 8300000, guid: 1534fc1c46699bd43ac431c838acf6eb, type: 3}
     volume: 0.24
@@ -401,6 +408,7 @@ MonoBehaviour:
     spatialBlend: 0
     audioMixer: {fileID: 7642651166835970932, guid: 8dcae844e122de740b31b047f29dfea1,
       type: 2}
+    maxDistance: 0
 --- !u!4 &97944987
 Transform:
   m_ObjectHideFlags: 0

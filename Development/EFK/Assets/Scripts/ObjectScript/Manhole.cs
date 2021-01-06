@@ -38,6 +38,7 @@ public class Manhole : InteractableObject
             _playerInteraction.canChangeLastInteractableObejct = false;
             _playerRenderer.enabled = false;
             _timeOfActivation = Time.time;
+            FindObjectOfType<AudioManager>().Play("ManholeOpen");
         }
         else if(_hasBeenActivated && (Time.time - _timeOfActivation) > minTimeInWardrobe) {
             _hasBeenActivated = false;
@@ -46,6 +47,7 @@ public class Manhole : InteractableObject
             _playerInput._isHidden = false;
             _playerInteraction.canChangeLastInteractableObejct = true;
             _playerRenderer.enabled = true;
+            FindObjectOfType<AudioManager>().Play("ManholeClose");
         }
     }
 }

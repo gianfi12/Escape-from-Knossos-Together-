@@ -8,6 +8,8 @@ public class Doors : MonoBehaviour
     // Is the direction in which the player has to traverse the door in order for it to become closed
     [SerializeField] private Direction closingDirection;
     [SerializeField] private bool isOpenOnStart;
+    [SerializeField] private AudioSource openingSound;
+    [SerializeField] private AudioSource closingSound;
 
     public bool IsOpenOnStart { get => isOpenOnStart; }
 
@@ -58,7 +60,8 @@ public class Doors : MonoBehaviour
         GetComponent<Collider2D>().isTrigger = true;
         _isOpen = true;
         GetComponent<Animator>().SetBool("isOpen",true);
-       // StartCoroutine("OnFinishAnimation");
+        //openingSound.Play();
+        // StartCoroutine("OnFinishAnimation");
     }
     /*
     IEnumerator OnFinishAnimation()
@@ -75,6 +78,7 @@ public class Doors : MonoBehaviour
         GetComponent<Collider2D>().isTrigger = false;
         _isOpen = false;
         _animator.SetBool("isOpen",false);
+        //closingSound.Play();
         //StartCoroutine("OnFinishAnimation");
     }
 

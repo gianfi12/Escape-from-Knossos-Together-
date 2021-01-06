@@ -7,6 +7,7 @@ public class ResetLever: InteractableObject
     public override void Interact(GameObject player)
     {
         GetComponent<Animator>().SetTrigger("Activate");
+        FindObjectOfType<AudioManager>().Play("Lever");
     }
 
     public void ResetPanel()
