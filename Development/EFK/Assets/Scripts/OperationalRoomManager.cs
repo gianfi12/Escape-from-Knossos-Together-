@@ -121,7 +121,11 @@ public class OperationalRoomManager : MonoBehaviour
     private List<List<int>> computeAllCombinationWithAvalue(List<List<int>> combinationsList, int value)
     {
         List<List<int>> returnedList = new List<List<int>>();
+        List<int> startList = new List<int>();
+        startList.Add(value);
+        returnedList.Add(new List<int>(startList));
         Stack<List<int>> stack = new Stack<List<int>>();
+        stack.Push(new List<int>(startList));
         foreach (List<int> inputValue in combinationsList)
         {
             if(inputValue.Count<numberOfSteps) stack.Push(new List<int>(inputValue));
@@ -212,7 +216,7 @@ public class OperationalRoomManager : MonoBehaviour
         int abs = Math.Abs(value);
         foreach (int selectedValue in selectedValues)
         {
-            if (abs == Math.Abs(selectedValue))
+            if (abs == Math.Abs(selectedValue) && value!=selectedValue)
                 return true;
         }
 
