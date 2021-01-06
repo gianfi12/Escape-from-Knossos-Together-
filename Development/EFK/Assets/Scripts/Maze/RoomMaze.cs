@@ -546,6 +546,7 @@ public class RoomMaze : RoomAbstract
             {
                 if (!hasExit && ((directionChange == exitHasToBeInDirectionChange && index == 2) || (Random.Range(1, 100) >90 && index%2==0 && index<startingIndex && exitHasToBeInDirectionChange==directionChange)))
                 {
+                    Debug.Log("Exit"+index);
                     hasExit = true;
                     Tile tile = new Tile(assetsCollection.GetTileFromType(AssetType.Exit)[0],
                         position);
@@ -581,6 +582,11 @@ public class RoomMaze : RoomAbstract
                         index--;
                         position += directions[directionChange].GetDirection();
                         PutWall(0, position);
+                    }
+
+                    if (directionChange == 2 && index == _sizeY - 1)
+                    {
+                        PutWall(0,position-directions[directionChange].GetDirection());
                     }
                 }else
                 {
