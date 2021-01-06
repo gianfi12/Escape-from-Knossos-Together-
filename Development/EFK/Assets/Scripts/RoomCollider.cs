@@ -30,7 +30,11 @@ public class RoomCollider : MonoBehaviour
                     player = other.GetComponent<PlayerControllerMap>();
                     player.ResetInventory();
                     // player.SetTimer(room.MaxTimeInSeconds, room.TimeoutTriggersLoss);
-                    player.IncrementTimer(room.TimeIncrementInSeconds);
+                    if(!_hasAlreadyBeenActivated)
+                    {
+                        player.IncrementTimer(room.TimeIncrementInSeconds);
+                        _hasAlreadyBeenActivated = true;
+                    }
 
                     foreach(ActivatableObject o in activatableObjects) o.ActivateObject();
                 }
