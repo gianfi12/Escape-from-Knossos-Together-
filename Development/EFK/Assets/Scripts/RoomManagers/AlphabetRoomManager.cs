@@ -80,23 +80,18 @@ public class AlphabetRoomManager : MonoBehaviour
             countA--;
         }
         
-        
-        int start = 0;
         List<int> selectedIndexes = new List<int>();
         while (remaining != 0)
         {
-            /*chosen = Random.Range(start, 26 - remaining);
-            selectedNumbers.Add(numbers[chosen]);
-            start = chosen + 1;
-            remaining--;*/
             do
             {
-                chosen = Random.Range(0, 26);
+                chosen = Random.Range(0, 25);
             } while (selectedIndexes.Contains(chosen));
             selectedIndexes.Add(chosen);
             remaining--;
         }
         selectedIndexes.Sort();
+        Debug.Log(numbers.Count);
         foreach (var index in selectedIndexes)
         {
             selectedNumbers.Add(numbers[index]);
