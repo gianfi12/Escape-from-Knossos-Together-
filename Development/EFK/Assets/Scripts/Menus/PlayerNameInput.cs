@@ -13,7 +13,7 @@ public class PlayerNameInput : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SetUpInputField();
+        //SetUpInputField();
     }
 
     private void SetUpInputField()

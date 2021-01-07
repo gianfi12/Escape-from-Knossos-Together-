@@ -49,7 +49,6 @@ public class CombinationPanel : InteractableObject
                 slot.SlotImage.Canvas = playerCanvas;
             }
             panel.gameObject.SetActive(true);
-            playerController.IsInPanel = true;
             FindObjectOfType<AudioManager>().Play("TotemOn");
             Cursor.lockState = CursorLockMode.None;
         }
@@ -75,7 +74,6 @@ public class CombinationPanel : InteractableObject
             slot.SlotImage.Canvas = canvasToReturn;
         }
         panel.gameObject.SetActive(false);
-        playerController.IsInPanel = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
 
