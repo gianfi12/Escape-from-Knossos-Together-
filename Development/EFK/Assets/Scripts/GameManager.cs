@@ -101,8 +101,8 @@ public class GameManager : MonoBehaviourPun
             audioMixer.SetFloat("Voice", Mathf.Log10(voiceVolume) * 20);
         }
         
-        FindObjectOfType<AudioManager>().Play("AlarmStart");
-        //FindObjectOfType<AudioManager>().Play("Ambient");
+        //FindObjectOfType<AudioManager>().Play("AlarmStart");
+        FindObjectOfType<AudioManager>().Play("Ambient");
     }
 
     public void SetPlayerInstance(PlayerControllerMap playerInstance) {

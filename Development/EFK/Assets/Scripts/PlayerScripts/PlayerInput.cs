@@ -144,7 +144,7 @@ public class PlayerInput : MonoBehaviourPun
                 isReading = true;
                 _playerController.Speed = readingSpeed;
                 System.Random random = new System.Random();
-                mapSounds[random.Next(0,18)].Play();
+                mapSounds[random.Next(0,mapSounds.Length)].Play();
             }
     
             else if (Input.GetButtonUp("Map"))

@@ -15,6 +15,7 @@ public class ColorButtonPanel : MonoBehaviour {
     List<int> pressed = new List<int>();
 
     private bool disabled = false;
+    private bool isInMaze;
 
     private PressedButtons pressedButtonsGUI;
 
@@ -52,19 +53,31 @@ public class ColorButtonPanel : MonoBehaviour {
     public void ButtonPressed(int index) {
         if (!disabled) {
             pressed.Add(index);
-            if(pressedButtonsGUI != null) pressedButtonsGUI.UpdatePressedColors(buttonColors[index]);
+            if(isInMaze) pressedButtonsGUI.UpdatePressedColors(buttonColors[index]);
 
             if (pressed.Count() >= numberOfActiveButtons) {
-                if (orderedButtons.SequenceEqual(pressed)) {
-                    controlledDoors.OpenDoors();
+                if (orderedButtons.SequenceEqual(pressed))
+                {
+                    StartCoroutine(controlledDoors.OpenDoorsWithDelay(0.5f));
                     disabled = true;
-                    FindObjectOfType<AudioManager>().Play("PuzzleRight");
+                    if (isInMaze) FindObjectOfType<AudioManager>().Play("MazeCubeRight");
+                    else FindObjectOfType<AudioManager>().Play("CubeRight");
                 }
                 else {
+                    if (isInMaze) FindObjectOfType<AudioManager>().Play("MazeCubeWrong");
+                    else FindObjectOfType<AudioManager>().Play("CubeWrong");
                     ResetButtons();
-                    
                 }
 
+            }
+            else
+            {
+                if (isInMaze)
+                {
+                    if (pressed.Count == 1) FindObjectOfType<AudioManager>().Play("MazeCubeNorm1");
+                    else if (pressed.Count == 2) FindObjectOfType<AudioManager>().Play("MazeCubeNorm2");
+                }
+                else FindObjectOfType<AudioManager>().Play("CubeNorm");
             }
         }
     }
@@ -88,10 +101,15 @@ public class ColorButtonPanel : MonoBehaviour {
         set => guiImages = value;
     }
 
-    public PressedButtons PressedButtonsGUI 
+    public PressedButtons PressedButtonsGUI
     {
-        get => pressedButtonsGUI; 
-        set => pressedButtonsGUI = value; 
+        get => pressedButtonsGUI;
+    }
+
+    public void SetPressedButtonsGUI(PressedButtons pressedButtons)
+    {
+        pressedButtonsGUI = pressedButtons;
+        isInMaze = true;
     }
 
     public Color[] ButtonColors => buttonColors;

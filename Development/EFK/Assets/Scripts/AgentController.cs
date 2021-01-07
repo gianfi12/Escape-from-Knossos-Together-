@@ -256,6 +256,7 @@ public class AgentController : ActivatableObject
     {
         agent.isStopped = false;
         lineOfSight.enabled = true;
+        GetComponentInChildren<MeshRenderer>().enabled = true;
         lineOfSight.NpcStartFindTarget();
     }
 
@@ -266,5 +267,11 @@ public class AgentController : ActivatableObject
         isSeekingPlayer = false;
         isWanderingAfterSeeking = false;
         lineOfSight.enabled = false;
+        GetComponentInChildren<MeshRenderer>().enabled = false;
+        if (triggerRhytm.isPlaying)
+        {
+            triggerRhytm.Stop();
+            triggerOff.Play();
+        }
     }
 }

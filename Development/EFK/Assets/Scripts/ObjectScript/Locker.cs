@@ -14,6 +14,7 @@ public class Locker : InteractableObject
     [SerializeField] private Sprite inactiveWithoutCard;
     [SerializeField] private Sprite employeePhoto;
     private SpriteRenderer spriteRenderer;
+    private AudioSource[] lockerSounds;
 
     public Collectable IDCard
     {
@@ -43,13 +44,15 @@ public class Locker : InteractableObject
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         inactiveWithCard = GetComponent<SpriteRenderer>().sprite;
+        lockerSounds = GetComponentsInChildren<AudioSource>();
     }
 
     public override void Interact(GameObject player)
     {
         if (!_hasBeenActivated)
         {
-            FindObjectOfType<AudioManager>().Play("MonitorOn");
+            System.Random random = new System.Random();
+            lockerSounds[random.Next(0,lockerSounds.Length)].Play();
             _hasBeenActivated = true;
             spriteRenderer.sprite = activeWithCard;
             gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
@@ -77,11 +80,11 @@ public class Locker : InteractableObject
         idCard.gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
         gameObject.layer = LayerMask.NameToLayer("Interactable");
         cables.layer = LayerMask.NameToLayer("Interactable");
-        FindObjectOfType<AudioManager>().Play("MonitorOff");
     }
 
     public void TakenCard()
     {
         spriteRenderer.sprite = activeWithoutCard;
+        FindObjectOfType<AudioManager>().Play("CardTaken");
     }
 }

@@ -666,7 +666,7 @@ public class RoomMaze : RoomAbstract
 
         GameObject pressedButtonsGUIInstance = Instantiate(pressedButtonsGUI, _mazeTransform);
         PressedButtons pressedButtonsGUIScript = pressedButtonsGUIInstance.GetComponentInChildren<PressedButtons>();
-        entrancePanel.PressedButtonsGUI = pressedButtonsGUIScript;
+        entrancePanel.SetPressedButtonsGUI(pressedButtonsGUIScript);
         pressedButtonsGUIScript.gameObject.SetActive(false);
         _mazeTransform.GetComponentInChildren<RoomCollider>().AddActivatableObject(pressedButtonsGUIScript);
 

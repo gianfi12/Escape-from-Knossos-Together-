@@ -189,6 +189,6 @@ public class PlayerControllerMap : MonoBehaviour
     public void Footsep()
     {
         System.Random random = new System.Random();
-        footstepSounds[random.Next(0,12)].Play();
+        footstepSounds[random.Next(0,footstepSounds.Length)].Play();
     }
 }

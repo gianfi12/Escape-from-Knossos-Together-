@@ -348,7 +348,7 @@ MonoBehaviour:
     maxDistance: 0
   - name: Theme
     clip: {fileID: 8300000, guid: 25b73ff12b0b1e145983b9e44791c313, type: 3}
-    volume: 0.34
+    volume: 0
     pitch: 0.5
     loop: 1
     spatialBlend: 0
@@ -383,7 +383,7 @@ MonoBehaviour:
       type: 2}
     maxDistance: 2
   - name: Ambient
-    clip: {fileID: 8300000, guid: 43981783555ba4841b15853da2a0e44b, type: 3}
+    clip: {fileID: 8300000, guid: fb8b99c1a8225b54789dd44ff6eead20, type: 3}
     volume: 0.2
     pitch: 1
     loop: 1
@@ -391,19 +391,109 @@ MonoBehaviour:
     audioMixer: {fileID: 7642651166835970932, guid: 8dcae844e122de740b31b047f29dfea1,
       type: 2}
     maxDistance: 0
-  - name: MonitorOn
-    clip: {fileID: 8300000, guid: 3297b8e010ccde2469b5fcd29d3dd4b2, type: 3}
-    volume: 0.24
-    pitch: 0.5
+  - name: CubeNorm
+    clip: {fileID: 8300000, guid: 96063f5f130404e4aaf341425ef085b8, type: 3}
+    volume: 1
+    pitch: 1
     loop: 0
     spatialBlend: 0
     audioMixer: {fileID: 7642651166835970932, guid: 8dcae844e122de740b31b047f29dfea1,
       type: 2}
     maxDistance: 0
-  - name: MonitorOff
-    clip: {fileID: 8300000, guid: 1534fc1c46699bd43ac431c838acf6eb, type: 3}
-    volume: 0.24
-    pitch: 0.5
+  - name: CubeRight
+    clip: {fileID: 8300000, guid: e85f8384ecd65014c959235207fb187a, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBlend: 0
+    audioMixer: {fileID: 7642651166835970932, guid: 8dcae844e122de740b31b047f29dfea1,
+      type: 2}
+    maxDistance: 0
+  - name: CubeWrong
+    clip: {fileID: 8300000, guid: f55337da4cfdf124bbe6a81d37cea33f, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBlend: 0
+    audioMixer: {fileID: 7642651166835970932, guid: 8dcae844e122de740b31b047f29dfea1,
+      type: 2}
+    maxDistance: 0
+  - name: MazeCubeNorm1
+    clip: {fileID: 8300000, guid: 65ae27f143c018f42904daa4c8c7a73e, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBlend: 0
+    audioMixer: {fileID: 7642651166835970932, guid: 8dcae844e122de740b31b047f29dfea1,
+      type: 2}
+    maxDistance: 0
+  - name: MazeCubeNorm2
+    clip: {fileID: 8300000, guid: 00e9db9530c029645ac42fc5ae37fff9, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBlend: 0
+    audioMixer: {fileID: 7642651166835970932, guid: 8dcae844e122de740b31b047f29dfea1,
+      type: 2}
+    maxDistance: 0
+  - name: MazeCubeRight
+    clip: {fileID: 8300000, guid: c11c11ba37509d949a4fb37e5c0a1fb1, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBlend: 0
+    audioMixer: {fileID: 7642651166835970932, guid: 8dcae844e122de740b31b047f29dfea1,
+      type: 2}
+    maxDistance: 0
+  - name: MazeCubeWrong
+    clip: {fileID: 8300000, guid: f55337da4cfdf124bbe6a81d37cea33f, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBlend: 0
+    audioMixer: {fileID: 7642651166835970932, guid: 8dcae844e122de740b31b047f29dfea1,
+      type: 2}
+    maxDistance: 0
+  - name: TotemOn
+    clip: {fileID: 8300000, guid: 863b350f5e8c7734bb36026312faf4e8, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBlend: 0
+    audioMixer: {fileID: 7642651166835970932, guid: 8dcae844e122de740b31b047f29dfea1,
+      type: 2}
+    maxDistance: 0
+  - name: TotemConfirm
+    clip: {fileID: 8300000, guid: 3defa88a45ba28f4daa0c60f36506738, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBlend: 0
+    audioMixer: {fileID: 7642651166835970932, guid: 8dcae844e122de740b31b047f29dfea1,
+      type: 2}
+    maxDistance: 0
+  - name: CardTaken
+    clip: {fileID: 8300000, guid: 9041c1d1b21ca5c4aa49f19d8cbbe0f1, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBlend: 0
+    audioMixer: {fileID: 7642651166835970932, guid: 8dcae844e122de740b31b047f29dfea1,
+      type: 2}
+    maxDistance: 0
+  - name: DragUI
+    clip: {fileID: 8300000, guid: 2e1fcb1dd0c99e14b86b0bbc1f8df97d, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBlend: 0
+    audioMixer: {fileID: 7642651166835970932, guid: 8dcae844e122de740b31b047f29dfea1,
+      type: 2}
+    maxDistance: 0
+  - name: SnapUI
+    clip: {fileID: 8300000, guid: 90e8e26561d097443a9655ab837f1986, type: 3}
+    volume: 1
+    pitch: 1
     loop: 0
     spatialBlend: 0
     audioMixer: {fileID: 7642651166835970932, guid: 8dcae844e122de740b31b047f29dfea1,
