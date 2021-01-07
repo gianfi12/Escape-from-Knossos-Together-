@@ -9,7 +9,7 @@ using Random = UnityEngine.Random;
 
 public class RoomMaze : RoomAbstract
 {
-    private const int _minSetSpace=31;//has to be odd
+    private const int _minSetSpace=27;//has to be odd
     private const int _maxSetSpace=31;
 
     [SerializeField][Range(_minSetSpace,_maxSetSpace)] private int maxSpace;
@@ -70,7 +70,7 @@ public class RoomMaze : RoomAbstract
         rnd = new System.Random(seed);
         int random;
         while ((random = Random.Range(_minSetSpace, maxSpace)) % 3 != 0);
-        _sizeX = random;
+        _sizeX = random+1; //remove this +1 if you make the size variable
         _sizeY = random;
         _requiredWidthSpace = _sizeX+2;//due to the walls
         

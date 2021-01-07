@@ -204,11 +204,11 @@ public class LevelMap : MonoBehaviourPun
 
             }else if (moovingCoordinatesFromLeft.Count < moovingCoordinatesFromRight.Count)
             {
-                for (int i = 0; i < moovingCoordinatesFromRight.Count-moovingCoordinatesFromLeft.Count-1;i++)
+                for (int i = 0; i < moovingCoordinatesFromRight.Count-moovingCoordinatesFromLeft.Count;i++)
                 {
-                    _tilemapWall.SetTile(new Vector3Int(moovingCoordinatesFromLeft[0].x-1,moovingCoordinatesFromLeft.Min(x=>x.y)+i+2,0),asset.GetTileFromType(AssetType.WallTopLeft)[0]);
+                    _tilemapWall.SetTile(new Vector3Int(moovingCoordinatesFromLeft[0].x,moovingCoordinatesFromLeft.Min(x=>x.y)-i-2,0),asset.GetTileFromType(AssetType.WallBottomRight)[0]);
                 }
-                _tilemapWall.SetTile(new Vector3Int(moovingCoordinatesFromLeft[0].x+1,moovingCoordinatesFromLeft.Min(x=>x.y)+moovingCoordinatesFromRight.Count-moovingCoordinatesFromLeft.Count,0),asset.GetTileFromType(AssetType.WallBottomRight)[0]);
+                _tilemapWall.SetTile(new Vector3Int(moovingCoordinatesFromLeft[0].x+1,moovingCoordinatesFromLeft.Min(x=>x.y)+moovingCoordinatesFromRight.Count-moovingCoordinatesFromLeft.Count,0),asset.GetTileFromType(AssetType.WallTopLeft)[0]);
             }
 
         }else if (moovingCoordinatesFromLeft.Min(x=> x.y) == moovingCoordinatesFromRight.Min(x=>x.y))

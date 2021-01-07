@@ -238,11 +238,12 @@ public class OperationalRoomManager : MonoBehaviour
             _resultConsole.reset(_startingValue);
             foreach (ButtonConsole buttonConsole in _buttonConsoles)
             {
-                Button[] buttons = GetComponentsInChildren<Button>();
-                foreach (Button button in buttons)
-                {
-                    button.resetPressedStatus();
-                }
+                buttonConsole.Button.resetPressedStatus();
+                // Button[] buttons = buttonConsole.gameObject.GetComponentsInChildren<Button>();
+                // foreach (Button button in buttons)
+                // {
+                //     button.resetPressedStatus();
+                // }
             }
             StartCoroutine(resetCounterForUser());
         }

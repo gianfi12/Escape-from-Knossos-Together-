@@ -7,14 +7,18 @@ using UnityEngine.UI;
 public class ButtonConsole : MonoBehaviour
 {
     [SerializeField] public Text text;
+    private Button _button;
     private int value;
     public bool isSet;
 
+    public Button Button => _button;
+    
     private OperationalRoomManager _operationalRoomManager;
 
     private void Awake()
     {
         _operationalRoomManager = transform.parent.GetComponent<OperationalRoomManager>();
+        _button = GetComponentInChildren<Button>();
     }
     
     public void updateValue(int newText)

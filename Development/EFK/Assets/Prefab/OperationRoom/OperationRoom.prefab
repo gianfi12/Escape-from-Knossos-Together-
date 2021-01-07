@@ -706,6 +706,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 4194327534711686685}
+  button: {fileID: 2925549589560608201}
   isSet: 0
 --- !u!1 &1129399821789567830
 GameObject:
@@ -1685,6 +1686,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 6196145651208644844}
+  button: {fileID: 3236380729131338615}
   isSet: 0
 --- !u!114 &6648636660465110080
 MonoBehaviour:
@@ -1699,6 +1701,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 4646592831348410503}
+  button: {fileID: 6091697924996546403}
   isSet: 0
 --- !u!1 &3619483662395298249
 GameObject:
@@ -2785,6 +2788,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 6455730109397347090}
+  button: {fileID: 9194415941871995799}
   isSet: 0
 --- !u!1 &5441517411500968616
 GameObject:
@@ -2941,6 +2945,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 8190587973962846509}
+  button: {fileID: 5663315151770371593}
   isSet: 0
 --- !u!1 &5796773399629006430
 GameObject:
@@ -6287,6 +6292,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 7922078109232931780}
+  button: {fileID: 2526416876095713549}
   isSet: 0
 --- !u!1001 &332326547755677667
 PrefabInstance:

@@ -17,8 +17,8 @@ public class Button:InteractableObject
     public override void Interact(GameObject player)
     {
         _animator.SetTrigger("Pressed");
-        _buttonConsole.updateResult(player.GetComponent<PlayerControllerMap>());
         gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
+        _buttonConsole.updateResult(player.GetComponent<PlayerControllerMap>());
     }
 
     public void resetPressedStatus()
