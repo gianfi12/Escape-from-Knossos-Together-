@@ -163,9 +163,8 @@ public class OperationalRoomManager : MonoBehaviour
             }
 
             _finalValue = sum;
-            // aggregatedResults = aggregateAllCombination(computeAllCombination(_combinationValues));
 
-        } while (_finalValue >= 9 || _finalValue <= -9 || aggregateAllCombination(computeAllCombination(_combinationValues))[_finalValue]>1);
+        } while (_finalValue >= 9 || _finalValue <= -9 || aggregateAllCombination(computeAllCombination(_combinationValues))[_finalValue]>1 || _finalValue==0);
         
         
         List<int> selectedValues = new List<int>();
@@ -239,11 +238,6 @@ public class OperationalRoomManager : MonoBehaviour
             foreach (ButtonConsole buttonConsole in _buttonConsoles)
             {
                 buttonConsole.Button.resetPressedStatus();
-                // Button[] buttons = buttonConsole.gameObject.GetComponentsInChildren<Button>();
-                // foreach (Button button in buttons)
-                // {
-                //     button.resetPressedStatus();
-                // }
             }
             StartCoroutine(resetCounterForUser());
         }
