@@ -94,7 +94,7 @@ public class PillarsRoomManager : MonoBehaviour
         check &= solution.All(path => activated.Contains(path) || activated.Contains(new Tuple<int, int>(path.Item2, path.Item1)));
 
         if (check) {
-            myRoom.ExitDoor.OpenDoors();
+            myRoom.ExitDoor.OpenDoors(true);
             GenerateLightRay(true);
         }
         else ResetActivatedPillars();

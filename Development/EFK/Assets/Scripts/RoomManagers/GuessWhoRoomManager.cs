@@ -51,6 +51,12 @@ public class GuessWhoRoomManager : MonoBehaviour
 
     public void VerifyCombination()
     {
+        if (combinationPanel.Slots[0].GetIsFree())
+        {
+            StartCoroutine(ChangePanelColor(Color.red));
+            combinationPanel.TriggerWrongCombination();
+            return;
+        }
         if (combinationPanel.Slots[0].SlotImage.MyCollectable.ID != winnerLockerIndex)
         {
             combinationPanel.Slots[0].RemoveImage();

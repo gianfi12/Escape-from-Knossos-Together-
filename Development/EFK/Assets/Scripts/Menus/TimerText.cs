@@ -24,7 +24,7 @@ public class TimerText : MonoBehaviour
     void Update()
     {
         timerText.text = time.ToString();
-        if (time == 0 && timeTrigger)
+        if (time <= 0 && timeTrigger)
         {
             timeTrigger = false;
             playerController.Explode();
@@ -45,7 +45,8 @@ public class TimerText : MonoBehaviour
     IEnumerator DecrementTimeEverySecond() {
         while (true) {
             yield return new WaitForSeconds(1);
-            if(time>0) time--;
+            if (time > 0) time--;
+            else time = 0;
         }
     }
 

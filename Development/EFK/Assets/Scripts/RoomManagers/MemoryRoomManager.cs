@@ -160,7 +160,7 @@ public class MemoryRoomManager : MonoBehaviour
             }
             if (winCount == 3)
             {
-                myRoom.ExitDoor.OpenDoors();        
+                myRoom.ExitDoor.OpenDoors(true);        
             }
             else player.IncrementTimer(-20);
         }

@@ -34,7 +34,7 @@ public class ExitTrigger : MonoBehaviour {
         }
 
         if (playersArrived >= playersNumber) {
-            controlledDoor.OpenDoors();
+            controlledDoor.OpenDoors(true);
             foreach(GameObject player in players) player.GetComponent<PlayerInput>().enabled = false;
             movingPlayers = true;
         }

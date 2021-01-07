@@ -15,11 +15,6 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        Play("Theme");
-    }
-
     public void Play(string soundName)
     {
         Sound sound = Array.Find(sounds, x => string.Equals(x.Name, soundName));

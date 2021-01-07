@@ -346,13 +346,13 @@ MonoBehaviour:
     audioMixer: {fileID: 7642651166835970932, guid: 8dcae844e122de740b31b047f29dfea1,
       type: 2}
     maxDistance: 0
-  - name: Theme
-    clip: {fileID: 8300000, guid: 25b73ff12b0b1e145983b9e44791c313, type: 3}
-    volume: 0
-    pitch: 0.5
-    loop: 1
+  - name: Lever
+    clip: {fileID: 8300000, guid: c9849c4315806334db47dac9db83b62a, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
     spatialBlend: 0
-    audioMixer: {fileID: -5474162659854218699, guid: 8dcae844e122de740b31b047f29dfea1,
+    audioMixer: {fileID: 7642651166835970932, guid: 8dcae844e122de740b31b047f29dfea1,
       type: 2}
     maxDistance: 0
   - name: ManholeOpen
@@ -384,7 +384,7 @@ MonoBehaviour:
     maxDistance: 2
   - name: Ambient
     clip: {fileID: 8300000, guid: fb8b99c1a8225b54789dd44ff6eead20, type: 3}
-    volume: 0.2
+    volume: 0.1
     pitch: 1
     loop: 1
     spatialBlend: 0

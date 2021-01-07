@@ -6,7 +6,7 @@ public class DoorSensor : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("Player")) {
-            GetComponentInParent<Doors>().OpenDoors();
+            GetComponentInParent<Doors>().OpenDoors(true);
         }
     }
 }

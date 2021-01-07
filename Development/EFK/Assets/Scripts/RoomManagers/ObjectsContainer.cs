@@ -17,8 +17,8 @@ public class ObjectsContainer : MonoBehaviour
         entranceDoor = exitDoor;
         exitDoor = d;
 
-        entranceDoor.OpenDoors();
-        if(!entranceDoor.IsOpenOnStart) exitDoor.CloseDoors(); // now entranceDoor is the old exitDoor 
+        entranceDoor.OpenDoors(false);
+        if(!entranceDoor.IsOpenOnStart) exitDoor.CloseDoors(false); // now entranceDoor is the old exitDoor 
 
         entranceDoor.FlipClosingDirection();
         exitDoor.FlipClosingDirection();

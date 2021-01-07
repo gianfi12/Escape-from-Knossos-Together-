@@ -512,7 +512,7 @@ public class RoomMaze : RoomAbstract
                         _doorExitTransform = doorTransform;
                     }
                     else
-                        doorScript.OpenDoors();
+                        doorScript.OpenDoors(false);
                     Vector3 doorPosition;
                     if (directionChange == 0)
                     {
@@ -559,7 +559,7 @@ public class RoomMaze : RoomAbstract
                     {
                         _doorExitTransform = doorTransform;
                     }else
-                        doorScript.OpenDoors();
+                        doorScript.OpenDoors(false);
                     Vector3 doorPosition;
                     if (directionChange == 2)
                     {
