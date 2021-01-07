@@ -89,7 +89,6 @@ public class GameManager : MonoBehaviourPun
         _cameraInstance.m_Follow = _playerInstanceLocal.transform;
 
         navMesh.GetComponent<NavMeshSurface2d>().BuildNavMesh();
-        Cursor.lockState = CursorLockMode.Locked;
     } 
 
     public void SetRemotePlayer()

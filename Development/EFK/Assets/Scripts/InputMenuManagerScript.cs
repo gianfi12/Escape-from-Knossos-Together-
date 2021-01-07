@@ -12,6 +12,10 @@ public class InputMenuManagerScript:MonoBehaviour
         {
             if(_exitGamePrefab==null)
                 _exitGamePrefab = Instantiate(exitGamePrefab);
+            else
+            {
+                Destroy(_exitGamePrefab);
+            }
         }
     }
 }
