@@ -230,7 +230,7 @@ public class OperationalRoomManager : MonoBehaviour
         _resultConsole.updateValue(value);
         if (_resultConsole.Result==_finalValue && numberOfSteps==_numberOfIteration)
         {
-            doors.OpenDoors();
+            doors.OpenDoors(true);
             confirmCounterForUser();
         }else if (_numberOfIteration == numberOfSteps)
         {

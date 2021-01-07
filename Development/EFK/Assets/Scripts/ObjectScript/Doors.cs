@@ -15,7 +15,6 @@ public class Doors : MonoBehaviour
     private Animator _animator;
     private SpriteRenderer _spriteRenderer;
     private bool _isOpen;
-    private bool isSet = false;
 
     public Direction ClosingDirection {
         get => closingDirection;
@@ -27,10 +26,9 @@ public class Doors : MonoBehaviour
         _spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         doorSounds = GetComponentsInChildren<AudioSource>();
         if (isOpenOnStart)
-            OpenDoors();
+            OpenDoors(false);
         else
-            CloseDoors();
-        isSet = true;
+            CloseDoors(false);
     }
 
     private void OnTriggerExit2D(Collider2D other) {
@@ -52,7 +50,7 @@ public class Doors : MonoBehaviour
 
         if (other.CompareTag("Player") && valueCondition) {
             
-            CloseDoors();
+            CloseDoors(true);
             
         }
     }
@@ -60,27 +58,27 @@ public class Doors : MonoBehaviour
     public IEnumerator OpenDoorsWithDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-        OpenDoors();
+        OpenDoors(true);
     }
 
-    public void OpenDoors()
+    public void OpenDoors(bool withSound)
     {
         GetComponent<Collider2D>().isTrigger = true;
         _isOpen = true;
         GetComponent<Animator>().SetBool("isOpen",true);
-        if (isSet)
+        if (withSound)
         {
             System.Random random = new System.Random();
             doorSounds[random.Next(0,doorSounds.Length)].Play();
         }
     }
 
-    public void CloseDoors()
+    public void CloseDoors(bool withSound)
     {
         GetComponent<Collider2D>().isTrigger = false;
         _isOpen = false;
         _animator.SetBool("isOpen",false);
-        if (isSet)
+        if (withSound)
         {
             System.Random random = new System.Random();
             doorSounds[random.Next(0,doorSounds.Length)].Play();

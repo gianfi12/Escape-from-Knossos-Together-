@@ -149,7 +149,7 @@ public class AlphabetRoomManager : MonoBehaviour
             }
         }
         StartCoroutine(ChangePanelColor(Color.green));
-        exitDoor.OpenDoors();
+        exitDoor.OpenDoors(true);
         combinationPanel.ClosePanel(0.5f);
     }
 
