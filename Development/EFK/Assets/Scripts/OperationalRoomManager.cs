@@ -229,10 +229,12 @@ public class OperationalRoomManager : MonoBehaviour
         _resultConsole.updateValue(value);
         if (_resultConsole.Result==_finalValue && numberOfSteps==_numberOfIteration)
         {
-            doors.OpenDoors(true);
+            FindObjectOfType<AudioManager>().Play("OperationRight");
+            StartCoroutine(doors.OpenDoorsWithDelay(0.5f));
             confirmCounterForUser();
         }else if (_numberOfIteration == numberOfSteps)
         {
+            FindObjectOfType<AudioManager>().Play("OperationWrong");
             playerControllerMap.IncrementTimer(-timePenalityInSeconds);
             _resultConsole.reset(_startingValue);
             foreach (ButtonConsole buttonConsole in _buttonConsoles)
@@ -243,6 +245,7 @@ public class OperationalRoomManager : MonoBehaviour
         }
         else
         {
+            FindObjectOfType<AudioManager>().Play("OperationNorm");
             updateCounterForUser(_numberOfIteration-1);
         }
     }

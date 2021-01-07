@@ -24,6 +24,7 @@ public class RoomMaze : RoomAbstract
     [SerializeField] private GameObject resetLever;
     [SerializeField] private GameObject pressedButtonsGUI;
     [SerializeField] private GameObject fadeText;
+    [SerializeField] private AudioSource ambientSound;
     private RoomCollider roomCollider;
 
     private int _sizeX, _sizeY;
@@ -141,6 +142,13 @@ public class RoomMaze : RoomAbstract
         FadeText text = textObj.GetComponentInChildren<FadeText>();
         text.gameObject.SetActive(false);
         roomCollider.AddActivatableObject(text);
+        AudioSource audioSource = collider.AddComponent<AudioSource>();
+        audioSource.clip = ambientSound.clip;
+        audioSource.outputAudioMixerGroup = ambientSound.outputAudioMixerGroup;
+        audioSource.loop = ambientSound.loop;
+        audioSource.volume = ambientSound.volume;
+        audioSource.playOnAwake = ambientSound.playOnAwake;
+        roomCollider.AmbientSound = audioSource;
     }
 
     private void SpawnAgent()

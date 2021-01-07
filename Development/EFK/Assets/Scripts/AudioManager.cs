@@ -24,4 +24,14 @@ public class AudioManager : MonoBehaviour
             sound.Play();
         }
     }
+
+    public void Stop(string soundName)
+    {
+        Sound sound = Array.Find(sounds, x => string.Equals(x.Name, soundName));
+        if (sound == null) Debug.LogWarning("The audio source is not present");
+        else
+        {
+            sound.Stop();
+        }
+    }
 }

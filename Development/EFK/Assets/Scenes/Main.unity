@@ -338,7 +338,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: Explosion
-    clip: {fileID: 8300000, guid: e7cb68da88d8b274eb008f9a214589d8, type: 3}
+    clip: {fileID: 8300000, guid: 02f5717a84630c14bbb1076c16dd479d, type: 3}
     volume: 1
     pitch: 1
     loop: 0
@@ -382,7 +382,7 @@ MonoBehaviour:
     audioMixer: {fileID: 7642651166835970932, guid: 8dcae844e122de740b31b047f29dfea1,
       type: 2}
     maxDistance: 2
-  - name: Ambient
+  - name: AmbientCorridor
     clip: {fileID: 8300000, guid: fb8b99c1a8225b54789dd44ff6eead20, type: 3}
     volume: 0.1
     pitch: 1
@@ -492,6 +492,33 @@ MonoBehaviour:
     maxDistance: 0
   - name: SnapUI
     clip: {fileID: 8300000, guid: 90e8e26561d097443a9655ab837f1986, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBlend: 0
+    audioMixer: {fileID: 7642651166835970932, guid: 8dcae844e122de740b31b047f29dfea1,
+      type: 2}
+    maxDistance: 0
+  - name: OperationNorm
+    clip: {fileID: 8300000, guid: 9da6076305505644680bf2144e7138d4, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBlend: 0
+    audioMixer: {fileID: 7642651166835970932, guid: 8dcae844e122de740b31b047f29dfea1,
+      type: 2}
+    maxDistance: 0
+  - name: OperationRight
+    clip: {fileID: 8300000, guid: 6e8445786fbf0da4e8b31af2f510bd76, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBlend: 0
+    audioMixer: {fileID: 7642651166835970932, guid: 8dcae844e122de740b31b047f29dfea1,
+      type: 2}
+    maxDistance: 0
+  - name: OperationWrong
+    clip: {fileID: 8300000, guid: 285eeb5ad667fa74495e4e04873d5e9e, type: 3}
     volume: 1
     pitch: 1
     loop: 0

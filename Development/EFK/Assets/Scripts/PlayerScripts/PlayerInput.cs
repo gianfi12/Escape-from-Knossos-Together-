@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 using Photon.Pun;
 using UnityEngine;
+using Random = System.Random;
 
 [RequireComponent(typeof(PlayerControllerMap))]
 
@@ -29,7 +30,11 @@ public class PlayerInput : MonoBehaviourPun
     private bool isReading;
     private float normalSpeed;
     private float readingSpeed = 2f;
-    [SerializeField] private AudioSource[] mapSounds;
+    private AudioSource[] mapSounds;
+    private AudioSource radioLoop;
+    private AudioSource[] radioBursts;
+    private AudioSource[] radioOnOff;
+    System.Random random = new System.Random();
 
     public bool CanMove {
         get => _canMove;
@@ -59,6 +64,9 @@ public class PlayerInput : MonoBehaviourPun
         _playerInteraction = GetComponent<PlayerInteraction>();
         
         mapSounds = transform.Find("MapSounds").GetComponentsInChildren<AudioSource>();
+        radioLoop = transform.Find("RadioSounds").GetComponent<AudioSource>();
+        radioOnOff = radioLoop.transform.Find("OnOffSounds").GetComponents<AudioSource>();
+        radioBursts = radioLoop.transform.Find("Bursts").GetComponents<AudioSource>();
     }
     private void FixedUpdate()
     {
@@ -99,10 +107,17 @@ public class PlayerInput : MonoBehaviourPun
 
         try {
             if (photonView.IsMine) {
-                if (Input.GetButtonDown("Voice")) {
+                if (Input.GetButtonDown("Voice"))
+                {
+                    radioOnOff[random.Next(0, radioOnOff.Length)].Play();
+                    radioLoop.PlayDelayed(0.1f);
+                    StartCoroutine(StartBurst());
                     _voiceController.enableVoice();
                 }
                 else if (Input.GetButtonUp("Voice")) {
+                    if (radioLoop.isPlaying) radioLoop.Stop();
+                    radioOnOff[random.Next(0, radioOnOff.Length)].Play();
+                    StopCoroutine(StartBurst());
                     _voiceController.disableVoice();
                 }
 
@@ -112,7 +127,6 @@ public class PlayerInput : MonoBehaviourPun
                     diaryImage.SetActive(false);
                     isReading = true;
                     _playerController.Speed = readingSpeed;
-                    System.Random random = new System.Random();
                     mapSounds[random.Next(0,18)].Play();
                 }
     
@@ -150,7 +164,6 @@ public class PlayerInput : MonoBehaviourPun
                 diaryImage.SetActive(false);
                 isReading = true;
                 _playerController.Speed = readingSpeed;
-                System.Random random = new System.Random();
                 mapSounds[random.Next(0,mapSounds.Length)].Play();
             }
     
@@ -184,6 +197,14 @@ public class PlayerInput : MonoBehaviourPun
         //_animator.SetFloat("Direction", _lastDir);
     }
 
+    IEnumerator StartBurst()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(UnityEngine.Random.Range(0.7f, 1.3f));
+            radioBursts[random.Next(0,radioBursts.Length)].Play();
+        }
+    }
 
     private float SetDirection()
     {

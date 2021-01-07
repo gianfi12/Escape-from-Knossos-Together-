@@ -9,6 +9,14 @@ public class RoomCollider : MonoBehaviour
 {
     [SerializeField] private RoomAbstract room;
     [SerializeField] private List<ActivatableObject> activatableObjects = new List<ActivatableObject>();
+    [SerializeField] private AudioSource ambientSound;
+
+    public AudioSource AmbientSound
+    {
+        get => ambientSound;
+        set => ambientSound = value;
+    }
+
 
     private bool _hasAlreadyBeenActivated = false;
 
@@ -37,6 +45,8 @@ public class RoomCollider : MonoBehaviour
                     }
 
                     foreach(ActivatableObject o in activatableObjects) o.ActivateObject();
+                    FindObjectOfType<AudioManager>().Stop("AmbientCorridor");
+                    ambientSound.Play();
                 }
             }
             else {
@@ -50,10 +60,12 @@ public class RoomCollider : MonoBehaviour
                     _hasAlreadyBeenActivated = true;
                 }
                 foreach (ActivatableObject o in activatableObjects) o.ActivateObject();
+                FindObjectOfType<AudioManager>().Stop("AmbientCorridor");
+                ambientSound.Play();
             }
         }
     }
-    
+
     private void OnTriggerExit2D(Collider2D other)
     {
         /* SET OFF TIMER WHEN EXITING ROOM 
@@ -73,20 +85,27 @@ public class RoomCollider : MonoBehaviour
                 }
                 else {
                     foreach (ActivatableObject o in activatableObjects) o.DeactivateObject();
+                    ambientSound.Stop();
+                    FindObjectOfType<AudioManager>().Play("AmbientCorridor");
                 }
             }
             else {
                 foreach (ActivatableObject o in activatableObjects) o.DeactivateObject();
+                ambientSound.Stop();
+                FindObjectOfType<AudioManager>().Play("AmbientCorridor");
             }
         }
 
     }
+    
 
     public RoomAbstract Room
     {
         get => room;
         set => room = value;
     }
+    
+    
 
     public void AddActivatableObject(ActivatableObject o) {
         activatableObjects.Add(o);
