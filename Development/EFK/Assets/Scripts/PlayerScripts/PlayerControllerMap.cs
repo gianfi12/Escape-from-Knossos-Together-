@@ -12,6 +12,7 @@ public class PlayerControllerMap : MonoBehaviour
     private Vector3 _movement;
     private bool _hasChange = false;
     private bool _isDead = false;
+    private bool _isInPanel = false;
 
     private AudioManager audioManager;
     private Animator animator;
@@ -38,6 +39,12 @@ public class PlayerControllerMap : MonoBehaviour
     {
         get => _speed;
         set => _speed = value;
+    }
+    
+    public bool IsInPanel
+    {
+        get => _isInPanel;
+        set => _isInPanel = value;
     }
 
     public void Awake() {

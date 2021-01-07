@@ -566,7 +566,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 131703179536782138}
-        m_MethodName: ClickNo
+        m_MethodName: ReturnGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3930,7 +3930,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 131703179536782138}
-        m_MethodName: ClickYes
+        m_MethodName: ReturnDesktop
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
