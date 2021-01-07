@@ -53,6 +53,7 @@ public class DraggableUI : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
         transform.SetParent(canvas.transform);
         canvasGroup.alpha = .6f;
         canvasGroup.blocksRaycasts = false;
+        FindObjectOfType<AudioManager>().Play("DragUI");
     }
 
     public void OnEndDrag(PointerEventData eventData)
@@ -61,6 +62,7 @@ public class DraggableUI : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
         canvasGroup.alpha = 1f;
         canvasGroup.blocksRaycasts = true;
         transform.localPosition = Vector3.zero;
+        if (image.enabled) FindObjectOfType<AudioManager>().Play("SnapUI");
     }
 
     public void OnDrag(PointerEventData eventData)

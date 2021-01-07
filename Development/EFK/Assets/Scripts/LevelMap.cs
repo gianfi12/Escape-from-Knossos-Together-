@@ -480,7 +480,7 @@ public class LevelMap : MonoBehaviourPun
         //int randomX = Random.Range(previousRoom.DisplacementX+previousRoom.RequiredWidthSpace+PaddingRoom+previousRoom.Exit.Count+PaddingRoom, PaddingRoom + previousRoom.Exit.Count+ previousRoom.DisplacementX+previousRoom.RequiredWidthSpace +nextRoom.RequiredWidthSpace+PaddingRoom);
         int randomX = previousRoom.DisplacementX + previousRoom.RequiredWidthSpace + PaddingRoom +
                       previousRoom.Exit.Count + PaddingRoom;
-        int randomY = Random.Range(-10,10);
+        int randomY = Random.Range(-5,5);
         return new Vector3Int(randomX,randomY,0);
     }
 

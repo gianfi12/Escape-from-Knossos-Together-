@@ -28,6 +28,9 @@ public class AgentController : ActivatableObject
     [SerializeField] private Color seekingFovColor;
     [SerializeField] private Color standardEyeColor;
     [SerializeField] private Color seekingEyeColor;
+    [SerializeField] private AudioSource triggerOn;
+    [SerializeField] private AudioSource triggerOff;
+    [SerializeField] private AudioSource triggerRhytm;
 
 
     private bool isSeekingPlayer;
@@ -36,6 +39,7 @@ public class AgentController : ActivatableObject
     private Vector3 currentMovement;
     private float lastDir;
     private Vector3 _previousPosition;
+    private bool isSoundStart;
 
     // Start is called before the first frame update
     void Awake()
@@ -71,6 +75,7 @@ public class AgentController : ActivatableObject
     private void Start()
     {
         Random.InitState(transform.GetComponentInParent<ObjectsContainer>().Seed);
+        DeactivateObject();
     }
 
     private void Seek(Vector3 location)
@@ -86,6 +91,12 @@ public class AgentController : ActivatableObject
         //eyeSpriteRenderer.material.SetColor("GlowColor", seekingEyeColor*16);
         agent.speed = 2.5f;
         agent.SetDestination(location);
+        if (!isSoundStart)
+        {
+            triggerOn.Play();
+            triggerRhytm.PlayDelayed(0.5f);
+            isSoundStart = true;
+        }
     }
 
     private void Wander()
@@ -95,6 +106,9 @@ public class AgentController : ActivatableObject
 
     IEnumerator StopAgent(float delay) {
         agent.isStopped = true;
+        isSoundStart = false;
+        triggerRhytm.Stop();
+        triggerOff.Play();
         GetComponentInChildren<MeshRenderer>().enabled = false;
         yield return new WaitForSeconds(delay);
         GetComponentInChildren<MeshRenderer>().enabled = true;
@@ -240,12 +254,24 @@ public class AgentController : ActivatableObject
 
     public override void ActivateObject()
     {
-        gameObject.SetActive(true);
+        agent.isStopped = false;
+        lineOfSight.enabled = true;
+        GetComponentInChildren<MeshRenderer>().enabled = true;
         lineOfSight.NpcStartFindTarget();
     }
 
     public override void DeactivateObject()
     {
-        gameObject.SetActive(false);
+        agent.isStopped = true;
+        agent.SetDestination(gameObject.transform.position);
+        isSeekingPlayer = false;
+        isWanderingAfterSeeking = false;
+        lineOfSight.enabled = false;
+        GetComponentInChildren<MeshRenderer>().enabled = false;
+        if (triggerRhytm.isPlaying)
+        {
+            triggerRhytm.Stop();
+            triggerOff.Play();
+        }
     }
 }

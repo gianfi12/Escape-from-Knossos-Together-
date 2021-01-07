@@ -8,12 +8,14 @@ public class Doors : MonoBehaviour
     // Is the direction in which the player has to traverse the door in order for it to become closed
     [SerializeField] private Direction closingDirection;
     [SerializeField] private bool isOpenOnStart;
+    private AudioSource[] doorSounds;
 
     public bool IsOpenOnStart { get => isOpenOnStart; }
 
     private Animator _animator;
     private SpriteRenderer _spriteRenderer;
     private bool _isOpen;
+    private bool isSet = false;
 
     public Direction ClosingDirection {
         get => closingDirection;
@@ -23,10 +25,12 @@ public class Doors : MonoBehaviour
     private void Awake() {
         _animator = gameObject.GetComponent<Animator>();
         _spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-        if (isOpenOnStart) 
+        doorSounds = GetComponentsInChildren<AudioSource>();
+        if (isOpenOnStart)
             OpenDoors();
         else
             CloseDoors();
+        isSet = true;
     }
 
     private void OnTriggerExit2D(Collider2D other) {
@@ -53,47 +57,37 @@ public class Doors : MonoBehaviour
         }
     }
 
+    public IEnumerator OpenDoorsWithDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        OpenDoors();
+    }
+
     public void OpenDoors()
     {
         GetComponent<Collider2D>().isTrigger = true;
         _isOpen = true;
         GetComponent<Animator>().SetBool("isOpen",true);
-       // StartCoroutine("OnFinishAnimation");
+        if (isSet)
+        {
+            System.Random random = new System.Random();
+            doorSounds[random.Next(0,doorSounds.Length)].Play();
+        }
     }
-    /*
-    IEnumerator OnFinishAnimation()
-    {
-        while(_animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f)
-            yield return null;
-
-        changeColliderShape();
-        setTrigger();
-    }*/
 
     public void CloseDoors()
     {
         GetComponent<Collider2D>().isTrigger = false;
         _isOpen = false;
         _animator.SetBool("isOpen",false);
-        //StartCoroutine("OnFinishAnimation");
+        if (isSet)
+        {
+            System.Random random = new System.Random();
+            doorSounds[random.Next(0,doorSounds.Length)].Play();
+        }
     }
 
     public void FlipClosingDirection() {
         closingDirection = closingDirection.GetOpposite();
     }
-    /*
-    public void changeColliderShape()
-    {
-        bool isTrigger = _polygonCollider2D.isTrigger;
-        Destroy(_polygonCollider2D);
-        _polygonCollider2D = gameObject.AddComponent<PolygonCollider2D>();
-        _polygonCollider2D.isTrigger = isTrigger;
-    }
-
-    public void setTrigger()
-    {
-        _polygonCollider2D.isTrigger = !_isOpen ? false : true;
-        gameObject.layer = 
-            _isOpen ? LayerMask.NameToLayer("Ignore Raycast") : LayerMask.NameToLayer("Default");
-    }*/
 }

@@ -56,13 +56,12 @@ public class GuessWhoRoomManager : MonoBehaviour
             combinationPanel.Slots[0].RemoveImage();
             StartCoroutine(ChangePanelColor(Color.red));
             combinationPanel.TriggerWrongCombination();
-            FindObjectOfType<AudioManager>().Play("PuzzleWrong");
             return;
         }
         
         StartCoroutine(ChangePanelColor(Color.green));
-        exitDoor.OpenDoors();
-        FindObjectOfType<AudioManager>().Play("PuzzleRight");
+        FindObjectOfType<AudioManager>().Play("TotemConfirm");
+        StartCoroutine(exitDoor.OpenDoorsWithDelay(0.5f));
         combinationPanel.ClosePanel(0.5f);
     }
     

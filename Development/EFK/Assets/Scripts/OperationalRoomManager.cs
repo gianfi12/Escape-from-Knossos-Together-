@@ -121,7 +121,11 @@ public class OperationalRoomManager : MonoBehaviour
     private List<List<int>> computeAllCombinationWithAvalue(List<List<int>> combinationsList, int value)
     {
         List<List<int>> returnedList = new List<List<int>>();
+        List<int> startList = new List<int>();
+        startList.Add(value);
+        returnedList.Add(new List<int>(startList));
         Stack<List<int>> stack = new Stack<List<int>>();
+        stack.Push(new List<int>(startList));
         foreach (List<int> inputValue in combinationsList)
         {
             if(inputValue.Count<numberOfSteps) stack.Push(new List<int>(inputValue));
@@ -153,7 +157,7 @@ public class OperationalRoomManager : MonoBehaviour
             _combinationValues.Clear();
             for (int i = 0; i < numberOfSteps; i++)
             {
-                while ((value = _rnd.Next(-9, 10)) == 0 || (value!=0 && _combinationValues.Contains(value))) ;
+                while ((value = _rnd.Next(-9, 10)) == 0 || (value!=0 && checkNotInSelection(value,_combinationValues))) ;
                 _combinationValues.Add(value);
                 sum += value;
             }
@@ -183,7 +187,7 @@ public class OperationalRoomManager : MonoBehaviour
                 List<List<int>> tempCombinationList=new List<List<int>>();
                 do
                 {
-                    while((value= _rnd.Next(-9, 10))==0 || (value!=0 && selectedValues.Contains(value)));
+                    while((value= _rnd.Next(-9, 10))==0 || (value!=0 && checkNotInSelection(value,selectedValues)));
                     
                     tempCombinationList = computeAllCombinationWithAvalue(new List<List<int>>(combinationsList),value);
 
@@ -206,7 +210,19 @@ public class OperationalRoomManager : MonoBehaviour
         Debug.Log(solution);
         _resultConsole.updateValue(_startingValue);
     }
-    
+
+    private bool checkNotInSelection(int value, List<int> selectedValues)
+    {
+        int abs = Math.Abs(value);
+        foreach (int selectedValue in selectedValues)
+        {
+            if (abs == Math.Abs(selectedValue) && value!=selectedValue)
+                return true;
+        }
+
+        return false;
+    }
+
     public void updateResultConsole(int value,PlayerControllerMap playerControllerMap)
     {
         if (hasFinished) return;
@@ -220,6 +236,14 @@ public class OperationalRoomManager : MonoBehaviour
         {
             playerControllerMap.IncrementTimer(-timePenalityInSeconds);
             _resultConsole.reset(_startingValue);
+            foreach (ButtonConsole buttonConsole in _buttonConsoles)
+            {
+                Button[] buttons = GetComponentsInChildren<Button>();
+                foreach (Button button in buttons)
+                {
+                    button.resetPressedStatus();
+                }
+            }
             StartCoroutine(resetCounterForUser());
         }
         else

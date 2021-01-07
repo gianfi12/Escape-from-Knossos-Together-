@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Permissions;
@@ -9,8 +9,8 @@ using Random = UnityEngine.Random;
 
 public class RoomMaze : RoomAbstract
 {
-    private const int _minSetSpace=21;//has to be odd
-    private const int _maxSetSpace=70;
+    private const int _minSetSpace=31;//has to be odd
+    private const int _maxSetSpace=31;
 
     [SerializeField][Range(_minSetSpace,_maxSetSpace)] private int maxSpace;
     [SerializeField] private int minRoomSize;
@@ -40,6 +40,7 @@ public class RoomMaze : RoomAbstract
     private System.Random rnd;
     private List<Vector3Int> _occupiedTile;
     private GameObject _resetLeverInstance;
+    private bool _isVerical;
 
     private Vector3Int _coordinatesNotEntrance;
     private Vector3Int _coordinatesNotExit;
@@ -124,7 +125,18 @@ public class RoomMaze : RoomAbstract
         roomCollider.Room = this;
         collider.transform.position = new Vector3(_sizeX/2+_displacementX+1f,_sizeY/2+_displacementY+1f,0f);
         boxCollider2D.isTrigger = true;
-        boxCollider2D.size = new Vector2(_sizeX+1f,_sizeY+1f);
+        if(_isVerical)
+        {
+            collider.transform.position =
+                new Vector3(_sizeX / 2 + _displacementX +1f, _sizeY / 2 + _displacementY+1f, 0f);
+            boxCollider2D.size = new Vector2(_sizeX , _sizeY );
+        }
+        else
+        {
+            collider.transform.position =
+                new Vector3(_sizeX / 2 + _displacementX + 1f, _sizeY / 2 + _displacementY + 1f, 0f);
+            boxCollider2D.size = new Vector2(_sizeX + 1f, _sizeY + 1f);
+        }
         GameObject textObj = Instantiate(fadeText, _mazeTransform);
         FadeText text = textObj.GetComponentInChildren<FadeText>();
         text.gameObject.SetActive(false);
@@ -484,7 +496,8 @@ public class RoomMaze : RoomAbstract
         {
             if ((directionChange == 1 || directionChange == 0))
             {
-                if (!hasEntrance && ((directionChange == 1 && index == 2) || (Random.Range(1, 100) > 95 && index%2==0 && index<startingIndex)))
+                if ((!hasEntrance && ((directionChange == 1 && index == 2) ||
+                                      (Random.Range(1, 100) > 80 && index % 2 == 0 && index < startingIndex))) && directionChange!=0)//AND put in order to have entrance and exit on the left and right side of the maze
                 {
                     hasEntrance = true;
                     Tile tile = new Tile(assetsCollection.GetTileFromType(AssetType.Entrace)[0],position); 
@@ -503,6 +516,7 @@ public class RoomMaze : RoomAbstract
                     Vector3 doorPosition;
                     if (directionChange == 0)
                     {
+                        _isVerical = true;
                         // doorTransform.rotation *= Quaternion.Euler(0, 0, 90);
                         doorPosition = position + new Vector3(0.5f, 0.5f, 0);
                         doorTransform.GetComponent<Doors>().ClosingDirection=Direction.South;
@@ -510,8 +524,9 @@ public class RoomMaze : RoomAbstract
                     }
                     else
                     {
+                        _isVerical = false;
                         // doorTransform.rotation *= Quaternion.Euler(0, 0, 180);
-                        doorPosition = position + new Vector3(0, 0.5f, 0);
+                        doorPosition = position + new Vector3(0, 0.4f, 0);
                         doorTransform.GetComponent<Doors>().ClosingDirection=Direction.East;
                         _coordinatesNotEntrance = position + Direction.East.GetDirection();
                     }
@@ -530,7 +545,7 @@ public class RoomMaze : RoomAbstract
             }
             else
             {
-                if (!hasExit && ((directionChange == exitHasToBeInDirectionChange && index == 2) || (Random.Range(1, 100) >90 && index%2==0 && index<startingIndex && exitHasToBeInDirectionChange==directionChange)))
+                if (!hasExit && ((directionChange == exitHasToBeInDirectionChange && index == 2) || (Random.Range(1, 100) >80 && index%2==0 && index<startingIndex && exitHasToBeInDirectionChange==directionChange)))
                 {
                     hasExit = true;
                     Tile tile = new Tile(assetsCollection.GetTileFromType(AssetType.Exit)[0],
@@ -556,7 +571,7 @@ public class RoomMaze : RoomAbstract
                     else
                     {
                         // doorTransform.rotation *= Quaternion.Euler(0, 0, 180);
-                        doorPosition = position + new Vector3(1, 0.5f, 0);
+                        doorPosition = position + new Vector3(1, 0.4f, 0);
                         doorTransform.GetComponent<Doors>().ClosingDirection=Direction.East;
                         _coordinatesNotExit = position + Direction.West.GetDirection();
                     }
@@ -567,6 +582,11 @@ public class RoomMaze : RoomAbstract
                         index--;
                         position += directions[directionChange].GetDirection();
                         PutWall(0, position);
+                    }
+
+                    if (directionChange == 2 && index == _sizeY - 1)
+                    {
+                        PutWall(0,position-directions[directionChange].GetDirection());
                     }
                 }else
                 {
@@ -594,7 +614,7 @@ public class RoomMaze : RoomAbstract
                 startingIndex = index;
             }
         }
-        // PutWall(0,new Vector3Int(_sizeX-1,_sizeY-1,0));
+        PutWall(0,new Vector3Int(_sizeX-1,_sizeY-1,0));
     }
 
     private Cell AddCell(Room room, Vector2Int position)
@@ -630,7 +650,6 @@ public class RoomMaze : RoomAbstract
         foreach (AgentController agentController in _listAgent)
         {
             agentController.SetCheckpoints(_listCheckpoints[i]);
-            agentController.gameObject.SetActive(false);
             roomCollider.AddActivatableObject(agentController);
             i++;
         }
@@ -647,7 +666,7 @@ public class RoomMaze : RoomAbstract
 
         GameObject pressedButtonsGUIInstance = Instantiate(pressedButtonsGUI, _mazeTransform);
         PressedButtons pressedButtonsGUIScript = pressedButtonsGUIInstance.GetComponentInChildren<PressedButtons>();
-        entrancePanel.PressedButtonsGUI = pressedButtonsGUIScript;
+        entrancePanel.SetPressedButtonsGUI(pressedButtonsGUIScript);
         pressedButtonsGUIScript.gameObject.SetActive(false);
         _mazeTransform.GetComponentInChildren<RoomCollider>().AddActivatableObject(pressedButtonsGUIScript);
 
@@ -676,6 +695,16 @@ public class RoomMaze : RoomAbstract
                     tilemapFloor.SetColor(tile.Coordinates, color);
                 }
             }
+        }
+        
+        List<Region> disabledRegions = new List<Region>();
+        disabledRegions.Add(ColorFromCoordinates(_coordinatesNotEntrance+Direction.East.GetDirection()));
+        disabledRegions.Add(ColorFromCoordinates(_coordinatesNotExit+Direction.West.GetDirection()));
+        foreach (AgentController agentController in _listAgent)
+        {
+            Tile floor = getRandomFloor();
+            while (checkOccupiedTile(floor.NormalizedCoordinates) || disabledRegions.Contains(ColorFromCoordinates(floor.NormalizedCoordinates)) )floor = getRandomFloor();
+            agentController.transform.position = floor.Coordinates+new Vector3(0.5f,0.5f,0f);
         }
 
         int index = 0;
@@ -775,12 +804,6 @@ public class RoomMaze : RoomAbstract
         List<Tile> removableWall=new List<Tile>();
         foreach (Tile tile in Wall)
         {
-            // if(tile.Coordinates==_coordinatesNotEntrance ||
-            //    tile.Coordinates== (_coordinatesNotEntrance+Direction.North.GetDirection()) ||
-            //    tile.Coordinates== (_coordinatesNotEntrance+Direction.South.GetDirection()) ||
-            //    tile.Coordinates==_coordinatesNotExit ||
-            //    tile.Coordinates== (_coordinatesNotExit+Direction.North.GetDirection()) ||
-            //    tile.Coordinates== (_coordinatesNotExit+Direction.South.GetDirection())) 
             if(tile.Coordinates==_coordinatesNotEntrance ||
                tile.Coordinates==_coordinatesNotExit) 
                 removableWall.Add(tile);

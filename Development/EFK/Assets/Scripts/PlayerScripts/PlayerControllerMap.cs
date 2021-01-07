@@ -14,7 +14,6 @@ public class PlayerControllerMap : MonoBehaviour
     private bool _isDead = false;
 
     private AudioManager audioManager;
-    private AudioSource footstep;
     private Animator animator;
     private GameManager gameManager;
     private GameObject diaryPanel;
@@ -26,6 +25,7 @@ public class PlayerControllerMap : MonoBehaviour
 
     [SerializeField] private GameObject lostGamePrefab;
     [SerializeField] private GameObject wonGamePrefab;
+    private AudioSource[] footstepSounds;
 
 
     public RuntimeAnimatorController[] RuntimeAnimators => runtimeanimators;
@@ -45,7 +45,8 @@ public class PlayerControllerMap : MonoBehaviour
         diaryPanel.SetActive(false);
         inventoryPanel = transform.Find("Canvas").GetComponentInChildren<GridLayoutGroup>().gameObject;
         audioManager = FindObjectOfType<AudioManager>();
-        footstep = GetComponent<AudioSource>();
+        footstepSounds = transform.Find("FootSounds").GetComponentsInChildren<AudioSource>();
+        
     }
 
     public void SetLocation(Vector3 position)
@@ -187,6 +188,7 @@ public class PlayerControllerMap : MonoBehaviour
 
     public void Footsep()
     {
-        footstep.Play();
+        System.Random random = new System.Random();
+        footstepSounds[random.Next(0,footstepSounds.Length)].Play();
     }
 }

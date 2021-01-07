@@ -49,6 +49,7 @@ public class CombinationPanel : InteractableObject
                 slot.SlotImage.Canvas = playerCanvas;
             }
             panel.gameObject.SetActive(true);
+            FindObjectOfType<AudioManager>().Play("TotemOn");
         }
         else
         {

@@ -29,6 +29,7 @@ public class PlayerInput : MonoBehaviourPun
     private bool isReading;
     private float normalSpeed;
     private float readingSpeed = 2f;
+    [SerializeField] private AudioSource[] mapSounds;
 
     public bool CanMove {
         get => _canMove;
@@ -56,6 +57,8 @@ public class PlayerInput : MonoBehaviourPun
         _voiceController = GetComponent<VoiceController>();
         _animator = GetComponent<Animator>();
         _playerInteraction = GetComponent<PlayerInteraction>();
+        
+        mapSounds = transform.Find("MapSounds").GetComponentsInChildren<AudioSource>();
     }
     private void FixedUpdate()
     {
@@ -109,6 +112,8 @@ public class PlayerInput : MonoBehaviourPun
                     diaryImage.SetActive(false);
                     isReading = true;
                     _playerController.Speed = readingSpeed;
+                    System.Random random = new System.Random();
+                    mapSounds[random.Next(0,18)].Play();
                 }
     
                 else if (Input.GetButtonUp("Map"))
@@ -138,6 +143,8 @@ public class PlayerInput : MonoBehaviourPun
                 diaryImage.SetActive(false);
                 isReading = true;
                 _playerController.Speed = readingSpeed;
+                System.Random random = new System.Random();
+                mapSounds[random.Next(0,mapSounds.Length)].Play();
             }
     
             else if (Input.GetButtonUp("Map"))
