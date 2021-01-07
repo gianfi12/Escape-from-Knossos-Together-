@@ -2,12 +2,13 @@
 
 public class ExitScript:MonoBehaviour
 {
-    public void  ClickYes(){
+    public void  ReturnDesktop(){
         Application.Quit();
     }
     
-    public void  ClickNo(){
+    public void  ReturnGame(){
         Destroy(this.gameObject);
+        Cursor.lockState = CursorLockMode.Locked;
     }
     
 }

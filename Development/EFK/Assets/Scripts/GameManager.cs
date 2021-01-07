@@ -80,6 +80,36 @@ public class GameManager : MonoBehaviourPun
             
         }
         
+        SetUpAudio();
+    }
+
+    public void SetPlayerInstance(PlayerControllerMap playerInstance) {
+        _playerInstanceLocal = playerInstance;
+        _cameraInstance = Instantiate(mainCamera);
+        _cameraInstance.m_Follow = _playerInstanceLocal.transform;
+
+        navMesh.GetComponent<NavMeshSurface2d>().BuildNavMesh();
+        Cursor.lockState = CursorLockMode.Locked;
+    } 
+
+    public void SetRemotePlayer()
+    {
+        GameObject [] players = GameObject.FindGameObjectsWithTag("Player");
+        if (players[0] == _playerInstanceLocal.gameObject)
+        {
+            _playerInstanceRemote = players[1].GetComponent<PlayerControllerMap>();
+            _playerInstanceRemote.GetComponent<Animator>().runtimeAnimatorController = _playerInstanceRemote.RuntimeAnimators[(_playerInstanceRemote.GetComponent<PhotonView>().ViewID / 1000) - 1];
+        }
+        else
+        {
+            _playerInstanceRemote = players[0].GetComponent<PlayerControllerMap>();
+            _playerInstanceRemote.GetComponent<Animator>().runtimeAnimatorController = _playerInstanceRemote.RuntimeAnimators[(_playerInstanceRemote.GetComponent<PhotonView>().ViewID / 1000) - 1];
+        }
+        EventManager.StartListening(EventType.FinishGame,new UnityAction(FinishGame));
+    }
+
+    private void SetUpAudio()
+    {
         if (PlayerPrefs.HasKey("MasterVolume"))
         {
             float masterVolume = PlayerPrefs.GetFloat("MasterVolume");
@@ -103,30 +133,6 @@ public class GameManager : MonoBehaviourPun
         
         //FindObjectOfType<AudioManager>().Play("AlarmStart");
         FindObjectOfType<AudioManager>().Play("Ambient");
-    }
-
-    public void SetPlayerInstance(PlayerControllerMap playerInstance) {
-        _playerInstanceLocal = playerInstance;
-        _cameraInstance = Instantiate(mainCamera);
-        _cameraInstance.m_Follow = _playerInstanceLocal.transform;
-
-        navMesh.GetComponent<NavMeshSurface2d>().BuildNavMesh();
-    } 
-
-    public void SetRemotePlayer()
-    {
-        GameObject [] players = GameObject.FindGameObjectsWithTag("Player");
-        if (players[0] == _playerInstanceLocal.gameObject)
-        {
-            _playerInstanceRemote = players[1].GetComponent<PlayerControllerMap>();
-            _playerInstanceRemote.GetComponent<Animator>().runtimeAnimatorController = _playerInstanceRemote.RuntimeAnimators[(_playerInstanceRemote.GetComponent<PhotonView>().ViewID / 1000) - 1];
-        }
-        else
-        {
-            _playerInstanceRemote = players[0].GetComponent<PlayerControllerMap>();
-            _playerInstanceRemote.GetComponent<Animator>().runtimeAnimatorController = _playerInstanceRemote.RuntimeAnimators[(_playerInstanceRemote.GetComponent<PhotonView>().ViewID / 1000) - 1];
-        }
-        EventManager.StartListening(EventType.FinishGame,new UnityAction(FinishGame));
     }
     
 }
