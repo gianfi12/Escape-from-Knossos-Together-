@@ -9,7 +9,7 @@ using Random = UnityEngine.Random;
 
 public class RoomMaze : RoomAbstract
 {
-    private const int _minSetSpace=27;//has to be odd
+    private const int _minSetSpace=30;//has to be odd
     private const int _maxSetSpace=31;
 
     [SerializeField][Range(_minSetSpace,_maxSetSpace)] private int maxSpace;
@@ -71,7 +71,7 @@ public class RoomMaze : RoomAbstract
         rnd = new System.Random(seed);
         int random;
         while ((random = Random.Range(_minSetSpace, maxSpace)) % 3 != 0);
-        _sizeX = random+1; //remove this +1 if you make the size variable
+        _sizeX = random;
         _sizeY = random;
         _requiredWidthSpace = _sizeX+2;//due to the walls
         
@@ -129,14 +129,14 @@ public class RoomMaze : RoomAbstract
         if(_isVerical)
         {
             collider.transform.position =
-                new Vector3(_sizeX / 2 + _displacementX +1f, _sizeY / 2 + _displacementY+1f, 0f);
-            boxCollider2D.size = new Vector2(_sizeX , _sizeY );
+                new Vector3(_sizeX / 2 + _displacementX +1.5f, _sizeY / 2 + _displacementY+1.5f, 0f);
+            boxCollider2D.size = new Vector2(_sizeX +1f, _sizeY +1f);
         }
         else
         {
             collider.transform.position =
-                new Vector3(_sizeX / 2 + _displacementX + 1f, _sizeY / 2 + _displacementY + 1f, 0f);
-            boxCollider2D.size = new Vector2(_sizeX + 1f, _sizeY + 1f);
+                new Vector3(_sizeX / 2 + _displacementX + 1.5f, _sizeY / 2 + _displacementY + 1.5f, 0f);
+            boxCollider2D.size = new Vector2(_sizeX + 2f, _sizeY + 2f);
         }
         GameObject textObj = Instantiate(fadeText, _mazeTransform);
         FadeText text = textObj.GetComponentInChildren<FadeText>();
@@ -210,16 +210,6 @@ public class RoomMaze : RoomAbstract
             }
         }
         return floorTile;
-    }
-
-    bool thereIsAWall(Direction direction,Vector3Int checkPosition)
-    {
-        bool found = false;
-        for (int i = 0; i < Wall.Count && !found; i++)
-        {
-            if (Wall[i].Coordinates == checkPosition) found = true;
-        }
-        return found;
     }
 
     private void ConnectNeighbor()
@@ -343,7 +333,7 @@ public class RoomMaze : RoomAbstract
             }
         }
         
-        // //then the walls
+        // Then the walls
         foreach (Cell cell in _cellMap.Values)
         {
             foreach (Direction direction in Enum.GetValues(typeof(Direction)).Cast<Direction>().Where(x => x != Direction.None))
@@ -441,7 +431,7 @@ public class RoomMaze : RoomAbstract
             if (cell.GetEdge(direction) is null)
             {
                 Vector2Int neighborPosition = cell.Position + (Vector2Int) direction.GetDirection();
-                if (neighborPosition.x < 0 || neighborPosition.y < 0 || neighborPosition.x>=(_sizeY - 1)/2  || neighborPosition.y>=(_sizeY - 1)/2)
+                if (neighborPosition.x < 0 || neighborPosition.y < 0 || neighborPosition.x>=(_sizeY )/2  || neighborPosition.y>=(_sizeY )/2)
                 {
                     cell.SetEdge(direction, new Edge(cell, null));
                     cell.GetEdge(direction).EdgeType = Edge.EdgeTypes.Passage;
@@ -488,7 +478,7 @@ public class RoomMaze : RoomAbstract
 
     private int GetID(Vector2Int position)
     {
-        return position.x + (_sizeY - 1)/2  * position.y;
+        return position.x + (_sizeY )/2  * position.y;
     }
 
     private void GenerateWall()
@@ -497,9 +487,9 @@ public class RoomMaze : RoomAbstract
         Direction[] directions = {Direction.West, Direction.South, Direction.East, Direction.North};
         int directionChange = 0;
         int exitHasToBeInDirectionChange=-1;
-        int index = _sizeX;//starts from the upper left side and we go in an anti clockwise round
+        int index = _sizeX+1;//starts from the upper left side and we go in an anti clockwise round
         int startingIndex = index;
-        Vector3Int position = new Vector3Int(_sizeX-1,_sizeY-1,0);
+        Vector3Int position = new Vector3Int(_sizeX,_sizeY,0);
         while (directionChange < 4)
         {
             if ((directionChange == 1 || directionChange == 0))
@@ -610,10 +600,10 @@ public class RoomMaze : RoomAbstract
                 switch (directionChange)
                 {
                     case 1:
-                        index = _sizeY ;
+                        index = _sizeY+1;
                         break;
                     case 2:
-                        index = _sizeX;
+                        index = _sizeX+1;
                         break;
                     case 3:
                         index = _sizeY + 1;
@@ -622,7 +612,7 @@ public class RoomMaze : RoomAbstract
                 startingIndex = index;
             }
         }
-        PutWall(0,new Vector3Int(_sizeX-1,_sizeY-1,0));
+        PutWall(0,new Vector3Int(_sizeX,_sizeY,0));
     }
 
     private Cell AddCell(Room room, Vector2Int position)
