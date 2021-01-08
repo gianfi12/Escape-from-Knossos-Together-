@@ -71,8 +71,8 @@ public class RoomMaze : RoomAbstract
         rnd = new System.Random(seed);
         int random;
         while ((random = Random.Range(_minSetSpace, maxSpace)) % 3 != 0);
-        _sizeX = random;
-        _sizeY = random;
+        _sizeX = _minSetSpace;//TODO return to random value
+        _sizeY = _minSetSpace;
         _requiredWidthSpace = _sizeX+2;//due to the walls
         
         GenerateInternal();
