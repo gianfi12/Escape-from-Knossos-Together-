@@ -58,7 +58,7 @@ public class PlayerInput : MonoBehaviourPun
 
     public void SetActiveUI()
     {
-        if (photonView.IsMine) _playerUI.SetActive(false);
+        if (photonView.IsMine) _playerUI.SetActive(true);
     }
 
     private void Awake()

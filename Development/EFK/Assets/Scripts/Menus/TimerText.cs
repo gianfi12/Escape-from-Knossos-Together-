@@ -7,7 +7,7 @@ public class TimerText : MonoBehaviour
 {
     private int time=0;
     private bool timeTrigger;
-    private Text timerText;
+    [SerializeField] private Text timerText;
 
     [SerializeField] private Color safeColor;
     [SerializeField] private Color triggerColor;

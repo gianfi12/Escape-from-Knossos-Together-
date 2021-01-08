@@ -19,8 +19,6 @@ public class InputMenuManagerScript:MonoBehaviour
             else
             {
                 Destroy(_exitGamePrefab);
-                Cursor.visible = false;
-                Cursor.lockState = CursorLockMode.Locked; 
             }
         }
     }
