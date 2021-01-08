@@ -9,10 +9,11 @@ public class TextFadeIn : MonoBehaviour
 
     private void Start() {
         StartCoroutine(FadeTextToFullAlpha(2f, GetComponent<Text>()));
+        StartCoroutine(ActivateReturnButton(5f));
     }
 
     private void Update() {
-        if (!returnButton.active && GetComponent<Text>().color.a >= 0.99) returnButton.SetActive(true);
+       // if (!returnButton.activeSelf && GetComponent<Text>().color.a >= 0.99) returnButton.SetActive(true);
     }
 
     public IEnumerator FadeTextToFullAlpha(float t, Text i) {
@@ -30,4 +31,9 @@ public class TextFadeIn : MonoBehaviour
             yield return null;
         }
     }
-}
+
+    public IEnumerator ActivateReturnButton(float delay) {
+        yield return new WaitForSeconds(delay);
+        returnButton.SetActive(true);
+    }
+ }

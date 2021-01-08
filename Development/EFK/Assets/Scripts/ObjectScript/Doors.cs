@@ -63,26 +63,27 @@ public class Doors : MonoBehaviour
 
     public void OpenDoors(bool withSound)
     {
-        GetComponent<Collider2D>().isTrigger = true;
-        _isOpen = true;
+        GetComponent<Collider2D>().isTrigger = true;      
         GetComponent<Animator>().SetBool("isOpen",true);
-        if (withSound)
+        if (withSound && !_isOpen)
         {
             System.Random random = new System.Random();
             doorSounds[random.Next(0,doorSounds.Length)].Play();
         }
+        _isOpen = true;
     }
 
     public void CloseDoors(bool withSound)
     {
         GetComponent<Collider2D>().isTrigger = false;
-        _isOpen = false;
+        
         _animator.SetBool("isOpen",false);
-        if (withSound)
+        if (withSound && _isOpen)
         {
             System.Random random = new System.Random();
             doorSounds[random.Next(0,doorSounds.Length)].Play();
         }
+        _isOpen = false;
     }
 
     public void FlipClosingDirection() {

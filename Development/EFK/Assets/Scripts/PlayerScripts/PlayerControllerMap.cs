@@ -153,7 +153,6 @@ public class PlayerControllerMap : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         if (victory) {
-            FindObjectOfType<AudioManager>().Play("WonTheme");
             Instantiate(wonGamePrefab);
         }
         else {
