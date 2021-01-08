@@ -145,11 +145,13 @@ public class AlphabetRoomManager : MonoBehaviour
             {
                 StartCoroutine(ChangePanelColor(Color.red));
                 combinationPanel.TriggerWrongCombination();
+                FindObjectOfType<AudioManager>().Play("RuneWrong");
                 return;
             }
         }
         StartCoroutine(ChangePanelColor(Color.green));
-        exitDoor.OpenDoors(true);
+        FindObjectOfType<AudioManager>().Play("RuneRight");
+        StartCoroutine(exitDoor.OpenDoorsWithDelay(0.5f));
         combinationPanel.ClosePanel(0.5f);
     }
 

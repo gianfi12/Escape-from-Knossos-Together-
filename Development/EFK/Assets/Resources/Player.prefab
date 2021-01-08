@@ -2745,8 +2745,8 @@ GameObject:
   - component: {fileID: 8176570832242282527}
   - component: {fileID: 5807173607413587761}
   - component: {fileID: 5105444911262764866}
-  - component: {fileID: 7431164088677492004}
-  - component: {fileID: 6494108898064625258}
+  - component: {fileID: 957592995557212865}
+  - component: {fileID: 2915804191711737442}
   m_Layer: 10
   m_Name: FootSounds
   m_TagString: Untagged
@@ -2781,8 +2781,8 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 62d0d82148fa51447bd5b918b3479acc, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
-  m_Pitch: 0.2
+  m_Volume: 0.1
+  m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -2896,8 +2896,8 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 0c7cbe466125f804797c8870bb67092f, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
-  m_Pitch: 0.2
+  m_Volume: 0.1
+  m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -3011,8 +3011,8 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 969a2a59c2fbb1b44b3fef45db5f5c89, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
-  m_Pitch: 0.2
+  m_Volume: 0.1
+  m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -3126,8 +3126,8 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: ca883e2396fd94d4a962471274642f4a, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
-  m_Pitch: 0.2
+  m_Volume: 0.1
+  m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -3241,8 +3241,8 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: da8e15ec31500cd49ab9e9600b9c48e7, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
-  m_Pitch: 0.2
+  m_Volume: 0.1
+  m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -3356,8 +3356,8 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 2bafc101396d6984da3fb217f73d3d4b, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
-  m_Pitch: 0.2
+  m_Volume: 0.1
+  m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -3471,8 +3471,8 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 41a2cfb5b58441a45968c92bfe4051fd, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
-  m_Pitch: 0.2
+  m_Volume: 0.1
+  m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -3586,8 +3586,8 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 0c508055ca0386849800accbed21f9d3, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
-  m_Pitch: 0.2
+  m_Volume: 0.1
+  m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -3701,8 +3701,8 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: f249e1b031f0ff14fb4fcb0e1fd31a6b, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
-  m_Pitch: 0.2
+  m_Volume: 0.1
+  m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -3816,8 +3816,8 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: c7643ea6b3de9bd4a83dc492999cb0b5, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
-  m_Pitch: 0.2
+  m_Volume: 0.1
+  m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -3918,7 +3918,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!82 &7431164088677492004
+--- !u!82 &957592995557212865
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3931,8 +3931,8 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: af17b56e3c2a9474d8e4e2db5b64b709, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
-  m_Pitch: 0.2
+  m_Volume: 0.1
+  m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -4033,7 +4033,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!82 &6494108898064625258
+--- !u!82 &2915804191711737442
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4046,8 +4046,8 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: a5c8d5de67fc60d4cbe32d5da10dabee, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
-  m_Pitch: 0.2
+  m_Volume: 0.1
+  m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0

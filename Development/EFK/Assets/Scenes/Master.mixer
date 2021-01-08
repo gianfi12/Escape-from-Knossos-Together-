@@ -19,6 +19,28 @@ AudioMixerGroupController:
   m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
+--- !u!244 &-3209698398850695563
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: f73b62b2a88fbfe488d2f14f5508e7b5
+  m_EffectName: Compressor
+  m_MixLevel: e633346c57c92be458e200fa677b2d4a
+  m_Parameters:
+  - m_ParameterName: Threshold
+    m_GUID: f49249d08e989b645ab091b896891db0
+  - m_ParameterName: Attack
+    m_GUID: 65159904c562d894baea0c5d8fe4b513
+  - m_ParameterName: Release
+    m_GUID: 591bad5d1cf18714f9f2eb835daa9455
+  - m_ParameterName: Make up gain
+    m_GUID: 697fa5ee1a605fe4ead0e0a46f74a574
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!244 &-2554142503094164692
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
@@ -118,8 +140,10 @@ AudioMixerSnapshotController:
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: d1b1a9e0212738845b5b7b9d69de2967
   m_FloatValues:
+    f49249d08e989b645ab091b896891db0: -18
     a7b47e0263757c740b5c54f65ecf7800: 0
-    cd8df643bc37e334c80451e0f849c6fe: 7500
+    cd8df643bc37e334c80451e0f849c6fe: 9200
+    65159904c562d894baea0c5d8fe4b513: 18
     484d65766b1eac74a86490b8f97ade3d: 1.6
     eb6f6b07efb2adc409e6fd4932d03c11: 2265.828
     e6917717c278a2f40a59e62bb6269f12: 2.3
@@ -127,7 +151,9 @@ AudioMixerSnapshotController:
     48577f0b378eb2d4989c63374b890e14: 1
     d705f53c56584ef469937f90bdde1193: 2000
     9a80927cd1d243041a71541841bcb863: 1.45
+    591bad5d1cf18714f9f2eb835daa9455: 130
     6961f2fdbd968f0418bfa0fa2abcd176: 1.9
+    697fa5ee1a605fe4ead0e0a46f74a574: 2
     e3f1f6eff2ea5494994e166d635ccc9e: 1.3799999
   m_TransitionOverrides: {}
 --- !u!244 &624120248732942921
@@ -195,6 +221,7 @@ AudioMixerGroupController:
   m_Send: 00000000000000000000000000000000
   m_Effects:
   - {fileID: 6178189442185041180}
+  - {fileID: -3209698398850695563}
   - {fileID: 1573554962306187829}
   - {fileID: 624120248732942921}
   - {fileID: -2554142503094164692}

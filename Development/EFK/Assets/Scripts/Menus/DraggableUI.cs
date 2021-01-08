@@ -63,7 +63,6 @@ public class DraggableUI : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
         canvasGroup.blocksRaycasts = true;
         transform.localPosition = Vector3.zero;
         if (image.enabled) FindObjectOfType<AudioManager>().Play("SnapUI");
-        else FindObjectOfType<AudioManager>().Play("SlotDrop");
     }
 
     public void OnDrag(PointerEventData eventData)

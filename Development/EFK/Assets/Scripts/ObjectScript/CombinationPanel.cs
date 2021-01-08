@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class CombinationPanel : InteractableObject
 {
     [SerializeField] private int slotsNumber;
+    [SerializeField] private bool isTotem;
     private GameObject panel;
     private Canvas canvasToReturn;
     private ItemSlot[] slots;
@@ -52,7 +53,8 @@ public class CombinationPanel : InteractableObject
             Cursor.lockState = CursorLockMode.None;
             panel.gameObject.SetActive(true);
             playerController.IsPanelActive = true;
-            FindObjectOfType<AudioManager>().Play("TotemOn");
+            if (isTotem) FindObjectOfType<AudioManager>().Play("TotemOn");
+            else FindObjectOfType<AudioManager>().Play("RunePanelOn");
         }
         else
         {

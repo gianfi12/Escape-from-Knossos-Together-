@@ -26,5 +26,9 @@ public class Collectable : InteractableObject
         {
             GetComponentInParent<Locker>().TakenCard();
         }
+        else
+        {
+            FindObjectOfType<AudioManager>().Play("RuneTaken");
+        }
     }
 }

@@ -109,7 +109,7 @@ public class GameManager : MonoBehaviourPun
             _playerInstanceRemote.GetComponent<Animator>().runtimeAnimatorController = _playerInstanceRemote.RuntimeAnimators[(_playerInstanceRemote.GetComponent<PhotonView>().ViewID / 1000) - 1];
         }
         EventManager.StartListening(EventType.FinishGame,new UnityAction(FinishGame));
-        loadingCanvas.gameObject.SetActive(false);
+        //loadingCanvas.gameObject.SetActive(false);
         //_playerInstanceLocal.GetComponent<PlayerInput>().SetActiveUI();
     }
 
@@ -139,5 +139,7 @@ public class GameManager : MonoBehaviourPun
         //FindObjectOfType<AudioManager>().Play("AlarmStart");
         FindObjectOfType<AudioManager>().Play("Ambient");
     }
+    
+    
     
 }

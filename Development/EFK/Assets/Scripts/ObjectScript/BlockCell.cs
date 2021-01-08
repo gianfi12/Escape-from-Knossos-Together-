@@ -8,6 +8,7 @@ public class BlockCell : MonoBehaviour
     [SerializeField] Color notWalkableColor;
 
     private bool isWalkable;
+    private bool isActive;
 
     public bool IsWalkable => isWalkable;
 
@@ -22,8 +23,13 @@ public class BlockCell : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("PlayerFeet")) {
-            GetComponent<SpriteRenderer>().enabled = true;
-            if (!isWalkable) other.gameObject.GetComponentInParent<PlayerControllerMap>().Explode();
+            if (!isActive)
+            {
+                GetComponent<SpriteRenderer>().enabled = true;
+                if (!isWalkable) other.gameObject.GetComponentInParent<PlayerControllerMap>().Explode();
+                else FindObjectOfType<AudioManager>().Play("BlockPressed");
+                isActive = true;
+            }
         } 
     }
 }

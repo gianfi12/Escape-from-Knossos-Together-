@@ -8,9 +8,17 @@ using UnityEngine.UI;
 public class ItemSlot : MonoBehaviour, IDropHandler
 {
     private bool isFree = true;
+    [SerializeField] private bool isTotem;
+
     [SerializeField] private DraggableUI slotImage;
 
     public DraggableUI SlotImage => slotImage;
+    
+    public bool IsTotem
+    {
+        get => isTotem;
+        set => isTotem = value;
+    }
 
     public bool GetIsFree()
     {
@@ -41,6 +49,8 @@ public class ItemSlot : MonoBehaviour, IDropHandler
                 slotImage.AddImage(draggableObject.MyCollectable);
                 draggableObject.Image.enabled = false;
                 isFree = false;
+                if (isTotem) FindObjectOfType<AudioManager>().Play("SlotDrop");
+                else FindObjectOfType<AudioManager>().Play("RuneSlotDrop");
             }
             else
             {
@@ -48,6 +58,7 @@ public class ItemSlot : MonoBehaviour, IDropHandler
                 draggableObject.AddImage(slotImage.MyCollectable);
                 slotImage.AddImage(tempCollectable);
             }
+            
         }
     }
 

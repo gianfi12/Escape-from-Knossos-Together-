@@ -589,6 +589,69 @@ MonoBehaviour:
     audioMixer: {fileID: 7642651166835970932, guid: 8dcae844e122de740b31b047f29dfea1,
       type: 2}
     maxDistance: 0
+  - name: RunePanelOn
+    clip: {fileID: 8300000, guid: 3034aa5b9777f744caea37d9c1b2ea94, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBlend: 0
+    audioMixer: {fileID: 7642651166835970932, guid: 8dcae844e122de740b31b047f29dfea1,
+      type: 2}
+    maxDistance: 0
+  - name: RuneTaken
+    clip: {fileID: 8300000, guid: 7b5448ec7733cdb43846114db35cab9c, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBlend: 0
+    audioMixer: {fileID: 7642651166835970932, guid: 8dcae844e122de740b31b047f29dfea1,
+      type: 2}
+    maxDistance: 0
+  - name: RuneSlotDrop
+    clip: {fileID: 8300000, guid: 42164817c453b854e8adbfc70a7d067d, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBlend: 0
+    audioMixer: {fileID: 7642651166835970932, guid: 8dcae844e122de740b31b047f29dfea1,
+      type: 2}
+    maxDistance: 0
+  - name: RuneRight
+    clip: {fileID: 8300000, guid: a6b27acbb48e72d4fa2fe0ae386dfc50, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBlend: 0
+    audioMixer: {fileID: 7642651166835970932, guid: 8dcae844e122de740b31b047f29dfea1,
+      type: 2}
+    maxDistance: 0
+  - name: RuneWrong
+    clip: {fileID: 8300000, guid: 9114066c82b21eb42bb08a4ae5aa370b, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBlend: 0
+    audioMixer: {fileID: 7642651166835970932, guid: 8dcae844e122de740b31b047f29dfea1,
+      type: 2}
+    maxDistance: 0
+  - name: TotemWrong
+    clip: {fileID: 8300000, guid: 1585ee16a1886c840b5043e1775a1feb, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBlend: 0
+    audioMixer: {fileID: 7642651166835970932, guid: 8dcae844e122de740b31b047f29dfea1,
+      type: 2}
+    maxDistance: 0
+  - name: BlockPressed
+    clip: {fileID: 8300000, guid: 9da086b381bab234d890bb1004da571c, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBlend: 0
+    audioMixer: {fileID: 7642651166835970932, guid: 8dcae844e122de740b31b047f29dfea1,
+      type: 2}
+    maxDistance: 0
 --- !u!4 &97944987
 Transform:
   m_ObjectHideFlags: 0
@@ -771,7 +834,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &912791304
 MonoBehaviour:
   m_ObjectHideFlags: 0

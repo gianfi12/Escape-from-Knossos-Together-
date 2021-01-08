@@ -742,7 +742,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 7642651166835970932, guid: 8dcae844e122de740b31b047f29dfea1,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 61ebc12f19a55e24d8b3efe08cac28e0, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 56f66c3f529211f4cb1a90471f5ea0c2, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.2
   m_Pitch: 1
@@ -3929,6 +3929,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactiveText: Insert
   slotsNumber: 1
+  isTotem: 0
 --- !u!61 &6627330128417555626
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5874,6 +5875,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Slot
+      objectReference: {fileID: 0}
+    - target: {fileID: 3398786356650780897, guid: 43507d62058c63c4bbacd6d143e74751,
+        type: 3}
+      propertyPath: isTotem
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4866219691920966432, guid: 43507d62058c63c4bbacd6d143e74751,
         type: 3}
