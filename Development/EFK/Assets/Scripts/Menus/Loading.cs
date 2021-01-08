@@ -17,7 +17,7 @@ public class Loading : MonoBehaviour
 
     IEnumerator LoadLevelAsync()
     {
-        while (gameObject.activeSelf)
+        while (true)
         {
                 UpdateLoadingPoints();
                 yield return new WaitForSeconds(1);

@@ -109,7 +109,7 @@ public class GameManager : MonoBehaviourPun
         }
         EventManager.StartListening(EventType.FinishGame,new UnityAction(FinishGame));
         SetUpAudio();
-        loadingCanvas.gameObject.SetActive(false);
+        //loadingCanvas.gameObject.SetActive(false);
     }
 
     private void SetUpAudio()

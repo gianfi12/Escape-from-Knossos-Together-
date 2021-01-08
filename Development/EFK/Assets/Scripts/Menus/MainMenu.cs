@@ -15,6 +15,7 @@ public class MainMenu : MonoBehaviourPunCallbacks
     [SerializeField] private Text _waitingStatusRoom = null;
     [SerializeField] private Text _createRoomName = null;
     [SerializeField] private Text _selectedRoomName = null;
+    [SerializeField] private GameObject loadingPanel;
     private List<RoomInfo> roomList;
     
     private const string Gameversion = "0.1";
@@ -116,6 +117,7 @@ public class MainMenu : MonoBehaviourPunCallbacks
         Debug.Log("Client succesfully joined a room:"+PhotonNetwork.CurrentRoom.Name);
         
         int playerCount = PhotonNetwork.CurrentRoom.PlayerCount;
+        
         if (playerCount != MaxPlayerPerRoom)
         {
             _findGamePanel.SetActive(false);
@@ -127,6 +129,7 @@ public class MainMenu : MonoBehaviourPunCallbacks
         else
         {
             _waitingStatusText.text = "Player found";
+            loadingPanel.SetActive(true);
             Debug.Log("Match is ready to begin");
         }
     }
