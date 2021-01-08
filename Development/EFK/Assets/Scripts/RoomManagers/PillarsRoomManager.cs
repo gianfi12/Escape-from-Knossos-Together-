@@ -13,6 +13,7 @@ public class PillarsRoomManager : MonoBehaviour
     [SerializeField] Color baseColor;
     [SerializeField] Color solvedColor;
     [SerializeField] List<Image> pathGUIImages;
+    [SerializeField] private AudioSource pillarLoop;
     private System.Random rnd;
     private ObjectsContainer myRoom;
 
@@ -74,30 +75,48 @@ public class PillarsRoomManager : MonoBehaviour
                 pillars[pillarIndex].LightUp();
                 pillars[lastActivatedPillar].EnableInteraction();
 
-                activated.Add(new Tuple<int, int>(lastActivatedPillar, pillarIndex));
+                Tuple<int, int> path = new Tuple<int, int>(lastActivatedPillar, pillarIndex);
+                activated.Add(path);
                 GenerateLightRay(false);
 
                 lastActivatedPillar = pillarIndex;
 
-                if (activated.Count() >= solution.Length) VerifySolution();
+                if (activated.Count() >= solution.Length)
+                {
+                    bool isRight = VerifySolution();
+                    pillars[pillarIndex].PlayLastPillar(isRight);
+                }
+                else if (activated.Count() == 1)
+                {
+                    pillars[path.Item1].PlayFirstPillarOn();
+                    pillars[path.Item2].PlaySecondPillarOn();
+                }
+                else
+                {
+                    pillars[pillarIndex].PlayPillarSound();
+                }
             }
         }
         else {
             pillars[pillarIndex].DisableInteraction();
             pillars[pillarIndex].LightUp();
+            pillars[pillarIndex].PlayFirstPillar();
             lastActivatedPillar = pillarIndex;
         }     
     }
 
-    private void VerifySolution() {
+    private bool VerifySolution() {
         bool check = activated.All(path => solution.Contains(path) || solution.Contains(new Tuple<int, int>(path.Item2, path.Item1)));
         check &= solution.All(path => activated.Contains(path) || activated.Contains(new Tuple<int, int>(path.Item2, path.Item1)));
 
-        if (check) {
-            myRoom.ExitDoor.OpenDoors(true);
+        if (check)
+        {
+            StartCoroutine(myRoom.ExitDoor.OpenDoorsWithDelay(0.5f));
             GenerateLightRay(true);
         }
         else ResetActivatedPillars();
+
+        return check;
     }
 
     private void ResetActivatedPillars() {
@@ -127,6 +146,12 @@ public class PillarsRoomManager : MonoBehaviour
                 lightRayRenderer.SetPosition(i + 1, p);
             }
         }
+
+        if (activated.Count > 0)
+        {
+            if (!pillarLoop.isPlaying) pillarLoop.Play();
+        }
+        else pillarLoop.Stop(); 
 
     }
 
