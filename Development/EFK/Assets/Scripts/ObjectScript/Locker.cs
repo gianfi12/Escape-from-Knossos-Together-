@@ -57,6 +57,7 @@ public class Locker : InteractableObject
             spriteRenderer.sprite = activeWithCard;
             gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
             cables.layer = LayerMask.NameToLayer("Ignore Raycast");
+            cables.transform.localPosition = new Vector3(-0.31f, 0.86f, 0.01f);
             if (!idCard.HasBeenActivated)
             {
                 idCard.gameObject.SetActive(true);
@@ -80,6 +81,7 @@ public class Locker : InteractableObject
         idCard.gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
         gameObject.layer = LayerMask.NameToLayer("Interactable");
         cables.layer = LayerMask.NameToLayer("Interactable");
+        cables.transform.localPosition = new Vector3(-0.31f, 0.86f, -0.01f);
     }
 
     public void TakenCard()

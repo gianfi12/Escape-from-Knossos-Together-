@@ -64,7 +64,11 @@ public class ExitTrigger : MonoBehaviour {
             }
 
             if (checkpointReached.All(x => x)) {
-                if(!prevCheckpointReached) endgameVCAM.gameObject.SetActive(true); // activate VCAM only the first time
+
+                if (!prevCheckpointReached) {
+                    endgameVCAM.gameObject.SetActive(true); // activate VCAM only the first time
+                    FindObjectOfType<AudioManager>().Play("WinTheme"); // play sound only the first time
+                }
 
                 direction2D = Vector2.up;
                 foreach (GameObject player in players) {
