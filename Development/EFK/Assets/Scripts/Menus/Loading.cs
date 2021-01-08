@@ -34,6 +34,7 @@ public class Loading : MonoBehaviour
                 UpdateLoadingPoints();
                 yield return new WaitForSeconds(1);
             }
+            Debug.Log("USCITO");
         }
         
     }

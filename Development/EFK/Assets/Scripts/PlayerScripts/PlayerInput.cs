@@ -56,6 +56,10 @@ public class PlayerInput : MonoBehaviourPun
         normalSpeed = GetComponent<PlayerControllerMap>().Speed;
     }
 
+    public void SetActiveUI()
+    {
+        if (photonView.IsMine) _playerUI.SetActive(false);
+    }
 
     private void Awake()
     {

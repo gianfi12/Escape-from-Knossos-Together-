@@ -10,11 +10,17 @@ public class InputMenuManagerScript:MonoBehaviour
     {
         if (Input.GetButtonDown("Cancel"))
         {
-            if(_exitGamePrefab==null)
+            if (_exitGamePrefab == null)
+            {
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
                 _exitGamePrefab = Instantiate(exitGamePrefab);
+            }
             else
             {
                 Destroy(_exitGamePrefab);
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked; 
             }
         }
     }

@@ -110,6 +110,7 @@ public class GameManager : MonoBehaviourPun
         }
         EventManager.StartListening(EventType.FinishGame,new UnityAction(FinishGame));
         loadingCanvas.gameObject.SetActive(false);
+        _playerInstanceLocal.GetComponent<PlayerInput>().SetActiveUI();
     }
 
     private void SetUpAudio()
