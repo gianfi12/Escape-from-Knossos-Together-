@@ -82,7 +82,6 @@ public class GameManager : MonoBehaviourPun
             
         }
         
-        SetUpAudio();
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -109,6 +108,7 @@ public class GameManager : MonoBehaviourPun
             _playerInstanceRemote.GetComponent<Animator>().runtimeAnimatorController = _playerInstanceRemote.RuntimeAnimators[(_playerInstanceRemote.GetComponent<PhotonView>().ViewID / 1000) - 1];
         }
         EventManager.StartListening(EventType.FinishGame,new UnityAction(FinishGame));
+        SetUpAudio();
         //loadingCanvas.gameObject.SetActive(false);
         //_playerInstanceLocal.GetComponent<PlayerInput>().SetActiveUI();
     }
