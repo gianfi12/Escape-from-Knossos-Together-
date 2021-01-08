@@ -48,7 +48,10 @@ public class CombinationPanel : InteractableObject
             {
                 slot.SlotImage.Canvas = playerCanvas;
             }
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
             panel.gameObject.SetActive(true);
+            playerController.IsPanelActive = true;
             FindObjectOfType<AudioManager>().Play("TotemOn");
         }
         else
@@ -73,6 +76,9 @@ public class CombinationPanel : InteractableObject
             slot.SlotImage.Canvas = canvasToReturn;
         }
         panel.gameObject.SetActive(false);
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        playerController.IsPanelActive = false;
     }
 
     public void TriggerWrongCombination() {

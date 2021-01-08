@@ -83,6 +83,8 @@ public class GameManager : MonoBehaviourPun
         }
         
         SetUpAudio();
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     public void SetPlayerInstance(PlayerControllerMap playerInstance) {

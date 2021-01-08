@@ -146,11 +146,22 @@ public class PlayerInput : MonoBehaviourPun
                 {
                     if (_exitGamePrefabInstance == null)
                     {
+                        if (!_playerController.IsPanelActive)
+                        {
+                            Cursor.visible = true;
+                            Cursor.lockState = CursorLockMode.None;
+                        }
                         _exitGamePrefabInstance = Instantiate(exitGamePrefab);
+                        
                     }
                     else
                     {
                         Destroy(_exitGamePrefabInstance);
+                        if (!_playerController.IsPanelActive)
+                        {
+                            Cursor.visible = false;
+                            Cursor.lockState = CursorLockMode.Locked; 
+                        }
                     }
                         
                 }
@@ -195,11 +206,21 @@ public class PlayerInput : MonoBehaviourPun
             {
                 if (_exitGamePrefabInstance == null)
                 {
+                    if (!_playerController.IsPanelActive)
+                    {
+                        Cursor.visible = true;
+                        Cursor.lockState = CursorLockMode.None;
+                    }
                     _exitGamePrefabInstance = Instantiate(exitGamePrefab);
                 }
                 else
                 {
                     Destroy(_exitGamePrefabInstance);
+                    if (!_playerController.IsPanelActive)
+                    {
+                        Cursor.visible = false;
+                        Cursor.lockState = CursorLockMode.Locked;
+                    }
                 }
             }
         }

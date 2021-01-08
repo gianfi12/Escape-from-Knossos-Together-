@@ -12,7 +12,8 @@ public class PlayerControllerMap : MonoBehaviour
     private Vector3 _movement;
     private bool _hasChange = false;
     private bool _isDead = false;
-
+    private bool _isPanelActive;
+    
     private AudioManager audioManager;
     private Animator animator;
     private GameManager gameManager;
@@ -38,6 +39,12 @@ public class PlayerControllerMap : MonoBehaviour
     {
         get => _speed;
         set => _speed = value;
+    }
+    
+    public bool IsPanelActive
+    {
+        get => _isPanelActive;
+        set => _isPanelActive = value;
     }
 
     public void Awake() {
@@ -143,6 +150,8 @@ public class PlayerControllerMap : MonoBehaviour
 
     public void FinishGame(bool victory)
     {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         if (victory) {
             Instantiate(wonGamePrefab);
         }

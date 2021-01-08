@@ -7,6 +7,8 @@ public class ExitScript:MonoBehaviour
     }
     
     public void  ReturnGame(){
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         Destroy(this.gameObject);
     }
     
