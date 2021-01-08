@@ -8,8 +8,7 @@ public class Loading : MonoBehaviour
 {
 
     [SerializeField] private Text loadingPoints;
-    [SerializeField] private bool isRealLoading;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,25 +17,11 @@ public class Loading : MonoBehaviour
 
     IEnumerator LoadLevelAsync()
     {
-        if (isRealLoading)
+        while (gameObject.activeSelf)
         {
-            AsyncOperation gameLevel = SceneManager.LoadSceneAsync("Main");
-            while (!gameLevel.isDone)
-            {
                 UpdateLoadingPoints();
                 yield return new WaitForSeconds(1);
-            }  
         }
-        else
-        {
-            while (gameObject.activeSelf)
-            {
-                UpdateLoadingPoints();
-                yield return new WaitForSeconds(1);
-            }
-            Debug.Log("USCITO");
-        }
-        
     }
 
     private void UpdateLoadingPoints()
