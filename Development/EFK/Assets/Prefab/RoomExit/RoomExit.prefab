@@ -1617,7 +1617,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   room: {fileID: -2714702761895653754}
   activatableObjects: []
-  ambientSound: {fileID: 0}
+  ambientSound: {fileID: 3667777178338880927}
 --- !u!114 &7304259970588217399
 MonoBehaviour:
   m_ObjectHideFlags: 0
