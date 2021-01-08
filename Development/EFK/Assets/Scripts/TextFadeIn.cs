@@ -12,10 +12,6 @@ public class TextFadeIn : MonoBehaviour
         StartCoroutine(ActivateReturnButton(5f));
     }
 
-    private void Update() {
-       // if (!returnButton.activeSelf && GetComponent<Text>().color.a >= 0.99) returnButton.SetActive(true);
-    }
-
     public IEnumerator FadeTextToFullAlpha(float t, Text i) {
         i.color = new Color(i.color.r, i.color.g, i.color.b, 0);
         while (i.color.a < 1.0f) {
