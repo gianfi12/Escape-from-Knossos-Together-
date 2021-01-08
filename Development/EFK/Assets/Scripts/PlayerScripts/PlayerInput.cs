@@ -34,6 +34,7 @@ public class PlayerInput : MonoBehaviourPun
     private AudioSource radioLoop;
     private AudioSource[] radioBursts;
     private AudioSource[] radioOnOff;
+    private bool isRadioActive;
     System.Random random = new System.Random();
 
     public bool CanMove {
@@ -111,13 +112,14 @@ public class PlayerInput : MonoBehaviourPun
                 {
                     radioOnOff[random.Next(0, radioOnOff.Length)].Play();
                     radioLoop.PlayDelayed(0.1f);
+                    isRadioActive = true;
                     StartCoroutine(StartBurst());
                     _voiceController.enableVoice();
                 }
                 else if (Input.GetButtonUp("Voice")) {
                     if (radioLoop.isPlaying) radioLoop.Stop();
                     radioOnOff[random.Next(0, radioOnOff.Length)].Play();
-                    StopCoroutine(StartBurst());
+                    isRadioActive = false;
                     _voiceController.disableVoice();
                 }
 
@@ -158,6 +160,18 @@ public class PlayerInput : MonoBehaviourPun
 
         if (!PhotonNetwork.IsConnected)
         {
+            if (Input.GetButtonDown("Voice"))
+            {
+                radioOnOff[random.Next(0, radioOnOff.Length)].Play();
+                radioLoop.PlayDelayed(0.1f);
+                isRadioActive = true;
+                StartCoroutine(StartBurst());
+            }
+            else if (Input.GetButtonUp("Voice")) {
+                if (radioLoop.isPlaying) radioLoop.Stop();
+                radioOnOff[random.Next(0, radioOnOff.Length)].Play();
+                isRadioActive = false;
+            }
             if (Input.GetButtonDown("Map"))
             {
                 diaryPanel.SetActive(true);
@@ -199,10 +213,10 @@ public class PlayerInput : MonoBehaviourPun
 
     IEnumerator StartBurst()
     {
-        while (true)
+        while (isRadioActive)
         {
             yield return new WaitForSeconds(UnityEngine.Random.Range(0.7f, 1.3f));
-            radioBursts[random.Next(0,radioBursts.Length)].Play();
+            if (radioLoop.isPlaying)radioBursts[random.Next(0,radioBursts.Length)].Play();
         }
     }
 
