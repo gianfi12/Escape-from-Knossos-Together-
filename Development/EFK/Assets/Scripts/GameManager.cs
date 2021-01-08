@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviourPun
     [SerializeField] private int seed;
 
     [SerializeField] private GameObject navMesh;
+    [SerializeField] private Canvas loadingCanvas;
 
     void Start()
     {
@@ -58,6 +59,7 @@ public class GameManager : MonoBehaviourPun
             }
         }
         else {
+            loadingCanvas.gameObject.SetActive(false);
             _levelMap = Instantiate(levelPrefab);
             if (isDebug)
             {
@@ -105,6 +107,7 @@ public class GameManager : MonoBehaviourPun
             _playerInstanceRemote.GetComponent<Animator>().runtimeAnimatorController = _playerInstanceRemote.RuntimeAnimators[(_playerInstanceRemote.GetComponent<PhotonView>().ViewID / 1000) - 1];
         }
         EventManager.StartListening(EventType.FinishGame,new UnityAction(FinishGame));
+        loadingCanvas.gameObject.SetActive(false);
     }
 
     private void SetUpAudio()
