@@ -32,6 +32,7 @@ public class PicturePiece : MonoBehaviour
             {
                 ResetPiece();
             }
+            FindObjectOfType<AudioManager>().Play("MemoryPressed");
         } 
     }
 

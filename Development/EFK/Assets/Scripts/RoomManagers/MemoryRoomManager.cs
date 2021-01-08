@@ -147,9 +147,14 @@ public class MemoryRoomManager : MonoBehaviour
             if (winCount == 3)
             {
                 currentPicture++;
+                FindObjectOfType<AudioManager>().Play("MemoryFirstRight");
                 SetUpRoom();
             }
-            else player.IncrementTimer(-20);
+            else
+            {
+                FindObjectOfType<AudioManager>().Play("MemoryWrong");
+                player.IncrementTimer(-20);
+            }
         }
         else if (currentPicture == 1)
         {
@@ -160,7 +165,8 @@ public class MemoryRoomManager : MonoBehaviour
             }
             if (winCount == 3)
             {
-                myRoom.ExitDoor.OpenDoors(true);        
+                FindObjectOfType<AudioManager>().Play("MemorySecondRight");
+                StartCoroutine(myRoom.ExitDoor.OpenDoorsWithDelay(0.5f));        
             }
             else player.IncrementTimer(-20);
         }
