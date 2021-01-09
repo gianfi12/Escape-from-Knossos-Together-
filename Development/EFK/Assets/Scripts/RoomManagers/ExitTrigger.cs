@@ -81,11 +81,24 @@ public class ExitTrigger : MonoBehaviour {
                     foreach (GameObject player in players) {
                         if (player != null)
                         {
-                            player.GetComponent<PlayerControllerMap>().Move(Vector3.up);
-                            animator = player.GetComponent<Animator>();
-                            animator.SetFloat("Speed", direction2D.SqrMagnitude());
-                            animator.SetFloat("Horizontal", direction2D.x);
-
+                            if (PhotonNetwork.IsConnected)
+                            {
+                                if (player.GetComponent<PhotonView>().IsMine)
+                                {
+                                    player.GetComponent<PlayerControllerMap>().Move(Vector3.up);
+                                    animator = player.GetComponent<Animator>();
+                                    animator.SetFloat("Speed", direction2D.SqrMagnitude());
+                                    animator.SetFloat("Horizontal", direction2D.x);
+                                }
+                                
+                            }
+                            else
+                            {
+                                player.GetComponent<PlayerControllerMap>().Move(Vector3.up);
+                                animator = player.GetComponent<Animator>();
+                                animator.SetFloat("Speed", direction2D.SqrMagnitude());
+                                animator.SetFloat("Horizontal", direction2D.x);
+                            }
                             if (player.transform.position.y >= finalPosition.position.y) finalBoss = true;
                         }
                     }
@@ -113,11 +126,25 @@ public class ExitTrigger : MonoBehaviour {
                         foreach (GameObject player in players) {
                             if (player != null)
                             {
-                                player.GetComponent<PlayerControllerMap>().SetTimer(0,false);
-                                player.GetComponent<PlayerControllerMap>().Move(Vector3.up);
-                                animator = player.GetComponent<Animator>();
-                                animator.SetFloat("Speed", direction2D.SqrMagnitude());
-                                animator.SetFloat("Horizontal", direction2D.x);
+                                if (PhotonNetwork.IsConnected)
+                                {
+                                    if (player.GetComponent<PhotonView>().IsMine)
+                                    {
+                                        player.GetComponent<PlayerControllerMap>().SetTimer(0,false);
+                                        player.GetComponent<PlayerControllerMap>().Move(Vector3.up);
+                                        animator = player.GetComponent<Animator>();
+                                        animator.SetFloat("Speed", direction2D.SqrMagnitude());
+                                        animator.SetFloat("Horizontal", direction2D.x);  
+                                    }
+                                }
+                                else
+                                {
+                                    player.GetComponent<PlayerControllerMap>().SetTimer(0,false);
+                                    player.GetComponent<PlayerControllerMap>().Move(Vector3.up);
+                                    animator = player.GetComponent<Animator>();
+                                    animator.SetFloat("Speed", direction2D.SqrMagnitude());
+                                    animator.SetFloat("Horizontal", direction2D.x); 
+                                }
                             }
                         }
                     }

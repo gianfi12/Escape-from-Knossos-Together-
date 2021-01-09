@@ -5634,6 +5634,11 @@ PrefabInstance:
       propertyPath: isOpenOnStart
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4901744769968353010, guid: 1372d5684e41c124884d49e02a3d92fd,
+        type: 3}
+      propertyPath: closingDirection
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1372d5684e41c124884d49e02a3d92fd, type: 3}
 --- !u!4 &4722818744534935348 stripped
