@@ -853,6 +853,11 @@ MonoBehaviour:
   combinationPanel: {fileID: 6861088847765918992}
   exitDoor: {fileID: 7350780392032470555}
   positionsContainer: {fileID: 8385185679258552139}
+  tableOrders:
+  - {fileID: 21300000, guid: 0b2b26a9a767f244cb2384bdae97d532, type: 3}
+  - {fileID: 21300000, guid: 0b2b26a9a767f244cb2384bdae97d532, type: 3}
+  - {fileID: 21300000, guid: 0b2b26a9a767f244cb2384bdae97d532, type: 3}
+  - {fileID: 21300000, guid: 0b2b26a9a767f244cb2384bdae97d532, type: 3}
 --- !u!114 &6286903578829090243
 MonoBehaviour:
   m_ObjectHideFlags: 0
