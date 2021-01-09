@@ -6578,13 +6578,13 @@ PrefabInstance:
         type: 3}
       propertyPath: activeWithCard
       value: 
-      objectReference: {fileID: 21300000, guid: aa38caae20da9614797627dfb5452178,
+      objectReference: {fileID: 21300000, guid: d9eb98937947b4240bfbedfbb3a05b10,
         type: 3}
     - target: {fileID: 1006702184360027662, guid: 549eb6ca6c1e42f4faf599ce4212a040,
         type: 3}
       propertyPath: activeWithoutCard
       value: 
-      objectReference: {fileID: 21300000, guid: 3a88ac855318d754c811b4166d7954ff,
+      objectReference: {fileID: 21300000, guid: 6c75a12080f83d046ade5f9fe1ab9553,
         type: 3}
     - target: {fileID: 1006702184360027662, guid: 549eb6ca6c1e42f4faf599ce4212a040,
         type: 3}
@@ -6596,7 +6596,7 @@ PrefabInstance:
         type: 3}
       propertyPath: employeePhoto
       value: 
-      objectReference: {fileID: 21300000, guid: 4e1e92f6687392f488ff40b66dde6d53,
+      objectReference: {fileID: 21300000, guid: 909f2464a9af68e42b4c86de113e4eb0,
         type: 3}
     - target: {fileID: 1052313405686966035, guid: 549eb6ca6c1e42f4faf599ce4212a040,
         type: 3}
@@ -6830,13 +6830,13 @@ PrefabInstance:
         type: 3}
       propertyPath: activeWithCard
       value: 
-      objectReference: {fileID: 21300000, guid: aa38caae20da9614797627dfb5452178,
+      objectReference: {fileID: 21300000, guid: db42434ea4dd17b468ad088241518319,
         type: 3}
     - target: {fileID: 1006702184360027662, guid: 549eb6ca6c1e42f4faf599ce4212a040,
         type: 3}
       propertyPath: activeWithoutCard
       value: 
-      objectReference: {fileID: 21300000, guid: 3a88ac855318d754c811b4166d7954ff,
+      objectReference: {fileID: 21300000, guid: f9846e007bee62748b2669c677a0271d,
         type: 3}
     - target: {fileID: 1006702184360027662, guid: 549eb6ca6c1e42f4faf599ce4212a040,
         type: 3}
@@ -6848,7 +6848,7 @@ PrefabInstance:
         type: 3}
       propertyPath: employeePhoto
       value: 
-      objectReference: {fileID: 21300000, guid: 4e1e92f6687392f488ff40b66dde6d53,
+      objectReference: {fileID: 21300000, guid: bc8625a1d0c308b4f978d98209ea5a88,
         type: 3}
     - target: {fileID: 1052313405686966035, guid: 549eb6ca6c1e42f4faf599ce4212a040,
         type: 3}
@@ -7262,13 +7262,13 @@ PrefabInstance:
         type: 3}
       propertyPath: activeWithCard
       value: 
-      objectReference: {fileID: 21300000, guid: aa38caae20da9614797627dfb5452178,
+      objectReference: {fileID: 21300000, guid: 5eda4530e693181458a377bb7d8a8c9c,
         type: 3}
     - target: {fileID: 1006702184360027662, guid: 549eb6ca6c1e42f4faf599ce4212a040,
         type: 3}
       propertyPath: activeWithoutCard
       value: 
-      objectReference: {fileID: 21300000, guid: 3a88ac855318d754c811b4166d7954ff,
+      objectReference: {fileID: 21300000, guid: 16bf73f30dc2888438904e0bc271bd85,
         type: 3}
     - target: {fileID: 1006702184360027662, guid: 549eb6ca6c1e42f4faf599ce4212a040,
         type: 3}
@@ -7280,7 +7280,7 @@ PrefabInstance:
         type: 3}
       propertyPath: employeePhoto
       value: 
-      objectReference: {fileID: 21300000, guid: 4e1e92f6687392f488ff40b66dde6d53,
+      objectReference: {fileID: 21300000, guid: 32c820a5a69a3d949a2c095619bec1f3,
         type: 3}
     - target: {fileID: 1052313405686966035, guid: 549eb6ca6c1e42f4faf599ce4212a040,
         type: 3}
@@ -7814,13 +7814,13 @@ PrefabInstance:
         type: 3}
       propertyPath: activeWithCard
       value: 
-      objectReference: {fileID: 21300000, guid: aa38caae20da9614797627dfb5452178,
+      objectReference: {fileID: 21300000, guid: 2a33d3bba59493e448af23622ff6986e,
         type: 3}
     - target: {fileID: 1006702184360027662, guid: 549eb6ca6c1e42f4faf599ce4212a040,
         type: 3}
       propertyPath: activeWithoutCard
       value: 
-      objectReference: {fileID: 21300000, guid: 3a88ac855318d754c811b4166d7954ff,
+      objectReference: {fileID: 21300000, guid: 6448b3dde32d9a940bccbb7c4649e632,
         type: 3}
     - target: {fileID: 1006702184360027662, guid: 549eb6ca6c1e42f4faf599ce4212a040,
         type: 3}
@@ -7832,7 +7832,7 @@ PrefabInstance:
         type: 3}
       propertyPath: employeePhoto
       value: 
-      objectReference: {fileID: 21300000, guid: 4e1e92f6687392f488ff40b66dde6d53,
+      objectReference: {fileID: 21300000, guid: 5e7e617aa6c8e1a4d9b24695c9fbb26f,
         type: 3}
     - target: {fileID: 1052313405686966035, guid: 549eb6ca6c1e42f4faf599ce4212a040,
         type: 3}
