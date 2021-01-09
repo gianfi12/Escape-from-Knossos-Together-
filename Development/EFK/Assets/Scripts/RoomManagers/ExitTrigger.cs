@@ -12,11 +12,16 @@ public class ExitTrigger : MonoBehaviour {
     [SerializeField] private Doors controlledDoor;
     [SerializeField] private List<Transform> positionCheckpoints;
     [SerializeField] private CinemachineVirtualCamera endgameVCAM;
+    [SerializeField] private Transform finalPosition;
+    [SerializeField] private Boss boss;
 
     private List<GameObject> players = new List<GameObject>();
 
     private bool movingPlayers;
     private bool[] checkpointReached;
+    private bool finalBoss;
+    private bool setUpFinal;
+    private bool isBossExploded;
 
     private void Start() {
         if (PhotonNetwork.IsConnected) playersNumber = 2;
@@ -65,22 +70,71 @@ public class ExitTrigger : MonoBehaviour {
 
             if (checkpointReached.All(x => x)) {
 
-                if (!prevCheckpointReached) {
+                /*if (!prevCheckpointReached) {
                     endgameVCAM.gameObject.SetActive(true); // activate VCAM only the first time
                     FindObjectOfType<AudioManager>().Play("WinTheme"); // play sound only the first time
-                }
+                }*/
 
-                direction2D = Vector2.up;
-                foreach (GameObject player in players) {
-                    if (player != null)
-                    {
-                        player.GetComponent<PlayerControllerMap>().Move(Vector3.up);
-                        animator = player.GetComponent<Animator>();
-                        animator.SetFloat("Speed", direction2D.SqrMagnitude());
-                        animator.SetFloat("Horizontal", direction2D.x);
+                if (!finalBoss)
+                {
+                    direction2D = Vector2.up;
+                    foreach (GameObject player in players) {
+                        if (player != null)
+                        {
+                            player.GetComponent<PlayerControllerMap>().Move(Vector3.up);
+                            animator = player.GetComponent<Animator>();
+                            animator.SetFloat("Speed", direction2D.SqrMagnitude());
+                            animator.SetFloat("Horizontal", direction2D.x);
+
+                            if (player.transform.position.y >= finalPosition.position.y) finalBoss = true;
+                        }
                     }
                 }
+                else
+                {
+                    if (!setUpFinal)
+                    {
+                        boss.ActivateAnimator(this);
+                        foreach (GameObject player in players) {
+                            if (player != null)
+                            {
+                                animator = player.GetComponent<Animator>();
+                                animator.SetFloat("Speed", 0);
+                                player.GetComponent<PlayerControllerMap>().SetTimer(999,true);
+                            }
+                        }
+                        endgameVCAM.gameObject.SetActive(true);
+                        setUpFinal = true;
+                    }
+
+                    if (isBossExploded)
+                    {
+                        direction2D = Vector2.up;
+                        foreach (GameObject player in players) {
+                            if (player != null)
+                            {
+                                player.GetComponent<PlayerControllerMap>().SetTimer(0,false);
+                                player.GetComponent<PlayerControllerMap>().Move(Vector3.up);
+                                animator = player.GetComponent<Animator>();
+                                animator.SetFloat("Speed", direction2D.SqrMagnitude());
+                                animator.SetFloat("Horizontal", direction2D.x);
+                            }
+                        }
+                    }
+                }
+                
             }
         }
+    }
+
+    public void SetBossExploded()
+    {
+        StartCoroutine(SetTrigger());
+    }
+    
+    IEnumerator SetTrigger()
+    {
+        yield return new WaitForSeconds(3);
+        isBossExploded = true;
     }
 }

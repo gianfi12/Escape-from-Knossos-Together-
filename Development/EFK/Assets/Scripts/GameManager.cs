@@ -136,7 +136,7 @@ public class GameManager : MonoBehaviourPun
         }
         
         //FindObjectOfType<AudioManager>().Play("AlarmStart");
-        FindObjectOfType<AudioManager>().Play("Ambient");
+        //FindObjectOfType<AudioManager>().Play("Ambient");
     }
     
     
