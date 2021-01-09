@@ -23,6 +23,7 @@ public class Boss : MonoBehaviour
         animator.enabled = true;
         exitTrigger = trigger;
         FindObjectOfType<AudioManager>().Play("BossTheme");
+        FindObjectOfType<AudioManager>().Play("BossFX");
     }
 
     public void ActivateError()
@@ -33,7 +34,7 @@ public class Boss : MonoBehaviour
     public void ActivateExplosion()
     {
         animator.SetTrigger("Explosion");
-        FindObjectOfType<AudioManager>().Play("Explosion");
+        //FindObjectOfType<AudioManager>().Play("Explosion");
         FindObjectOfType<AudioManager>().Stop("BossTheme");
     }
 

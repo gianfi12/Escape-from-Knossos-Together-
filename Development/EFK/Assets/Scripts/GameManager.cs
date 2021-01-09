@@ -26,7 +26,6 @@ public class GameManager : MonoBehaviourPun
     [SerializeField] private int seed;
 
     [SerializeField] private GameObject navMesh;
-    [SerializeField] private Canvas loadingCanvas;
 
     void Start()
     {
@@ -59,7 +58,6 @@ public class GameManager : MonoBehaviourPun
             }
         }
         else {
-            loadingCanvas.gameObject.SetActive(false);
             _levelMap = Instantiate(levelPrefab);
             if (isDebug)
             {

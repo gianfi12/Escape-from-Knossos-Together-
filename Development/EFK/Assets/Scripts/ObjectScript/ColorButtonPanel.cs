@@ -44,7 +44,7 @@ public class ColorButtonPanel : MonoBehaviour {
 
         // Set colors to gui images in order only for active buttons
         for (int i=0; i< numberOfActiveButtons; i++) {
-            guiImages[i].color = buttonColors[orderedButtons[i]];
+            if (guiImages[i] != null) guiImages[i].color = buttonColors[orderedButtons[i]];
         }
 
     }

@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -661,6 +661,15 @@ MonoBehaviour:
     audioMixer: {fileID: -5474162659854218699, guid: 8dcae844e122de740b31b047f29dfea1,
       type: 2}
     maxDistance: 0
+  - name: BossFX
+    clip: {fileID: 8300000, guid: a7d7a5afd65974648b22bdce9cf9ce25, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBlend: 0
+    audioMixer: {fileID: 7642651166835970932, guid: 8dcae844e122de740b31b047f29dfea1,
+      type: 2}
+    maxDistance: 0
 --- !u!4 &97944987
 Transform:
   m_ObjectHideFlags: 0
@@ -715,7 +724,6 @@ MonoBehaviour:
   isDebug: 1
   seed: 0
   navMesh: {fileID: 1220600352}
-  loadingCanvas: {fileID: 0}
 --- !u!58 &569640896
 CircleCollider2D:
   m_ObjectHideFlags: 0

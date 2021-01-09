@@ -17,6 +17,7 @@ public class MainMenu : MonoBehaviourPunCallbacks
     [SerializeField] private Text _selectedRoomName = null;
     [SerializeField] private GameObject loadingPanel;
     private List<RoomInfo> roomList;
+    private AudioSource buttonSound;
     
     private const string Gameversion = "0.1";
     private const int MaxPlayerPerRoom = 2;
@@ -28,6 +29,7 @@ public class MainMenu : MonoBehaviourPunCallbacks
         
         PhotonNetwork.GameVersion = Gameversion;
         VerifyMasterConnection();
+        buttonSound = GetComponent<AudioSource>();
     }
 
     private void VerifyMasterConnection()
@@ -152,5 +154,10 @@ public class MainMenu : MonoBehaviourPunCallbacks
             
             PhotonNetwork.LoadLevel("Main");
         }
+    }
+
+    public void PlaySound()
+    {
+        buttonSound.Play();
     }
 }

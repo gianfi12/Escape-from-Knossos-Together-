@@ -41,8 +41,9 @@ public class ExitTrigger : MonoBehaviour {
             foreach (GameObject player in players) player.GetComponent<PlayerControllerMap>().SetTimer(0, false);
         }
 
-        if (playersArrived >= playersNumber) {
-            controlledDoor.OpenDoors(true);
+        if (playersArrived >= playersNumber)
+        {
+            StartCoroutine(controlledDoor.OpenDoorsWithDelay(0.5f));
             foreach(GameObject player in players) player.GetComponent<PlayerInput>().enabled = false;
             movingPlayers = true;
         }
