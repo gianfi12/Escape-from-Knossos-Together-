@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
 public class PicturePiece : MonoBehaviour
@@ -32,7 +33,7 @@ public class PicturePiece : MonoBehaviour
             {
                 ResetPiece();
             }
-            FindObjectOfType<AudioManager>().Play("MemoryPressed");
+            if (other.GetComponent<PhotonView>().IsMine) FindObjectOfType<AudioManager>().Play("MemoryPressed");
         } 
     }
 

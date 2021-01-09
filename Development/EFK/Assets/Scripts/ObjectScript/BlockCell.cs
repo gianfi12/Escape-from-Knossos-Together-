@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
 public class BlockCell : MonoBehaviour
@@ -27,7 +28,7 @@ public class BlockCell : MonoBehaviour
             {
                 GetComponent<SpriteRenderer>().enabled = true;
                 if (!isWalkable) other.gameObject.GetComponentInParent<PlayerControllerMap>().Explode();
-                else FindObjectOfType<AudioManager>().Play("BlockPressed");
+                else if (other.GetComponent<PhotonView>().IsMine) FindObjectOfType<AudioManager>().Play("BlockPressed");
                 isActive = true;
             }
         } 
