@@ -160,4 +160,9 @@ public class MainMenu : MonoBehaviourPunCallbacks
     {
         buttonSound.Play();
     }
+
+    public void Quit()
+    {
+        Application.Quit();
+    }
 }
