@@ -23,7 +23,7 @@ public class GameStoryScript:MonoBehaviour
         yield return null;
         while (!_destroyStarted && _lastText<texts.Count)
         {
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(4f);
             texts[_lastText].GetComponent<Animator>().Play("ToFadeInText");
             _lastText++;
         }
