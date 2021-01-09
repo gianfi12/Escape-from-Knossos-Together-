@@ -3095,8 +3095,8 @@ MonoBehaviour:
   _waitingStatusPanel: {fileID: 1021352187}
   _waitingStatusText: {fileID: 2034187298}
   _waitingStatusRoom: {fileID: 995760804}
-  _createRoomName: {fileID: 0}
-  _selectedRoomName: {fileID: 0}
+  _createRoomName: {fileID: 1065542250}
+  _selectedRoomName: {fileID: 1065542250}
   loadingPanel: {fileID: 1487051137}
 --- !u!4 &478007885
 Transform:
@@ -6894,6 +6894,28 @@ MonoBehaviour:
       - m_Target: {fileID: 478007884}
         m_MethodName: PlaySound
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1021352187}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1727176687}
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
