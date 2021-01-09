@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameStoryScript:MonoBehaviour
 {
@@ -34,7 +35,7 @@ public class GameStoryScript:MonoBehaviour
     IEnumerator pressGoToMainMenu()
     {
         yield return new WaitForSeconds(5f);
-        textSkipToMenu.GetComponent<Animator>().Play("ToFadeInText");
+        if(!_destroyStarted) textSkipToMenu.GetComponent<Animator>().Play("ToFadeInText");
     }
 
     private void Update()
@@ -44,10 +45,11 @@ public class GameStoryScript:MonoBehaviour
             if(!_destroyStarted)
             {
                 _destroyStarted = true;
-                textSkipToMenu.GetComponent<Animator>().Play("ToFadeOutText");
+                if(textSkipToMenu.GetComponent<Text>().color.a!=0) textSkipToMenu.GetComponent<Animator>().Play("ToFadeOutText");
                 foreach (GameObject gameObject in texts)
                 {
-                    gameObject.GetComponent<Animator>().Play("ToFadeOutText");
+                    if(gameObject.GetComponent<Text>().color.a!=0) 
+                        gameObject.GetComponent<Animator>().Play("ToFadeOutText");
                 }
 
                 StartCoroutine("destroyOnFinishedAnimation");
@@ -59,14 +61,15 @@ public class GameStoryScript:MonoBehaviour
     IEnumerator destroyOnFinishedAnimation()
     {
         yield return null;
-        while (checkIfAnimationFinished()) yield return new WaitForSeconds(1f);
+        while (checkIfAnimationNotFinished()) yield return new WaitForSeconds(1f);
         Destroy(gameObject);
         menu.SetActive(true);
         inputMenuManager.SetActive(true);
     }
 
-    bool checkIfAnimationFinished()
+    bool checkIfAnimationNotFinished()
     {
+        if (textSkipToMenu.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f) return true;
         foreach (GameObject gameObject in texts)
         {
             if (gameObject.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f)
