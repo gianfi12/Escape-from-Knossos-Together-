@@ -1,4 +1,5 @@
 ﻿
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -12,20 +13,18 @@ public class Feedback : MonoBehaviour
     public void SendFeedback()
     {
         string feedback = InputField.text;
-        StartCoroutine(PostFeedback());
+        StartCoroutine(PostFeedback(feedback));
         InputField.text = "";
     } 
     
-    IEnumerator PostFeedback() 
+    IEnumerator PostFeedback(String feedback) 
     {
         string URL =
             "https://docs.google.com/forms/d/e/1FAIpQLSdMqzcBly7D1ASCV4TellsgZFxfsuOvR08TONk9WG4xVQ6PzQ/formResponse";
         
         WWWForm form = new WWWForm();
 
-        form.AddField("entry.548522869", "provaGame");
-        form.AddField("entry.1313960569", "provaGame");
-        form.AddField("entry.1656061589", "provaGame");
+        form.AddField("entry.548522869", feedback);
 
         UnityWebRequest www = UnityWebRequest.Post(URL, form);
 
