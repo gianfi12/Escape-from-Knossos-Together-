@@ -854,10 +854,10 @@ MonoBehaviour:
   exitDoor: {fileID: 7350780392032470555}
   positionsContainer: {fileID: 8385185679258552139}
   tableOrders:
-  - {fileID: 21300000, guid: 0b2b26a9a767f244cb2384bdae97d532, type: 3}
-  - {fileID: 21300000, guid: 0b2b26a9a767f244cb2384bdae97d532, type: 3}
-  - {fileID: 21300000, guid: 0b2b26a9a767f244cb2384bdae97d532, type: 3}
-  - {fileID: 21300000, guid: 0b2b26a9a767f244cb2384bdae97d532, type: 3}
+  - {fileID: 21300000, guid: e647341b431ffea43b4dfcade5762680, type: 3}
+  - {fileID: 21300000, guid: 6d709719837aa344b920d51ca2e19e40, type: 3}
+  - {fileID: 21300000, guid: dbe671c47a8672442a4191e18e2981c6, type: 3}
+  - {fileID: 21300000, guid: 705e928d0933a2a43adfe1669decd312, type: 3}
 --- !u!114 &6286903578829090243
 MonoBehaviour:
   m_ObjectHideFlags: 0
