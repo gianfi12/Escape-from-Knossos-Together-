@@ -3,20 +3,17 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameStoryScript:MonoBehaviour
 {
-    [SerializeField] private GameObject menu;
     [SerializeField] private GameObject textSkipToMenu;
-    [SerializeField] private GameObject inputMenuManager;
     [SerializeField] private List<GameObject> texts;
     private bool _destroyStarted = false;
     private int _lastText = 0;
     private void Awake()
     {
-        menu.SetActive(false);
-        inputMenuManager.SetActive(false);
         StartCoroutine("pressGoToMainMenu");
         StartCoroutine("displayTextSequence");
     }
@@ -63,8 +60,7 @@ public class GameStoryScript:MonoBehaviour
         yield return null;
         while (checkIfAnimationNotFinished()) yield return new WaitForSeconds(1f);
         Destroy(gameObject);
-        menu.SetActive(true);
-        inputMenuManager.SetActive(true);
+        SceneManager.LoadScene("MainMenu");
     }
 
     bool checkIfAnimationNotFinished()
