@@ -16,7 +16,6 @@ public class MainMenu : MonoBehaviourPunCallbacks
     [SerializeField] private Text _createRoomName = null;
     [SerializeField] private Text _selectedRoomName = null;
     [SerializeField] private GameObject loadingPanel;
-    [SerializeField] private GameObject loadingCanvas;
     private List<RoomInfo> roomList;
     
     private const string Gameversion = "0.1";
@@ -147,7 +146,6 @@ public class MainMenu : MonoBehaviourPunCallbacks
             PhotonNetwork.CurrentRoom.IsOpen = false;
             _waitingStatusText.text = "Player found";
             Debug.Log("Match is ready to begin");
-            loadingCanvas.SetActive(true);
             
             PhotonNetwork.LoadLevel("Main");
         }
