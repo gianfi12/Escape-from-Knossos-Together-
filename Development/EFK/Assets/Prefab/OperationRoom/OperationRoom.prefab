@@ -1235,7 +1235,7 @@ MonoBehaviour:
   diaryText: {fileID: 433011433481261697, guid: 4a52956efebb9ed45b6f3e00209979b6,
     type: 3}
   diaryImageList: []
-  timeIncrementInSeconds: 120
+  timeIncrementInSeconds: 160
   timeoutTriggersLoss: 1
   tilemapFloor: {fileID: 4285450455969061254}
   tilemapExit: {fileID: 7316314469405203350}
@@ -1322,8 +1322,14 @@ MonoBehaviour:
   circlePrefab: {fileID: 3233185066545764266, guid: 946ef491b9b4205478816816aa315a50,
     type: 3}
   operationalRoomPrefab: {fileID: 8300501424004825377}
-  plusSprite: {fileID: 21300000, guid: 48fc78c964fc9d746a9cfb6d5c4c7dd5, type: 3}
-  minusSprite: {fileID: 21300000, guid: bb0338e7f123b2d4c909bd3153e3143a, type: 3}
+  plusSprite:
+  - {fileID: 21300000, guid: 7be5e761d98f7cd4bb8ff00bf23053ec, type: 3}
+  - {fileID: 21300000, guid: ddd8494f91724b74bba7b169c4a8895f, type: 3}
+  - {fileID: 21300000, guid: 5e893a61c45ab0d49a26f0392909bbe6, type: 3}
+  minusSprite:
+  - {fileID: 21300000, guid: eeb5285f5bc34cb46bb0383950142900, type: 3}
+  - {fileID: 21300000, guid: fd25a2fb6a836d74089336fbf5c464a3, type: 3}
+  - {fileID: 21300000, guid: 2491864dd5f5ac44890482b867825565, type: 3}
   guiImage:
   - {fileID: 3860407719863787515}
   - {fileID: 1209867170748370925}

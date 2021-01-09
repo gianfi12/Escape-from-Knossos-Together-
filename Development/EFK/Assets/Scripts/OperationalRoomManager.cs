@@ -14,8 +14,8 @@ public class OperationalRoomManager : MonoBehaviour
     [SerializeField] private Doors doors;
     [SerializeField] private GameObject circlePrefab;
     [SerializeField] private RoomPrefab operationalRoomPrefab;
-    [SerializeField] private Sprite plusSprite;
-    [SerializeField] private Sprite minusSprite;
+    [SerializeField] private List<Sprite> plusSprite;
+    [SerializeField] private List<Sprite> minusSprite;
     [SerializeField] private List<Image> guiImage;
 
     private List<ButtonConsole> _buttonConsoles;
@@ -60,7 +60,7 @@ public class OperationalRoomManager : MonoBehaviour
         operationalRoomPrefab.SetDiaryText(text);
         for (int i = 0; i < _buttonValues.Length; i++)
         {
-            guiImage[i].sprite = _buttonValues[i] < 0 ? minusSprite : plusSprite ; 
+            guiImage[i].sprite = _buttonValues[i] < 0 ? minusSprite[ _rnd.Next(0, minusSprite.Count-1)] : plusSprite[ _rnd.Next(0, plusSprite.Count-1)] ; 
             operationalRoomPrefab.AddDiaryImage(guiImage[i]);
         }
     }
