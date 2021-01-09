@@ -33,7 +33,7 @@ public class PicturePiece : MonoBehaviour
             {
                 ResetPiece();
             }
-            if (other.GetComponent<PhotonView>().IsMine) FindObjectOfType<AudioManager>().Play("MemoryPressed");
+            if (PhotonNetwork.IsConnected && other.GetComponentInParent<PhotonView>().IsMine) FindObjectOfType<AudioManager>().Play("MemoryPressed");
         } 
     }
 

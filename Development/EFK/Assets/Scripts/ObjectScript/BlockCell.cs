@@ -28,7 +28,7 @@ public class BlockCell : MonoBehaviour
             {
                 GetComponent<SpriteRenderer>().enabled = true;
                 if (!isWalkable) other.gameObject.GetComponentInParent<PlayerControllerMap>().Explode();
-                else if (other.GetComponent<PhotonView>().IsMine) FindObjectOfType<AudioManager>().Play("BlockPressed");
+                else if (PhotonNetwork.IsConnected && other.GetComponentInParent<PhotonView>().IsMine) FindObjectOfType<AudioManager>().Play("BlockPressed");
                 isActive = true;
             }
         } 
