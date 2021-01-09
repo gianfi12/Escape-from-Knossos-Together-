@@ -129,6 +129,7 @@ public class MainMenu : MonoBehaviourPunCallbacks
         else
         {
             _waitingStatusText.text = "Player found";
+            _findGamePanel.SetActive(false);
             loadingPanel.SetActive(true);
             Debug.Log("Match is ready to begin");
         }
@@ -145,6 +146,8 @@ public class MainMenu : MonoBehaviourPunCallbacks
         {
             PhotonNetwork.CurrentRoom.IsOpen = false;
             _waitingStatusText.text = "Player found";
+            _findGamePanel.SetActive(false);
+            loadingPanel.SetActive(true);
             Debug.Log("Match is ready to begin");
             
             PhotonNetwork.LoadLevel("Main");
