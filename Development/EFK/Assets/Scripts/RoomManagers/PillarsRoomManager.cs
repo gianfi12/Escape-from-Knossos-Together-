@@ -119,7 +119,7 @@ public class PillarsRoomManager : MonoBehaviour
         return check;
     }
 
-    private void ResetActivatedPillars() {
+    public void ResetActivatedPillars() {
         foreach (Pillar p in pillars) p.ResetPillar();
         activated.Clear();
         StartCoroutine("GenerateLightRayWithDelay", 0.5f);
