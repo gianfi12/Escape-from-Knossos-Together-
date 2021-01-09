@@ -537,7 +537,7 @@ MonoBehaviour:
     maxDistance: 0
   - name: WinTheme
     clip: {fileID: 8300000, guid: 4901ddd68d059e540b10fb4d3630940b, type: 3}
-    volume: 1
+    volume: 0.5
     pitch: 1
     loop: 0
     spatialBlend: 0
@@ -546,7 +546,7 @@ MonoBehaviour:
     maxDistance: 0
   - name: LoseTheme
     clip: {fileID: 8300000, guid: d96b327d7ea88cc4c9a0c7451ccfac49, type: 3}
-    volume: 1
+    volume: 0.5
     pitch: 1
     loop: 0
     spatialBlend: 0
@@ -654,7 +654,7 @@ MonoBehaviour:
     maxDistance: 0
   - name: BossTheme
     clip: {fileID: 8300000, guid: c34be36de017a5347bd87a6d9ca45a60, type: 3}
-    volume: 0.8
+    volume: 0.5
     pitch: 1
     loop: 0
     spatialBlend: 0
@@ -663,7 +663,7 @@ MonoBehaviour:
     maxDistance: 0
   - name: BossFX
     clip: {fileID: 8300000, guid: a7d7a5afd65974648b22bdce9cf9ce25, type: 3}
-    volume: 1
+    volume: 0.8
     pitch: 1
     loop: 0
     spatialBlend: 0

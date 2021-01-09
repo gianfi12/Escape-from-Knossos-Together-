@@ -86,7 +86,7 @@ MonoBehaviour:
   m_MinValue: 0.0001
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.0001
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -446,7 +446,7 @@ MonoBehaviour:
   m_MinValue: 0.0001
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.0001
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1086,7 +1086,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5347755264363621468}
+      - m_Target: {fileID: 536700412704506307}
         m_MethodName: ReturnGame
         m_Mode: 1
         m_Arguments:
@@ -1216,7 +1216,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5347755264363621468}
+      - m_Target: {fileID: 536700412704506307}
         m_MethodName: ReturnDesktop
         m_Mode: 1
         m_Arguments:
@@ -1357,7 +1357,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 5138687876343256692}
+      - m_Target: {fileID: 2705906989601759189}
         m_MethodName: SetActive
         m_Mode: 6
         m_Arguments:
@@ -3793,7 +3793,7 @@ MonoBehaviour:
   m_MinValue: 0.0001
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.0001
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -3961,7 +3961,7 @@ MonoBehaviour:
   m_MinValue: 0.0001
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.0001
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -4441,9 +4441,9 @@ GameObject:
   - component: {fileID: 5376342282600796827}
   - component: {fileID: 537541495553599297}
   - component: {fileID: 4629409710050700180}
-  - component: {fileID: 5347755264363621468}
+  - component: {fileID: 536700412704506307}
   m_Layer: 5
-  m_Name: ExitGame 1
+  m_Name: ExitGameWithMouse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4532,7 +4532,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &5347755264363621468
+--- !u!114 &536700412704506307
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
