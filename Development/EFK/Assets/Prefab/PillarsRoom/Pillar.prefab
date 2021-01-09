@@ -105,7 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99233c5dc2b492b42b274da604e78964, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactiveText: Activate
+  interactiveText: Turn on
   pillarsSounds:
   - {fileID: 6392190338493735886}
   - {fileID: 4357974248023968199}
