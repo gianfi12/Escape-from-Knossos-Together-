@@ -139,6 +139,9 @@ public class MainMenu : MonoBehaviourPunCallbacks
 
     public override void OnJoinRoomFailed(short returnCode, string message)
     {
+        loadingPanel.SetActive(false);
+        _waitingStatusPanel.SetActive(false);
+        _findGamePanel.SetActive(true);
         Debug.Log("Join Room failed "+message);
     }
 
