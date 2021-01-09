@@ -12,6 +12,7 @@ public class AlphabetRoomManager : MonoBehaviour
 {
     private List<int> selectedNumbers = new List<int>();
     private Mode mode;
+    private int modeID;
 
     public struct Mode
     {
@@ -45,6 +46,7 @@ public class AlphabetRoomManager : MonoBehaviour
     [SerializeField] private CombinationPanel combinationPanel;
     [SerializeField] private Doors exitDoor;
     [SerializeField] private GameObject positionsContainer;
+    [SerializeField] private Sprite[] tableOrders;
     private List<Transform> runePositions;
 
     private void SelectNumbers()
@@ -57,7 +59,7 @@ public class AlphabetRoomManager : MonoBehaviour
 
 
         int countA = 5;
-        int modeID = Random.Range(0,4);
+        modeID = Random.Range(0,4);
         mode = modes[modeID];
         int a = mode.a;
         int b = mode.b;
@@ -123,7 +125,7 @@ public class AlphabetRoomManager : MonoBehaviour
         runePositions = new List<Transform>(positionsContainer.transform.GetComponentsInChildren<Transform>());
         runes = GetComponentsInChildren<Collectable>();
         SelectNumbers();
-        //combinationPanel.transform.parent.GetComponentInChildren<Canvas>().GetComponentInChildren<Image>().transform.Find("Order").GetComponent<Text>().text += mode.name;
+        combinationPanel.transform.parent.GetComponentInChildren<Canvas>().GetComponentInChildren<Image>().transform.Find("OrderImage").GetComponent<Image>().sprite = tableOrders[modeID];
         System.Random rnd = new System.Random(GetComponent<ObjectsContainer>().Seed);
         int [] randomIndex = selectedNumbers.OrderBy(x => rnd.Next()).ToArray();
         for (int i = 0; i < runes.Length; i++)
