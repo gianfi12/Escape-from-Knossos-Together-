@@ -193,7 +193,7 @@ public class PlayerControllerMap : MonoBehaviour
             Debug.Log(e.Message);
         }
         
-        PhotonNetwork.LoadLevel("Loading");
+        PhotonNetwork.LoadLevel("Main");
     }
 
     public void Footsep()
