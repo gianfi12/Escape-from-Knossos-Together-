@@ -13,6 +13,7 @@ public class ExitTrigger : MonoBehaviour {
     [SerializeField] private List<Transform> positionCheckpoints;
     [SerializeField] private CinemachineVirtualCamera endgameVCAM;
     [SerializeField] private Transform finalPosition;
+    [SerializeField] private List<Transform> finalCheckpoints;
     [SerializeField] private Boss boss;
 
     private List<GameObject> players = new List<GameObject>();
@@ -20,6 +21,7 @@ public class ExitTrigger : MonoBehaviour {
     private bool movingPlayers;
     private bool[] checkpointReached;
     private bool finalBoss;
+    private bool[] finalCheckpointReached;
     private bool setUpFinal;
     private bool isBossExploded;
 
@@ -28,6 +30,7 @@ public class ExitTrigger : MonoBehaviour {
         else playersNumber = 1;
 
         checkpointReached = new bool[playersNumber];
+        finalCheckpointReached = new bool[playersNumber];
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
@@ -105,14 +108,41 @@ public class ExitTrigger : MonoBehaviour {
                 }
                 else
                 {
+                    if (!finalCheckpointReached.All(x => x))
+                    {
+                        for (int i = 0; i < playersNumber; i++) {
+                            if (players[i] != null)
+                            {
+                                if (Vector3.Distance(players[i].transform.position, finalCheckpoints[i].transform.position) > 0.1f && !finalCheckpointReached[i]) {
+                                    Vector3 directionToCheckpoint = (finalCheckpoints[i].transform.position - players[i].transform.position).normalized;
+
+                                    direction2D = new Vector2(directionToCheckpoint.x, directionToCheckpoint.y);
+                                    players[i].GetComponent<PlayerControllerMap>().Move(directionToCheckpoint);
+
+                                    animator = players[i].GetComponent<Animator>();
+                                    animator.SetFloat("Speed", direction2D.SqrMagnitude());
+                                    animator.SetFloat("Horizontal", direction2D.x);
+                                }
+                                else
+                                {
+                                    finalCheckpointReached[i] = true;
+                                    animator = players[i].GetComponent<Animator>();
+                                    animator.SetFloat("Speed", 0);
+                                    animator.SetFloat("Horizontal",  (boss.transform.position - players[i].transform.position).x);
+                                }    
+                            }
+                        }
+                    }
+                    
                     if (!setUpFinal)
                     {
                         boss.ActivateAnimator(this);
+                        
                         foreach (GameObject player in players) {
                             if (player != null)
                             {
-                                animator = player.GetComponent<Animator>();
-                                animator.SetFloat("Speed", 0);
+                                //animator = player.GetComponent<Animator>();
+                                //animator.SetFloat("Speed", 0);
                                 player.GetComponent<PlayerControllerMap>().SetTimer(999,true);
                             }
                         }
