@@ -58,7 +58,6 @@ public class ExitTrigger : MonoBehaviour {
                         Vector3 directionToCheckpoint = (positionCheckpoints[i].transform.position - players[i].transform.position).normalized;
 
                         direction2D = new Vector2(directionToCheckpoint.x, directionToCheckpoint.y);
-                        players[i].GetComponent<CapsuleCollider2D>().enabled = false;
                         players[i].GetComponent<PlayerControllerMap>().Move(directionToCheckpoint);
 
                         animator = players[i].GetComponent<Animator>();
