@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: DecorationUp
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: b9d626b888715d94fa7d4014eb7b1c4d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1e71d39f2333ad641be32f7309d15a25, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
