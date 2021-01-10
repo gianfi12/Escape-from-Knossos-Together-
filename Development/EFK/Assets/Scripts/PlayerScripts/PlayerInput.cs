@@ -18,6 +18,7 @@ public class PlayerInput : MonoBehaviourPun
     //indicates if the player can move, so if it is in the scene or it is disable, if false it is also not visible and so
     //it shouldn't been seen from the agent moving in the map
     public bool _canMove = true;
+    public bool _isFinal;
     public bool _isHidden;
     private float _lastDir;
     private PlayerInteraction _playerInteraction;
@@ -40,6 +41,12 @@ public class PlayerInput : MonoBehaviourPun
     public bool CanMove {
         get => _canMove;
         set => _canMove = value;
+    }
+    
+    public Vector2 Movement
+    {
+        get => _movement;
+        set => _movement = value;
     }
 
     // Start is called before the first frame update
@@ -103,7 +110,7 @@ public class PlayerInput : MonoBehaviourPun
             _movement.x = Input.GetAxisRaw("Horizontal");
             _movement.y = Input.GetAxisRaw("Vertical");
         }
-        else
+        else if (!_isFinal)
         {
             _movement.x = 0f;
             _movement.y = 0f;
@@ -127,7 +134,7 @@ public class PlayerInput : MonoBehaviourPun
                     _voiceController.disableVoice();
                 }
 
-                if (Input.GetButtonDown("Map"))
+                if (Input.GetButtonDown("Map") && !_isFinal)
                 {
                     diaryPanel.SetActive(true);
                     diaryImage.SetActive(false);
@@ -136,7 +143,7 @@ public class PlayerInput : MonoBehaviourPun
                     mapSounds[random.Next(0,18)].Play();
                 }
     
-                else if (Input.GetButtonUp("Map"))
+                else if (Input.GetButtonUp("Map") && !_isFinal)
                 {
                     diaryPanel.SetActive(false);
                     diaryImage.SetActive(true);
@@ -187,7 +194,7 @@ public class PlayerInput : MonoBehaviourPun
                 radioOnOff[random.Next(0, radioOnOff.Length)].Play();
                 isRadioActive = false;
             }
-            if (Input.GetButtonDown("Map"))
+            if (Input.GetButtonDown("Map") && !_isFinal)
             {
                 diaryPanel.SetActive(true);
                 diaryImage.SetActive(false);
@@ -196,7 +203,7 @@ public class PlayerInput : MonoBehaviourPun
                 mapSounds[random.Next(0,mapSounds.Length)].Play();
             }
     
-            else if (Input.GetButtonUp("Map"))
+            else if (Input.GetButtonUp("Map") && !_isFinal)
             {
                 diaryPanel.SetActive(false);
                 diaryImage.SetActive(true);
@@ -229,9 +236,12 @@ public class PlayerInput : MonoBehaviourPun
             }
         }
 
-        _animator.SetFloat("Speed", _movement.SqrMagnitude());
-        _animator.SetFloat("Horizontal", _movement.x);
-        _animator.SetBool("IsReading",isReading);
+        if (!_isFinal)
+        {
+            _animator.SetFloat("Speed", _movement.SqrMagnitude());
+            _animator.SetFloat("Horizontal", _movement.x);
+            _animator.SetBool("IsReading",isReading);
+        }
         //_animator.SetFloat("Vertical", _movement.y);
         //_animator.SetFloat("Direction", _lastDir);
     }
