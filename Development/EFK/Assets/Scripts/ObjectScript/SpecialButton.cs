@@ -11,28 +11,28 @@ public class SpecialButton : InteractableObject
     void Start()
     {
         lightRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
-        materialCopy = new Material(lightRenderer.material);
-        SetMaterialColor();
+        materialCopy = new Material(lightRenderer.material); 
         lightRenderer.material = materialCopy;
+        SetMaterialColor();
     }
     public override void Interact(GameObject player)
     {
         gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
-        lightRenderer.material.SetColor("GlowColor", buttonColor);
+        materialCopy.SetColor("GlowColor", buttonColor * 1.2f);
         StartCoroutine("ResetLightWithDelay", 1f); 
     }
 
     IEnumerator ResetLightWithDelay(float delay) {
         yield return new WaitForSeconds(delay);
-        lightRenderer.material.SetColor("GlowColor", new Color(0, 0, 0, 0.5f));
+        materialCopy.SetColor("GlowColor", new Color(0, 0, 0, 0.5f));
         gameObject.layer = LayerMask.NameToLayer("Interactable");
         SetMaterialColor();
     }
 
     private void SetMaterialColor()
     {
-        buttonColor = new Color(UnityEngine.Random.Range(0,256),UnityEngine.Random.Range(0,256),UnityEngine.Random.Range(0,256), 1);
-        //materialCopy.SetColor("GlowColor", new Color(0,0,0,0.5f));
-        transform.GetChild(0).GetComponent<SpriteRenderer>().color = buttonColor;
+        buttonColor = new Color(UnityEngine.Random.Range(0.0f,1.0f), UnityEngine.Random.Range(0.0f, 1.0f), UnityEngine.Random.Range(0.0f, 1.0f), 1);
+        Debug.Log(buttonColor);
+        lightRenderer.color = buttonColor;
     }
 }
