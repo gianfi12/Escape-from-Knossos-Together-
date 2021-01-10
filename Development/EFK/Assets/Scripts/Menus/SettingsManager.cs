@@ -31,14 +31,14 @@ namespace Menus
 
             for (int i = 0; i < resolutions.Length; i++)
             {
-                if(resolutionDropdown.options.FindIndex(data => data.text.Equals(resolutions[i].width + "x" + resolutions[i].height))==-1)
-                {
+                //if(resolutionDropdown.options.FindIndex(data => data.text.Equals(resolutions[i].width + "x" + resolutions[i].height))==-1)
+                //{
                     resolutionDropdown.options.Add(
                         new Dropdown.OptionData(resolutions[i].width + "x" + resolutions[i].height));
 
                     if (resolutions[i].width == Screen.currentResolution.width &&
                         resolutions[i].height == Screen.currentResolution.height) currentResolution = i;
-                }
+                //}
             }
 
             resolutionDropdown.value = currentResolution;
