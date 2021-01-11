@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
@@ -15,7 +16,7 @@ namespace Menus
         public Slider voiceVolumeSlider;
 
         public AudioMixer audioMixer;
-        public Resolution[] resolutions;
+        public List<Resolution> resolutions;
 
         void Start()
         {
@@ -26,19 +27,17 @@ namespace Menus
             SFXVolumeSlider.onValueChanged.AddListener(delegate { OnSFXVolumeChange(); });
             voiceVolumeSlider.onValueChanged.AddListener(delegate { OnVoiceVolumeChange(); });
 
-            resolutions = Screen.resolutions;
+            resolutions = new List<Resolution>();
             int currentResolution = 0;
 
-            for (int i = 0; i < resolutions.Length; i++)
-            {
-                //if(resolutionDropdown.options.FindIndex(data => data.text.Equals(resolutions[i].width + "x" + resolutions[i].height))==-1)
-                //{
+            foreach(Resolution res in Screen.resolutions) {
+                if (res.refreshRate == Screen.currentResolution.refreshRate) {
+                    resolutions.Add(res);
                     resolutionDropdown.options.Add(
-                        new Dropdown.OptionData(resolutions[i].width + "x" + resolutions[i].height));
-
-                    if (resolutions[i].width == Screen.currentResolution.width &&
-                        resolutions[i].height == Screen.currentResolution.height) currentResolution = i;
-                //}
+                        new Dropdown.OptionData(res.width + "x" + res.height));
+                    if (res.width == Screen.currentResolution.width &&
+                        res.height == Screen.currentResolution.height) currentResolution = resolutions.Count - 1; // current resolution index
+                }
             }
 
             resolutionDropdown.value = currentResolution;
