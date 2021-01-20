@@ -49,6 +49,14 @@ public class MainMenu : MonoBehaviourPunCallbacks
         }
     }
 
+    public void CancelRoom() 
+    {
+        PhotonNetwork.LeaveRoom();
+        loadingPanel.SetActive(false);
+        _waitingStatusPanel.SetActive(false);
+        _findGamePanel.SetActive(true);
+    }
+
     public void JoinSelectedRoom()
     {
         VerifyMasterConnection();

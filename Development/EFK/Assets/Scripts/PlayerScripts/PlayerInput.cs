@@ -17,7 +17,7 @@ public class PlayerInput : MonoBehaviourPun
     private Vector2 _movement;
     //indicates if the player can move, so if it is in the scene or it is disable, if false it is also not visible and so
     //it shouldn't been seen from the agent moving in the map
-    public bool _canMove = true;
+    public bool _canMove;
     public bool _isFinal;
     public bool _isHidden;
     private float _lastDir;
@@ -61,6 +61,8 @@ public class PlayerInput : MonoBehaviourPun
         
         if (!PhotonNetwork.IsConnected) _playerUI.SetActive(true);
         normalSpeed = GetComponent<PlayerControllerMap>().Speed;
+        _canMove = true;
+        _isFinal = false;
     }
 
     public void SetActiveUI()
