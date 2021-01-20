@@ -16,9 +16,10 @@ public class ExitTrigger : MonoBehaviour {
     [SerializeField] private List<Transform> finalCheckpoints;
     [SerializeField] private Boss boss;
 
+    private GameObject myPlayer;
     private List<GameObject> players = new List<GameObject>();
 
-    private bool movingPlayers;
+    private bool movingPlayer;
     private bool[] checkpointReached;
     private bool finalBoss;
     private bool[] finalCheckpointReached;
@@ -36,82 +37,65 @@ public class ExitTrigger : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("Player")) {
             playersArrived++;
+            if (PhotonNetwork.IsConnected) {
+                if (other.GetComponent<PhotonView>().IsMine) {
+                    myPlayer = other.gameObject;
+                    myPlayer.GetComponent<PlayerControllerMap>().SetTimer(0, false);
+                }
+            }
+            else {
+                myPlayer = other.gameObject;
+                myPlayer.GetComponent<PlayerControllerMap>().SetTimer(0, false);
+            }
             players.Add(other.gameObject);
-
-            foreach (GameObject player in players) player.GetComponent<PlayerControllerMap>().SetTimer(0, false);
         }
 
         if (playersArrived >= playersNumber)
         {
             StartCoroutine(controlledDoor.OpenDoorsWithDelay(0.5f));
-            foreach (GameObject player in players)
-            {
-                PlayerInput playerInput = player.GetComponent<PlayerInput>();
-                playerInput._canMove = false;
-                playerInput._isFinal = true;
-                playerInput.Movement = new Vector2(0,0);
-            }
-            movingPlayers = true;
+
+            PlayerInput playerInput = myPlayer.GetComponent<PlayerInput>();
+            playerInput._canMove = false;
+            playerInput._isFinal = true;
+            playerInput.Movement = new Vector2(0, 0);
+            movingPlayer = true;
         }
     }
 
     private void Update() {
-        if (movingPlayers) {
-            bool prevCheckpointReached = checkpointReached.All(x => x);
+        if (movingPlayer) {
             Vector2 direction2D;
             Animator animator;
 
             for (int i = 0; i < playersNumber; i++) {
-                if (players[i] != null)
-                {
+                if (players[i] != null) {
                     if (Vector3.Distance(players[i].transform.position, positionCheckpoints[i].transform.position) > 0.1f && !checkpointReached[i]) {
-                        Vector3 directionToCheckpoint = (positionCheckpoints[i].transform.position - players[i].transform.position).normalized;
+                        if (players[i] == myPlayer) {
+                            Vector3 directionToCheckpoint = (positionCheckpoints[i].transform.position - players[i].transform.position).normalized;
 
-                        direction2D = new Vector2(directionToCheckpoint.x, directionToCheckpoint.y);
-                        players[i].GetComponent<PlayerControllerMap>().Move(directionToCheckpoint);
+                            direction2D = new Vector2(directionToCheckpoint.x, directionToCheckpoint.y);
+                            players[i].GetComponent<PlayerControllerMap>().Move(directionToCheckpoint);
 
-                        animator = players[i].GetComponent<Animator>();
-                        animator.SetFloat("Speed", direction2D.SqrMagnitude());
-                        animator.SetFloat("Horizontal", direction2D.x);
+                            animator = players[i].GetComponent<Animator>();
+                            animator.SetFloat("Speed", direction2D.SqrMagnitude());
+                            animator.SetFloat("Horizontal", direction2D.x);
+                        }
                     }
-                    else checkpointReached[i] = true;    
+                    else checkpointReached[i] = true;
                 }
+                else checkpointReached[i] = true;
             }
 
             if (checkpointReached.All(x => x)) {
-
-                /*if (!prevCheckpointReached) {
-                    endgameVCAM.gameObject.SetActive(true); // activate VCAM only the first time
-                    FindObjectOfType<AudioManager>().Play("WinTheme"); // play sound only the first time
-                }*/
-
                 if (!finalBoss)
                 {
                     direction2D = Vector2.up;
-                    foreach (GameObject player in players) {
-                        if (player != null)
-                        {
-                            if (PhotonNetwork.IsConnected)
-                            {
-                                if (player.GetComponent<PhotonView>().IsMine)
-                                {
-                                    player.GetComponent<PlayerControllerMap>().Move(Vector3.up);
-                                    animator = player.GetComponent<Animator>();
-                                    animator.SetFloat("Speed", direction2D.SqrMagnitude());
-                                    animator.SetFloat("Horizontal", direction2D.x);
-                                }
-                                
-                            }
-                            else
-                            {
-                                player.GetComponent<PlayerControllerMap>().Move(Vector3.up);
-                                animator = player.GetComponent<Animator>();
-                                animator.SetFloat("Speed", direction2D.SqrMagnitude());
-                                animator.SetFloat("Horizontal", direction2D.x);
-                            }
-                            if (player.transform.position.y >= finalPosition.position.y) finalBoss = true;
-                        }
-                    }
+
+                    myPlayer.GetComponent<PlayerControllerMap>().Move(Vector3.up);
+                    animator = myPlayer.GetComponent<Animator>();
+                    animator.SetFloat("Speed", direction2D.SqrMagnitude());
+                    animator.SetFloat("Horizontal", direction2D.x);
+                    if (myPlayer.transform.position.y >= finalPosition.position.y) finalBoss = true;
                 }
                 else
                 {
@@ -121,21 +105,25 @@ public class ExitTrigger : MonoBehaviour {
                             if (players[i] != null)
                             {
                                 if (Vector3.Distance(players[i].transform.position, finalCheckpoints[i].transform.position) > 0.1f && !finalCheckpointReached[i]) {
-                                    Vector3 directionToCheckpoint = (finalCheckpoints[i].transform.position - players[i].transform.position).normalized;
+                                    if (players[i] == myPlayer) {
+                                        Vector3 directionToCheckpoint = (finalCheckpoints[i].transform.position - players[i].transform.position).normalized;
 
-                                    direction2D = new Vector2(directionToCheckpoint.x, directionToCheckpoint.y);
-                                    players[i].GetComponent<PlayerControllerMap>().Move(directionToCheckpoint);
+                                        direction2D = new Vector2(directionToCheckpoint.x, directionToCheckpoint.y);
+                                        players[i].GetComponent<PlayerControllerMap>().Move(directionToCheckpoint);
 
-                                    animator = players[i].GetComponent<Animator>();
-                                    animator.SetFloat("Speed", direction2D.SqrMagnitude());
-                                    animator.SetFloat("Horizontal", direction2D.x);
+                                        animator = players[i].GetComponent<Animator>();
+                                        animator.SetFloat("Speed", direction2D.SqrMagnitude());
+                                        animator.SetFloat("Horizontal", direction2D.x);
+                                    }
                                 }
                                 else
                                 {
                                     finalCheckpointReached[i] = true;
-                                    animator = players[i].GetComponent<Animator>();
-                                    animator.SetFloat("Speed", 0);
-                                    animator.SetFloat("Horizontal",  (boss.transform.position - players[i].transform.position).x);
+                                    if (players[i] == myPlayer) {
+                                        animator = players[i].GetComponent<Animator>();
+                                        animator.SetFloat("Speed", 0);
+                                        animator.SetFloat("Horizontal", (boss.transform.position - players[i].transform.position).x);
+                                    }
                                 }    
                             }
                         }
@@ -144,15 +132,7 @@ public class ExitTrigger : MonoBehaviour {
                     if (!setUpFinal)
                     {
                         boss.ActivateAnimator(this);
-                        
-                        foreach (GameObject player in players) {
-                            if (player != null)
-                            {
-                                //animator = player.GetComponent<Animator>();
-                                //animator.SetFloat("Speed", 0);
-                                player.GetComponent<PlayerControllerMap>().SetTimer(999,true);
-                            }
-                        }
+                        myPlayer.GetComponent<PlayerControllerMap>().SetTimer(999, true);
                         endgameVCAM.gameObject.SetActive(true);
                         setUpFinal = true;
                     }
@@ -160,30 +140,11 @@ public class ExitTrigger : MonoBehaviour {
                     if (isBossExploded)
                     {
                         direction2D = Vector2.up;
-                        foreach (GameObject player in players) {
-                            if (player != null)
-                            {
-                                if (PhotonNetwork.IsConnected)
-                                {
-                                    if (player.GetComponent<PhotonView>().IsMine)
-                                    {
-                                        player.GetComponent<PlayerControllerMap>().SetTimer(0,false);
-                                        player.GetComponent<PlayerControllerMap>().Move(Vector3.up);
-                                        animator = player.GetComponent<Animator>();
-                                        animator.SetFloat("Speed", direction2D.SqrMagnitude());
-                                        animator.SetFloat("Horizontal", direction2D.x);  
-                                    }
-                                }
-                                else
-                                {
-                                    player.GetComponent<PlayerControllerMap>().SetTimer(0,false);
-                                    player.GetComponent<PlayerControllerMap>().Move(Vector3.up);
-                                    animator = player.GetComponent<Animator>();
-                                    animator.SetFloat("Speed", direction2D.SqrMagnitude());
-                                    animator.SetFloat("Horizontal", direction2D.x); 
-                                }
-                            }
-                        }
+                        myPlayer.GetComponent<PlayerControllerMap>().SetTimer(0, false);
+                        myPlayer.GetComponent<PlayerControllerMap>().Move(Vector3.up);
+                        animator = myPlayer.GetComponent<Animator>();
+                        animator.SetFloat("Speed", direction2D.SqrMagnitude());
+                        animator.SetFloat("Horizontal", direction2D.x);
                     }
                 }
                 
