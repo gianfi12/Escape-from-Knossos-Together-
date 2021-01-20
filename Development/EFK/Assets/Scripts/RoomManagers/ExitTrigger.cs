@@ -62,14 +62,14 @@ public class ExitTrigger : MonoBehaviour {
         }
     }
 
-    private void Update() {
+    private void FixedUpdate() {
         if (movingPlayer) {
             Vector2 direction2D;
             Animator animator;
 
             for (int i = 0; i < playersNumber; i++) {
                 if (players[i] != null) {
-                    if (Vector3.Distance(players[i].transform.position, positionCheckpoints[i].transform.position) > 0.1f && !checkpointReached[i]) {
+                    if (!checkpointReached[i]) {
                         if (players[i] == myPlayer) {
                             Vector3 directionToCheckpoint = (positionCheckpoints[i].transform.position - players[i].transform.position).normalized;
 
@@ -81,7 +81,6 @@ public class ExitTrigger : MonoBehaviour {
                             animator.SetFloat("Horizontal", direction2D.x);
                         }
                     }
-                    else checkpointReached[i] = true;
                 }
                 else checkpointReached[i] = true;
             }
@@ -92,6 +91,8 @@ public class ExitTrigger : MonoBehaviour {
                     direction2D = Vector2.up;
 
                     myPlayer.GetComponent<PlayerControllerMap>().Move(Vector3.up);
+                    Debug.Log(myPlayer);
+                    Debug.Log(myPlayer.GetComponent<PhotonView>().ViewID);
                     animator = myPlayer.GetComponent<Animator>();
                     animator.SetFloat("Speed", direction2D.SqrMagnitude());
                     animator.SetFloat("Horizontal", direction2D.x);
@@ -161,5 +162,10 @@ public class ExitTrigger : MonoBehaviour {
     {
         yield return new WaitForSeconds(3);
         isBossExploded = true;
+    }
+
+    public void CheckpointReached(Checkpoint checkpoint) {
+        int i = positionCheckpoints.IndexOf(checkpoint.gameObject.transform);
+        checkpointReached[i] = true;
     }
 }
