@@ -383,7 +383,7 @@ MonoBehaviour:
       type: 2}
     maxDistance: 2
   - name: AmbientCorridor
-    clip: {fileID: 8300000, guid: fb8b99c1a8225b54789dd44ff6eead20, type: 3}
+    clip: {fileID: 8300000, guid: 48b9dcdb92ec0914694a80a40739116a, type: 3}
     volume: 0.1
     pitch: 1
     loop: 1

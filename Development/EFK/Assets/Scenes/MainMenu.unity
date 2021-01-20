@@ -1587,7 +1587,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Engineer & Desing: '
+  m_Text: 'Engineer & Design: '
 --- !u!222 &199009871
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2320,7 +2320,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Engineer & Desing: '
+  m_Text: 'Engineer & Design: '
 --- !u!222 &351458698
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5141,7 +5141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &914860657
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9959,7 +9959,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Engineer & Desing: '
+  m_Text: 'Engineer & Design: '
 --- !u!222 &1613278011
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10860,7 +10860,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Desing & Art & Writing:'
+  m_Text: 'Design & Art & Writing:'
 --- !u!222 &1721187298
 CanvasRenderer:
   m_ObjectHideFlags: 0
