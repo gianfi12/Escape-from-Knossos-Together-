@@ -142,7 +142,11 @@ public class MemoryRoomManager : MonoBehaviour
             for (int i = 0; i < 9; i++)
             {
                 PicturePiece piece = pieces[i].GetComponent<PicturePiece>();
-                if (piece.Active && firstWinnerIndexes.Contains(piece.PictureID)) winCount++;
+                if (piece.Active)
+                {
+                    if (firstWinnerIndexes.Contains(piece.PictureID)) winCount++;
+                    else winCount--;
+                }
             }
             if (winCount == 3)
             {
@@ -161,14 +165,22 @@ public class MemoryRoomManager : MonoBehaviour
             for (int i = 0; i < 9; i++)
             {
                 PicturePiece piece = pieces[i].GetComponent<PicturePiece>();
-                if (piece.Active && secondWinnerIndexes.Contains(piece.PictureID)) winCount++;
+                if (piece.Active)
+                {
+                    if (secondWinnerIndexes.Contains(piece.PictureID)) winCount++;
+                    else winCount--;
+                }
             }
             if (winCount == 3)
             {
                 FindObjectOfType<AudioManager>().Play("MemorySecondRight");
                 StartCoroutine(myRoom.ExitDoor.OpenDoorsWithDelay(0.5f));        
             }
-            else player.IncrementTimer(-20);
+            else
+            {
+                FindObjectOfType<AudioManager>().Play("MemoryWrong");
+                player.IncrementTimer(-20);
+            }
         }
     }
 }

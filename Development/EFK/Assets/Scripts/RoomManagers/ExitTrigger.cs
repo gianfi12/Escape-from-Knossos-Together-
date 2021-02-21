@@ -29,8 +29,7 @@ public class ExitTrigger : MonoBehaviour {
     private void Start() {
         if (PhotonNetwork.IsConnected) playersNumber = 2;
         else playersNumber = 1;
-
-        checkpointReached = new bool[playersNumber];
+        
         finalCheckpointReached = new bool[playersNumber];
     }
 
@@ -58,6 +57,7 @@ public class ExitTrigger : MonoBehaviour {
             playerInput._canMove = false;
             playerInput._isFinal = true;
             playerInput.Movement = new Vector2(0, 0);
+            checkpointReached = new bool[playersNumber];
             movingPlayer = true;
         }
     }
@@ -164,8 +164,8 @@ public class ExitTrigger : MonoBehaviour {
         isBossExploded = true;
     }
 
-    public void CheckpointReached(Checkpoint checkpoint) {
+    public void CheckpointReached(Checkpoint checkpoint, GameObject player) {
         int i = positionCheckpoints.IndexOf(checkpoint.gameObject.transform);
-        checkpointReached[i] = true;
+        if (checkpointReached != null && players.IndexOf(player) == i) checkpointReached[i] = true;
     }
 }
